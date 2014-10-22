@@ -1,0 +1,43 @@
+\chapter{Giải pháp để sửa chửa inconsistent ontology}
+{\let\thefootnote\relax\footnotetext{*\textit{
+Tối ưu có nghĩa là hạn chế tối đa các thay đổi về ý nghĩa mà việc xóa hoặc thay đổi phát biểu mâu thuẫn có thể gây ra cho các phát biểu khác (other axioms) trong ontology.
+}}
+\let\thefootnote\relax\footnotetext{**\textit{
+Mọi quan điểm và ý tưởng trình bày ở phần sau của Chương 2 đều thuộc sở hữu của các tác giả bài báo\textsuperscript{[1]}. Chúng em chỉ trình bày lại sau khi đã đọc và hiểu được ý tưởng chính của bài báo.
+}}
+}
+\begin{itemize}
+\item
+Như đã được đề cập trong chương 1, trong các nguyên nhân dẫn đến tính thiếu nhất quán(inconsistency) trong ontology thì \textbf{unsatisfiable class} (lớp không thỏa về nghĩa) là nguyên nhân nếu có thể được phát hiện sớm để sửa lại hoặc loại bỏ các phát biểu gây mâu thuẫn thì giúp cho ontology đạt được sự nhất quán. 
+\item
+Đã có rất nhiều nghiên cứu thành công trong việc tìm và phát hiện lỗi (các phát biểu mâu thuẫn) trong ontology. Trong đó có một nghiên cứu nổi bật\textsuperscript{[1]}, không chỉ có khả năng phát hiện gần như chính xác các nguyên nhân gây lỗi mà còn được đưa ra các giải pháp tối ưu\textsuperscript{*} để sửa lỗi. Nghiên cứu này đã được ứng dụng để đưa ra các giải thích về các lớp không thỏa về nghĩa (unsatisfiable classes) trong bộ thự viện lập trình ontology thông dụng hiện nay là OWL-API\textsuperscript{[2]}. Sau đây chúng em xin được trình bày lại những điểm quan trọng trong nghiên cứu vừa được đề cập\textsuperscript{**}.
+\end{itemize}
+\clearpage
+{\let\thefootnote\relax\footnotetext{2*\textit{
+Rất tiếc là Swoop Editor đã không còn cập nhật phiên bản nào mới kể từ năm 2007, nhưng kết quả nghiên cứu của họ cũng đã được ứng dụng vào trong việc tạo ra các giải thích cho unsatisfiable class trong thư viện OWL-API\textsuperscript{[2]}.
+}}}
+\section{Mục tiêu của việc debuging ontology}
+Mục tiêu chính của việc debuging ontology gồm hai điểm chính yếu. Thứ nhất cho một ontology có số lượng lớn các lớp không thỏa về nghĩa(unsatisfiable), tìm và nhận dạng được nguồn gốc của lớp gây ra mâu thuẫn và các lớp bị ảnh hưởng bởi sự mâu thuẫn đó. Thứ hai cho biết trước tên một lớp cụ thể không thỏa về nghĩa, tách và trình bày cho người sử dụng ontology một tập hợp tối tiểu các phát biểu (minimal set of axioms) từ ontology chịu trách nghiệm gây ra sự mâu thuẫn về nghĩa.
+\\
+Nghiên cứu của họ đã đóng góp những kỹ thuật nổi bật đã được ứng dụng vào trong các thư việc OWL-API\textsuperscript{[2]} và Pellet Reasoner\textsuperscript{[3]} như:
+\begin{itemize}
+\item
+Tăng cường những thông tin hữu ích cho quá trình sử lỗi các lớp không thỏa về nghĩa bằng cách chỉnh sửa giải thuật của họ để thu được một phần của những phát biểu gây lỗi.
+\item
+Đưa ra một kỹ thuật để đưa ra các giải pháp sửa lỗi tự động dựa trên các kỹ thuật dùng để xếp hạng các phát biểu gây lỗi và một giải thuật Reiter's Hitting Set đã được chỉnh sửa. Bên cạnh đó, họ cũng đưa ra các kỹ thuật để viết lại các phát biểu gây lỗi.
+\item
+Họ cũng đã áp dụng thành công kết quả nghiên cứu của họ vào trong SWOOP Ontology Editor\textsuperscript{[2*]} và OWL-API
+\end{itemize}
+\section{Sửa lại ontology}
+
+\subsection{Quy ước cần biết}
+Trước khi tiếp tục trình bày về các cách thức sửa chữa, chúng em xin được đề cập sơ tới một quy ước về một MUPS (\textit{Minimal Unsatisfiability Preserving Sub-TBoxes}), được giới thiệu trong\textsuperscript{[6]}.
+... more 
+\subsection{Cải tiến các phương pháp giải thích dựa trên các phát biểu trong ontology}
+... 
+\subsection{Cách thức xếp hạng các phát biểu (Axioms)}
+... more to come ...
+\subsection{Đưa ra các giải pháp sửa lỗi}
+Qua các bước trên, họ đã đưa ra một quy trình để tìm được ...
+\subsubsection{Chỉnh sửa giải thuật Reiter}
+Để đạt được mục tiêu đưa ra các giải pháp sửa lỗi, họ đã sử dụng giải thuật Hitting Set của Reiter\textsuperscript{[]}, khi chẩn đoán căn nguyên (root cause) của một vấn đề và một bộ các tập hợp xung đột nhau cho vấn đề đó, cố gắng tạo ra các tập hợp tối tiểu từ những tập hợp đụng độ nhau đó. Một tập hợp đụng độ (A hitting set) của một bộ \textbf{C} các tập hợp mà tập hợp giao (có chung phần tử) với mỗi tập hợp trong C. Một tập hợp đụng độ là tối tiểu nếu không có bất kì tập con nào của nó lại là một tập hợp đụng độ cho C\textsuperscript{[]}.

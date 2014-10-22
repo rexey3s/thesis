@@ -1,0 +1,121 @@
+\chapter{Các nguyên nhân dẫn đến tính thiếu nhất quán  trong ontology}
+
+\section{Các khái niệm cần lưu ý\textsuperscript{[3]}}
+% Định nghĩa unsatisfiable class
+\subsection{Lớp không thỏa về nghĩa}
+\begin{description}
+\item[Khái niệm]	Unsatisfiable Class
+\item[Giải thích] Khái niệm nêu trên dùng để chỉ một lớp hay một đối tượng trong một Ontology được định nghĩa không thoả về nghĩa với các phát biểu logic trong ontology hay có thể nói là các phát biểu logic của lớp này mâu thuẫn với nhau.
+\item[Ví dụ]
+\begin{verbatim}
+		Cow
+   	 		SubClassOf: Vegetarian
+		Vegetarian
+    			SubClassOf: Animal and eats only Plant
+		DisjointClasses:
+    			Plant, Animal
+\end{verbatim}
+\item[Giải thích ví dụ]
+Trong ví dụ trên thì MadCow chính là một lớp không hợp lý do trong các phát biểu logic của nó mâu thuẫn với nhau Cow là lớp con của Vegeterian mà Vegeterian chỉ ăn Plant (nghĩa là ngoài Plant, Vegeterian không ăn thứ gi khác) trong khi đó khai báo của lớp MadCow là lớp con của Cow và ăn một số Sheep (Sheep là một lớp con của Animal).
+\\ Từ đó việc lý luận có thể đưa ra giả định sai là Sheep cũng có khả năng là một phần của Plant . Điểm quan trọng là Plant và Animal là 2 DisjointClasses, nói cách khác không tồn tại một cá thể nào vừa thuộc lớp Plant và vừa thuộc lớp Animal. Như vậy trong tất cả các phát biểu logic ở ví dụ trên đã có 2 phát biểu gây mâu thuẫn chính là eats only Plant và eats some Sheep, và chúng làm cho lớp MadCow trở nên bất hợp lý (unsatisfiable).
+\end{description}
+
+\subsection{Ontology không mạch lạc rõ ràng}
+
+\begin{description}
+
+\item[Khái niệm] Incoherent ontology
+
+\item[Giải thích]
+Ontology không mạch lạc rõ ràng dùng để chỉ một ontology hoặc một model có chứa các lớp hoặc các đối tượng không hợp lý (unsatisfiable classes) và điểm quan trọng là các lớp có tính mâu thuẫn đó không được có bất kì cá thể (individual) nào.
+\\
+Giả sử ta có ontology A chứa các các phát biếu trong ví dụ trên ngoại trừ phát biểu cuối cùng \texttt{Individual: Dora type: \textcolor{red}{MadCow}} thì ta có thể nói ontology A không mạch lạc rõ ràng do nó chứa lớp có tính mâu thuẫn là MadCow. Chúng ta vẫn có thể sử dụng ontology A miễn là không có phần tử nào thuộc lớp MadCow.
+\end{description}
+
+\subsection{Ontology không nhất quán}
+\begin{description}
+\item[Khái niệm] Inconsistent Ontology
+\item[Giải thích] 
+Một ontology không có tính nhất quán dùng để chỉ một ontology chứa ít nhất một lớp hoặc các đối tượng có tính bất hợp lý (unsatisfiable classes) và các lớp hoặc đối tượng này lại có những cá thể thuộc nó.
+\\
+Như đã thể hiện trong ví dụ đầu tiên thì cá thể Dora thuộc lớp MadCow (Một lớp có tính mâu thuẫn thì không được phép có bất kì cá thể nào), như vậy bất kì ontology nào có những phát biểu trên đều được coi là không nhất quán (inconsistency), đều này đồng nghĩa là ontology đó không thể sử dụng được.
+\end{description}
+
+\section{Các nguyên nhân phổ biến thường  dẫn đến tính thiếu nhất quán (inconsistency)\textsuperscript{[4]}}
+	Các nguyên nhân dẫn đến tính thiếu nhất quán trong ontology gây bởi các lỗi được phân loại thành lỗi gây ra bởi phát biểu ở mức độ lớp (class level - TBox), các lỗi gây ra bởi phát biểu ở mức độ cá thể (instance level - ABox) và lỗi gây ra bởi phát biểu phát biểu liên quan  kết hợp ở mức độ lớp và cá thể.
+\subsection{Khởi tạo cá thể cho một lớp không hợp lý (unsatisfiable class) - (TBox + ABox)}
+\begin{itemize}
+
+\item{Đưa một cá thể vào một lớp có tính phi lý được xem là nguyên nhân phổ biến nhất gây ra tính thiếu nhất quán trong ontology}
+\item{Ví dụ:
+\begin{verbatim}
+	Individual: Dora type: MadCow
+\end{verbatim}
+}
+\item{
+Chúng ta không cần biết đâu là nguyên nhân làm cho \texttt{MadCow} trở nên mâu thuẫn, chỉ cần biết là một lớp chứa sự mâu thuẫn thì không nên có bất kì cá thể nào trong đó. Rõ ràng là không có bất kì ontology nào mà cá thể Dora có thể đáp ứng các điều kiện như trong ví dụ đầu tiên, nói cách khác là ontology không tồn tại. Chúng ta phát biểu đó là một ontology không nhất quán.}
+\end{itemize}
+
+\subsection{Khởi tạo cá thể thuộc 2 class được disjoint với nhau (TBox + ABox)}
+
+\begin{itemize}
+\item{Đây là một trường hợp dễ bắt gặp vì nó sai ngay trong phát biểu về mặt ngữ nghĩa}
+\item Ví dụ
+\begin{verbatim}
+		Individual: Dora
+			Types: Vegetarian, Carnivore
+		DisjointClasses: Vegetarian, Carnivore
+\end{verbatim}
+
+\item{Phát biểu ở cấp độ lớp DisjointClasses(Vegetarian Carnivore) có nghĩa là các lớp được gọi là DisjointClasses là các lớp mà không có chung bất kì một phần tử hay cá thể nào, đồng nghĩa với không có tồn tại bất kì cá thể nào thuộc các lớp đã được disjointed với nhau,do đó phát biều cấp độ cá thể (ABox) \texttt{Dora  Types: Vegeterian, Carnivore} là sai.}
+\end{itemize}  	
+
+
+\subsection{Các phát biểu phát biểu cho cá thể xung đột với nhau (All Abox)}
+
+\begin{itemize} 
+\item{Ở trường hợp này thì tương tự như nguyên nhân ở trên nhưng khác ở chỗ là lần này sự mâu thuẫn nằm hết trong các biểu ở cấp độ cá thể (ABox).}
+\item{Ví dụ:	
+\begin{verbatim}
+			Individual: Dora
+  			Types: Vegetarian, not Vegetarian
+\end{verbatim}
+}
+\item{Dễ dàng nhận thây được sự mâu thuẫn trong trong phát biểu trên vừa yêu cầu Dora là Vegetarian vừa yêu cầu nó không phải Vegetarian.}
+\end{itemize}
+
+\subsection{Các phát biểu xung đột với dạng phát biểu bao gồm hay một trong (All TBox)}
+
+\begin{itemize}
+\item 
+Phát biểu bao gồm hoặc một trong (oneOf trong ngôn ngữ OWL) cho phép sử dụng các cá thể trong phát biểu cấp độ lớp (TBox), sự kết hợp này có thể dẫn đến sự thiếu nhất quán.
+\item
+Lấy ví dụ sau:
+\begin{verbatim}
+Class: MyFavouriteCow
+  	EquivalentTo: {Dora}
+Class: AllMyCows
+  	EquivalentTo: {Dora, Daisy, Patty}
+DisjointClasses: MyFavouriteCow, AllMyCows
+\end{verbatim}
+\item
+Phần đầu tiên của các phát biểu trên tất cả các thể thuộc lớp MyFavouriteCow phải tương đương với cá thể tên Dora, nói cách khác là SameIndividual với Dora. Phần thứ hai cũng  tương tự tất cả các cá thể thuộc lớp AllMyCows buộc phải tương đương với một trong 3 cá thể tên Dora, Daisy hoặc Patty. Do 2 phát biểu trên chúng ta đã nói Dora thuộc cả 2 lớp MyFavoriteCow và AllMyCows nên mâu thuẫn với phát biểu cuối cùng khi nói 2 lớp này không có chung một cá thể nào. Vì vậy dẫn tới ontology bị thiếu nhất quán (inconsistent).
+\end{itemize}
+
+\subsection{Không có khả năng khởi tạo bất kì cá thể nào (all TBox)}
+
+\begin{itemize}
+\item Ví dụ:
+\begin{verbatim}
+Vegetarian or not Vegetarian
+	SubClassOf: Cow and not Cow
+\end{verbatim}
+\item
+Đây chỉ là một ví dụ đơn giản để minh hoạ. Thực tế sẽ không ai tạo ra một phát biểu ngớ ngẩn như vậy nhưng nó sẽ có khả năng xảy ra khi phát biểu trên  là kết quả suy luận(reasoning) của những phát biểu lớn và phức tạp hơn.
+\item
+Có thể giải thích ví dụ trên như sau. Đầu tiên để đáp ứng ý nghĩa dòng đầu tiên yêu cầu cá thể vừa là Vegetarian hoặc không phải Vegetarian - bất kỳ phát biểu nào yêu cầu cá thể thuộc một lớp hoặc không thuộc lớp đó thì phát biểu đó ám chỉ đến tất cả cá thể xuất hiện trong ontology.Dòng thứ hai yêu cầu cá thể vừa là Cow vừa không phải là Cow, phát biểu này rơi vào một trong các nguyên nhân đã nếu ở trên. Cuối cùng yêu cầu tất cả cá thể vừa là Cow vừa không phải Cow là điều bất hợp lý do đó làm ontology thiếu nhất quán.
+\end{itemize}
+
+\paragraph{Kết luận}
+Trên đây chúng ta đã liệt kê những nguyên nhân phổ biến dẫn đến thiếu nhất quán qua những ví dụ đã được đơn giản hoá tối đa để chung ta dễ nhận ra được dấu hiệu gây lỗi. Trên thực tế nhưng nguyên nhân như khai báo cá thể cho một lớpbất hợp lý (unsatisfiable class) có thể dễ phát hiện bởi người xây dựng ontology, những nguyên nhân khác như liên quan tới định danh (oneOf) thì sẽ khó phát hiện được hơn.
+
