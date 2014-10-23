@@ -13,7 +13,7 @@ Như đã được đề cập trong chương 1, trong các nguyên nhân dẫn 
 Đã có rất nhiều nghiên cứu thành công trong việc tìm và phát hiện lỗi (các phát biểu mâu thuẫn) trong ontology. Trong đó có một nghiên cứu nổi bật\textsuperscript{[1]}, không chỉ có khả năng phát hiện gần như chính xác các nguyên nhân gây lỗi mà còn được đưa ra các giải pháp tối ưu\textsuperscript{*} để sửa lỗi. Nghiên cứu này đã được ứng dụng để đưa ra các giải thích về các lớp không thỏa về nghĩa (unsatisfiable classes) trong bộ thự viện lập trình ontology thông dụng hiện nay là OWL-API\textsuperscript{[2]}. Sau đây chúng em xin được trình bày lại những điểm quan trọng trong nghiên cứu vừa được đề cập\textsuperscript{**}.
 \end{itemize}
 \clearpage
-{\let\thefootnote\relax\footnotetext{2*\textit{
+{\let\thefootnote\relax\footnotetext{*\textit{
 Rất tiếc là Swoop Editor đã không còn cập nhật phiên bản nào mới kể từ năm 2007, nhưng kết quả nghiên cứu của họ cũng đã được ứng dụng vào trong việc tạo ra các giải thích cho unsatisfiable class trong thư viện OWL-API\textsuperscript{[2]}.
 }}}
 \section{Mục tiêu của việc debuging ontology}
@@ -26,18 +26,33 @@ Tăng cường những thông tin hữu ích cho quá trình sử lỗi các l�
 \item
 Đưa ra một kỹ thuật để đưa ra các giải pháp sửa lỗi tự động dựa trên các kỹ thuật dùng để xếp hạng các phát biểu gây lỗi và một giải thuật Reiter's Hitting Set đã được chỉnh sửa. Bên cạnh đó, họ cũng đưa ra các kỹ thuật để viết lại các phát biểu gây lỗi.
 \item
-Họ cũng đã áp dụng thành công kết quả nghiên cứu của họ vào trong SWOOP Ontology Editor\textsuperscript{[2*]} và OWL-API
+Họ cũng đã áp dụng thành công kết quả nghiên cứu của họ vào trong Swoop Ontology Editor\textsuperscript{[*]} và OWL-API
 \end{itemize}
-\section{Sửa lại ontology}
+\section{Các bước sửa chữa các phát biểu bị lỗi}
 
-\subsection{Quy ước cần biết}
-Trước khi tiếp tục trình bày về các cách thức sửa chữa, chúng em xin được đề cập sơ tới một quy ước về một MUPS (\textit{Minimal Unsatisfiability Preserving Sub-TBoxes}), được giới thiệu trong\textsuperscript{[6]}.
-... more 
-\subsection{Cải tiến các phương pháp giải thích dựa trên các phát biểu trong ontology}
-... 
-\subsection{Cách thức xếp hạng các phát biểu (Axioms)}
-... more to come ...
-\subsection{Đưa ra các giải pháp sửa lỗi}
+\subsection{Minimal Unsatisfiability Preserving Sub-TBoxes (MUPS)}
+Khái niệm MUPS lần đầu được giới thiệu trong\textsuperscript{[6]}. Một MUPS của một lớp nguyên tử (\textit{atomic class or concept}) A là một phần tối tiểu của Knowledge Base mà trong đó A không thỏa nghĩa (\textit{unsatisfiable}). Mỗi lớp không thỏa nghĩa sẽ có nhiều MUPS khác nhau trong một ontology. Tìm tất cả MUPS của một lớp không thỏa nghĩa là một nhiệm vụ cực kì khó đứng ở khía cạnh debuging, từ đó để sửa lại một lớp không thỏa nghĩa(\textit{unsatisfiable class}) chúng ta cần loại bỏ tối thiểu ít nhất một phát biểu từ từng tập các phát biểu trong MUPS diện cho unsatisfiable class đó.
+\subsection{Tìm MUPS của một lớp không thỏa nghĩa}
+\paragraph{Axiom Pinpointing service} Một thành phần quan trọng trong giải pháp debugging dùng để tìm và trích xuất MUPS từ một lớp không thỏa nghĩa. Họ cũng đã nâng cấp chức năng này nhằm xác định được chính xác những phần phát biểu gây lỗi, họ định nghĩa  
+MUPS tìm được là \textit{precise} MUPS.
+\\
+Ý tưởng của kĩ thuật này có thể được mô tả khái quát như sau(chi tiết hơn về cách áp dụng xem\textsuperscript{[8]}). Mục tiêu là nhận diện những phần có liên quan của các phát biểu, nên họ đã định nghĩa một hàm nhằm chia nhỏ các phát biểu trong KB \textbf{K} thành những phát biểu nhỏ hơn để thu được KB $K_{s}$ có nghĩa tương đương với KB \textbf{K}, với số lượng các phát biểu được chia nhỏ nhiều nhất có thể.
+\\\textbf{Ví dụ}:	 $A\subseteq$ $C\cap$D tương đương với $A\subseteq$C, $A\subseteq$D
+\\
+Trong một vài trường hợp, kĩ thuật này bắt buộc phải giới thiệu ra một tên lớp mới, chỉ với mục đích là chia các phát biểu thành những mảnh nhỏ hơn.
+\\\textbf{Ví dụ:}	$A\subseteq$ $\exists$R.($C\cap$D) không tương đương với $A\subseteq$ $\exists$R.C, $A\subseteq$ $\exists$R.D
+\\Để chia nhỏ phát biểu trên chúng ta sẽ giới thiệu một tên lớp mới, gọi là \textit{E}.
+\\\textbf{Như vậy ta có:}
+$A\subseteq$ $\exists$R.($C\cap$D) sẽ tương đương với $A\subseteq$ $\exists$R.E, $E\subseteq$C, $E\subseteq$D, $C\cap$D $\subseteq$E
+Cuối cùng nhiệm vụ tìm kiếm \textit{precise} MUPS của lớp không thỏa nghĩa trong KB \textbf{K} được đơn giản hóa thành vấn đề tìm MUPS trong những phiên bản đã được tách nhỏ trong KB $K_{s}$. Chi tiết hơn về kĩ thuật này xin đọc\textsuperscript{[8]}.
+\subsection{Chiến thuật xếp hạng các phát biểu (\textit{Axioms})}
+Đây là một phần chính yếu trong tiến trình chỉnh sửa lại các phát biểu gây lỗi, quyết định xem nên loại bỏ phát biểu nào từ MUPS để sửa được lớp không thỏa nghĩa.
+\\
+\hspace{.05\textwidth} Với mục tiêu này, một nhân tố đáng quan tâm là các phát biểu trong MUPS có thể được \textit{xếp hạng} dựa theo mức độ quan trọng của chúng hay không. Việc sửa chữa các nguyên nhân gây lỗi được trở thành một vấn đề cần được tối ưu với mục tiêu quan trọng nhất là loại bỏ tất cả các lỗi thiếu nhất quán trong ontology, trong khi vẫn chắc chắn rằng những phát biểu có thứ hạng cao, nói cách khác là có giá trị quan trọng nghĩa sẽ được giữ lạ và các phát biểu có thứ hạng thấp nhất sẽ được xóa đi.
+\\
+\hspace{.05\textwidth} Tiêu chí đơn giản nhất để xếp hạng các phát biểu là đếm số lần chúng xuất hiện trong MUPS từ những lớp không thỏa nghĩa xuất hiện trong một ontology,
+\subsection{Đưa ra các nguyên nhân gây lỗi chính xác bằng giải thuật HST của Reiter}
 Qua các bước trên, họ đã đưa ra một quy trình để tìm được ...
-\subsubsection{Chỉnh sửa giải thuật Reiter}
-Để đạt được mục tiêu đưa ra các giải pháp sửa lỗi, họ đã sử dụng giải thuật Hitting Set của Reiter\textsuperscript{[]}, khi chẩn đoán căn nguyên (root cause) của một vấn đề và một bộ các tập hợp xung đột nhau cho vấn đề đó, cố gắng tạo ra các tập hợp tối tiểu từ những tập hợp đụng độ nhau đó. Một tập hợp đụng độ (A hitting set) của một bộ \textbf{C} các tập hợp mà tập hợp giao (có chung phần tử) với mỗi tập hợp trong C. Một tập hợp đụng độ là tối tiểu nếu không có bất kì tập con nào của nó lại là một tập hợp đụng độ cho C\textsuperscript{[]}.
+
+\paragraph{Tìm MUPS bằng giải thuật HST của Reiter}
+Một kỹ thuật tối ưu hơn kỹ thuật \textbf{Axiom Pinpointing} đã được đề cập ở mục trên nhằm tìm kiếm MUPS của một unsatisfiable class, họ đã sử dụng giải thuật Hitting Set của Reiter\textsuperscript{[7]}, nhằm để xác định căn nguyên(\textit{root cause}) của một vấn đề từ một bộ(\textit{collection}) gồm nhiều tập hợp đụng độ chứa các nguyên nhân dẫn tới vấn đề, giải thuật này sẽ tạo ra những tập tối tiểu (\textit{minimal hitting set}) chứa các nguyên nhân gây ra vấn đề. Một tập hợp đụng độ (\textit{hitting set}) trong một bộ \textbf{C} các tập hợp là tập hợp giao (có chung phần tử) với từng tập hợp trong \textbf{C}. Một tập hợp đụng độ là tối tiểu nếu không có bất kì tập con nào của nó lại là một tập đụng độ cho \textbf{C}. Để áp dụng vào trường hợp này khi chúng ta đã có một bộ chứa tập hợp chứa các nguyên nhân gây lỗi(\textit{MUPS}), họ áp dụng giải thuật này để tạo ra các tập đụng độ từ MUPS - ý tưởng ở đây là loại bỏ tất cả các phát biểu trong tập đụng độ tối tiểu sẽ giúp loại bỏ từng phát biểu gây lỗi trên từng tập phát biểu của MUPS và cuối cùng giúp cho sửa chữa được unsatisfiable class.		
