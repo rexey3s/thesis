@@ -3,37 +3,32 @@
 Tối ưu có nghĩa là hạn chế tối đa các thay đổi về ý nghĩa mà việc xóa hoặc thay đổi phát biểu mâu thuẫn có thể gây ra cho các phát biểu khác (other axioms) trong ontology.
 }}
 \let\thefootnote\relax\footnotetext{**\textit{
-Mọi quan điểm và ý tưởng trình bày ở phần sau của Chương 2 đều thuộc sở hữu của các tác giả bài báo\textsuperscript{[1]}. Chúng em chỉ trình bày lại sau khi đã đọc và hiểu được ý tưởng chính của bài báo.
+Mọi quan điểm và ý tưởng trình bày ở phần sau của Chương 2 đều thuộc sở hữu của các tác giả bài báo\textsuperscript{[1]} và \textsuperscript{[9]}. Chúng em chỉ trình bày lại sau khi đã đọc và nắm được ý tưởng chính yếu của bài báo.
 }}
 }
 \begin{itemize}
 \item
-Như đã được đề cập trong chương 1, trong các nguyên nhân dẫn đến tính thiếu nhất quán(inconsistency) trong ontology thì \textbf{unsatisfiable class} (lớp không thỏa về nghĩa) là nguyên nhân nếu có thể được phát hiện sớm để sửa lại hoặc loại bỏ các phát biểu gây mâu thuẫn thì giúp cho ontology đạt được sự nhất quán. 
+Như đã được đề cập trong chương 1, trong các nguyên nhân dẫn đến tính thiếu nhất quán(inconsistency) trong ontology thì \textbf{unsatisfiable class} (lớp không thỏa về tính logic) là nguyên nhân nếu có thể được phát hiện sớm để sửa lại hoặc loại bỏ các phát biểu gây mâu thuẫn thì giúp cho ontology đạt được sự nhất quán. 
 \item
-Đã có rất nhiều nghiên cứu thành công trong việc tìm và phát hiện lỗi (các phát biểu mâu thuẫn) trong ontology. Trong đó có một nghiên cứu nổi bật\textsuperscript{[1]}, không chỉ có khả năng phát hiện gần như chính xác các nguyên nhân gây lỗi mà còn được đưa ra các giải pháp tối ưu\textsuperscript{*} để sửa lỗi. Nghiên cứu này đã được ứng dụng để đưa ra các giải thích về các lớp không thỏa về nghĩa (unsatisfiable classes) trong bộ thự viện lập trình ontology thông dụng hiện nay là OWL-API\textsuperscript{[2]}. Sau đây chúng em xin được trình bày lại những điểm quan trọng trong nghiên cứu vừa được đề cập\textsuperscript{**}.
+Đã có rất nhiều nghiên cứu thành công trong việc tìm và phát hiện lỗi (các phát biểu mâu thuẫn) trong ontology. Trong đó có một nghiên cứu nổi bật\textsuperscript{[1]}, không chỉ có khả năng phát hiện gần như chính xác các nguyên nhân gây lỗi mà còn được đưa ra các giải pháp tối ưu\textsuperscript{*} để sửa lỗi. Nghiên cứu này đã được ứng dụng để đưa ra các giải thích về các lớp không thỏa về nghĩa (unsatisfiable classes) trong bộ thự viện lập trình ontology thông dụng hiện nay là OWL-API\textsuperscript{[2]}. Sau đây chúng em xin được trình bày lại những điểm quan trọng trong nghiên cứu vừa được đề cập\textsuperscript{**}
 \end{itemize}
 \clearpage
-{\let\thefootnote\relax\footnotetext{*\textit{
-Rất tiếc là Swoop Editor đã không còn cập nhật phiên bản nào mới kể từ năm 2007, nhưng kết quả nghiên cứu của họ cũng đã được ứng dụng vào trong việc tạo ra các giải thích cho unsatisfiable class trong thư viện OWL-API\textsuperscript{[2]}.
-}}}
+
 \section{Mục tiêu của việc debuging ontology}
-Mục tiêu chính của việc debuging ontology gồm hai điểm chính yếu. Thứ nhất cho một ontology có số lượng lớn các lớp không thỏa về nghĩa(unsatisfiable), tìm và nhận dạng được nguồn gốc của lớp gây ra mâu thuẫn và các lớp bị ảnh hưởng bởi sự mâu thuẫn đó. Thứ hai cho biết trước tên một lớp cụ thể không thỏa về nghĩa, tách và trình bày cho người sử dụng ontology một tập hợp tối tiểu các phát biểu (minimal set of axioms) từ ontology chịu trách nghiệm gây ra sự mâu thuẫn về nghĩa.
+Mục tiêu chính của việc debuging ontology gồm hai phần quan trọng. Thứ nhất, với một ontology có số lượng lớn các lớp không không đáp ứng (\textit{Unsatisfiable Class}), cần tìm và nhận dạng được nguồn gốc của lớp gây ra mâu thuẫn và các lớp bị ảnh hưởng bởi sự mâu thuẫn đó. Thứ hai, cho biết trước một lớp cụ thể không đáp ứng các điều kiện logic, trích xuất và trình bày cho người sử dụng ontology(\textit{modeler}) một tập hợp tối tiểu các phát biểu (\textit{minimal set of axioms}) từ ontology chịu trách nghiệm trong việc gây ra sự mâu thuẫn về logic.
 \\
-Nghiên cứu của họ đã đóng góp những kỹ thuật nổi bật đã được ứng dụng vào trong các thư việc OWL-API\textsuperscript{[2]} và Pellet Reasoner\textsuperscript{[3]} như:
-\begin{itemize}
-\item
-Tăng cường những thông tin hữu ích cho quá trình sử lỗi các lớp không thỏa về nghĩa bằng cách chỉnh sửa giải thuật của họ để thu được một phần của những phát biểu gây lỗi.
-\item
-Đưa ra một kỹ thuật để đưa ra các giải pháp sửa lỗi tự động dựa trên các kỹ thuật dùng để xếp hạng các phát biểu gây lỗi và một giải thuật Reiter's Hitting Set đã được chỉnh sửa. Bên cạnh đó, họ cũng đưa ra các kỹ thuật để viết lại các phát biểu gây lỗi.
-\item
-Họ cũng đã áp dụng thành công kết quả nghiên cứu của họ vào trong Swoop Ontology Editor\textsuperscript{[*]} và OWL-API
-\end{itemize}
+\section{Khái niệm và các kỹ thuật cần biết}
+Các hệ thống Description Logic thường cung cấp một tập hợp các tác vụ suy luận đã được chuẩn hóa như phân loại các khái niệm (\textit{concept classification}), kiểm tra tính đáp ứng về logic (\textit{concept satisfiability}) và kiếm tra tính nhất quán của knowledge base (KB). Hầu hết các reasoner thông dụng hiện nay đều đáp ứng đủ các loại tác vụ suy luận vừa nêu ra, nhưng tất cả chúng đều không thân thiện với người dùng. Nhưng tất cả những gì chúng ta biết được đều là kết quả (hay output) từ sự suy luận(reasoning) của reasoner. 
+\hspace{0.05\textwidth}  Để giúp cho các tác vụ trở nên thân thiện với người dùng hơn, một hệ thống DL-based Knowledge Representaion (KR) phải mở rộng thêm các lựa chọn về các tác vụ không nằm trong tiêu chuẩn của DL. Một ví dụ cụ thể là việc tạo ra các giải thích tại sao một lớp lại không đáp ứng các điều kiện về logic - Lưu ý: chúng ta biết một lớp không đáp ứng hay không là nhờ sự suy luận của reasoner. Thêm một ví dụ nữa làm sao giải thích được một lớp A là lớp con của B khi đây là chỉ kết quả suy luận của reasoner. Việc ra đời tác vụ giải thích nguyên nhân và kết quả là thật sự cần thiết trong bối cảnh sự phát triển nhanh của Semantic Web và cộng đồng người dùng và nhà phát triển Ontology.
+\subsection{Axiom Pinpointing service} chính là tác vụ 
+
+
 \section{Các bước sửa chữa các phát biểu bị lỗi}
 
 \subsection{Minimal Unsatisfiability Preserving Sub-TBoxes (MUPS)}
-Khái niệm MUPS lần đầu được giới thiệu trong\textsuperscript{[6]}. Một MUPS của một lớp nguyên tử (\textit{atomic class or concept}) A là một phần tối tiểu của Knowledge Base mà trong đó A không thỏa nghĩa (\textit{unsatisfiable}). Mỗi lớp không thỏa nghĩa sẽ có nhiều MUPS khác nhau trong một ontology. Tìm tất cả MUPS của một lớp không thỏa nghĩa là một nhiệm vụ cực kì khó đứng ở khía cạnh debuging, từ đó để sửa lại một lớp không thỏa nghĩa(\textit{unsatisfiable class}) chúng ta cần loại bỏ tối thiểu ít nhất một phát biểu từ từng tập các phát biểu trong MUPS diện cho unsatisfiable class đó.
-\subsection{Tìm MUPS của một lớp không thỏa nghĩa}
-\paragraph{Axiom Pinpointing service} Một thành phần quan trọng trong giải pháp debugging dùng để tìm và trích xuất MUPS từ một lớp không thỏa nghĩa. Họ cũng đã nâng cấp chức năng này nhằm xác định được chính xác những phần phát biểu gây lỗi, họ định nghĩa  
+Khái niệm MUPS lần đầu được giới thiệu trong\textsuperscript{[6]}. Một MUPS của một lớp nguyên tử (\textit{atomic class or concept}) A là một phần nhỏ nhất trong  Knowledge Base mà trong đó A không đáp ứng (\textit{unsatisfiable}). Mỗi lớp không đáp ứng sẽ có nhiều MUPS khác nhau trong một ontology. Tìm tất cả MUPS của một lớp không đáp ứng là một nhiệm vụ cực kì khó đứng ở khía cạnh debuging, từ đó để sửa lại một lớp không đáp ứng(\textit{unsatisfiable class}) chúng ta cần loại bỏ tối thiểu ít nhất một phát biểu từ từng tập các phát biểu trong MUPS diện cho unsatisfiable class đó.
+\subsection{Tìm MUPS của một lớp không đáp ứng}
+\paragraph{Axiom Pinpointing service} Một thành phần quan trọng trong giải pháp debugging dùng để tìm và trích xuất MUPS từ một lớp không đáp ứng. Họ cũng đã nâng cấp chức năng này nhằm xác định được chính xác những phần phát biểu gây lỗi, họ định nghĩa  
 MUPS tìm được là \textit{precise} MUPS.
 \\
 Ý tưởng của kĩ thuật này có thể được mô tả khái quát như sau(chi tiết hơn về cách áp dụng xem\textsuperscript{[8]}). Mục tiêu là nhận diện những phần có liên quan của các phát biểu, nên họ đã định nghĩa một hàm nhằm chia nhỏ các phát biểu trong KB \textbf{K} thành những phát biểu nhỏ hơn để thu được KB $K_{s}$ có nghĩa tương đương với KB \textbf{K}, với số lượng các phát biểu được chia nhỏ nhiều nhất có thể.
@@ -44,13 +39,13 @@ Trong một vài trường hợp, kĩ thuật này bắt buộc phải giới th
 \\Để chia nhỏ phát biểu trên chúng ta sẽ giới thiệu một tên lớp mới, gọi là \textit{E}.
 \\\textbf{Như vậy ta có:}
 $A\subseteq$ $\exists$R.($C\cap$D) sẽ tương đương với $A\subseteq$ $\exists$R.E, $E\subseteq$C, $E\subseteq$D, $C\cap$D $\subseteq$E
-Cuối cùng nhiệm vụ tìm kiếm \textit{precise} MUPS của lớp không thỏa nghĩa trong KB \textbf{K} được đơn giản hóa thành vấn đề tìm MUPS trong những phiên bản đã được tách nhỏ trong KB $K_{s}$. Chi tiết hơn về kĩ thuật này xin đọc\textsuperscript{[8]}.
+Cuối cùng nhiệm vụ tìm kiếm \textit{precise} MUPS của lớp không đáp ứng trong KB \textbf{K} được đơn giản hóa thành vấn đề tìm MUPS trong những phiên bản đã được tách nhỏ trong KB $K_{s}$. Chi tiết hơn về kĩ thuật này xin đọc\textsuperscript{[8]}.
 \subsection{Chiến thuật xếp hạng các phát biểu (\textit{Axioms})}
-Đây là một phần chính yếu trong tiến trình chỉnh sửa lại các phát biểu gây lỗi, quyết định xem nên loại bỏ phát biểu nào từ MUPS để sửa được lớp không thỏa nghĩa.
+Đây là một phần chính yếu trong tiến trình chỉnh sửa lại các phát biểu gây lỗi, quyết định xem nên loại bỏ phát biểu nào từ MUPS để sửa được lớp không đáp ứng.
 \\
 \hspace{.05\textwidth} Với mục tiêu này, một nhân tố đáng quan tâm là các phát biểu trong MUPS có thể được \textit{xếp hạng} dựa theo mức độ quan trọng của chúng hay không. Việc sửa chữa các nguyên nhân gây lỗi được trở thành một vấn đề cần được tối ưu với mục tiêu quan trọng nhất là loại bỏ tất cả các lỗi thiếu nhất quán trong ontology, trong khi vẫn chắc chắn rằng những phát biểu có thứ hạng cao, nói cách khác là có giá trị quan trọng nghĩa sẽ được giữ lạ và các phát biểu có thứ hạng thấp nhất sẽ được xóa đi.
 \\
-\hspace{.05\textwidth} Tiêu chí đơn giản nhất để xếp hạng các phát biểu là đếm số lần chúng xuất hiện trong MUPS từ những lớp không thỏa nghĩa xuất hiện trong một ontology,
+\hspace{.05\textwidth} Tiêu chí đơn giản nhất để xếp hạng các phát biểu là đếm số lần chúng xuất hiện trong MUPS từ những lớp không đáp ứng xuất hiện trong một ontology,
 \subsection{Đưa ra các nguyên nhân gây lỗi chính xác bằng giải thuật HST của Reiter}
 Qua các bước trên, họ đã đưa ra một quy trình để tìm được ...
 
