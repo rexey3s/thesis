@@ -20,9 +20,11 @@ Mục tiêu chính của việc debuging ontology gồm hai phần quan trọng.
 \section{Khái niệm và các kỹ thuật cần biết}
 \hspace*{0.05\textwidth} Các hệ thống Description Logic thường cung cấp một tập hợp các tác vụ suy luận đã được chuẩn hóa như phân loại các khái niệm (\textit{concept classification}), kiểm tra tính đáp ứng về logic (\textit{concept satisfiability}) và kiếm tra tính nhất quán của knowledge base (KB). Hầu hết các reasoner thông dụng hiện nay đều buộc phải cung cấp đủ 3 tác vụ nêu trên, nhưng tất cả chúng đều không thân thiện với người dùng. Do tất cả những gì chúng ta biết được đều là kết quả (hay output) từ sự suy luận(reasoning) của reasoner. 
 \\
-\hspace*{0.05\textwidth}  Để giúp cho các tác vụ suy luận (reasoning) trở nên thân thiện với người dùng hơn, một hệ thống DL-based Knowledge Representaion (KR) phải mở rộng thêm các lựa chọn về các tác vụ không nằm trong tiêu chuẩn của DL. Một ví dụ cụ thể là việc tạo ra các giải thích tại sao một lớp lại bị reasoner đánh giá là unsatisfiable. Thêm một tình huống mà người dùng cần được giải thích là tại sao reasoner đánh giá một lớp là lớp con của một lớp khác - đâu là lý do. Việc ra đời tác vụ giải thích nguyên nhân và kết quả là thật sự cần thiết trong bối cảnh sự phát triển nhanh của Semantic Web và cộng đồng người dùng/nhà phát triển Ontology ngày càng tăng nhanh.
+\hspace*{0.05\textwidth}  Để giúp cho các tác vụ suy luận (reasoning) trở nên thân thiện với người dùng hơn, một hệ thống DL-based Knowledge Representation (KR) phải mở rộng thêm các lựa chọn về các tác vụ không nằm trong tiêu chuẩn của DL. Một ví dụ cụ thể là việc tạo ra các giải thích tại sao một lớp lại bị reasoner đánh giá là unsatisfiable. Thêm một tình huống mà người dùng cần được giải thích là tại sao reasoner đánh giá một lớp là lớp con của một lớp khác - đâu là lý do. Việc ra đời tác vụ giải thích nguyên nhân và kết quả là thật sự cần thiết trong bối cảnh sự phát triển nhanh của Semantic Web và cộng đồng người dùng/nhà phát triển Ontology ngày càng tăng nhanh.
+\subsection{Dịch vụ Axiom Pinpointing}
 \paragraph{Axiom Pinpointing service} chính là dịch vụ có khả năng thực hiện tác vụ giải thích vừa được đề cập, với một KB và bất kì kết quả suy luận nào từ KB, dịch vụ này sẽ trả về tập các chứng minh/giải thích cho suy luận đó bằng những phát biểu đã được khai báo trong KB.
 \\
+% trang 2,3,4 trong [8]
 \hspace*{0.05\textwidth} Có thể giải thích ngắn gọn như sau, cho một phát biểu kết quả họ SHOIN $\alpha$ được suy ra từ một knowledge base $K$, tập các giải thích/chứng minh cho $\alpha$  trong $K$ là một phần tối tiểu $K^{'}\subseteq$ $K$ chịu trách nhiệm cho $\alpha$ xảy ra. Chứng minh $K^{'}$ là tối tiểu với điều kiện $\alpha$ là một kết quả logic được suy ra từ $K^{'}$, hay nói cách khác $K^{'}$ tối tiểu khi và chỉ khi bất kì tập con nào của $K^{'}$ đều không suy ra được $\alpha$. Nói chung có thể tồn tại nhiều giải thích/chứng minh cho $\alpha$ trong $K$.
 \\
 \hspace*{0.05\textwidth} Sau đây là một ví dụ cho ý tưởng vừa nêu. Cho KB $K$ với các phát biểu như sau:
@@ -34,29 +36,39 @@ Mục tiêu chính của việc debuging ontology gồm hai phần quan trọng.
 \end{enumerate}
 
 Trong KB trên, $A, B, C, D, E$ là atomic concepts và $R$ là atomic role.  Chúng ta sẽ dùng số thứ tự của từng câu phát biểu trên thay vì lặp lại nguyên văn.
-\hspace*{0.05\textwidth} Từ các phát biểu trên ta có $K$ $\models$ ($A$ $\subseteq$ $C$). Tuy nhiên, điều kiện cần và đủ để suy ra được một kết quả tương tự từ 2 phần nhỏ hơn của KB $K$ là $K_{1}$ = {1} và $K_{2}$ ={3,4}. Chúng ta nói $K_{1}$ và $K_{2}$ là các giải thích/chứng minh cho kết luận nói $C$ là tập con của $A$ - $A$ $\subseteq$ $C$.
-\section{Các bước sửa chữa các phát biểu bị lỗi}
-
-
-\subsection{Minimal Unsatisfiability Preserving Sub-TBoxes (MUPS)}
-Khái niệm MUPS lần đầu được giới thiệu trong\textsuperscript{[6]}. Một MUPS của một lớp nguyên tử (\textit{atomic class or concept}) A là một phần nhỏ nhất trong  Knowledge Base mà trong đó A không đáp ứng (\textit{unsatisfiable}). Mỗi lớp không đáp ứng sẽ có nhiều MUPS khác nhau trong một ontology. Tìm tất cả MUPS của một lớp không đáp ứng là một nhiệm vụ cực kì khó đứng ở khía cạnh debuging, từ đó để sửa lại một lớp không đáp ứng(\textit{unsatisfiable class}) chúng ta cần loại bỏ tối thiểu ít nhất một phát biểu từ từng tập các phát biểu trong MUPS diện cho unsatisfiable class đó.
-\subsection{Tìm MUPS của một lớp không đáp ứng}
-\paragraph{Axiom Pinpointing service} Một thành phần quan trọng trong giải pháp debugging dùng để tìm và trích xuất MUPS từ một lớp không đáp ứng. Họ cũng đã nâng cấp chức năng này nhằm xác định được chính xác những phần phát biểu gây lỗi, họ định nghĩa  
-MUPS tìm được là \textit{precise} MUPS.
 \\
-Ý tưởng của kĩ thuật này có thể được mô tả khái quát như sau(chi tiết hơn về cách áp dụng xem\textsuperscript{[8]}). Mục tiêu là nhận diện những phần có liên quan của các phát biểu, nên họ đã định nghĩa một hàm nhằm chia nhỏ các phát biểu trong KB \textbf{K} thành những phát biểu nhỏ hơn để thu được KB $K_{s}$ có nghĩa tương đương với KB \textbf{K}, với số lượng các phát biểu được chia nhỏ nhiều nhất có thể.
-\\\textbf{Ví dụ}:	 $A\subseteq$ $C\cap$D tương đương với $A\subseteq$C, $A\subseteq$D
+\hspace*{0.05\textwidth} Từ các phát biểu trên ta có $K$ $\models$ ($A$ $\subseteq$ $C$). Tuy nhiên, điều kiện cần và đủ để suy ra được một kết quả tương tự từ 2 phần nhỏ hơn của KB $K$ là $K_{1}$ = {1} và $K_{2}$ ={3,4}. Chúng ta nói $K_{1}$ và $K_{2}$ là các giải thích/chứng minh cho kết luận nói $C$ là tập con của $A$ - $A$ $\subseteq$ $C$.
+\\
+\hspace*{0.05\textwidth} KB trong ví dụ vừa nêu được xem là khá nhỏ, qua đó dễ dàng nhận ra lợi ích đáng kể khi số lượng phát biểu trong KB tăng lên vài trăm hay vài ngàn phát biểu. Bằng cách nhận dạng chính xác các tập tối tiểu chứa các phát biểu khẳng định (asserted) là những giả thiết cho kết quả được suy ra, dịch vụ này có thể được dùng để cô lập, đánh dấu và giải thích nguyên nhân hoặc cơ sở của các kết quả suy luận. Điều này cực kì quang trọng trên khía cạnh debugging, lấy ví dụ trường hợp cần giải thích là một Unsatisfiable Class/Concept, dịch vụ này sẽ khám phá tất cả và chỉ những phát biểu là nguyên nhân gây lỗi. Trong trường hợp vừa nêu, để sửa lại unsatisfiable class cần loại bỏ ít nhất một phát biểu trong tập các phát biểu tối tiểu nguyên nhân gây lỗi MUPS - sẽ được đề cập trong mục bên dưới.
+\\
+\hspace*{0.05\textwidth} Tuy nhiên, dịch vụ axiom pinpointing chúng ta đề cập có một giới hạn là nó chỉ làm việc ở mức độ các phát biểu với nhau chứ chưa phân biệt được phần cụ thể nào của phát biểu mới là nguyên nhân hay cơ sở cho kết quả suy luận. Lấy lại ví dụ vừa nếu trên KB $K$, lớp $B$ trong giao của $B$ $\cap$ $C$ trong phát biểu 1, không phải là giải thiết cần để suy ra $A$ $\subseteq$ $C$. Tương tự, $\exists$ $R.E$ và $\forall$ $R.B$ trong phát biểu 3 và 4 cũng không liên quan hay giúp suy ra được $A$ $\subseteq$ $C$. Việc quan tâm xem phần nào của phát biểu mới chính là giả thiết/nguyên nhân của kết quả suy luận rất quan trọng trong nhiều trường hợp, đặc biệt khi sửa chữa một phát biểu gây lỗi liên quan tới việc sửa lại phát biểu hơn là xóa nó đi.
+\\
+\hspace*{0.05\textwidth} Để đáp ứng yêu cầu này, họ để định nghĩa một \textit{hàm chia nhỏ KB}. Ý tưởng là viết lại phát biểu trong KB thành những dạng đơn giản và dễ hiểu hơn. Sau đó áp dụng dịch vụ Axiom Pinpointing lên những phần KB $K_{s}$ đã được chia nhỏ nhất có thể, với ý nghĩa tương đương với KB $K$.
+\\\textbf{Ví dụ}:	 $A\subseteq$ $C\cap$ $D$ tương đương với $A\subseteq$ $C$, $A\subseteq$ $D$
 \\
 Trong một vài trường hợp, kĩ thuật này bắt buộc phải giới thiệu ra một tên lớp mới, chỉ với mục đích là chia các phát biểu thành những mảnh nhỏ hơn.
-\\\textbf{Ví dụ:}	$A\subseteq$ $\exists$R.($C\cap$D) không tương đương với $A\subseteq$ $\exists$R.C, $A\subseteq$ $\exists$R.D
+\\\textbf{Ví dụ:}	$A\subseteq$ $\exists$ $R.$ ($C\cap$ $D$) không tương đương với $A\subseteq$ $\exists$ $R.C$, $A\subseteq$ $\exists$ $R.D$
 \\Để chia nhỏ phát biểu trên chúng ta sẽ giới thiệu một tên lớp mới, gọi là \textit{E}.
 \\\textbf{Như vậy ta có:}
-$A\subseteq$ $\exists$R.($C\cap$D) sẽ tương đương với $A\subseteq$ $\exists$R.E, $E\subseteq$C, $E\subseteq$D, $C\cap$D $\subseteq$E
-Cuối cùng nhiệm vụ tìm kiếm \textit{precise} MUPS của lớp không đáp ứng trong KB \textbf{K} được đơn giản hóa thành vấn đề tìm MUPS trong những phiên bản đã được tách nhỏ trong KB $K_{s}$. Chi tiết hơn về kĩ thuật này xin đọc\textsuperscript{[8]}.
+$A$ $\subseteq$ $\exists$ $R.$ ($C$ $\cap$ $D$) sẽ tương đương với $A\subseteq$ $\exists$ $R.E$, $E\subseteq$ $C$, $E\subseteq$ $D$, $C\cap$ $D\subseteq$ $E$
+\hspace*{0.05\textwidth} Để thực hiện được cái gọi là \textit{"hàm chia nhỏ KB"} họ đã đề xuất các giải thuật cho việc xác định phát biểu , cùng với đáp ứng sự chính xác và đầy đủ các các chứng minh. Các giải thuật này có thể được chia thành 2 nhóm:
+\begin{enumerate}
+\item
+Các giải thuật \textit{Reasoner Dependent(or Glass-box)} được xây dựng trên quy trình đưa ra quyết định tableau dành cho Description Logic. Để đưa chúng ứng dụng với thực tế đòi hỏi phải có những chỉnh sửa triệt để và đáng kể bên trong những reasoner hiện nay.
+\item
+Các giải thuật \textit{Reasoner Independent(or Black-box)} chỉ sử dụng các DL reasoner cho những tác vụ con và không đòi hỏi phải chỉnh sửa lại các reasoner. Reasoner lúc này có chức năng như một "chiếc hộp đen" chấp nhận các input là class/concept và một KB và trả về output là một câu trả lời xác nhận hay phủ định, phụ thuộc vào concept này có satisfiable hoặc có nghĩa (models of) trong KB hay không. Để thu được các chứng minh/giả thiết, giải thuật dạng này lựa chọn những inputs thích hợp với DL reasoner và diễn giải từng phần của outputs sinh ra từ giải thuật.
+\textbf{Lưu ý:} để nắm rõ hơn xin đọc kỹ [4]
+\end{enumerate}
+\subsection{Minimal Unsatisfiability Preserving Sub-TBoxes (MUPS)}
+Khái niệm MUPS lần đầu được giới thiệu trong\textsuperscript{[6]}.Như đã được để cập trong phần đầu của mục này, một MUPS thật ra chính là một phần nhỏ nhất của KB $K$ mà trong đó lý giải tại sao một lớp lại unsatisfiable, nói cách khác một MUPS là một tập tối tiểu các phát biểu mà trong đó các phát biểu này giải thích chính xác nguyên nhân gây ra mâu thuẫn về logic(unsatisfiable). Một lớp unsatisfiable có thể có nhiều MUPS trong KB $K$ (hay cụ thể là trong ontologies). Tìm tất cả MUPS của một lớp không đáp ứng là một nhiệm vụ cực kì khó đứng ở khía cạnh debugging, từ đó để sửa lại một lớp không đáp ứng(\textit{unsatisfiable class}) chúng ta cần loại bỏ tối thiểu ít nhất một phát biểu từ từng tập các phát biểu tối tiểu MUPS lý giải cho unsatisfiable class đó.
+\section{Các bước sửa chữa các phát biểu bị lỗi}
+
+\subsection{Tìm tất cả các MUPS của một Unsatisfiable Class}
+Như vừa nói ở trên MUPS thật ra chính là một phần nhỏ nhất trong KB khiến cho một lớp unsatisfiable. Do vậy tìm và xác định MUPS chính là tìm và xác định các tập tối tiểu các phát biểu cho một lớp được suy luận là  unsatisfiable. Chúng ta sẽ sử dụng \textit{Axiom Pinpointing Service}\textsuperscript{[8]} để tìm MUPS với các bước tương tự đã được mô tả chi tiết trong mục trên. Nhiệm vụ tìm kiếm \textit{precise} MUPS của lớp không đáp ứng trong KB \textbf{K} được đơn giản hóa thành vấn đề tìm MUPS trong những phiên bản đã được tách nhỏ trong KB $K_{s}$.
 \subsection{Chiến thuật xếp hạng các phát biểu (\textit{Axioms})}
-Đây là một phần chính yếu trong tiến trình chỉnh sửa lại các phát biểu gây lỗi, quyết định xem nên loại bỏ phát biểu nào từ MUPS để sửa được lớp không đáp ứng.
+Đây là một giai đoạn khá quan trọng trong quá trình chỉnh sửa lại các phát biểu gây lỗi, quyết định xem nên loại bỏ phát biểu nào từ MUPS để sửa được lớp được satisfiable.
 \\
-\hspace{.05\textwidth} Với mục tiêu này, một nhân tố đáng quan tâm là các phát biểu trong MUPS có thể được \textit{xếp hạng} dựa theo mức độ quan trọng của chúng hay không. Việc sửa chữa các nguyên nhân gây lỗi được trở thành một vấn đề cần được tối ưu với mục tiêu quan trọng nhất là loại bỏ tất cả các lỗi thiếu nhất quán trong ontology, trong khi vẫn chắc chắn rằng những phát biểu có thứ hạng cao, nói cách khác là có giá trị quan trọng nghĩa sẽ được giữ lạ và các phát biểu có thứ hạng thấp nhất sẽ được xóa đi.
+\hspace{.05\textwidth} Với mục tiêu này, một nhân tố đáng quan tâm là các phát biểu trong MUPS có thể được \textit{xếp hạng} dựa theo mức độ quan trọng của chúng. Việc sửa chữa các nguyên nhân gây lỗi được trở thành một vấn đề cần được tối ưu với mục tiêu quan trọng nhất là loại bỏ tất cả các lỗi gây tính thiếu nhất quán trong ontology, trong khi vẫn chắc chắn rằng những phát biểu có thứ hạng cao, nói cách khác là có giá trị quan trọng về nghĩa sẽ được ưu tiên giữ lại và các phát biểu có thứ hạng thấp nhất sẽ bị loại bỏ.
 \\
 \hspace{.05\textwidth} Tiêu chí đơn giản nhất để xếp hạng các phát biểu là đếm số lần chúng xuất hiện trong MUPS từ những lớp không đáp ứng xuất hiện trong một ontology,
 \subsection{Đưa ra các nguyên nhân gây lỗi chính xác bằng giải thuật HST của Reiter}
