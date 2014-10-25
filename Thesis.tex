@@ -131,19 +131,17 @@
 %\listoftables  % Write out the List of Tables
 
 %% ----------------------------------------------------------------
-%\setstretch{1.5}  % Set the line spacing to 1.5, this makes the following tables easier to read
-%\clearpage  % Start a new page
-%\lhead{\emph{Abbreviations}}  % Set the left side page header to "Abbreviations"
-%\listof
-
-
-
-%s{ll}  % Include a list of Abbreviations (a table of two columns)
-%{
-%\textbf{Acronym} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or \\
-%\textbf{LAH} & \textbf{L}ist \textbf{A}bbreviations \textbf{H}ere \\
-%
-%}
+\setstretch{1.5}  % Set the line spacing to 1.5, this makes the following tables easier to read
+\clearpage  % Start a new page
+\lhead{\emph{Abbreviations}}  % Set the left side page header to "Abbreviations"
+\listofsymbols{ll}  % Include a list of Abbreviations (a table of two columns)
+{
+% \textbf{Acronym} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or \\
+\textbf{KB} & \textbf{K}nowledge \textbf{B}ase\\
+\textbf{KR} & \textbf{K}nowledge \textbf{R}epresentation\\
+\textbf{DL} & \textbf{D}escription \textbf{L}ogic\\
+SHOIN  
+}
 
 %% ----------------------------------------------------------------
 %\clearpage  % Start a new page
@@ -156,16 +154,19 @@
 %}
 
 %% ----------------------------------------------------------------
-%\clearpage  %Start a new page
+\clearpage  %Start a new page
 \lhead{\emph{Báo cáo khóa luận giai đoạn 8-10/2014}}  % Set the left side page header to "Symbols"
-%\listofnomenclature{lll}  % Include a list of Symbols (a three column table)
-%{
-%% symbol & name & unit \\
-%$a$ & distance & m \\
-%$P$ & power & W (Js$^{-1}$) \\
-%& & \\ % Gap to separate the Roman symbols from the Greek
-%$\omega$ & angular frequency & rads$^{-1}$ \\
-%}
+\listofnomenclature{lll}  % Include a list of Symbols (a three column table)
+{
+% symbol & name & unit \\
+$\models$ & models of & có nghĩa trong (KB)\\
+$\subseteq$ & is a subset of & là tập con của\\
+$\cap$ & intersect & giao với\\
+$\neg$ $A$ & complement of A of & không phải A\\
+$\exists$ $R.E$ & e.g \textit{has} some E & \\
+$\forall$ $R.E$ & e.g \textit{has} only E & \\
+& & \\ % Gap to separate the Roman symbols from the Greek
+}
 %% ----------------------------------------------------------------
 % End of the pre-able, contents and lists of things
 % Begin the Dedication page
@@ -207,7 +208,7 @@
 
 \appendix % Cue to tell LaTeX that the following 'chapters' are Appendices
 
-\input{Appendices/AppendixA}	% Appendix Title
+%\input{Appendices/AppendixA}	% Appendix Title
 
 %\input{Appendices/AppendixB} % Appendix Title
 
