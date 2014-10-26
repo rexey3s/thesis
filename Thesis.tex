@@ -9,6 +9,9 @@
 % Include any extra LaTeX packages required
 \usepackage[square, numbers, comma, sort&compress]{natbib}  % Use the "Natbib" style for the references in the Bibliography
 \usepackage{vntex} % Vietnamese Typeset for Latex
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
 \usepackage{verbatim}  % Needed for the "comment" environment to make LaTeX comments
 \usepackage{vector}  % Allows "\bvec{}" and "\buvec{}" for "blackboard" style bold vectors in maths
 \hypersetup{urlcolor=blue, colorlinks=true}  % Colours hyperlinks in blue, but this can be distracting if there are many links.
@@ -123,8 +126,8 @@
 \tableofcontents  % Write out the Table of Contents
 
 %% ----------------------------------------------------------------
-%\lhead{\emph{List of Figures}}  % Set the left side page header to "List if Figures"
-%\listoffigures  % Write out the List of Figures
+\lhead{\emph{List of Figures}}  % Set the left side page header to "List if Figures"
+\listoffigures  % Write out the List of Figures
 
 %% ----------------------------------------------------------------
 %\lhead{\emph{List of Tables}}  % Set the left side page header to "List of Tables"
@@ -140,7 +143,9 @@
 \textbf{KB} & \textbf{K}nowledge \textbf{B}ase\\
 \textbf{KR} & \textbf{K}nowledge \textbf{R}epresentation\\
 \textbf{DL} & \textbf{D}escription \textbf{L}ogic\\
-SHOIN  
+\textbf{MUPS} & \textbf{M}inimal \textbf{U}nsatisfiability \textbf{P}reserving \textbf{S}ub-TBoxes\\
+\textbf{HST} & \textbf{H}itting \textbf{S}et \textbf{T}ree\\
+\textbf{HS} & \textbf{H}itting \textbf{S}et
 }
 
 %% ----------------------------------------------------------------
@@ -165,6 +170,10 @@ $\cap$ & intersect & giao với\\
 $\neg$ $A$ & complement of A of & không phải A\\
 $\exists$ $R.E$ & e.g \textit{has} some E & \\
 $\forall$ $R.E$ & e.g \textit{has} only E & \\
+$\equiv$ &  is equivalent to & tương đương với \\
+$\emptyset$ & empty set & tập hợp rỗng \\
+$\in$ & is member of	 & thuộc \\
+$\Leftarrow$ & preferred for left implication & \\
 & & \\ % Gap to separate the Roman symbols from the Greek
 }
 %% ----------------------------------------------------------------
