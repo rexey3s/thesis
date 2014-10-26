@@ -25,7 +25,7 @@ Các hệ thống Description Logic thường cung cấp một tập hợp các 
 \paragraph{Axiom Pinpointing service} chính là dịch vụ có khả năng thực hiện tác vụ giải thích vừa được đề cập, với một KB và bất kì kết quả suy luận nào từ KB, dịch vụ này sẽ trả về tập các chứng minh/giải thích cho suy luận đó bằng những phát biểu đã được khai báo trong KB.
 \\
 % trang 2,3,4 trong [8]
-\hspace*{0.05\textwidth} Có thể giải thích ngắn gọn như sau, cho một phát biểu kết quả họ SHOIN $\alpha$ được suy ra từ một knowledge base $K$, tập các giải thích/chứng minh cho $\alpha$  trong $K$ là một phần tối tiểu $K^{'}\subseteq$ $K$ chịu trách nhiệm cho $\alpha$ xảy ra. Chứng minh $K^{'}$ là tối tiểu với điều kiện $\alpha$ là một kết quả logic được suy ra từ $K^{'}$, hay nói cách khác $K^{'}$ tối tiểu khi và chỉ khi bất kì tập con nào của $K^{'}$ đều không suy ra được $\alpha$. Nói chung có thể tồn tại nhiều giải thích/chứng minh cho $\alpha$ trong $K$.
+\hspace*{0.05\textwidth} Có thể giải thích ngắn gọn như sau, cho một phát biểu kết quả họ SHOIN $\alpha$ được suy ra từ một knowledge base $K$, một kiểm chứng (justification) cho $\alpha$  trong $K$ là một phần tối tiểu $K^{'}\subseteq$ $K$ chịu trách nhiệm cho $\alpha$ xảy ra. Kiểm chứng $K^{'}$ là tối tiểu với điều kiện $\alpha$ là một kết quả logic được suy ra từ $K^{'}$, hay nói cách khác $K^{'}$ tối tiểu khi và chỉ khi bất kì tập con nào của $K^{'}$ đều không suy ra được $\alpha$. Nói chung có thể tồn tại nhiều giải thích/chứng minh cho $\alpha$ trong $K$.
 \\
 Sau đây là một ví dụ cho ý tưởng vừa nêu. Cho KB $K$ với các phát biểu như sau:
 \begin{enumerate}
@@ -37,9 +37,9 @@ Sau đây là một ví dụ cho ý tưởng vừa nêu. Cho KB $K$ với các p
 
 Trong KB trên, $A, B, C, D, E$ là atomic concepts và $R$ là atomic role.  Chúng ta sẽ dùng số thứ tự của từng câu phát biểu trên thay vì lặp lại nguyên văn.
 \\
-\hspace*{0.05\textwidth} Từ các phát biểu trên ta có $K$ $\models$ ($A$ $\subseteq$ $C$). Tuy nhiên, điều kiện cần và đủ để suy ra được một kết quả tương tự từ 2 phần nhỏ hơn của KB $K$ là $K_{1}$ = {1} và $K_{2}$ ={3,4}. Chúng ta nói $K_{1}$ và $K_{2}$ là các giải thích/chứng minh cho kết luận nói $C$ là tập con của $A$ - $A$ $\subseteq$ $C$.
+\hspace*{0.05\textwidth} Từ các phát biểu trên ta có $K$ $\models$ ($A$ $\subseteq$ $C$). Tuy nhiên, điều kiện cần và đủ để suy ra được một kết quả tương tự từ 2 phần nhỏ hơn của KB $K$ là $K_{1}$ = {1} và $K_{2}$ ={3,4}. Chúng ta nói $K_{1}$ và $K_{2}$ là các kiểm chứng cho kết luận nói $C$ là tập con của $A$ - $A$ $\subseteq$ $C$.
 \\
-\hspace*{0.05\textwidth} KB trong ví dụ vừa nêu được xem là khá nhỏ, qua đó dễ dàng nhận ra lợi ích đáng kể khi số lượng phát biểu trong KB tăng lên vài trăm hay vài ngàn phát biểu. Bằng cách nhận dạng chính xác các tập tối tiểu chứa các phát biểu khẳng định (asserted) là những giả thiết cho kết quả được suy ra, dịch vụ này có thể được dùng để cô lập, đánh dấu và giải thích nguyên nhân hoặc cơ sở của các kết quả suy luận. Điều này cực kì quang trọng trên khía cạnh debugging, lấy ví dụ trường hợp cần giải thích là một Unsatisfiable Class/Concept, dịch vụ này sẽ khám phá tất cả và chỉ những phát biểu là nguyên nhân gây lỗi. Trong trường hợp vừa nêu, để sửa lại unsatisfiable class cần loại bỏ ít nhất một phát biểu trong tập các phát biểu tối tiểu nguyên nhân gây lỗi MUPS - sẽ được đề cập trong mục bên dưới.
+\hspace*{0.05\textwidth} KB trong ví dụ vừa nêu được xem là khá nhỏ, qua đó dễ dàng nhận ra lợi ích đáng kể khi số lượng phát biểu trong KB tăng lên vài trăm hay vài ngàn phát biểu. Bằng cách nhận dạng chính xác các tập tối tiểu chứa các phát biểu khẳng định (asserted) là những giả thiết cho kết quả được suy ra, dịch vụ này có thể được dùng để cô lập, đánh dấu và giải thích nguyên nhân hoặc cơ sở của các kết quả suy luận. Điều này cực kì quang trọng trên khía cạnh debugging, lấy ví dụ trường hợp cần giải thích là một Unsatisfiable Class/Concept, dịch vụ này sẽ khám phá tất cả và chỉ những phát biểu là nguyên nhân gây lỗi. Trong trường hợp vừa nêu, tìm kiếm tất cả các kiểm chứng là rất cần thiết vì để sửa lại unsatisfiable class cần loại bỏ ít nhất một phát biểu trong tập các phát biểu tối tiểu nguyên nhân gây lỗi MUPS - sẽ được đề cập trong mục bên dưới.
 \\
 \hspace*{0.05\textwidth} Tuy nhiên, dịch vụ axiom pinpointing chúng ta đề cập có một giới hạn là nó chỉ làm việc ở mức độ giữa các phát biểu với nhau, chúng vẫn chưa phân biệt được phần cụ thể nào của phát biểu mới là nguyên nhân cần và đủ để giải thích cho kết quả suy luận. Lấy lại ví dụ vừa nếu trên KB $K$, lớp $B$ trong giao của $B$ $\cap$ $C$ trong phát biểu 1, không phải là giải thiết cần để suy ra $A$ $\subseteq$ $C$. Tương tự, $\exists$ $R.E$ và $\forall$ $R.B$ trong phát biểu 3 và 4 không phải điều kiện cần để suy ra được $A$ $\subseteq$ $C$. 
 \\
@@ -142,5 +142,33 @@ Trong ví dụ trên, bỏ \texttt{Plane} ra khỏi phát biểu (1) sẽ hạn 
 \\\hspace*{.05\textwidth} Để khắc phục hạn chế này, một chỉnh sửa khác được đưa ra là cứ mỗi lần tìm ra hitting-set(HS), chúng ta sẽ tính lại thứ hạng của đường đi (path-rank) cho HS dựa trên một loạt tác động của các phát biểu trong hitting-set. Giải thuật bây giờ sẽ tìm được giải pháp tối thiểu được path-ranks mới.
 \\
 Trên đây là ý tưởng cơ bản của giải thuật HST, ngoài ta còn những mục về cải thiện các giải pháp sửa lỗi và gợi ý các phát biểu sửa lỗi xin đọc thêm ở [1].
-\section{Ứng dụng giải thuật HST để tạo ra các giải thích}
-Ngoài ứng dụng vừa được đề cập ở trên, giải thuật HST còn được dùng để tìm tất cả các giải thích cho một kết quả suy luận, đây cũng chính là chức năng chính của Axiom Pinpointing Service được đề cập lúc nãy.
+\section{Ứng dụng HST để xác định tất cả kiểm chứng cho kết quả suy luận}
+Ngoài ứng dụng vừa được đề cập ở trên, Hitting Set Tree còn được áp dụng để tìm tất cả các giải thích cho một kết quả suy luận, giống như một trong chức năng chính của Axiom Pinpointing Service được đề cập lúc nãy. Tuy nhiên, không giống như khái niệm HST của Reiter vừa được giới thiệu ở trên, ở đây chúng ta sẽ có HST với quy ước như sau.
+\\\hspace*{.05\textwidth} Với ontology $\beta$ $\models$ $\eta$, một cây hitting set (HST) cho $\eta$ trong $\beta$ là một cây hữu hạn, bao gồm node được dán nhãn bằng các kiểm chứng(justifications) hay các phát biểu chứng minh $\beta$ $\models$ $\eta$ và cạnh được đánh dấu với phát biểu trong $\beta$. Từng non-leaf(không phải lá) node $v$ nối với một node kế cận $v^{'}$ qua một cạnh được dán nhãn với một phát biểu $\alpha$ với $\alpha$ nẳm trong nhãn của $v$, nhưng không nằm trong nhãn của $v^{'}$. Nhãn của $v^{'}$ có thể là một tập hợp rỗng, trong trường hợp đó $v^{'}$ phải là node lá (leaf node). Ngoài ra, với bất kì node $v^{''}$, tập chứa các phát biểu dán nhãn cho đường đi từ $v^{''}$ tới gốc cây (tree root) \textit{không} giao với kiếm chứng(hay các phát biểu chứng minh) dán nhãn $v^{''}$.
+\\\hspace*{.05\textwidth} Quá trình xây dựng HST có thể được thực hiện bằng các giải thuật \textit{breadth first} hay \textit{depth first}. Dù được sử dụng theo cách nào, các nguyên lý và các luật để tạo và dán nhãn cạnh, node trên cây đều như nhau. Khi mở rộng cây từ node $v$ đến một node mới $v^{'}$ quy trình cơ bản đều diễn ra như sau:
+\begin{enumerate}
+\item Chọn một phát biểu $\alpha$ nẳm trong nhãn của $v$ nhưng không dán nhãn một cạnh nối $v$ tới một node kế cận.
+\item Gọi $S$ là hội của (union of) {$\alpha$} và tập những phát biểu dán nhãn cho những cạnh làm thành đường đi từ $v$ tới gốc cây. Loại bỏ $S$ khỏi $\beta$ ta được $\beta^{'}$.
+\item Nếu $\eta$ thỏa $\beta^{'}$ $\models$ $\eta$ thì tìm một kiểm chứng (justification) $J$ cho $\eta$ trong $\beta^{'}$. Nếu $\beta^{'}$ $\not\models$ $\eta$ thì set $J$ = $\emptyset$.
+\item Tạo một node mới $v^{'}$ và set nhãn của $v^{'}$ là tập $J$ ở bước trên.
+\item Thêm cạnh $e$ = ($v$, $v^{'}$) vào cây và dán nhãn cho $e$ với $J$ như bước 1.
+\item Đưa các phát biểu trong $S$ trở lại $\beta$.
+\end{enumerate}
+Ví dụ sau mô tả lại quy trình trên, cho ontology $\beta$  với các phát biểu sau:
+\begin{enumerate}
+\item $A$ $\subseteq$ $B$
+\item $B$ $\subseteq$ $D$ 
+\item $A$ $\subseteq$ $\exists$ $R.C$ 
+\item $\exists$ $R.\top$ $\subseteq$ $D$
+\end{enumerate} 
+Trong đó $\eta$ $=$ $A$ $subseteq$ $D$. HST cho $\beta$ $\models$ $A$ $subseteq$ $D$ được thể hiện ở hình 2.2. Bắt đầu tại gốc cây, node được dán nhãn $J_{1}$ HST mở rộng về phía bên trái bằng cách loại bỏ $A$ $subseteq$ $B$ khỏi $\beta$ và tính toán lại kiếm chứng thỏa $\beta$ \backslash {$A$ $subseteq$ $B$} $\models$ $A$ $subseteq$ $D$. Trong trường hợp này, kiểm chứng $J_{2}$ được tìm ra. Hướng bên trái của node kế cận node gốc (root node) sau đó được dán nhãn $J_{2}$ và cạnh kết nối của nó là $A$ $subseteq$ $B$. Tương tự, node nằm ở đáy bên phía tay phải liền kề với node được dán nhãn bằng $J^{'}_{2}$ và cạnh kết nối có nhãn là $exists$ $R.T$ $subseteq$ $D$. Node này được tạo ra bằng việc xem xét $\beta$ \backslash $S$ với $S$ = {$B$ $subseteq$ $D$, $exists$ $R.\top$ $subseteq$ $D$} ($exists$ $R.T$ cộng với các nhãn của đường đi tới gốc) và $\beta$ \backslash $S$  không có bất kì một kiểm chứng nào để $A$ $subseteq$ $D$. Một node liền kề sau đó được tạo và đánh dấu chúng với tập rỗng. với cạnh kế cận được dán nhãn là $exists$ $R,\top$.
+\\\hspace*{.05\textwidth} Khi không còn node kết cần để tạo ra một HST hoàn chỉnh.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=110mm]{Figures/fig2.png}
+\caption{Hitting Set Tree dùng để tìm kiếm kiểm chứng \label{overflow}}
+\end{figure}
+
+
+
