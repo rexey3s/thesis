@@ -1,6 +1,6 @@
-\contentsline {chapter}{List of Figures}{ii}{dummy.2}
-\contentsline {chapter}{Abbreviations}{iii}{dummy.4}
-\contentsline {chapter}{Symbols}{iv}{dummy.7}
+\contentsline {chapter}{List of Figures}{iii}{dummy.2}
+\contentsline {chapter}{Abbreviations}{iv}{dummy.4}
+\contentsline {chapter}{Symbols}{v}{dummy.7}
 \vspace {2em}
 \contentsline {chapter}{\numberline {1}Gi\IeC {\'\ohorn }i thi\IeC {\d \ecircumflex }u v\IeC {\`\ecircumflex } Semantic Web v\IeC {\`a} Open World Assumption}{1}{chapter.10}
 \contentsline {chapter}{\numberline {2}C\IeC {\'a}c nguy\IeC {\^e}n nh\IeC {\^a}n d\IeC {\~\acircumflex }n \IeC {\dj }\IeC {\'\ecircumflex }n t\IeC {\'\i }nh thi\IeC {\'\ecircumflex }u nh\IeC {\'\acircumflex }t qu\IeC {\'a}n trong ontology}{2}{chapter.11}
