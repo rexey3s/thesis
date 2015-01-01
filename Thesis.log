@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.1.1)  1 JAN 2015 11:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.1.1)  2 JAN 2015 00:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1198,6 +1198,58 @@ File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.0 (rcs-revision 1.2)
 \child@list=\toks45
 \root@node=\toks46
 ))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2014/10/28 v1.8i multicolumn formatting (FMi)
+\c@tracingmulticols=\count160
+\mult@box=\box47
+\multicol@leftmargin=\dimen217
+\c@unbalance=\count161
+\c@collectmore=\count162
+\doublecol@number=\count163
+\multicoltolerance=\count164
+\multicolpretolerance=\count165
+\full@width=\dimen218
+\page@free=\dimen219
+\premulticols=\dimen220
+\postmulticols=\dimen221
+\multicolsep=\skip73
+\multicolbaselineskip=\skip74
+\partial@page=\box48
+\last@line=\box49
+\maxbalancingoverflow=\dimen222
+\mult@rightbox=\box50
+\mult@grightbox=\box51
+\mult@gfirstbox=\box52
+\mult@firstbox=\box53
+\@tempa=\box54
+\@tempa=\box55
+\@tempa=\box56
+\@tempa=\box57
+\@tempa=\box58
+\@tempa=\box59
+\@tempa=\box60
+\@tempa=\box61
+\@tempa=\box62
+\@tempa=\box63
+\@tempa=\box64
+\@tempa=\box65
+\@tempa=\box66
+\@tempa=\box67
+\@tempa=\box68
+\@tempa=\box69
+\@tempa=\box70
+\c@columnbadness=\count166
+\c@finalcolumnbadness=\count167
+\last@try=\dimen223
+\multicolovershoot=\dimen224
+\multicolundershoot=\dimen225
+\mult@nat@firstbox=\box71
+\colbreak@box=\box72
+\mc@col@check@num=\count168
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/multirow/multirow.sty
+\bigstrutjot=\dimen226
+)
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/pifont.sty
 Package: pifont 2005/04/12 PSNFSS-v9.2a Pi font support (SPQR) 
 LaTeX Font Info:    Try loading font information for U+pzd on input line 63.
@@ -1219,20 +1271,20 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 Package: vector 1994/09/16 v1.0 vector macros for LaTeX2e (nde)
 (/usr/local/texlive/2014/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count160
-\calc@Bcount=\count161
-\calc@Adimen=\dimen217
-\calc@Bdimen=\dimen218
-\calc@Askip=\skip73
-\calc@Bskip=\skip74
+\calc@Acount=\count169
+\calc@Bcount=\count170
+\calc@Adimen=\dimen227
+\calc@Bdimen=\dimen228
+\calc@Askip=\skip75
+\calc@Bskip=\skip76
 LaTeX Info: Redefining \setlength on input line 75.
 LaTeX Info: Redefining \addtolength on input line 76.
-\calc@Ccount=\count162
-\calc@Cskip=\skip75
+\calc@Ccount=\count171
+\calc@Cskip=\skip77
 )
-\c@vec@elem=\count163
+\c@vec@elem=\count172
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 20.
+Package hyperref Info: Option `colorlinks' set `true' on input line 22.
  (./Thesis.aux
 
 LaTeX Warning: Label `overflow' multiply defined.
@@ -1243,24 +1295,24 @@ LaTeX Warning: Label `overflow' multiply defined.
 )
 \openout1 = `Thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T5/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T5/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
@@ -1274,32 +1326,32 @@ Package caption Info: End \AtBeginDocument code.
 
 (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count164
-\scratchdimen=\dimen219
-\scratchbox=\box47
-\nofMPsegments=\count165
-\nofMParguments=\count166
+\scratchcounter=\count173
+\scratchdimen=\dimen229
+\scratchbox=\box73
+\nofMPsegments=\count174
+\nofMParguments=\count175
 \everyMPshowfont=\toks49
-\MPscratchCnt=\count167
-\MPscratchDim=\dimen220
-\MPnumerator=\count168
-\makeMPintoPDFobject=\count169
+\MPscratchCnt=\count176
+\MPscratchDim=\dimen230
+\MPnumerator=\count177
+\makeMPintoPDFobject=\count178
 \everyMPtoPDFconversion=\toks50
 )
-\c@lstlisting=\count170
-\AtBeginShipoutBox=\box48
-Package hyperref Info: Link coloring ON on input line 22.
+\c@lstlisting=\count179
+\AtBeginShipoutBox=\box74
+Package hyperref Info: Link coloring ON on input line 24.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count171
+\c@section@level=\count180
 )
-LaTeX Info: Redefining \ref on input line 22.
-LaTeX Info: Redefining \pageref on input line 22.
-LaTeX Info: Redefining \nameref on input line 22.
+LaTeX Info: Redefining \ref on input line 24.
+LaTeX Info: Redefining \pageref on input line 24.
+LaTeX Info: Redefining \nameref on input line 24.
 
 (./Thesis.out) (./Thesis.out)
 \@outlinefile=\write4
@@ -1318,11 +1370,11 @@ LaTeX Info: Redefining \nameref on input line 22.
  Table of Contents
 ------------------------------------------------------------------------------
 (./Thesis.toc
-LaTeX Font Info:    Try loading font information for U+msa on input line 7.
+LaTeX Font Info:    Try loading font information for U+msa on input line 6.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 7.
+LaTeX Font Info:    Try loading font information for U+msb on input line 6.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1368,15 +1420,85 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 ] (./Chapters/open_world_assumption.tex
 Ch\uhorn \ohorn ng 1.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\begingroup' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\<let>-command' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\NAT@ctype' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\z@' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\let' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\let' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\new@ifnextchar' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 1.
+
 ------------------------------------------------------------------------------
  1 Gi\IeC {\'\ohorn }i thi\IeC {\d \ecircumflex }u v\IeC {\`\ecircumflex } Sema
-ntic Web v\IeC {\`a} Open World Assumption
+ntic Web v\IeC {\`a} Open World Assumption\cite {owa_cwa}
 ------------------------------------------------------------------------------
-) (./Chapters/inconsistency_reasons.tex [1
+[1
 
 
 
 ]
+
+Package hyperref Warning: Ignoring empty anchor on input line 18.
+
+
+Package hyperref Warning: Ignoring empty anchor on input line 20.
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
+[]|\T5/cmr/bx/n/10.95 Logic khæng ^^_ìn ^^_i»u (Non-
+ []
+
+
+Package natbib Warning: Citation `monotonic' on page 3 undefined on input line 
+64.
+
+
+Package natbib Warning: Citation `monotonic' on page 3 undefined on input line 
+66.
+
+
+Overfull \hbox (4.8655pt too wide) in alignment at lines 25--75
+ [] [] 
+ []
+
+[3
+
+]
+
+Package hyperref Warning: Ignoring empty anchor on input line 77.
+
+
+Package hyperref Warning: Ignoring empty anchor on input line 79.
+
+
+Package hyperref Warning: Difference (3) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 81.
+
+) (./Chapters/inconsistency_reasons.tex [4]
 Ch\uhorn \ohorn ng 2.
 ------------------------------------------------------------------------------
  2 C\IeC {\'a}c nguy\IeC {\^e}n nh\IeC {\^a}n d\IeC {\~\acircumflex }n \IeC {\d
@@ -1402,7 +1524,7 @@ Package hyperref Warning: Difference (3) between bookmark levels is greater
 LaTeX Font Info:    Try loading font information for T5+cmtt on input line 8.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/vntex/t5cmtt.fd
 File: t5cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-) [2
+) [5
 
 ]
 
@@ -1427,12 +1549,12 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 36.
- [3] [4]
+ [6] [7]
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 104.
 
-[5]) (./Chapters/repair_inconsistency.tex [6]
+[8]) (./Chapters/repair_inconsistency.tex [9]
 Ch\uhorn \ohorn ng 3.
 ------------------------------------------------------------------------------
  3 Gi\IeC {\h a}i ph\IeC {\'a}p \IeC {\dj }\IeC {\h \ecircumflex } s\IeC {\h \u
@@ -1444,7 +1566,7 @@ Package hyperref Warning: Ignoring empty anchor on input line 4.
 
 Package hyperref Warning: Ignoring empty anchor on input line 7.
 
-[7
+[10
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 18--20
@@ -1455,20 +1577,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--20
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 25.
 
-[8
+[11
 
-] [9] [10] [11] [12]
+] [12] [13] [14] [15]
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 124.
 
-<Figures/fig1.png, id=295, 712.6625pt x 582.175pt>
+<Figures/fig1.png, id=331, 712.6625pt x 582.175pt>
 File: Figures/fig1.png Graphic file (type png)
  <use Figures/fig1.png>
 Package pdftex.def Info: Figures/fig1.png used on input line 130.
 (pdftex.def)             Requested size: 256.0748pt x 209.18309pt.
 
-[13] [14]
+[16] [17]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\mathsurround' on input line 145.
@@ -1481,8 +1603,8 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `superscript' on input line 145.
 
-[15 <./Figures/fig1.png>]
-<Figures/fig2.png, id=314, 551.05875pt x 253.94875pt>
+[18 <./Figures/fig1.png>]
+<Figures/fig2.png, id=351, 551.05875pt x 253.94875pt>
 File: Figures/fig2.png Graphic file (type png)
  <use Figures/fig2.png>
 Package pdftex.def Info: Figures/fig2.png used on input line 167.
@@ -1491,22 +1613,22 @@ Package pdftex.def Info: Figures/fig2.png used on input line 167.
 
 Package hyperref Warning: Ignoring empty anchor on input line 173.
 
-[16]
+[19]
 
 Package hyperref Warning: Difference (3) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 176.
 
-[17 <./Figures/fig2.png>]
+[20 <./Figures/fig2.png>]
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 210.
 
-) (./Chapters/conclusion.tex [18]
+) (./Chapters/conclusion.tex [21]
 Ch\uhorn \ohorn ng 4.
 ------------------------------------------------------------------------------
  4 K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n
 ------------------------------------------------------------------------------
-) (./Chapters/references.tex [19
+) (./Chapters/references.tex [22
 
 ]
 Ch\uhorn \ohorn ng 5.
@@ -1514,54 +1636,79 @@ Ch\uhorn \ohorn ng 5.
  5 T\IeC {\`a}i li\IeC {\d \ecircumflex }u tham kh\IeC {\h a}o
 ------------------------------------------------------------------------------
 
-Overfull \hbox (11.48409pt too wide) in paragraph at lines 7--10
+Overfull \hbox (9.11339pt too wide) in paragraph at lines 4--6
+[]\T5/cmr/m/n/10.95 PhD. Juan Se-queda, 2012. Avail-able on-line at http://sema
+nticweb.com/introduction-
+ []
+
+
+Overfull \hbox (11.48409pt too wide) in paragraph at lines 9--12
 \T5/cmr/m/n/10.95 and se-ri-al-is-ing OWL On-tolo-gies. Avail-able on-line at h
 ttps://github.com/owlcs/owlapi 
  []
 
 
-Overfull \hbox (40.66058pt too wide) in paragraph at lines 25--26
+Overfull \hbox (40.66058pt too wide) in paragraph at lines 27--28
 \T5/cmr/m/n/10.95 PLA-NA-TION IN ON-TOLO-GIES. Avail-able on-line at: http://ww
 w.bcs.org/upload/pdf/dd-
  []
 
-) [20
+[23
 
-]
-
-Package hyperref Warning: Glyph not defined in PU encoding,
-(hyperref)                removing `\ecircumflex' on input line 229.
-
+]) [24]
 
 Package hyperref Warning: Glyph not defined in PU encoding,
-(hyperref)                removing `\h' on input line 229.
+(hyperref)                removing `\ecircumflex' on input line 231.
+
+
+Package hyperref Warning: Glyph not defined in PU encoding,
+(hyperref)                removing `\h' on input line 231.
 
 ------------------------------------------------------------------------------
  T\`ai li\d \ecircumflex u tham kh\h {a}o
 ------------------------------------------------------------------------------
-No file Thesis.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 237.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 237.
-(./Thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 237.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 237.
+(./Thesis.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 9--14
+[]\T5/cmr/m/n/10.95 Michael K. Bergman.  The open world as-sump-tion: Ele-phant
+ in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--14
+\T5/cmr/m/n/10.95 the room.  De-cem-ber 2009.  URL [][]$\T5/cmtt/m/n/10.95 http
+ : / / www . mkbergman . com / 852 /
+ []
+
+)
+
+Package natbib Warning: There were undefined citations.
+
+[25
+
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 239.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 239.
+ (./Thesis.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 239.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 239.
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 36AC0783F49C5DC547B2F3BCFBBA57AC;8816.
+(rerunfilecheck)             Checksum: EBA404624C4275B49D8EF6288D370FAC;9599.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 237.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 239.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 171 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 24029 strings out of 493109
- 409928 string characters out of 6135011
- 458428 words of memory out of 5000000
- 26922 multiletter control sequences out of 15000+600000
+ 24177 strings out of 493109
+ 412125 string characters out of 6135011
+ 464020 words of memory out of 5000000
+ 27048 multiletter control sequences out of 15000+600000
  34831 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,12n,71p,1755b,959s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1588,10 +1735,10 @@ fonts/type1/vntex/vnr/vnti10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type
 1/vntex/vnr/vnti7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/vntex/vnr
 /vnti9.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/vntex/vnr/vntt10.pfb
 >
-Output written on Thesis.pdf (27 pages, 325542 bytes).
+Output written on Thesis.pdf (32 pages, 342864 bytes).
 PDF statistics:
- 458 PDF objects out of 1000 (max. 8388607)
- 397 compressed objects within 4 object streams
- 102 named destinations out of 1000 (max. 500000)
- 279 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 512 PDF objects out of 1000 (max. 8388607)
+ 445 compressed objects within 5 object streams
+ 115 named destinations out of 1000 (max. 500000)
+ 311 words of extra memory for PDF output out of 10000 (max. 10000000)
 

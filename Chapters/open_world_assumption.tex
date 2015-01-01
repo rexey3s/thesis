@@ -1,4 +1,5 @@
-\chapter{Giới thiệu về Semantic Web và Open World Assumption}
+\chapter{Giới thiệu về Semantic Web và Open World Assumption\cite{owa_cwa}}
+
 Trước khi bắt đầu giới thiệu với sâu hơn về Ontology Web Language (OWL), chúng em xin được giới thiệu qua về giả định Thế Giới Mở (Open World Assumption - OWA) được Semantic Web chấp nhận và phân biệt giả định này với giả định Thế Giới Đóng (Closed World Assumption - CWA).
 \begin{description}
 \item[Closed World Assumption] 
@@ -6,10 +7,77 @@ Giả định Thế Giới Đóng (CWA) là giả định mà những điều kh
 \item[Open World Assumption]
 Giả định Thế Giới Mở (OWA) thì ngược lại, với những điều không chắc hoặc không có cơ sở để chứng minh là \textbf{đúng} sẽ được chấp nhận là \textbf{chưa biết}. 
 \item[Ví dụ]
-Xem xét một câu nói sau đây: "A là một công dân của nước Mỹ". Nếu có ai đó hỏi "A có phải là một công dân của Việt Nam hay không ?". Xét theo CWA, câu trả lời là \textit{không}, ngược lại với OWA thì câu trả lời là \textit{chưa biết}. 
+Xem xét một câu nói sau đây: "A là một công dân của nước Hoa Kỳ". Nếu có ai đó hỏi "A có phải là một công dân của Việt Nam hay không ?". Xét theo CWA, câu trả lời là \textit{không}, ngược lại với OWA thì câu trả lời là \textit{chưa biết}. 
 \end{description}
 \section{Vậy OWA và CWA được sử dụng khi nào ?}
 Giả định thế giới đóng (CWA) được sử dụng khi một hệ thống đã có đầy đủ thông tin. Đây là trường hợp được áp dụng cho nhiều ứng dụng cơ sở dữ liệu. Ví dụ, xem xét một tình huống một ứng dụng cơ sở dữ liệu đặt vé máy bay, chúng ta tìm kiếm đường bay thẳng Phú Quốc và Hà Nội, và kết quả là nó không tồn tại trong cơ sở dữ liệu (không quan tâm đến thực tế có hay không có đường bay này). Và theo CWA nên câu trả lời từ cơ sở dữ liệu là : "Không có đường bay thẳng Hà Nội - Phú Quốc" (Một giả định là thực tế cũng không tồn tại đường bay này do cơ sở dữ liệu không biết). Đây là dạng ứng dụng mà người dùng mong đợi một câu trả lời chính xác ( phổ biến ở các cở sở dữ liệu quan hệ).
-Ngược lại với Giả định thế giới đóng, Giả định thế giới mở đươc áp dụng trên một hệ thống mà thông tin được cung cấp không đầy đủ. Đây là trường hợp chúng ta một biểu dạng một dạng tri thức (a.k.a Ontologies) và chúng ta muống khám phá những thông tin mới tiềm ẩn trong đó. Ví dụ, xem xét một hệ thống lưu trữ tiền sử bệnh lý của bệnh nhân. Nếu cơ sở dữ liệu không chứa thông tin về một dạng dị ứng cụ thể mà bệnh nhân mắc phải, điều đó không đồng nghĩa là bệnh nhân đó không mắc phải nó trên thực tế. Từ đó câu trả lời từ cở sở dữ liệu theo chuẩn OWA sẽ là : "Không rõ bệnh nhân này có mắc phải dị ứng đó không, trừ khi những thông tin đầy đủ hơn được cung cấp".
-\section{CWA vs. OWA: Ví dụ}
-Giả định Thế Giới Đóng không chỉ là trả về các câu trả lời \textit{"không"} 
+\\Ngược lại với Giả định thế giới đóng, Giả định thế giới mở đươc áp dụng trên một hệ thống mà thông tin được cung cấp không đầy đủ. Đây là trường hợp chúng ta một biểu dạng một dạng tri thức (a.k.a Ontologies) và chúng ta muống khám phá những thông tin mới tiềm ẩn trong đó. Ví dụ, xem xét một hệ thống lưu trữ tiền sử bệnh lý của bệnh nhân. Nếu cơ sở dữ liệu không chứa thông tin về một dạng dị ứng cụ thể mà bệnh nhân mắc phải, điều đó không đồng nghĩa là bệnh nhân đó không mắc phải nó trên thực tế. Từ đó câu trả lời từ cở sở dữ liệu theo chuẩn OWA sẽ là : "Không rõ bệnh nhân này có mắc phải dị ứng đó không, trừ khi những thông tin đầy đủ hơn được cung cấp".
+\section{So sánh OWA và CWA}
+Giả định Thế Giới Đóng không chỉ là trả về các câu trả lời \textit{"không"} và Giả định Thế Giới Mở không chỉ là về trả về \textit{"không biết"}. Lấy lại ví dụ trên: "\textbf{A} là một công dân Hoa Kỳ" và giả sử khẳng định sau là đúng: "Một người chỉ có thể là công dân của một quốc gia". Chúng ta cùng xem tiếp câu sau: "A là công dân Việt Nam". Xét theo Giả định Thế Giới Đóng (CWA), phát biểu này có thể gây ra lỗi, vì nó mâu thuẫn với 2 phát biểu ban đầu giả sử chúng ta biết Mỹ và Việt Nam là 2 quốc gia khác nhau . Nếu đem phát biểu vừa rồi xét trong Giả định thế giới mở, thay vì gây lỗi, nó sẽ suy ra một phát biểu logic như sau: "Nếu một người chỉ có thể là công dân của một quốc gia, và nếu A là công dân của Hoa Kỳ và Việt Nam, thì Hoa Kỳ và Việt Nam phải cùng là một quốc gia".
+{\let\thefootnote\relax\footnotetext{*\textit{
+			Unique Name Assumption: http://en.wikipedia.org/wiki/Unique\_name\_assumption }}
+\let\thefootnote\relax\footnotetext{**\textit{
+			Tính thiếu nhất quán của ontology sẽ được đề cập ở các chương tiếp theo }}
+}
+\\Lưu ý trong ví dụ, trường hợp CWA chúng ta đã giả sử Hoa Kỳ và Việt Nam là những quốc gia khác nhau, thật ra đây chính là Giả Định tên duy nhất (Unique Named Assumption) \textsuperscript{*}. Mặc định các hệ thống OWA không áp dụng UNA, tuy vậy chúng ta hoàn toàn có thể áp dụng UNA cho OWA. Trong ví dụ trên, giả sử nếu chúng ta biết hết tất cả tên của các quốc gia trên thế giới và khẳng định rõ là mỗi tên đại diện cho duy nhất một nước hay ví dụ trên sẽ có thêm phát biểu là "Hoa Kỳ và Việt Nam là 2 quốc gia khác nhau". Kết quả dẫn đến là toàn bộ phát biểu trong ví dụ trên sẽ thiểu nhất quán (inconsistent) \textsuperscript{**}
+\clearpage
+Dưới đây là bảng so sánh các đặc điểm của OWA và CWA .
+\begin{longtable}{ p{7cm} p{7cm} }
+\textbf{Cách tiếp cận theo hướng Cở sở dữ liệu quan hệ (CWA)} &\textbf{ Cách tiếp cận theo hướng Semantic Web (OWA)}\\
+\hline
+Hệ thống mà những cái chưa biết là đúng sẽ được xem là sai. Mọi thứ bị cấm cho đến khi nó được cho phép & Hệ thống mà cái chưa có cơ sở khẳng định là đúng-sai sẽ được xem là chưa biết. Mọi thứ được cho phép cho đến khi nó bị cấm.
+\\
+&
+\\
+\textbf{Giả định tên duy nhất (UNA)} & \textbf{Những tên/nhãn trùng nhau được cho phép}
+\\
+Giả định tên duy nhất quy định mỗi tên đại diện cho những cá thể khác nhau trong thế giới & OWL cho phép sử dụng các nhãn khác nhau nhưng đồng nghĩa để đại diện cho cùng một đối tượng hoặc một tên có thể dùng chỉ nhiều đối tượng khác nhau. Các khẳng định về nhận dạng phải được khai báo một cách rõ ràng.
+\\
+&
+\\
+\textbf{Thông tin được đầy đủ} & \textbf{Thông tin không đầy đủ}
+\\
+Dữ liệu tồn tại trong hệ thống được giả sử đã được hoàn chỉnh (những thông tin thiếu thường được xử lý bằng giá trị null trong SQL\textsuperscript{*}, nhưng có thể gây mâu thuẫn về tính đúng đắn của chính nó). Đây còn được gọi là giả định trong một miền đóng\textsuperscript{**} & Một nguyên lý tối thiểu của OWA chính là sự không đầy đủ của thông tin. Một mệnh đề hiển nhiên đúng khi nói rằng các thuộc tính của một đối tượng hay cá thể cụ thể có thể còn thiếu hoặc chỉ mới được biết đến một phần.
+\\
+&
+\\
+\textbf{Single Schema(Một bối cảnh đơn lẻ)} & \textbf{Biểu diễn được trên nhiều bối cảnh/ thế giới khác nhau}
+\\
+Single Schema là cần thiết để xác định rõ phạm vi và cách lý giải trong một miền tri thức hữu hạn & Các khai báo về bối cảnh (schema) và các cá thể dữ liệu được tách ra. Nên sẽ có thể nhiều cách giải thích (trong nhiều miền tri thức) cho cùng một dữ liệu.
+\\
+&
+\\
+\textbf{Những ràng buộc toàn vẹn (Integrity Constraints)}
+&
+\textbf{Những tiên đề logic (Logical Axioms)}
+\\
+Những ràng buộc toàn vẹn nhằm ngăn các giá trị \textit{"Không hợp lệ"} không được khai báo trong mô hình quan hệ. Điều này rất hữu dụng trong việc kiểm tra tính hợp lệ và cú pháp của dữ liệu input. Những ràng buộc về số lượng nghiêm ngặt được sử dụng để kiểm tra tính hợp lệ của dữ liệu. Ví dụ: char(40) -> quy định một column chỉ chứa tối đa 40 kí tự.
+&
+Những tiên đề logic cho phép tạo ra những hạn chế thông qua miền và vùng giới hạn mà các đặc tính của đối tượng hướng đến. Tất cả mọi thứ đều có thể đúng trừ khi chúng bị chứng minh là sai, và tồn tại nhiều mô hình (Knowledge Base) thỏa tiên đề. Nhờ vậy, OWA sợ hữu khả năng suy luận mạnh mẽ, mặc dù chức năng này vẫn còn kém trực quan ở thời điểm hiện tại. Những hạn chế về số lượng và phạm vi dữ liệu có cách thể hiện khác nhau dành cho đối tượng (được suy luận) hoặc dạng dữ liệu.
+\\
+&
+\\
+\textbf{Logic không đơn điệu (Non-monotonic Logic)}
+&
+\textbf{Logic đơn điệu}
+\\
+Tập hợp các kết luận đảm bảo dựa trên nền tảng của một cơ sở tri thức cho trước không thì sẽ không tăng và trên thực tế chúng có vẻ giảm đi so với kích cỡ của cơ sở tri thức \cite{monotonic}
+&
+Các giả thiết về bất kì sự thực hiễn nhiên nào được có thể được mở rộng bằng cách thêm vào những giả định mới. Những khẳng định mới thêm vào có xu hướng làm giảm sự suy luận và hàm ý có thể được áp dụng. Một mảng tri thức mới nào đều không làm giảm đi những cái đã biết \cite{monotonic}. Những tri thức mới có thể nổi lên thông qua việc suy luận.
+\\
+&
+\\
+\textbf{Cố định và yếu ớt}
+&
+\textbf{Có khả năng tái sử dụng và mở rộng}
+\\
+
+\end{longtable}
+{\let\thefootnote\relax\footnotetext{*\textit{
+			Null statement in SQL:  http://en.wikipedia.org/wiki/Null\_\%28SQL\%29}}
+	\let\thefootnote\relax\footnotetext{**\textit{
+			Domain-closure Assumption:  http://en.wikipedia.org/wiki/Integrally\_closed\_domain}}
+}
+\paragraph{Kết luận} OWA được áp dụng lên những hệ thống mà thông tin chưa được cung cấp đầy đủ. Và Web chính là một hệ thống với những thông tin còn thiếu. Sự thiếu vắng thông tin trên Web có nghĩa là sẽ có những thông tin không được làm rõ. Điều này giải thích tại sao Semantic Web sử dựng OWA, vì nhờ đó Semantic Web có thể suy ra được những thông tin mới.
+
+
