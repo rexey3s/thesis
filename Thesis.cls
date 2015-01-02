@@ -240,20 +240,20 @@
   \thispagestyle{empty}
   \null\vfil
   \begin{center}
-    \setlength{\parskip}{0pt}
-    {\normalsize \UNIVNAME \par}
-    \bigskip
-    {\huge{\textit{Abstract}} \par}
-    \bigskip
-    {\normalsize \facname \par}
-    {\normalsize \deptname \par}
-    \bigskip
-    {\normalsize Khóa luận tốt nghiệp\par}
-    \bigskip
-    {\normalsize\bf \@title \par}
-    \medskip
-    {\normalsize by \authornames \par}
-    \bigskip
+    %\setlength{\parskip}{0pt}
+    %{\normalsize \UNIVNAME \par}
+    %\bigskip
+    %{\huge{\textit{Abstract}} \par}
+    %\bigskip
+    %{\normalsize \facname \par}
+    %{\normalsize \deptname \par}
+    %\bigskip
+    %{\normalsize Khóa luận tốt nghiệp\par}
+    %\bigskip
+    %{\normalsize\bf \@title \par}
+    %\medskip
+    %{\normalsize by \authornames \par}
+    %\bigskip
   \end{center}
 }
 {
@@ -285,7 +285,8 @@
 }
 \renewcommand\listoffigures{
 \btypeout{List of Figures}
-\addtotoc{List of Figures}
+%\addtotoc{List of Figures}
+\addtotoc{Danh sách các hình vẽ}
 \begin{spacing}{1}{
     \setlength{\parskip}{1pt}
     \if@twocolumn
@@ -303,7 +304,8 @@
 }
 \renewcommand\listoftables{
 \btypeout{List of Tables}
-\addtotoc{List of Tables}
+%\addtotoc{List of Tables}
+\addtotoc{Danh sách các bảng}
 \begin{spacing}{1}{
     \setlength{\parskip}{1pt}
     \if@twocolumn
@@ -319,11 +321,14 @@
     \cleardoublepage
 }\end{spacing}
 }
-\newcommand\listsymbolname{Abbreviations}
+\newcommand\listsymbolname{
+	Các từ viết tắt% Abbreviations
+	}
 \usepackage{longtable}
 \newcommand\listofsymbols[2]{
 \btypeout{\listsymbolname}
-\addtotoc{\listsymbolname}
+%\addtotoc{\listsymbolname}
+\addtotoc{Các từ viết tắt}
     \chapter*{\listsymbolname
       \@mkboth{
           \MakeUppercase\listsymbolname}{\MakeUppercase\listsymbolname}}
@@ -341,11 +346,14 @@
 \begin{longtable}[c]{#1}#2\end{longtable}\par
     \cleardoublepage
 }
-\newcommand\listnomenclature{Symbols}
+\newcommand\listnomenclature{
+	Ký hiệu % Symbols
+	}
 \usepackage{longtable}
 \newcommand\listofnomenclature[2]{
 \btypeout{\listnomenclature}
-\addtotoc{\listnomenclature}
+%\addtotoc{\listnomenclature}
+\addtotoc{Ký hiệu} % Tiếng Việt
     \chapter*{\listnomenclature
       \@mkboth{
           \MakeUppercase\listnomenclature}{\MakeUppercase\listnomenclature}}
@@ -354,9 +362,12 @@
 }
 \newcommand\acknowledgements[1]{
 \btypeout{Acknowledgements}
-\addtotoc{Acknowledgements}
+%\addtotoc{Acknowledgements}
+\addtotoc{Lời cảm ơn}
 \thispagestyle{plain}
-\begin{center}{\huge{\textit{Acknowledgements}} \par}\end{center}
+\begin{center}{\huge{\textit{
+				Lời cảm ơn %Acknowledgements
+				}} \par}\end{center}
 {\normalsize #1}
 \vfil\vfil\null
 
