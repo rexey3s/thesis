@@ -8,6 +8,7 @@
 
 % Include any extra LaTeX packages required
 \usepackage[square, numbers, comma, sort&compress]{natbib}  % Use the "Natbib" style for the references in the Bibliography
+\usepackage[utf8]{inputenc}
 \usepackage{vntex} % Vietnamese Typeset for Latex
 \usepackage{tikz}
 \usepackage{tikz-qtree}
@@ -205,15 +206,13 @@ $\backslash$ & except & ngoại trừ \\
 
 \input{Chapters/open_world_assumption}
 
-
+\input{Chapters/owl2spec}
 
 \input{Chapters/inconsistency_reasons}  % Các nguyên nhân dẫn đến tính thiếu nhất quán  trong ontology
 
 \input{Chapters/repair_inconsistency}  % Giải pháp sửa chữa ontology
 
-\input{Chapters/conclusion} % Conclusion
 
-\input{Chapters/references} % Tài liệu tham khảo
 %% ----------------------------------------------------------------
 % Now begin the Appendices, including them as separate files
 
@@ -223,9 +222,6 @@ $\backslash$ & except & ngoại trừ \\
 
 %\input{Appendices/AppendixA}	% Appendix Title
 
-%\input{Appendices/AppendixB} % Appendix Title
-
-%\input{Appendices/AppendixC} % Appendix Title
 
 \addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
 \backmatter
@@ -233,7 +229,7 @@ $\backslash$ & except & ngoại trừ \\
 %% ----------------------------------------------------------------
 \label{Bibliography}
 \lhead{\emph{Bibliography}}  % Change the left side page header to "Bibliography"
-\bibliographystyle{unsrtnat}  % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+\bibliographystyle{IEEEtranN}  % Use the "unsrtnat" BibTeX style for formatting the Bibliography
 \bibliography{Bibliography}  % The references (bibliography) information are stored in the file named "Bibliography.bib"
 
 \end{document}  % The End

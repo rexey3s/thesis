@@ -1,6 +1,6 @@
-\chapter{Giới thiệu về Semantic Web và Open World Assumption\cite{owa_cwa}}
-
-Trước khi bắt đầu giới thiệu với sâu hơn về Ontology Web Language (OWL), chúng em xin được giới thiệu qua về giả định Thế Giới Mở (Open World Assumption - OWA) được Semantic Web chấp nhận và phân biệt giả định này với giả định Thế Giới Đóng (Closed World Assumption - CWA).
+\chapter{Giới thiệu về Open World Assumption và Semantic Web}
+\section{Open World Assumption}
+Trước khi bắt đầu giới thiệu với sâu hơn về Ontology Web Language (OWL), chúng em xin được giới thiệu qua về giả định Thế Giới Mở (Open World Assumption - OWA)\cite{OWA_0} được Semantic Web chấp nhận và phân biệt giả định này với giả định Thế Giới Đóng (Closed World Assumption - CWA).
 \begin{description}
 \item[Closed World Assumption] 
 Giả định Thế Giới Đóng (CWA) là giả định mà những điều không chắc hoặc không có cơ sở để chứng minh là \textbf{đúng} sẽ được chấp nhận là \textbf{sai}.
@@ -9,10 +9,10 @@ Giả định Thế Giới Mở (OWA) thì ngược lại, với những điều
 \item[Ví dụ]
 Xem xét một câu nói sau đây: "A là một công dân của nước Hoa Kỳ". Nếu có ai đó hỏi "A có phải là một công dân của Việt Nam hay không ?". Xét theo CWA, câu trả lời là \textit{không}, ngược lại với OWA thì câu trả lời là \textit{chưa biết}. 
 \end{description}
-\section{Vậy OWA và CWA được sử dụng khi nào ?}
+\subsection{Vậy OWA và CWA được sử dụng khi nào ?}
 Giả định thế giới đóng (CWA) được sử dụng khi một hệ thống đã có đầy đủ thông tin. Đây là trường hợp được áp dụng cho nhiều ứng dụng cơ sở dữ liệu. Ví dụ, xem xét một tình huống một ứng dụng cơ sở dữ liệu đặt vé máy bay, chúng ta tìm kiếm đường bay thẳng Phú Quốc và Hà Nội, và kết quả là nó không tồn tại trong cơ sở dữ liệu (không quan tâm đến thực tế có hay không có đường bay này). Và theo CWA nên câu trả lời từ cơ sở dữ liệu là : "Không có đường bay thẳng Hà Nội - Phú Quốc" (Một giả định là thực tế cũng không tồn tại đường bay này do cơ sở dữ liệu không biết). Đây là dạng ứng dụng mà người dùng mong đợi một câu trả lời chính xác ( phổ biến ở các cở sở dữ liệu quan hệ).
 \\Ngược lại với Giả định thế giới đóng, Giả định thế giới mở đươc áp dụng trên một hệ thống mà thông tin được cung cấp không đầy đủ. Đây là trường hợp chúng ta một biểu dạng một dạng tri thức (a.k.a Ontologies) và chúng ta muống khám phá những thông tin mới tiềm ẩn trong đó. Ví dụ, xem xét một hệ thống lưu trữ tiền sử bệnh lý của bệnh nhân. Nếu cơ sở dữ liệu không chứa thông tin về một dạng dị ứng cụ thể mà bệnh nhân mắc phải, điều đó không đồng nghĩa là bệnh nhân đó không mắc phải nó trên thực tế. Từ đó câu trả lời từ cở sở dữ liệu theo chuẩn OWA sẽ là : "Không rõ bệnh nhân này có mắc phải dị ứng đó không, trừ khi những thông tin đầy đủ hơn được cung cấp".
-\section{So sánh OWA và CWA}
+\subsection{So sánh OWA và CWA}
 Giả định Thế Giới Đóng không chỉ là trả về các câu trả lời \textit{"không"} và Giả định Thế Giới Mở không chỉ là về trả về \textit{"không biết"}. Lấy lại ví dụ trên: "\textbf{A} là một công dân Hoa Kỳ" và giả sử khẳng định sau là đúng: "Một người chỉ có thể là công dân của một quốc gia". Chúng ta cùng xem tiếp câu sau: "A là công dân Việt Nam". Xét theo Giả định Thế Giới Đóng (CWA), phát biểu này có thể gây ra lỗi, vì nó mâu thuẫn với 2 phát biểu ban đầu giả sử chúng ta biết Mỹ và Việt Nam là 2 quốc gia khác nhau . Nếu đem phát biểu vừa rồi xét trong Giả định thế giới mở, thay vì gây lỗi, nó sẽ suy ra một phát biểu logic như sau: "Nếu một người chỉ có thể là công dân của một quốc gia, và nếu A là công dân của Hoa Kỳ và Việt Nam, thì Hoa Kỳ và Việt Nam phải cùng là một quốc gia".
 {\let\thefootnote\relax\footnotetext{*\textit{
 			Unique Name Assumption: http://en.wikipedia.org/wiki/Unique\_name\_assumption }}
@@ -21,7 +21,7 @@ Giả định Thế Giới Đóng không chỉ là trả về các câu trả l�
 }
 \\Lưu ý trong ví dụ, trường hợp CWA chúng ta đã giả sử Hoa Kỳ và Việt Nam là những quốc gia khác nhau, thật ra đây chính là Giả Định tên duy nhất (Unique Named Assumption) \textsuperscript{*}. Mặc định các hệ thống OWA không áp dụng UNA, tuy vậy chúng ta hoàn toàn có thể áp dụng UNA cho OWA. Trong ví dụ trên, giả sử nếu chúng ta biết hết tất cả tên của các quốc gia trên thế giới và khẳng định rõ là mỗi tên đại diện cho duy nhất một nước hay ví dụ trên sẽ có thêm phát biểu là "Hoa Kỳ và Việt Nam là 2 quốc gia khác nhau". Kết quả dẫn đến là toàn bộ phát biểu trong ví dụ trên sẽ thiểu nhất quán (inconsistent) \textsuperscript{**}
 \clearpage
-Dưới đây là bảng so sánh các đặc điểm của OWA và CWA .
+\subsection{Bảng tổng hợp các đặc điểm của OWA và CWA \cite{OWA_CWA}} \cite{ianhorrock1}.
 \begin{longtable}{ p{7cm} p{7cm} }
 \textbf{Cách tiếp cận theo hướng Cở sở dữ liệu quan hệ (CWA)} &\textbf{ Cách tiếp cận theo hướng Semantic Web (OWA)}\\
 \hline
@@ -61,23 +61,63 @@ Những tiên đề logic cho phép tạo ra những hạn chế thông qua mi�
 &
 \textbf{Logic đơn điệu}
 \\
-Tập hợp các kết luận đảm bảo dựa trên nền tảng của một cơ sở tri thức cho trước không thì sẽ không tăng và trên thực tế chúng có vẻ giảm đi so với kích cỡ của cơ sở tri thức \cite{monotonic}
+Tập hợp các kết luận đảm bảo dựa trên nền tảng của một cơ sở tri thức cho trước không thì sẽ không tăng (trên thực tế chúng có vẻ giảm đi) so với kích thước của cơ sở tri thức 
 &
-Các giả thiết về bất kì sự thực hiễn nhiên nào được có thể được mở rộng bằng cách thêm vào những giả định mới. Những khẳng định mới thêm vào có xu hướng làm giảm sự suy luận và hàm ý có thể được áp dụng. Một mảng tri thức mới nào đều không làm giảm đi những cái đã biết \cite{monotonic}. Những tri thức mới có thể nổi lên thông qua việc suy luận.
+Các giả thiết về bất kì sự thực hiễn nhiên nào được có thể được mở rộng bằng cách thêm vào những giả định mới. Những khẳng định mới thêm vào có xu hướng làm giảm sự suy luận và hàm ý có thể được áp dụng. Một mảng tri thức mới nào đều không làm giảm đi những cái đã biết. Những tri thức mới có thể nổi lên thông qua việc suy luận.
 \\
 &
 \\
-\textbf{Cố định và yếu ớt}
+\textbf{Cố định và khó chỉnh sửa}
 &
 \textbf{Có khả năng tái sử dụng và mở rộng}
 \\
+Thay đổi bối cảnh (schema) sử dụng đòi hỏi phải thiết kế lại kiến trúc cơ sở dữ liệu, không có khả năng tự mở rộng& Được thiết kế từ nền tảng nhẳm hướng đến việc tái sử dụng những ontologies(tập hợp các tiên đề hay phát biểu hiển nhiên đúng) có sẵn và có khả năng mở rộng. Việc thiết kế cơ sở dữ liệu và quản lý có thể linh động hơn, với bối cảnh phát triển không ngừng.
+\\
+&
+\\
+\textbf{Cấu trúc phẳng (table); Phân loại dữ liệu rõ ràng (Strong typing) }
+ &
+\textbf{Cấu trúc đồ thị (Graph); Phân loại dữ liệu mở}
+\\
+Thông tin được tổ chức thành các bảnh phẳng; các mối quan hệ và kết nối giữa các bảng dựa trên khóa ngoại hoặc các kết nối giữa nhiều bảng với nhau (JOIN trong SQL). Định hướng phân loại các dạng dữ liệu rõ ràng (char, string, smallint, int, bigint, etc.)  
+&
 
+Thông tin được tổ chức dạng đồ thị (RDF Graph), hỗ trợ phân tích các mối quan hệ và kết nối. Ngược lại với CWA, dạng dữ liệu (Datatypes) rất linh động (String), ngoài ra cũng cho phép thêm vào các phát biểu định nghĩa về dữ liệu để hỗ trợ phân loại dữ liệu rõ ràng hơn. Datatype được xem như các lớp (Classes) , và gía trị của chúng được xem như những định danh riêng biệt (nói cách khác giá trị dữ liệu được xem giống như một đối tượng).
+\\
+\textbf{Các công cụ phát triển, lưu trữ và truy vấn dữ liệu}
+&
+\textbf{Các công cụ phát triển, lưu trữ và truy vấn dữ liệu}
+\\
+Ngôn ngữ SQL và các câu truy vấn đã được phát triển rất tối ưu. Nhiều phần mềm hỗ trợ rất tốt cho việc phát triịn. Không hỗ trợ disjunction (phép logic OR) - không tồn tại 1 record nào thuộc 2 bảng khác nhau; tính phủ định phải được thực hiện theo nguyên tác Negation As Failure (NAF). Việc tính tổng và thống kê dễ dàng hơn nhờ vào UNA. Câu trả lời đóng( một câu trả lời được truyền cho tác vụ tính toán kế tiếp) dễ hơn so với OWA
+&
+Ngôn ngữ SPARQL và những ngôn ngữ Rule mới được phát triển để phục vụ cho việc truy vấn (SQWRL, Jena Rule, etc.); hiệu năng khi mở rộng ở quy mô lớn vẫn còn đang được cải thiện.
+Các câu truy vấn đòi hỏi phải có thông tin ngữ cảnh đễ chọn đúng tập các dữ liệu muốn xem.
+Tính phủ định và logic OR (disjunction) được cho phép và được xây dựng mạnh hơn. Vd: có thể khai báo một Class C là Disjunction $A \cup B$. Chưa có nhiều công cụ hỗ trợ được phát triển.
+\\ 
 \end{longtable}
 {\let\thefootnote\relax\footnotetext{*\textit{
 			Null statement in SQL:  http://en.wikipedia.org/wiki/Null\_\%28SQL\%29}}
 	\let\thefootnote\relax\footnotetext{**\textit{
 			Domain-closure Assumption:  http://en.wikipedia.org/wiki/Integrally\_closed\_domain}}
 }
-\paragraph{Kết luận} OWA được áp dụng lên những hệ thống mà thông tin chưa được cung cấp đầy đủ. Và Web chính là một hệ thống với những thông tin còn thiếu. Sự thiếu vắng thông tin trên Web có nghĩa là sẽ có những thông tin không được làm rõ. Điều này giải thích tại sao Semantic Web sử dựng OWA, vì nhờ đó Semantic Web có thể suy ra được những thông tin mới.
+\paragraph{Kết luận} OWA được áp dụng lên những hệ thống mà thông t
+\\in chưa được cung cấp đầy đủ. Và Web chính là một hệ thống với những thông tin còn thiếu. Sự thiếu vắng thông tin trên Web có nghĩa là sẽ có những thông tin không được làm rõ. Điều này giải thích tại sao Semantic Web sử dựng OWA, vì nhờ đó Semantic Web có thể suy ra được những thông tin mới.
+% Semantic Web
+\section{Web ngữ nghĩa (Sematic Web)}
+\subsection{Giới thiệu}
+Semantic Web được các nhà nghiên cứu kỳ vọng sẽ trở thành Web 3.0, với đặc trưng riêng biệt là phương thức liên kết dữ liệu (linked data) giữa các hệ thống hoặc các thực thể cho phép thể hiện được nhiều hơn, và rõ ràng hơn mối liên kết giữa các dữ liệu trên mạng lưới web toàn cầu. Cụ thể hơn, Semantic web có khả năng chuyển đổi văn bản HTML của con người (human readable HTML documents) sang ngôn ngữ máy tính (machine readable documents), giúp cho máy tính làm được nhiều công việc suy nghĩ hơn cho con người \cite{semantic1}.
+\\
+Ngày nay, đa phần dữ liệu trên web được cung cấp dưới dạng trang web (web pages) - văn bản HTML được liên kết với nhau bằng các liên kết (hyperlinks). Cả người và máy tính đều có thể dễ dàng đọc hiểu những văn bản đó, tuy nhiên thay vì tìm kiếm những từ khoá trong trang web, máy tính lại gặp trở ngại khi chọn lọc những ý nghĩa trong các văn bản đó. Một trang web chứa rất nhiều thông tin, nhưng những thông tin đó không phải là những thông tin thô - mà chỉ là những văn bản HTML được xây dựng từ cơ sở dữ liệu.
+\begin{itemize}
+\item Chuyển những trang web dữ liệu thành những tiến trình xử lý thông minh nhân tạo (giúp trang web phải “suy nghĩ” để xử lý giúp con người).
+\item Khuyến khích các công ty, các doanh nghiệp và các cá nhân trình bày dữ liệu tự do hơn, theo một quy chuẩn mở.
+\item Khuyến khích các doanh nghiệp sử dụng dữ liệu đã có sẵn trên web.
+\end{itemize}
+
+\subsection{Semantic Web dựa theo giả định thế giới mở (OWA)} 
+Như chúng ta đã biết thì về mục tiêu mà Semantic Web hướng đến, để đạt được những mục tiêu đó, cần có khả năng xử lý thông tin ở khắp mọi nơi đòi hỏi các tiêu chuẩn cũng như các nguyên lý tổ chức dữ liệu sẽ không giống như trước (khi chúng ta vẫn còn tổ chức dữ liệu thành các bảng dữ liệu quan hệ) theo giả định thế giới đóng. Do đó với tính chất muốn bao quát hết tất cả thông tin trên web ( gồm luôn những thông tin chưa đầy đủ - imcomplete information) thì Semantic Web đã lấy Giả định Thế Giới Mở đã được đề cập ở phần trên nhằm đảm bảo một hệ thống luôn sẵn sàng mở rộng và tiếp nhận thông tin mới mà không đòi hỏi phải thiết kế lại.
+\subsubsection{Các thành phần của Semantic Web}
+Khái niệm "Semantic Web" thường được sử dụng cụ thể hơn nhằm chỉ đến những định dạng và công nghệ để hiện thực hóa nó. Việc tổ chức, tập hợp và phục hồi dữ liệu liên kết thực hiện được nhờ vào các công đặc tả chính thức về các khái niệm, định nghĩa và mối quan hệ trong một vùng tri thức (knowledge domain) cho trước. Tất cả các công nghệ này đều được quy định thành một tiêu chuẩn của W3C \cite{semantic2}. Các thành phần được liệt kê dưới đây
+
 
 
