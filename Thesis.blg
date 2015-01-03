@@ -8,26 +8,10 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: Bibliography.bib
-"{" immediately follows a field name---line 94 of file Bibliography.bib
+"{" immediately follows a field name---line 99 of file Bibliography.bib
  :  Year
  :      {2012}
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 100 of file Bibliography.bib
- :  
- :  Year = {2003}
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 112 of file Bibliography.bib
- :  
- :  Year = {1987}
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 137 of file Bibliography.bib
- :  
- :  Url = {https://github.com/protegeproject/swrlapi/wiki},
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "refid"
 Warning--I didn't find a database entry for "owowlapi"
 -- IEEEtranN.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
@@ -38,8 +22,6 @@ Reallocated global_strs (elt_size=20001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Name 1 in "A. Kalyanpur, B. Parsia, B. Cuenca-Grau, and E. Sirin" has a comma at the end for entry repair
 while executing---line 2696 of file IEEEtranN.bst
-Name 1 in "A. Kalyanpur, B. Parsia, B. Cuenca-Grau, and E. Sirin" has a comma at the end for entry axiomPinpoint
-while executing---line 2696 of file IEEEtranN.bst
 Warning--empty journal in OWA_CWA
 Warning--empty year in matt_horridge
 Name 1 in "A. Kalyanpur, B. Parsia, B. Cuenca-Grau, and E. Sirin" has a comma at the end for entry repair
@@ -47,54 +29,48 @@ while executing---line 2710 of file IEEEtranN.bst
 Name 1 in "A. Kalyanpur, B. Parsia, B. Cuenca-Grau, and E. Sirin" has a comma at the end for entry repair
 while executing---line 2710 of file IEEEtranN.bst
 Warning--empty journal in repair
-Name 1 in "A. Kalyanpur, B. Parsia, B. Cuenca-Grau, and E. Sirin" has a comma at the end for entry axiomPinpoint
-while executing---line 2710 of file IEEEtranN.bst
-Name 1 in "A. Kalyanpur, B. Parsia, B. Cuenca-Grau, and E. Sirin" has a comma at the end for entry axiomPinpoint
-while executing---line 2710 of file IEEEtranN.bst
 Warning--empty booktitle in mups
-Warning--empty year in mups
-Warning--empty year in hst
 
 Done.
-You've used 20 entries,
+You've used 24 entries,
             4783 wiz_defined-function locations,
-            1017 strings with 10286 characters,
-and the built_in function-call counts, 8992 in all, are:
-= -- 840
-> -- 113
-< -- 9
-+ -- 78
-- -- 30
-* -- 447
-:= -- 1512
-add.period$ -- 38
-call.type$ -- 20
-change.case$ -- 38
-chr.to.int$ -- 17
-cite$ -- 36
-duplicate$ -- 698
-empty$ -- 790
-format.name$ -- 50
-if$ -- 1881
+            1033 strings with 10742 characters,
+and the built_in function-call counts, 10736 in all, are:
+= -- 1001
+> -- 127
+< -- 8
++ -- 92
+- -- 34
+* -- 534
+:= -- 1786
+add.period$ -- 46
+call.type$ -- 24
+change.case$ -- 46
+chr.to.int$ -- 21
+cite$ -- 42
+duplicate$ -- 835
+empty$ -- 962
+format.name$ -- 52
+if$ -- 2259
 int.to.chr$ -- 4
-int.to.str$ -- 21
-missing$ -- 126
-newline$ -- 116
+int.to.str$ -- 25
+missing$ -- 153
+newline$ -- 138
 num.names$ -- 30
-pop$ -- 476
+pop$ -- 586
 preamble$ -- 1
-purify$ -- 20
+purify$ -- 24
 quote$ -- 2
-skip$ -- 643
+skip$ -- 767
 stack$ -- 0
-substring$ -- 68
-swap$ -- 313
+substring$ -- 84
+swap$ -- 374
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 6
-type$ -- 307
-warning$ -- 6
+type$ -- 367
+warning$ -- 4
 while$ -- 20
 width$ -- 0
-write$ -- 236
-(There were 10 error messages)
+write$ -- 282
+(There were 4 error messages)
