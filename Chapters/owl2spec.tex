@@ -14,7 +14,7 @@ Phần lớn những người phát triển Ontology bằng OWL2 sẽ chỉ cầ
 Bất kì ontology OWL2 nào đều có thể được định dạng như một đồ thị RDF. Mối quan hệ giữa 2 cách này được quy định bới cách tài liệu Mapping to RDF Graphs document [\href{http://www.w3.org/TR/owl2-overview/#ref-owl-2-rdf-mapping}{OWL 2 RDF Mapping}] \cite{mapping_rdf_graph}, trong tài liệu này định nghĩa rất rõ ràng một bảng map từ định dạng cấu trúc của ontology qua đồ thị RDF, và ngược lại. 
 \subsection{Cú pháp}
 Trong thực tế, một cú pháp cụ thể rất cần thiết để lưu trữ các OWL2 Ontologies và để trao đổi chúng giữa các công cụ và ứng dụng khác nhau. Cú pháp đầu tiên có khả năng hoán đổi là RDF/XML [\href{http://www.w3.org/TR/owl2-overview/#ref-rdf-syntax}{RDF Syntax}] \cite{rdfxml}. Ngoài RDF/XML có khả năng cung cấp khả năng tương tác giữ nhiều ứng dụng OWl2 khác nhau, các loại cú pháp khác đều có thể được sử dụng. Dưới đây là bảng so sánh và liệt kê các cú pháp.
-\begin{table}[ht!]
+\begin{table}[!h]
 \begin{tabular}{ |p{3cm}|p{4cm}|p{3cm}|p{4cm}|}
 \hline
 Tên cú pháp & Mô tả & Trạng thái & Mục đích sử dụng\\
@@ -38,6 +38,7 @@ Turtle & Mapping to RDF Graphs \cite{mapping_rdf_graph} & Tùy chọn, không đ
 \caption{Bảng so sánh các cú pháp của OWL2\label{overflow}}
 \end{table}
 \subsection{Một số ví dụ của các syntax}
+
 \subsubsection{Functional Syntax}
 \begin{verbatim}
 // Khai báo lớp
@@ -50,6 +51,7 @@ SubClassOf (Cow Animal)
 // Khai báo sub Class Expression
 SubClassOf (Cow ObjectSomeValueFrom(canEat Grass))  
 \end{verbatim}
+
 \subsubsection{RDF/XML Syntax}
 \begin{verbatim}
 T(Animal) rdf:type owl:Class
@@ -58,6 +60,8 @@ T(canEat) rdf:type owl:ObjectProperty
 T(Cow) rdfs:subClassOf T(Animal) 
 T(Cow) rdfs:subClassOf T(_:x owl:someValuesFrom T(Grass))
 \end{verbatim}
+
+
 \subsubsection{OWL/XML Syntax}
 \begin{verbatim}
 <Declaration>
@@ -81,7 +85,10 @@ T(Cow) rdfs:subClassOf T(_:x owl:someValuesFrom T(Grass))
 </ObjectAllValuesFrom>
 </SubClassOf>
 \end{verbatim}
+
+
 \subsubsection{Manchester Syntax}
+
 \begin{verbatim}
 Class: Cow 
     SubClassOf: Animal 
@@ -89,6 +96,8 @@ Class: Cow
 Class: Grass
 ObjectProperty: canEat
 \end{verbatim}
+
+
 \section{Các đặc tính chi tiết của OWL2}
 Ngôn ngữ Ontology Web Language 2 (hay OWL 2) đảm nhiệm chức năng thể hiện ngữ nghĩa cho Semantic Web như chúng ta đã thấy trong hình Semantic Web  Stack. OWL2 ontologies cung cấp các lớp (class), đặc tính (property), cá thể (individual) và các giá trị dữ liệu (data value), tất cả chúng sẽ được biểu diễn bằng các tài liệu và cú pháp được đề cập ở trên, phần này sẽ đi vào giải thích các thành phần vừa nêu ra của một ontology được viết bằng ngôn ngữ OWL2 . Đây cũng chính là các thành phần cấu trúc mà thư viện OWLAPI \cite{owlapi} áp dụng để xây dựng nên bộ thư viện giúp người phát triển ứng dụng ontology tương tác dễ dàng hơn với các tài liệu ontology.
 Đầu tiên chúng em xin được giới thiệu tới đối tượng lớn nhất trong quy định của ngôn ngữ OWL2. 
@@ -96,8 +105,11 @@ Ngôn ngữ Ontology Web Language 2 (hay OWL 2) đảm nhiệm chức năng th�
 Tiếp theo, chúng em xin được trình bày về một qua các định nghĩa những thành phần cấu tạo của ontology mà có ảnh hướng đến quá trình xây dựng ứng dụng, các thành phần không liên quan sẽ không được đề cập.
 \section{Định nghĩa các thành phần cấu tạo nên một ontology}
 \subsection{Ontology IRI và Version IRI}
-Mỗi ontology đều có thế có\textit{một ontology IRI\cite{iri}} (Internationalized Resource Identifier), dùng để định danh cho ontology. Nếu một ontology có một ontology IRI, thì ontology này có thể có thêm một version IRI, dùng để xác định phiên bản cho ontology này. Version IRI có thể trùng hoặc không cần thiết phải trùng với ontology IRI. Một ontology không có ontology IRI thì không có version IRI.
+Mỗi ontology đều có thế có\textit{một ontology IRI} \cite{iri} \textsuperscript{*} (Internationalized Resource Identifier), dùng để định danh cho ontology. Nếu một ontology có một ontology IRI, thì ontology này có thể có thêm một version IRI, dùng để xác định phiên bản cho ontology này. Version IRI có thể trùng hoặc không cần thiết phải trùng với ontology IRI. Một ontology không có ontology IRI thì không có version IRI.
 Dưới đây là những quy ước chọn ontology IRIs và version IRIs trong OWL2. Những đặc điểm kỹ thuật này không cung cấp cơ chế nào để làm chúng phải được tuân theo trên toàn hệ thống web. Tuy nghiên, những công cụ hay ứng dụng OWl2 \textit{nên} sử dụng những quy ước này để dễ dàng tìm ra lỗi trong những ontology mà chúng xử lý.
+{\let\thefootnote\relax\footnotetext{*\textit{
+			Internationalized Resource Identifier: giao thức bổ sung cho Uniform Resource Universal Character Set (Unicode/ISO 10646).}}
+}
 \begin{itemize}
 \item Nếu một ontology có một ontology IRI nhưng không có version IRI, thì \textit{không nên tồn tại} một ontology với trùng ontology IRI vừa đặt.
 \item Nếu một ontology có một ontology IRI và một version IRI, thì \textit{không nên tồn tai} một ontology khác với trùng ontology IRI và version IRI vừa đặt.
@@ -132,18 +144,24 @@ Lớp được hiểu như tập hợp các cá thể. Hai lớp với IRIs \tex
 \item \textbf{owl:Thing} là tập hợp gồm tất cả các cá thể.
 \item \textbf{owl:Nothing} là tập hợp rỗng,
 \end{itemize}
-Không nên sử dụng 2 định nghĩa trên để gán cho bất kì lớp nào trong OWL 2 DL Ontology.
+Không nên sử dụng 2 định nghĩa trên để gán cho bất kì lớp nào trong OWL 2 DL Ontology. Lớp \textit{a:Child} và đều lớp \textit{a:Person} để chỉ tập tất cả người mà là trẻ con trong một miền ứng dụng. Vì vậy, 2 lớp trên có thể được khai báo theo phát biểu sau đây:
+
+\begin{verbatim}
+SubClassOf( a:Child a:Person) 
+\end{verbatim}
+
+\textbf{Giải thích:} Mỗi đứa trẻ đều là một người.
+
 % Datatypes
 \subsubsection{Kiểu dữ liệu (datatypes)}
-Kiểu dữ liệu là thực thể được xem như tập hợp của các giá trị dữ liệu. Như vậy, kiểu dữ lữ liệu cũng tương tự lớp, khác biệt chính là thay vì chứa các cá thể (individuals) như lớp thì lại chứ các giá trị dữ liệu như strings, numbers, Kiểu dữ liệu có thể được dùng tạo ra các dữ liệu giới hạn (datarange).
-\\
-Ví dụ:
-\\
-Kiểu dữ liệu \textit{xsd:positiveInteger} đại diện cho tập hợp gồm tất cả các số nguyên dương. Nó được sử dụng để quy định kiểu dữ liệu mà đặc tính \textit{hasAge} có thể chấp nhận.
+Kiểu dữ liệu là thực thể được xem như tập hợp của các giá trị dữ liệu. Như vậy, kiểu dữ lữ liệu cũng tương tự lớp, khác biệt chính là thay vì chứa các cá thể (individuals) như lớp thì lại chứ các giá trị dữ liệu như strings, numbers, Kiểu dữ liệu có thể được dùng tạo ra các dữ liệu giới hạn (datarange). Ví dụ kiểu dữ liệu \textit{xsd:positiveInteger} đại diện cho tập hợp gồm tất cả các số nguyên dương. Nó được sử dụng để quy định kiểu dữ liệu mà đặc tính \textit{hasAge} có thể chấp nhận:
+
 \begin{verbatim}
 DataPropertyRange( a:hasAge xsd:positiveInteger) 
-// đặc tính dữ liệu a:hasAge chỉ được phép là các số nguyên dương.
 \end{verbatim}
+
+\textbf{Giải thích:} đặc tính dữ liệu a:hasAge chỉ được phép là các số nguyên dương.
+
 % Object Properties
 \subsubsection{Đặc tính đối tượng (object properties)} 
 Đặc tính đối tượng kết nối các cặp cá thể - tạo ra mối liên hệ (relationship) giữa các cá thể. Tương tự lớp cũng có 2 đặc tính đối tượng được định nghĩa sẵn trong OWL 2 với ý nghĩa như sau:
@@ -152,9 +170,11 @@ DataPropertyRange( a:hasAge xsd:positiveInteger)
 \item \textbf{owl:bottomObjectProperty} không kết nối bất kì cặp cá thể nào. 
 \end{itemize}
 Cũng không nên sử dụng 2 định nghĩa trên để gán cho bất kỳ đặc tính đối tượng nào trong OWL 2 DL Ontology. Đặc tính đối tượng \textit{a:parentOf} được dùng để nói lên mối quan hệ giữ các cá thể. Nó có thể được sử dụng như trong phát biểu sau:
+
 \begin{verbatim}
 ObjectPropertyAssertion( a:parentOf a:Peter a:Chris)  
 \end{verbatim}
+
 \textbf{Giải thích:} Peter là ba mẹ của Chris.
 
 % Data Properties
@@ -166,9 +186,11 @@ Hai định nghĩa sẵn \textit{owl:topDataProperty} và \textit{owl:bottomData
 \item \textbf{owl:bottomDataProperty} không liên kết bất kì cá thể với trực nghĩa nào.
 \end{itemize}
 Tương tự lớp và đặc tính đối tượng, 2 phát biểu \textit{top} và \textit{bottom} trên cũng không nên được sử dụng để gán cho bất kì đặc tính dữ liệu nào. Mỗi đặc tính dữ liệu \textit{a:hasName} chứa tên đầy đủ của mỗi người. Ví dụ nó có thể được sử dụng như trong phát biểu sau:
+
 \begin{verbatim}
 DataPropertyAssertion( a:hasName a:Steve "Steve Job") 
 \end{verbatim}
+
 \textbf{Giải thích:} Tên của Steve là "Steve Job".
 
 % Individuals
@@ -177,19 +199,156 @@ Cá thể trong OWL2 là một đối tượng cụ thể thuộc một tập/l�
 
 % Named Individuals
 \paragraph{Cá thể có tên (Named Individuals)} được định danh bằng một IRI. Vì vậy, nên cá thể có tên cũng là một thực thể (entity) tương tự lớp, đặc tính và kiểu dữ liệu. Ví dụ khai báo một các thể thuộc 1 lớp:
+
 \begin{verbatim}
 ClassAssertion( a:Person a:Peter)
 \end{verbatim}
+
 \textit{Giải thích:} Peter là một người.
 
 % Anonymous Individuals
 \paragraph{Cá thể ẩn danh (Anonymous Individuals)} Nếu cần một cá thể chỉ sử dụng ở nội bộ ontology, chúng ta có thể sử dụng cá thể ẩn danh, được định danh bằng một node ID cục bộ thay vì sử dụng IRI toàn cục. Cá thể ẩn danh tương tự như một node rỗng trong đồ thị RDF \cite{rdf_concept}. Ví dụ khai báo đặc tính đối tượng giữa cá thể ẩn danh với cá thể có tên:
+
 \begin{verbatim}
 ObjectPropertyAssertion( a:liveAt a:Peter _:a1)
 ObjectPropertyAssertion( a:city _:a1 a:HCM)
 ObjectPropertyAssertion( a:district _:a1 a:ThuDuc)
 \end{verbatim}
+
 \textbf{Giải thích:} Peter sống ở một địa chỉ nào đó (chưa biết). Mà địa chỉ chưa biết này nằm trong thành phố Hồ Chí Minh và nằm trong quận Thủ Đức.
+
+% Literals
+\subsubsection{Trực nghĩa (Literals)}
+Trực nghĩa biểu diễn các giá trị dữ liệu như chuỗi và số nguyên. Mỗi trực nghĩa gồm một chuỗi định dạng được định nghĩa bới người dùng (lexical form), và một kiểu dữ liệu được hỗ trợ bởi OWL2 \cite{owl2spec} . Một trực nghĩa gồm một chuỗi định dạng \textit{"abc"} và một kiểu dữ liệu (Datatype) định danh bởi IRI \textit{datatypeIRI} được định nghĩa như sau \verb|"abc"^^datatypeIRI|. Thêm nữa, các trực nghĩa mà kiểu dữ liệu của chúng là \textit{rdf:PlainLiteral} có thể được viết tắt trong functional-syntax của OWL2 ghi lại trong tài liệu thành dạng trực nghĩa rỗng RDF \cite{rdf_concept}. Cú pháp viết tắt này chỉ đơn giản là một định dạng ngắn gọn hơn, chúng không có ảnh hưởng đến ý nghĩa của khai báo trực nghĩa. Viết tắt chủ yếu là để phục vụ cho việc parsing:
+\begin{itemize}
+\item Trực nghĩa dạng \verb|"abc@"^^rdf:PlainLiteral| được viết tắt thành \verb|"abc"|.
+\item Trực nghĩa dạng \verb|"abc@langTag"^^rdf:PlainLiteral| trong đó \textit{"langTag"} không rỗng được viết tắt thành \verb|"abc"@langTag|.
+\end{itemize}
+\textbf{Cú pháp:}
+\begin{verbatim}
+Literal      := typedLiteral | stringLiteralNoLanguage | stringLiteralWithLanguage
+typedLiteral := lexicalForm '^^' Datatype
+lexicalForm  := quotedString
+stringLiteralNoLanguage := quotedString
+stringLiteralNoLanguage := quotedString
+\end{verbatim}
+Một số ví dụ:
+\begin{verbatim}
+"1"^^xsd:integer  // trực nghĩa biểu diễn số nguyên dương 1
+"abc"^^xsd:string // trực nghĩa biểu diễn chuỗi "abc"
+\end{verbatim}
+
+% Entity Declarations and Typing
+\subsubsection{Khai báo thực thể}
+Mỗi IRI \textit{I} được sử dụng trong OWL 2 ontology \textit{O} cần được khai báo để sử dụng. Phát biểu khai báo một thực thể \textit{I} nhằm đảm bảo rằng \textit{O} phải chứa \textit{I}. Hai mục tiêu của phát biểu này:
+\begin{itemize}
+\item Khẳng định sự tồn tại trong \textit{I} trong \textit{O}
+\item Khai báo gắn với loại của thực thể \textit{I} - phân loại xem \textit{I} có phải là một lớp, một kiểu dữ liệu, mặt đặc tính đối tượng, một đặc tính dữ liệu, một đặt tính chú thích hay một cá thể.
+\end{itemize}
+Bối cảnh sử dụng khái báo \textbf{Declaration} thường gắn liền với chức năng \textit{Add New Class/Property/Datatype} trong một Ontology Editor nào đó.
+\\ \textbf{Cú pháp:}
+\begin{verbatim}
+Declaration := 'Declaration' '(' axiomAnnotations Entity ')'
+Entity :=
+'Class' '(' Class ')' |
+'Datatype' '(' Datatype ')' |
+'ObjectProperty' '(' ObjectProperty ')' |
+'DataProperty' '(' DataProperty ')' |
+'AnnotationProperty' '(' AnnotationProperty ')' |
+'NamedIndividual' '(' NamedIndividual ')'
+\end{verbatim}
+\textbf{Ví dụ:}
+\begin{verbatim}
+Declaration( Class( a:Person ) )
+Declaration( NamedIndividual( a:Peter ) )
+\end{verbatim}
+
+% Property Expression
+\subsection{Mô tả đặc tính (Property Expression)}
+Các đặc tính được sử dụng trong OWL 2 để tạo thành các mô tả đặc tính.
+
+% Object Property Expression
+\subsubsection{Mô tả đặc tính đối tượng (Object Property Expression)}
+Đặc tính đối tượng được sử dụng trong OWL 2 để tạo thành các mô tả đặc tính đối tượng (object property expression), miêu tả các mối quan hệ giữa các cặp cá thể. Chúng được miêu tả trong bản thảo chi tiết về cấu trúc của OWL 2 như trong hình sau.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=110mm]{Figures/object_property_expression.png}
+	\caption{Mô tả đặc tính đối tượng OWL 2\label{overflow}}
+\end{figure}
+Như được thể hiện trong hình, OWL 2 hỗ trợ 2 loại mô tả đặc tính đối tượng. Đặc tính đối tượng là dạng đơn giản của mô tả đặc tính đối tượng, đặc tính đối tượng nghịch đảo (inverse object properties) cho phép thể hiện các mối quan hệ 2 chiều giữa mô tả các lớp và các phát biểu.
+\\ \textbf{Mô tả đặc tính đối tượng nghịch đảo}
+
+\begin{verbatim}
+ObjectPropertyAssertion( a:fatherOf a:Peter a:Steve) // Peter là ba của Steve
+\end{verbatim}}
+Với phát biểu trên, ontology sẽ hiểu \textit{a:Steve} liến kết với \textit{a:Peter} qua một đặc tính nghịch đảo của \textit{a:fatherOf} là \textit{ObjectInverseOf( a:fatherOf)}. Chúng ta cũng có thể khai báo tường minh nghịch đảo của \textit{a:fatherOf} bằng phát biểu \textit{ InverseObjectProperties(a:fatherOf a:childOf)}.
+
+% Data Property Expression
+\subsubsection{Mô tả đặc tính dữ liệu (Data Property Expression)}
+Tương đương với mô tả đặc tính đối tượng, phác thảo cấu trúc chi tiết của OWL2 cũng giới thiệu định nghĩa mô tả đặc tính dữ liệu  (data property expressions), nhằm biểu diễn mối quan hệ giữa một cá thể và một trực nghĩa. Cấu trúc của mô tả đặc tính dữ liệu thể hiện trong hình bên. Như chúng ta thấy mô tả đặc tính dữ liệu cũng chính là đặc tính dữ liệu, người ta tạo ra cấu trúc như vậy nhằm tạo thuận lợi cho nhu cầu mở rộng sau này cho mô tả đặc tính dữ liệu.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=110mm]{Figures/data_property_expression.png}
+	\caption{Cấu trúc của mô tả đặc tính dữ liệu OWL 2\label{overflow}}
+\end{figure}
+
+%Data ranges
+\subsection{Miền dữ liệu (Data Range)}
+Kiểu dữ liệu như\textit{xsd:string} hoặc \textit{xsd:integer} và trực nghĩa \verb|"1"^^xsd:integer| được dùng để biểu diễn miền dữ liệu - tập hợp danh sách có thứ tự (tuples) của các trực nghĩa, mà mỗi phần tử trong danh sách này chỉ chứa một trực nghĩa duy nhất để định nghĩa chính nó. Miền dữ liệu được dùng để tạo ra ràng buộc cho đặc tính dữ liệu. Cấu trúc của miền dữ liệu trong OWL 2 được mô tả trong hình. Thành phần đơn giản của miền dữ liệu chính là kiểu dữ liệu : một kiểu dữ liệu cũng chính là một miền dữ liệu.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=120mm]{Figures/datarange.png}
+	\caption{Cấu trúc miền dữ liệu (data range) quy định theo OWL 2\label{overflow}}
+\end{figure}
+
+\subsubsection{Giao của các miền dữ liệu (Intersection of Data Ranges)}
+Giao của miền dữ liệu $DataIntersectionOf( DR_{1} ... DR_{n} )$  chứa tất cả các danh sách của các trực nghĩa nằng trong $DR_{i}$ với $1 <= i <= n$. Tất cả miền dữ liệu $DR_{i}$ phải có cùng số lượng tham số, và cũng phải có cùng số lượng số kết quả trả về. Ví dụ về miền dữ liệu chỉ chứa số 0:
+\begin{verbatim}
+DataIntersectionOf( xsd:nonNegativeInteger xsd:nonPositiveInteger )
+\end{verbatim}
+
+\subsubsection{Hội của các miền dữ liệu (Union of Data Ranges)}
+Điều kiện về số lượng tham số và số lượng kết quả trả về của từng $DR_{i}$ với điều kiện $1 <= i <= n$ phải giống nhau. Cú pháp $DataIntersectionOf( DR_{1} ... DR_{n} )$. Ví dụ về việc miền dữ liệu chứa tất cả các chuỗi và số nguyên:
+\begin{verbatim}
+DataUnionOf( xsd:string xsd:integer )
+\end{verbatim}
+
+\subsubsection{Phủ định của miền dữ liệu (Complement of Data Ranges)}
+Cú pháp $ DataComplementOf( DR ) $ chứa tất cả các miền dữ liệu còn lại trong năng trong miền dữ liệu $DR$. Yêu câu số lượng tham số và kết quả phải bằng $DR$
+\begin{verbatim}
+DataComplementOf( xsd:positiveInteger )
+\end{verbatim}
+\textbf{Giải thích:} miền dữ liệu trên chứa tất cả số nguyên âm, số 0; và chứa tất cả chuỗi (strings) vì chuỗi không phải số nguyên dương.
+
+\subsubsection{Liệt kê trực nghĩa (Enumeration Of Literals)}
+
+Một danh sách liệt kê với cú pháp $DataOneOF( lt_{1} ... lt_{n} $ chứa chính xác các trực nghĩa $lt_{i}$ với $1 <= i <= n$. Số kết quả chỉ duy nhất là 1 \textit{"oneOf"}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
