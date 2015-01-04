@@ -125,7 +125,7 @@ Cấu trúc của các thực thể và trực nghĩa trong OWL 2 được thể
 \item  Các cá thể có tên có thể được dụng để biểu diễn một đối tượng cụ thể từ một lớp nào đó.
 \end{itemize}
 Bên cạnh các cá thể có tên, OWL2 còn cung cấp một khái niệm gọi là các cá thể ẩn danh (anonymous individuals) - là cá thể tương tự với các node trống (blank nodes) trong RDF Concept \cite{rdf_concept} và được truy xuất ngay bên trong ontology mà chúng được sử dụng. Cuối cùng, OWL 2 cung cấp thêm cho cac trực nghĩa (literals), một dạng dữ liệu string gọi là định dạng nghĩa bằng từ ngữ (lexical form) và một dạng dữ liệu để chỉ dẫn cách ontology có thể hiểu chuỗi này.
-
+% Classes 
 \subsubsection{Lớp (Classes)}
 Lớp được hiểu như tập hợp các cá thể. Hai lớp với IRIs \textit{owl:Nothing} và \textit{owl:Thing} là các lớp được định nghĩa sẵn trong OWL2 với ý nghĩa như sau:
 \begin{itemize}
@@ -133,18 +133,31 @@ Lớp được hiểu như tập hợp các cá thể. Hai lớp với IRIs \tex
 \item \textbf{owl:Nothing} là tập hợp rỗng,
 \end{itemize}
 Không nên sử dụng 2 định nghĩa trên để gán cho bất kì lớp nào trong OWL 2 DL Ontology.
-
+% Datatypes
 \subsubsection{Kiểu dữ liệu (datatypes)}
 Kiểu dữ liệu là thực thể được xem như tập hợp của các giá trị dữ liệu. Như vậy, kiểu dữ lữ liệu cũng tương tự lớp, khác biệt chính là thay vì chứa các cá thể (individuals) như lớp thì lại chứ các giá trị dữ liệu như strings, numbers, Kiểu dữ liệu có thể được dùng tạo ra các dữ liệu giới hạn (datarange).
-
+\\
+Ví dụ:
+\\
+Kiểu dữ liệu \textit{xsd:positiveInteger} đại diện cho tập hợp gồm tất cả các số nguyên dương. Nó được sử dụng để quy định kiểu dữ liệu mà đặc tính \textit{hasAge} có thể chấp nhận.
+\begin{verbatim}
+DataPropertyRange( a:hasAge xsd:positiveInteger) 
+// đặc tính dữ liệu a:hasAge chỉ được phép là các số nguyên dương.
+\end{verbatim}
+% Object Properties
 \subsubsection{Đặc tính đối tượng (object properties)} 
 Đặc tính đối tượng kết nối các cặp cá thể - tạo ra mối liên hệ (relationship) giữa các cá thể. Tương tự lớp cũng có 2 đặc tính đối tượng được định nghĩa sẵn trong OWL 2 với ý nghĩa như sau:
 \begin{itemize}
 \item \textbf{owl:topObjectProperty} kết nối tất cả các cặp cá thể có thể kết nối.
 \item \textbf{owl:bottomObjectProperty} không kết nối bất kì cặp cá thể nào. 
 \end{itemize}
-Cũng không nên sử dụng 2 định nghĩa trên để gán cho bất kỳ đặc tính đối tượng nào trong OWL 2 DL Ontology
+Cũng không nên sử dụng 2 định nghĩa trên để gán cho bất kỳ đặc tính đối tượng nào trong OWL 2 DL Ontology. Đặc tính đối tượng \textit{a:parentOf} được dùng để nói lên mối quan hệ giữ các cá thể. Nó có thể được sử dụng như trong phát biểu sau:
+\begin{verbatim}
+ObjectPropertyAssertion( a:parentOf a:Peter a:Chris)  
+\end{verbatim}
+\textbf{Giải thích:} Peter là ba mẹ của Chris.
 
+% Data Properties
 \subsubsection{Đặc tính dữ liệu (data properties)}
 Đặc tính dữ liệu liên kết các cá thể với các trực nghĩa. Trong một vài hệ thống biểu diễn tri thức, đặc tính dữ liệu chức năng được gọi là thuộc tính.
 Hai định nghĩa sẵn \textit{owl:topDataProperty} và \textit{owl:bottomDataProperty} có ý nghĩa như sau
@@ -152,8 +165,31 @@ Hai định nghĩa sẵn \textit{owl:topDataProperty} và \textit{owl:bottomData
 \item \textbf{owl:topDataProperty} liên kết tất cả cá thể với tất cả các trực nghĩa.
 \item \textbf{owl:bottomDataProperty} không liên kết bất kì cá thể với trực nghĩa nào.
 \end{itemize}
+Tương tự lớp và đặc tính đối tượng, 2 phát biểu \textit{top} và \textit{bottom} trên cũng không nên được sử dụng để gán cho bất kì đặc tính dữ liệu nào. Mỗi đặc tính dữ liệu \textit{a:hasName} chứa tên đầy đủ của mỗi người. Ví dụ nó có thể được sử dụng như trong phát biểu sau:
+\begin{verbatim}
+DataPropertyAssertion( a:hasName a:Steve "Steve Job") 
+\end{verbatim}
+\textbf{Giải thích:} Tên của Steve là "Steve Job".
 
+% Individuals
+\subsubsection{Cá thể (Individuals)}
+Cá thể trong OWL2 là một đối tượng cụ thể thuộc một tập/lớp (domain/class). Có 2 dạng cá thể trong cú pháp OWL2. \textit{Cá thể có tên} được khai báo tên một cách rõ ràng để có thể sử dụng trong bất kì ontology nào bằng cách truy vấn tới IRI có chứa tên của nó. Ngược lại, cá thể ẩn danh (Anonymous Individuals) không có tên gọi toàn cục và chỉ truy vấn được trong nội bộ của ontology chứa chúng.
 
+% Named Individuals
+\paragraph{Cá thể có tên (Named Individuals)} được định danh bằng một IRI. Vì vậy, nên cá thể có tên cũng là một thực thể (entity) tương tự lớp, đặc tính và kiểu dữ liệu. Ví dụ khai báo một các thể thuộc 1 lớp:
+\begin{verbatim}
+ClassAssertion( a:Person a:Peter)
+\end{verbatim}
+\textit{Giải thích:} Peter là một người.
+
+% Anonymous Individuals
+\paragraph{Cá thể ẩn danh (Anonymous Individuals)} Nếu cần một cá thể chỉ sử dụng ở nội bộ ontology, chúng ta có thể sử dụng cá thể ẩn danh, được định danh bằng một node ID cục bộ thay vì sử dụng IRI toàn cục. Cá thể ẩn danh tương tự như một node rỗng trong đồ thị RDF \cite{rdf_concept}. Ví dụ khai báo đặc tính đối tượng giữa cá thể ẩn danh với cá thể có tên:
+\begin{verbatim}
+ObjectPropertyAssertion( a:liveAt a:Peter _:a1)
+ObjectPropertyAssertion( a:city _:a1 a:HCM)
+ObjectPropertyAssertion( a:district _:a1 a:ThuDuc)
+\end{verbatim}
+\textbf{Giải thích:} Peter sống ở một địa chỉ nào đó (chưa biết). Mà địa chỉ chưa biết này nằm trong thành phố Hồ Chí Minh và nằm trong quận Thủ Đức.
 
 
 

@@ -118,6 +118,11 @@ Ngày nay, đa phần dữ liệu trên web được cung cấp dưới dạng t
 Như chúng ta đã biết thì về mục tiêu mà Semantic Web hướng đến, để đạt được những mục tiêu đó, cần có khả năng xử lý thông tin ở khắp mọi nơi đòi hỏi các tiêu chuẩn cũng như các nguyên lý tổ chức dữ liệu sẽ không giống như trước (khi chúng ta vẫn còn tổ chức dữ liệu thành các bảng dữ liệu quan hệ) theo giả định thế giới đóng. Do đó với tính chất muốn bao quát hết tất cả thông tin trên web ( gồm luôn những thông tin chưa đầy đủ - imcomplete information) thì Semantic Web đã lấy Giả định Thế Giới Mở đã được đề cập ở phần trên nhằm đảm bảo một hệ thống luôn sẵn sàng mở rộng và tiếp nhận thông tin mới mà không đòi hỏi phải thiết kế lại.
 \subsubsection{Các tiêu chuẩn và thành phần của Semantic Web}
 Khái niệm "Semantic Web" thường được sử dụng cụ thể hơn nhằm chỉ đến những định dạng và công nghệ để hiện thực hóa nó. Việc tổ chức, tập hợp và phục hồi dữ liệu liên kết thực hiện được nhờ vào các công đặc tả chính thức về các khái niệm, định nghĩa và mối quan hệ trong một vùng tri thức (knowledge domain) cho trước. Tất cả các công nghệ này đều được quy định thành một tiêu chuẩn của W3C \cite{semantic2}. Các tiêu chuẩn được liệt kê dưới đây
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=110mm]{Figures/semantic_web_stack.png}
+	\caption{The Semantic Web Stack \label{overflow}}
+\end{figure}
 \begin{itemize}
 \item \href{http://en.wikipedia.org/wiki/Resource\_Description\_Framework}{Resource Description Framework}, một phương thức chung để biểu diễn thông tin cho semantic web.
 \item \href{http://en.wikipedia.org/wiki/RDF_Schema}{RDF Schema}
@@ -129,12 +134,9 @@ Khái niệm "Semantic Web" thường được sử dụng cụ thể hơn nhằ
 \item \href{http://en.wikipedia.org/wiki/Web_Ontology_Language}{Web Ontology Language} (OWL), một họ các ngôn ngữ biểu diễn tri thức
 \item \href{}{Rule Interchange Format} (RIF), một framework chung của các ngôn ngữ điều luật web hỗ trợ chuyển đổi nhiều điều luật khác nhau trên web
 \end{itemize}
-\begin{figure}[ht!]
-	\centering
-	\includegraphics[width=110mm]{Figures/semantic_web_stack.png}
-	\caption{The Semantic Web Stack \label{overflow}}
-\end{figure}
-Hình Semantic Web Stack\cite{semantic3} miêu tả kiến trúc của Semantic Web. Chắc năng mà mối quan hệ giữa các thành phần được tổng hợp lại dưới đây:
+
+Hình Semantic Web Stack\cite{semantic3} miêu tả kiến trúc của Semantic Web:
+
 \begin{itemize}
 \item XML cung cấp một cú pháp cơ bản nhất cho nội dung bên trong tài liệu, và không có liên quan ngữ nghĩa gì đến nội dung ngữ nghĩa mà nội dụng nó chứa. XML không phải là một thành phần cần thiết trong các công nghệ Semantic Web trong hầu hết các trường hợp, tồn tại cú pháp thay thế khác như Turle \textsuperscript{*}. 
 \item XML Schema là một ngôn ngữ dùng để cung cấp và hạn chế cấu trúc nội dung của các thành phần nằm trong tài liệu XML, nói cách khác nó giúp chúng ta dạnh nói dung mà tài liệu đó chưa là gì. Ví dụ: OWL/XML vs. RDF/XML

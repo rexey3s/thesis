@@ -4,4 +4,5 @@ Thesis.synctex.gz
 Thesis.out
 Thesis.lof
 Thesis.aux
-
+Thesis.lot
+Chapters/*.log
