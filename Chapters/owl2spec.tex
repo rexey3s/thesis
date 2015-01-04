@@ -265,17 +265,17 @@ Declaration( NamedIndividual( a:Peter ) )
 
 % Property Expression
 \subsection{Mô tả đặc tính (Property Expression)}
-Các đặc tính được sử dụng trong OWL 2 để tạo thành các mô tả đặc tính.
+Các đặc tính được sử dụng trong OWL 2 để tạo ra các mô tả đặc tính.
 
 % Object Property Expression
 \subsubsection{Mô tả đặc tính đối tượng (Object Property Expression)}
-Đặc tính đối tượng được sử dụng trong OWL 2 để tạo thành các mô tả đặc tính đối tượng (object property expression), miêu tả các mối quan hệ giữa các cặp cá thể. Chúng được miêu tả trong bản thảo chi tiết về cấu trúc của OWL 2 như trong hình sau.
+Đặc tính đối tượng được sử dụng trong OWL 2 để tạo thành các mô tả đặc tính đối tượng (object property expression), diễn tả các mối quan hệ giữa các cặp cá thể. Chúng được diễn giải trong tài liệu cấu trúc chi tiết của OWL 2 như trong hình sau.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=110mm]{Figures/object_property_expression.png}
 	\caption{Mô tả đặc tính đối tượng OWL 2\label{overflow}}
 \end{figure}
-Như được thể hiện trong hình, OWL 2 hỗ trợ 2 loại mô tả đặc tính đối tượng. Đặc tính đối tượng là dạng đơn giản của mô tả đặc tính đối tượng, đặc tính đối tượng nghịch đảo (inverse object properties) cho phép thể hiện các mối quan hệ 2 chiều giữa mô tả các lớp và các phát biểu.
+Như được thể hiện trong hình, OWL 2 hỗ trợ 2 loại mô tả đặc tính đối tượng. Đặc tính đối tượng là dạng đơn giản của mô tả đặc tính đối tượng, đặc tính đối tượng nghịch đảo (inverse object properties) cho phép thể hiện các mối quan hệ 2 chiều giữa biểu hiện các mô tả lớp (class expression) và các phát biểu (axiom).
 \\ \textbf{Mô tả đặc tính đối tượng nghịch đảo}
 
 \begin{verbatim}
@@ -285,7 +285,7 @@ Với phát biểu trên, ontology sẽ hiểu \textit{a:Steve} liến kết v�
 
 % Data Property Expression
 \subsubsection{Mô tả đặc tính dữ liệu (Data Property Expression)}
-Tương đương với mô tả đặc tính đối tượng, phác thảo cấu trúc chi tiết của OWL2 cũng giới thiệu định nghĩa mô tả đặc tính dữ liệu  (data property expressions), nhằm biểu diễn mối quan hệ giữa một cá thể và một trực nghĩa. Cấu trúc của mô tả đặc tính dữ liệu thể hiện trong hình bên. Như chúng ta thấy mô tả đặc tính dữ liệu cũng chính là đặc tính dữ liệu, người ta tạo ra cấu trúc như vậy nhằm tạo thuận lợi cho nhu cầu mở rộng sau này cho mô tả đặc tính dữ liệu.
+Tương đương với biểu hiện đặc tính đối tượng, trong tài liệu cấu trúc chi tiết của OWL2 cũng giới thiệu định nghĩa biểu hiện đặc tính dữ liệu  (data property expressions), nhằm biểu diễn mối quan hệ giữa một cá thể và một trực nghĩa. Cấu trúc của mô tả đặc tính dữ liệu thể hiện trong hình bên. Như chúng ta thấy đặc tính dữ liệu cũng chính là 1 mô tả đặc tính dữ liệu, cấu trúc như vậy được xây dựng nhằm tạo thuận lợi cho nhu cầu mở rộng sau này nếu có.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=110mm]{Figures/data_property_expression.png}
@@ -294,41 +294,69 @@ Tương đương với mô tả đặc tính đối tượng, phác thảo cấu
 
 %Data ranges
 \subsection{Miền dữ liệu (Data Range)}
-Kiểu dữ liệu như\textit{xsd:string} hoặc \textit{xsd:integer} và trực nghĩa \verb|"1"^^xsd:integer| được dùng để biểu diễn miền dữ liệu - tập hợp danh sách có thứ tự (tuples) của các trực nghĩa, mà mỗi phần tử trong danh sách này chỉ chứa một trực nghĩa duy nhất để định nghĩa chính nó. Miền dữ liệu được dùng để tạo ra ràng buộc cho đặc tính dữ liệu. Cấu trúc của miền dữ liệu trong OWL 2 được mô tả trong hình. Thành phần đơn giản của miền dữ liệu chính là kiểu dữ liệu : một kiểu dữ liệu cũng chính là một miền dữ liệu.
+Kiểu dữ liệu như\textit{xsd:string} hoặc \textit{xsd:integer} và trực nghĩa \verb|"1"^^xsd:integer| được dùng để biểu diễn miền dữ liệu - tập hợp danh sách có thứ tự (tuples) của các trực nghĩa, mà mỗi phần tử trong danh sách này chỉ chứa một trực nghĩa duy nhất để định nghĩa chính nó. Miền dữ liệu được dùng để tạo ra ràng buộc (hay những dữ liệu hợp lệ) cho đặc tính dữ liệu. Cấu trúc của miền dữ liệu trong OWL 2 được mô tả trong hình. Thành phần đơn giản của miền dữ liệu chính là kiểu dữ liệu : một kiểu dữ liệu (Datatype) cũng chính là một miền dữ liệu (Data Range).
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=120mm]{Figures/datarange.png}
 	\caption{Cấu trúc miền dữ liệu (data range) quy định theo OWL 2\label{overflow}}
 \end{figure}
 
+% DataIntersectionOf
 \subsubsection{Giao của các miền dữ liệu (Intersection of Data Ranges)}
-Giao của miền dữ liệu $DataIntersectionOf( DR_{1} ... DR_{n} )$  chứa tất cả các danh sách của các trực nghĩa nằng trong $DR_{i}$ với $1 <= i <= n$. Tất cả miền dữ liệu $DR_{i}$ phải có cùng số lượng tham số, và cũng phải có cùng số lượng số kết quả trả về. Ví dụ về miền dữ liệu chỉ chứa số 0:
+Giao của miền dữ liệu $DataIntersectionOf($ $DR_{1} ... DR_{n}$ $)$  chứa tất cả các danh sách của các trực nghĩa nằng trong $DR_{i}$ với $1 <= i <= n$. Tất cả miền dữ liệu $DR_{i}$ phải có cùng số lượng tham số, và cũng phải có cùng số lượng số kết quả trả về. Ví dụ về miền dữ liệu chỉ chứa số 0:
 \begin{verbatim}
 DataIntersectionOf( xsd:nonNegativeInteger xsd:nonPositiveInteger )
 \end{verbatim}
 
+% DataUnionOf
 \subsubsection{Hội của các miền dữ liệu (Union of Data Ranges)}
-Điều kiện về số lượng tham số và số lượng kết quả trả về của từng $DR_{i}$ với điều kiện $1 <= i <= n$ phải giống nhau. Cú pháp $DataIntersectionOf( DR_{1} ... DR_{n} )$. Ví dụ về việc miền dữ liệu chứa tất cả các chuỗi và số nguyên:
+Điều kiện về số lượng tham số và số lượng kết quả trả về của từng $DR_{i}$ với điều kiện $1 <= i <= n$ phải giống nhau. Cú pháp $DataIntersectionOf($ $DR_{1} ... DR_{n}$ $)$. Ví dụ về việc miền dữ liệu chứa tất cả các chuỗi và số nguyên:
 \begin{verbatim}
 DataUnionOf( xsd:string xsd:integer )
 \end{verbatim}
 
+% DataComplementOf
 \subsubsection{Phủ định của miền dữ liệu (Complement of Data Ranges)}
-Cú pháp $ DataComplementOf( DR ) $ chứa tất cả các miền dữ liệu còn lại trong năng trong miền dữ liệu $DR$. Yêu câu số lượng tham số và kết quả phải bằng $DR$
+Cú pháp $DataComplementOf($ $DR$ $)$ chứa tất cả các miền dữ liệu còn lại trong năng trong miền dữ liệu $DR$. Yêu câu số lượng tham số và kết quả phải bằng $DR$
 \begin{verbatim}
 DataComplementOf( xsd:positiveInteger )
 \end{verbatim}
 \textbf{Giải thích:} miền dữ liệu trên chứa tất cả số nguyên âm, số 0; và chứa tất cả chuỗi (strings) vì chuỗi không phải số nguyên dương.
 
+% DataOneOf
 \subsubsection{Liệt kê trực nghĩa (Enumeration Of Literals)}
+Một danh sách liệt kê các trực nghĩa (literals) với cú pháp $DataOneOf($ $lt_{1} ... lt_{n}$ $)$,  $lt_{i}$ với $1 <= i <= n$.  Miễn dữ liệu chỉ áp dụng lên một trực nghĩa nằm trong danh sách (\textit{"oneOf"}). Ví dụ khai báo miền dữ liệu cho đặc tính dữ liệu \textit{canMoveOnOrIn} chỉ có thể là một trong 4 giá trị chuỗi \textit{"OnRoadOrOffRoad"}, \textit{"Rail"}, \textit{"Sky"} và \textit{"Water"}.
+\begin{verbatim}
+DataPropertyRange(:canMoveOnOrIn 
+     DataOneOf("OnRoadOrOffRoad" "Rail" "Sky" "Water"))
+\end{verbatim}
 
-Một danh sách liệt kê với cú pháp $DataOneOF( lt_{1} ... lt_{n} $ chứa chính xác các trực nghĩa $lt_{i}$ với $1 <= i <= n$. Số kết quả chỉ duy nhất là 1 \textit{"oneOf"}
+% Datatype Restrictions
+\subsubsection{Ràng buộc cho kiểu dữ liệu (Datatype Restrictions)}
+Một ràng buộc cho kiểu dữ liệu (hay một tập các giá trị hợp lệ của kiễu dữ liệu) $DatatypeRestriction($ $DT$ $F_{1}$ $lt_{1}$ ... $F_{n}$ $lt_{n}$ $)$ gồm một kiểu dữ liệu đơn (unary datatype) $DT$ và $n$ cặp $($ $F_{i}$, $lt_{i}$ $)$. Vùng dữ liệu hợp lệ được tính ra bằng cách hạn chế vùng giá trị của $DT$ và lấy giao tất cả các cặp $(F_{i}$, $v_{i}$ $)$ trong đó $v_{i}$ là giá trị dữ liệu của trực nghĩa $lt_{i}$. Ví dụ miền dữ liệu sau chỉ gồm đúng các số 5,6,7,8,9:
+\begin{verbatim}
+DatatypeRestriction( xsd:integer 
+xsd:minInclusive "5"^^xsd:integer xsd:maxExclusive "10"^^xsd:integer )
+\end{verbatim}
 
-
-
-
-
-
+% Class Expressions
+\subsection{Mô tả lớp (Class Expression)}
+Trong OWL2, các lớp và mô tả đặc tính (property expressions) được sử dụng để xây dựng nên các mô tả lớp, hay chúng được gọi là các miêu tả hoặc trong thuật ngữ của Description Logic chúng được gọi là \textit{những khái niệm phức tạp}. Các mô tả lớp 
+biểu diễn tập hợp các cá thể bằng cách chính thức đặt ra các điều kiện quy định cho các đặc tính của các cá thể này; cá thể nào có những đặc tính phù hợp hay thỏa những quy định đó được xem là một thành viên của mô tả lớp đang xét. Có 5 dạng mô tả lớp chính.
+% Propositional Connectives and Enumeration of Individuals
+\subsubsection{Các mệnh đề logic và liệt kê cá thể}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=120mm]{Figures/ce_0.png}
+	\caption{Mô tả lớp với các khai báo mệnh đề trong OWL 2\label{overflow}}
+\end{figure}
+OWL2 cho phép liệt kê các cá thể của một lớp, khai báo các mệnh đề logic như trong hình sau. Các khai báo $ObjectIntersectionOf$, $ObjectUnionOf$, và $ObjectComplementOf$ cho phép thực hiện các phép toán luân lý (and ,or, not) lên những mô tả lớp. $ObjectOneOf$ quy định chính xác những cá thể cho mô tả lớp đang khai báo.
+\paragraph{Intersection of Class Expressions} - Tập giao của các mô tả lớp $ObjectIntersectionOf$ $($ $CE_{1}$ ... $CE_{n}$ $)$ gồm tất cả các cá thể là thành viên của tất cả các mô tả lớp $CE_{i}$ với $1<=i<=n$. Ví dụ: cá thể \verb|a:Peter| vừa là kĩ sư, vừa là bác sĩ theo các khai báo sau:
+\begin{verbatim}
+ClassAssertion(a:Engineer a:Peter)  // Peter là kĩ sư.
+ClassAssertion(a:Teacher a:Peter) // Peter là giáo viên.
+ObjectIntersectionOf( a:Engineer a:Teacher)
+\end{verbatim}
 
 
 
