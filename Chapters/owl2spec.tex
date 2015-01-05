@@ -568,7 +568,7 @@ Những phát biểu này cho phép biểu diễn các loại quan hệ giữa n
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=120mm]{Figures/objectpropertyAxiom.png}
-	\caption{Các dạng phát biểu của OWL 2\label{overflow}}
+	\caption{Các dạng phát biểu của OWL 2 (phần 1)\label{overflow}}
 \end{figure}
 
 \paragraph{Đặc tính đối tượng con (SubObjectPropertyOf)} - một phát biểu $SubObjectPropertyOf($ $OPE_{1}$ $OPE_{2}$ $)$ nói rằng mô tả đặc tính đối tượng $OPE_{1}$ là đặc tính con của mô tả đặc tính đối tượng $OPE_{2}$, có nghĩa nếu một cá thể $x$ được liên kết bởi $OPE_{1}$ với $y$ thì $x$ cũng được liên kết bởi $OPE_{2}$ đến $y$. Ví dụ:
@@ -617,7 +617,33 @@ ObjectProertyRange( a:hasPet a:Cat )
 ObjectPropertyAssertion( a:hasPet a:Peter a:Tom ) // Tom là vật nuôi của Peter
 \end{verbatim}
 Giải thích: mặc dù không khai báo Tom là con mèo nhưng do phát biểu đầu tiên, chúng ta ngầm hiều Tom là con mèo, tương đương phát biểu $ClassAssertion($ $a:Cat$ $a:Tom)$.
+\\
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=120mm]{Figures/objectpropertyAxiom1.png}
+	\caption{Các dạng phát biểu của OWL 2 (phần 2) \label{overflow}}
+\end{figure}
+Ngoài các dạng phát biểu được nêu, mô tả đặc tính đối tượng còn có thêm các phát biểu trong hình sau, nhằm quy định tính chất của mô tả đặc tính đối tượng hay giữa các cá thể được kết nối bằng các đặc tính đối tượng này, chẳng hạn đặc tính $SymmetricObjectProperty$ quy định mô tả đặc tính đối tượng có tính đối xứng - nếu $x$ là bạn $y$ thì $y$ cũng là bạn $x$. 
 
+\paragraph{Functional Object Properties} - phát biểu \textit{FunctionalObjectProperty( OPE )} quy định với từng cá thể $x$, chỉ tồn tại nhiều nhất một cá thể $y$ mà $x$ được kết nối với $y$ qua $OPE$. Ví dụ mỗi đối tượng chỉ có tối đa một người cha - $FunctionalObjectProperty($ $a:hasFather$ $)$. 
+
+\paragraph{Inverse-Functional Object Properties} - phát biểu \textit{InverseFunctionalObjectProperty( OPE )} quy định với từng cá thể $x$, chỉ tồn tại nhiều nhất một cá thể $y$ mà $y$ được kết nối qua $OPE$ tới $x$ . Ví dụ mỗi tương tự $FunctionalObjectProperty(OPE)$.
+
+\paragraph{Reflexive Object Properties} - phát biểu \textit{ReflexiveObjectProperty( OPE )} nói rằng mô tả đặc tính có tính phản xạ, nghĩa là với từng kết nối bởi $OPE$ tới chính nó. Ví dụ: $ReflexiveObjectProperty($ $a:knows$ $)$, ai cũng biết bản thân họ, với khai báo $ClassAssertion(a:Person$ $a:Peter)$ thì có thể suy ra được phát biểu sau $ObjectPropertyAssertion(a:knows$ $a:Peter$ $a:Peter)$.
+
+\paragraph{Irreflexive Object Properties} - ngược lại với phát biểu trên  \textit{IrreflexiveObjectProperty( OPE )}, không có cá thể nào tự kết nối với chính nó qua $OPE$. Ví dụ: $IrreflexiveObjectProperty($ $a:marriedTo$ $)$, không ai cưới chính mình.
+
+\paragraph{Symmetric Object Properties} - phát biểu \textit{SymmetricObjectProperty( OPE )} nói rằng $OPE$ có tính đối xứng, nếu $x$ nối với $y$ qua $OPE$ thì $y$ cũng nối với $x$ bởi $OPE$. Ví dụ: với $SymmetricObjectProperty($ $a:friendOf$ $)$ và $ObjectPropertyAssertion(a:friend$ $a:Peter$ $a:Bush)$ thì chúng ta suy ra được $ObjectPropertyAssertion(a:friend$ $a:Bush$ $a:Peter)$.
+
+\paragraph{Asymmetric Object Properties} - phát biểu \textit{AsymmetricObjectProperty( OPE )} nói rằng $OPE$ có tính bất đối xứng, nếu $x$ nối với $y$ qua $OPE$, thì $y$ không thể kết nối với $x$ bởi $OPE$. Ví dụ: với $AsymmetricObjectProperty($ $a:parentOf$ $)$  và $ObjectPropertyAssertion(a:parentOf$ $a:Peter$ $a:Bush)$ thì nếu ta thêm thêm phát biểu $ObjectPropertyAssertion(a:parentOf$ $a:Bush$ $a:Peter)$ sẽ làm cho ontology mất tính nhất quán (inconsistent).
+
+\paragraph{Transitive Object Properties} - phát biểu \textit{TransitiveObjectProperty(OPE)} nói rằng $OPE$ có tính bắc cầu, nếu $x$ nối với $y$ bởi $OPE$ và $y$ nối với $z$ cũng bằng $OPE$ thì $x$ nối với $z$ qua $OPE$. Ví dụ:
+\begin{verbatim}
+	TransitiveObjectProperty( a:partOf ) 
+	ObjectPropertyAssertion( a:partOf a:KhoaMMT a:UIT )
+	ObjectPropertyAssertion( a:partOf a:UIT a:VNU )
+\end{verbatim}
+Giải thích nếu khoa mạng thuộc UIT, UIT thuộc đại học Quốc Gia (VNU), nhờ phát biểu đầu tiến chúng ta $partOf$ có tính chất bắc cầu nên suy ra được khoa mạng thuộc đại học Quốc Gia - $ObjectPropertyAssertion($ $a:partOf$ $a:KhoaMMT$ $a:VNU)$
 
 
 
