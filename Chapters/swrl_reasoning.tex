@@ -1,0 +1,17 @@
+\chapter{Suy luận với Semantic Web Rule Language}
+Nếu chỉ sử dụng các thành phần của  OWL 2 được trình bày ở chương trước thì không thể diễn tả hết tất cả các mối quan hệ trong ontology. Semantic Web Rule Language (SWRL) là một ngôn ngữ điều luật dựa trên nền tảng của OWL. SWRL cho phép người sử dụng khai báo các điều luật dựa trên các khái niệm của OWL như lớp, thuộc tính đối tượng, thuộc tính dữ liệu nhằm cung cấp một khả năng suy luận mạnh mẽ hơn so với chỉ dùng OWL 2. Về đặc tính ngữ nghĩa, SWRL được xây dựng trên cùng một tổ hợp Description Logic với OWL 2 nhưng cung cấp những cơ chế tốt hơn trong việc chỉ ra những thông tin mới đúc kết từ thông tin được khai báo.
+%Một ví dụ nổi tiếng là \textit{child of married parent} (con của những cặp ba mẹ là vợ chồng) - sẽ được trình bày ngay sau đây
+\section{Cấu trúc của một SWRL Rule}
+Một luật SWRL chứa một phần điều kiện, hay còn gọi là rule body, và một phần kết quả, hay còn gọi là rule head. Cả phần body và head đều là giao của các positive atoms.
+\begin{center}
+$atom$ \verb|^| $atom$ ... -> $atom$ \verb|^| $atom$ 
+\end{center}
+Có thể hiểu một SWRL Rule theo cách như sau nếu tất cả các thành phần đơn vị (atom) trong phần điều kiện (body) đều đúng (hay xảy ra) thì chắc chắn rằng những ý được nêu ra trong phần kết quả (head) cũng đúng.
+\\
+Một rule $atom$ được biểu diễn theo dạng:
+
+\begin{center}
+$p($ $arg_{1}$, $arg_{2}$, ... $arg_{n}$ $)$
+\end{center}
+
+trong đó $p$ là nội dung điều kiện (predicate) và $arg_{i}$, $1<=i<=n$ là những khái niệm hay tham số của mô tả. Trong SWRL, nội dung điều kiện có thể gồm các lớp, thuộc tính hoặc kiêu dữ liệu trong OWL 2. Tham số truyền vào có thể là cá thể, giá trị dữ liệu, hoặc biến để chỉ tới chúng. Tên biến trong cùng một rule không được phép trùng nhau, tên biến của 2 rule khác nhau có thể trùng nhau.
