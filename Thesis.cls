@@ -240,20 +240,20 @@
   \thispagestyle{empty}
   \null\vfil
   \begin{center}
-    %\setlength{\parskip}{0pt}
-    %{\normalsize \UNIVNAME \par}
-    %\bigskip
-    %{\huge{\textit{Abstract}} \par}
-    %\bigskip
-    %{\normalsize \facname \par}
-    %{\normalsize \deptname \par}
-    %\bigskip
-    %{\normalsize Khóa luận tốt nghiệp\par}
-    %\bigskip
-    %{\normalsize\bf \@title \par}
-    %\medskip
-    %{\normalsize by \authornames \par}
-    %\bigskip
+    \setlength{\parskip}{0pt}
+    {\normalsize \UNIVNAME \par}
+    \bigskip
+    {\huge{\textit{Abstract}} \par}
+    \bigskip
+    {\normalsize \facname \par}
+    {\normalsize \deptname \par}
+    \bigskip
+    {\normalsize Khóa luận tốt nghiệp\par}
+    \bigskip
+    {\normalsize\bf \@title \par}
+    \medskip
+    {\normalsize by \authornames \par}
+    \bigskip
   \end{center}
 }
 {
@@ -284,9 +284,8 @@
 }\end{spacing}
 }
 \renewcommand\listoffigures{
-\btypeout{List of Figures}
-%\addtotoc{List of Figures}
-\addtotoc{Danh sách các hình vẽ}
+\btypeout{Danh sách hình vẽ}
+\addtotoc{Danh sách hình vẽ}
 \begin{spacing}{1}{
     \setlength{\parskip}{1pt}
     \if@twocolumn
@@ -360,6 +359,20 @@
 \begin{longtable}[c]{#1}#2\end{longtable}\par
     \cleardoublepage
 }
+% Lời mở đầu
+\newcommand\openingwords[1]{
+	\btypeout{Lời mở đầu}
+	%\addtotoc{Acknowledgements}
+	\addtotoc{Lời mở đầu}
+	\thispagestyle{plain}
+	\begin{center}{\huge{\textit{
+					Lời mở đầu
+				}} \par}\end{center}
+		{\normalsize #1}
+		\vfil\vfil\null
+		
+}
+% Lời cảm ơn
 \newcommand\acknowledgements[1]{
 \btypeout{Acknowledgements}
 %\addtotoc{Acknowledgements}
@@ -370,7 +383,28 @@
 				}} \par}\end{center}
 {\normalsize #1}
 \vfil\vfil\null
-
+}
+% Nhận xét của giáo viên hướng dẫn
+\newcommand\nhanxetcuagvhd[1]{
+	\btypeout{Nhận xét của giáo viên hướng dẫn}
+	\addtotoc{Nhận xét của giáo viên hướng dẫn}
+	\thispagestyle{plain}
+	\begin{center}{\huge{\textit{
+					Nhận xét của giáo viên hướng dẫn 
+				}} \par}\end{center}
+		{\normalsize #1}
+		\vfil\vfil\null
+}
+% Nhận xét của giáo viên phản biện
+\newcommand\nhanxetcuagvphanbien[1]{
+	\btypeout{Nhận xét của giáo viên phản biện}
+	\addtotoc{Nhận xét của giáo viên phản biện}
+	\thispagestyle{plain}
+	\begin{center}{\huge{\textit{
+					Nhận xét của giáo viên phản biện 
+				}} \par}\end{center}
+		{\normalsize #1}
+		\vfil\vfil\null
 }
 \newcommand\dedicatory[1]{
 \btypeout{Dedicatory}

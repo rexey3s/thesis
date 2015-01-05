@@ -1,6 +1,6 @@
 \chapter{Chi tiết Ontology Web Language}
-\paragraph{Giới thiệu } - Như đã được đề cập trong phần cuối của chương trước, chức năng chính của OWL là một ngôn ngữ ontology cung cấp ngữ nghĩa cho Semantic Web. Trong nội dung chương này, chúng em sẽ giới thiệu về cú pháp, định dạng và chi tiết các đặc tính của ngôn ngữ Ontology Web. Phiên bản Ontology Web Language chúng em sử dụng là phiên bản 2 được tổ chức W3C khuyến khích sử dụng so với phiên bản OWL cũ 1.1 .
-\section{Khái quát về OWL 2 \cite{owl2}}
+\paragraph{Giới thiệu } - Như đã được đề cập trong phần cuối của chương trước, chức năng chính của OWL là một ngôn ngữ ontology cung cấp ngữ nghĩa cho Semantic Web. Trong nội dung chương này, chúng em sẽ giới thiệu về cú pháp, định dạng và chi tiết các đặc tính của ngôn ngữ Ontology Web. Phiên bản Ontology Web Language chúng em sử dụng là phiên bản 2 \cite{owl2} được tổ chức W3C khuyến khích sử dụng so với phiên bản OWL cũ 1.1 .
+\section{Khái quát về OWL 2}
 \subsection{Tổng quan}
 \begin{figure}[ht!]
 	\centering
@@ -540,7 +540,7 @@ Những phát biểu này cho phép biểu diễn các loại quan hệ giữa n
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=120mm]{Figures/classAxiom.png}
-	\caption{Các dạng phát biểu của OWL 2\label{overflow}}
+	\caption{Các dạng phát biểu về lớp của OWL 2\label{overflow}}
 \end{figure}
 
 \paragraph{Phát biểu lớp con (SubClass Axioms)} - một phát biểu $SubClassOf($ $CE_{1}$ $CE_{2}$ $)$ nói rằng mô tả lớp $CE_{1}$ là lớp con của mô tả lớp $CE_{2}$. Phát biểu này là phát biểu cơ bản trong OWL 2 được sử dụng để xây dựng một phân cấp lớp trong Ontology. Ví dụ:
@@ -568,7 +568,7 @@ Những phát biểu này cho phép biểu diễn các loại quan hệ giữa n
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=120mm]{Figures/objectpropertyAxiom.png}
-	\caption{Các dạng phát biểu của OWL 2 (phần 1)\label{overflow}}
+	\caption{Các dạng phát biểu về đặc tính đối tượng của OWL 2 (phần 1)\label{overflow}}
 \end{figure}
 
 \paragraph{Đặc tính đối tượng con (SubObjectPropertyOf)} - một phát biểu $SubObjectPropertyOf($ $OPE_{1}$ $OPE_{2}$ $)$ nói rằng mô tả đặc tính đối tượng $OPE_{1}$ là đặc tính con của mô tả đặc tính đối tượng $OPE_{2}$, có nghĩa nếu một cá thể $x$ được liên kết bởi $OPE_{1}$ với $y$ thì $x$ cũng được liên kết bởi $OPE_{2}$ đến $y$. Ví dụ:
@@ -621,7 +621,7 @@ Giải thích: mặc dù không khai báo Tom là con mèo nhưng do phát biể
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=120mm]{Figures/objectpropertyAxiom1.png}
-	\caption{Các dạng phát biểu của OWL 2 (phần 2) \label{overflow}}
+	\caption{Các dạng phát biểu về đặc tính đối tượng của OWL 2 (phần 2) \label{overflow}}
 \end{figure}
 Ngoài các dạng phát biểu được nêu, mô tả đặc tính đối tượng còn có thêm các phát biểu trong hình sau, nhằm quy định tính chất của mô tả đặc tính đối tượng hay giữa các cá thể được kết nối bằng các đặc tính đối tượng này, chẳng hạn đặc tính $SymmetricObjectProperty$ quy định mô tả đặc tính đối tượng có tính đối xứng - nếu $x$ là bạn $y$ thì $y$ cũng là bạn $x$. 
 
@@ -645,7 +645,13 @@ Ngoài các dạng phát biểu được nêu, mô tả đặc tính đối tư�
 \end{verbatim}
 Giải thích nếu khoa mạng thuộc UIT, UIT thuộc đại học Quốc Gia (VNU), nhờ phát biểu đầu tiến chúng ta $partOf$ có tính chất bắc cầu nên suy ra được khoa mạng thuộc đại học Quốc Gia - $ObjectPropertyAssertion($ $a:partOf$ $a:KhoaMMT$ $a:VNU)$
 
-
+% Data Property Axioms
+\subsubsection{Các phát biểu về đặc tính dữ liệu}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=120mm]{Figures/datapropertyAxiom.png}
+	\caption{Các dạng phát biểu về đặc tính dữ liệu của OWL 2 (phần 2) \label{overflow}}
+\end{figure}
 
 
 
