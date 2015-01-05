@@ -430,7 +430,7 @@ ObjectHasSelf( a:quayQuanhTruc)
 	\caption{Object Property Cardinality Restrictions trong OWL 2\label{overflow}}
 \end{figure}
 Các mô tả lớp trong OWL 2 có thể được tạo ra bằng cách đặt ra những số lượng hạn chế các cá thể mà các đặc tính đối tượng có thể liên kết.
-\paragraph{Số lượng tối thiểu (Minimum Cardinality)} - mô tả $ ObjectMinCardinality($ $n$ $OPE$  $CE)$ chỉ ra số lượng tối thiểu $n$ cá thể (khác nhau) thuộc mô tả lớp $CE$ với $n$ là số nguyên không âm mà mô tả đặc tính đối tượng $OPE$ có thể liên kết đến. Nếu $CE$ không được khai báo trong phát biểu trên mặc định sẽ là $owl:Thing$. Ví dụ:
+\paragraph{Số lượng tối thiểu (Minimum Cardinality)} - mô tả $ ObjectMinCardinality($ $n$ $OPE$  $CE)$ cbiểu diễn mọi các thể được kết nối bởi mô tả đặc tính đối tượng $OPE$ đến số lượng tối thiểu $n$ cá thể (khác nhau) thuộc mô tả lớp $CE$ với $n$ là số nguyên không âm. Nếu $CE$ không được khai báo trong phát biểu trên mặc định sẽ là $owl:Thing$. Ví dụ:
 \begin{verbatim}
 ObjectPropertyAssertion( a:fatherOf 
 a:Peter a:Steve )
@@ -442,7 +442,7 @@ ClassAssertion( a:Kid a:Bush )
 Giải thích: với các điều kiện như trên thì Peter sẽ là thành viên của mô tả lớp sau 
 $ObjectMinCardinality($ $2$ $a:fatherOf$ $a:Kid)$ - Peter là bố của ít nhất 2 đứa trẻ.
 
-\paragraph{Số lượng tối đa (Maximum Cardinality)} - mô tả $ ObjectMaxCardinality($ $n$ $OPE$  $CE)$ chỉ ra số lượng tối đa $n$ cá thể (khác nhau) thuộc mô tả lớp $CE$ với $n$ là số nguyên không âm mà mô tả đặc tính đối tượng $OPE$ có thể liên kết đến. Nếu $CE$ không được khai báo trong phát biểu trên mặc định sẽ là $owl:Thing$. Ví dụ:
+\paragraph{Số lượng tối đa (Maximum Cardinality)} - mô tả $ ObjectMaxCardinality($ $n$ $OPE$  $CE)$ biểu diễn mọi các thể được kết nối bởi mô tả đặc tính đối tượng $OPE$ đến số lượng tối đa $n$ cá thể (khác nhau) thuộc mô tả lớp $CE$ với $n$ là số nguyên không âm. Nếu $CE$ không được khai báo trong phát biểu trên mặc định sẽ là $owl:Thing$. Ví dụ:
 \begin{verbatim}
 ObjectPropertyAssertion( a:hasPet a:Peter a:Tom)
 // Peter có vật nuôi là Tom
@@ -451,7 +451,7 @@ ClassAssertion( ObjectMaxCardinality( 1 a:hasPet ) a:Peter )
 \end{verbatim}
 Giải thích: theo 2 điều kiệu trên thì Peter sẽ thuộc mô tả lớp $ObjectMaxCardinality($ $2$ $a:hasPet$ $)$ chỉ những "ai có tối đa 2 vật nuôi" (số vật nuôi <= 2), vì 2 phát biểu đầu tiên chỉ ra rằng Peter chắc chắn chỉ có một vật nuôi.
 
-\paragraph{Số lượng chính xác (Exact Cardinality)} - mô tả $ObjectExactCardinality($ $n$ $OPE$  $CE)$ chỉ ra số lượng chính xác $n$ cá thể (khác nhau) thuộc mô tả lớp $CE$ với $n$ là nguyên không âm mà mô tả đặc tính đối tượng $OPE$ có thể liên kết đến. Nếu $CE$ không được khai báo trong phát biểu trên mặc định sẽ là $owl:Thing$. Mô tả lớp này tương được khi lấy giao của 2 mô tả số lượng tối đa và số lượng tối thiểu cùng $n$.
+\paragraph{Số lượng chính xác (Exact Cardinality)} - mô tả $ObjectExactCardinality($ $n$ $OPE$  $CE)$ biểu diễn mọi các thể được kết nối bởi mô tả đặc tính đối tượng $OPE$ đến số lượng chính xác $n$ cá thể (khác nhau) thuộc mô tả lớp $CE$ với $n$ là số nguyên không âm. Nếu $CE$ không được khai báo trong phát biểu trên mặc định sẽ là $owl:Thing$. Mô tả lớp này tương được khi lấy giao của 2 mô tả số lượng tối đa và số lượng tối thiểu cùng $n$.
 \begin{verbatim}
 ObjectIntersectionOf( ObjectMinCardinality( n OPE CE ) 
 ObjectMaxCardinality( n OPE CE ) ).
@@ -501,7 +501,128 @@ Steve là thành viên của mô tả lớp sau $DataHasValue($ $a:hasAge$ $"17"
 	\caption{Data Property Cardinality Restrictions trong OWL 2\label{overflow}}
 \end{figure}
 Tương tự ràng buộc đặc tính đối tượng theo số lượng, OWL 2 cũng cho phép chúng ta tạo ra các mô tả lớp bằng cách các giá trị dữ liệu ( thay vì cá thể) mà đặc tính dữ liệu có thể liên kết đến. Cấu trúc được mô tả như trong hình.
-\paragraph{Số lượng tối thiểu (Minimum Cardinality)} - Một mô tả lớp $DataMinCardinality($ $n$ $DPE$ $DR)$  chỉ ra số lượng tối thiểu $n$ các trực nghĩa khác nhau thuộc miền dữ liệu  $DR$ ( với $n$ số nguyên không âm), mà mô tả đặc tính dữ liệu $DPE$ có thể liên kết đến. Nếu $DR$ không được khai báo trong phát biểu trên mặc định sẽ là $rdfs:Literal$. Ví dụ:
+\paragraph{Số lượng tối thiểu (Minimum Cardinality)} - Một mô tả lớp $DataMinCardinality($ $n$ $DPE$ $DR)$  biểu diễn mọi cá thể được kết nối bởi đặc tính dữ liệu $DPE$ đến số lượng tối thiểu $n$ các trực nghĩa khác nhau thuộc miền dữ liệu  $DR$ với $n$ số nguyên không âm. Nếu $DR$ không được khai báo trong phát biểu trên mặc định sẽ là $rdfs:Literal$. Ví dụ:
 \begin{verbatim}
-content...
+DataPropertyAssertion( a:hasPhoneNumber a:Steve "0123456789" )
+DataPropertyAssertion( a:hasPhoneNumber a:Steve "0987654321" )
 \end{verbatim}
+Với 2 phát biểu như trên tồn tại, có thể hiểu Steve thuộc lớp những ai có ít nhất 2 số điện thoại $DataMinCardinality($ $2$ $a:hasPhoneNumber)$.
+
+\paragraph{Số lượng tối đa (Maximum Cardinality)} - Một mô tả lớp $DataMaxCardinality($ $n$ $DPE$ $DR)$ biểu diễn mọi cá thể được kết nối bởi đặc tính dữ liệu $DPE$ đến số lượng tối đa $n$ các trực nghĩa khác nhau thuộc miền dữ liệu  $DR$ với $n$ số nguyên không âm. Nếu $DR$ không được khai báo trong phát biểu trên mặc định sẽ là $rdfs:Literal$. Ví dụ:
+\begin{verbatim}
+DataPropertyAssertion( a:hasID a:Steve "0001" ) // Steve số CMND là 0001
+FunctionalDataProperty( a:hasID ) // Mỗi người chỉ có duy nhất một số CMND
+\end{verbatim}
+Với 2 phát biểu như trên tồn tại, có thể hiểu Steve thuộc lớp "những ai có nhiều nhất 2 số CMND" ( số CMND <=2), $DataMaxCardinality($ $2$ $a:hasID)$.
+
+\paragraph{Số lượng chính xác (Exact Cardinality)} - Một mô tả lớp $DataMaxCardinality($ $n$ $DPE$ $DR)$  biểu diễn mọi cá thể được kết nối bởi đặc tính dữ liệu $DPE$ đến số lượng chính xác $n$ các trực nghĩa khác nhau thuộc miền dữ liệu  $DR$ với $n$ số nguyên không âm. Nếu $DR$ không được khai báo trong phát biểu trên mặc định sẽ là $rdfs:Literal$. Ví dụ:
+\begin{verbatim}
+DataPropertyAssertion( a:hasID a:Steve "0001" ) // Steve số CMND là 0001
+FunctionalDataProperty( a:hasID ) // Mỗi người chỉ có duy nhất một số CMND
+\end{verbatim}
+Với 2 phát biểu như trên tồn tại, có thể hiểu Steve thuộc lớp "có duy nhất 1 CMND" $DataExactCardinality($ $1$ $a:hasName)$.
+
+
+\subsection{Các tiên đề (Axioms)}
+{\let\thefootnote\relax\footnotetext{* Lưu ý:\textit{
+			trong nội dung báo cáo này chúng em sẽ gọi vắng tắt các tiên đề - những phát biểu hiển nhiên đúng trong một lĩnh vực là \textit{những phát biểu} nhằm diễn giải các lý thuyết, nguyên lý trở dễ hiểu hơn.
+		}}
+}
+Thành phần chính của một OWL 2 Ontology chính là một tập hợp gồm các tiên đề \textsuperscript{*} - những phát biểu mà chúng ta cho là đúng trong một lĩnh vực. OWL 2 cung cấp một loạt các loại phát biểu được mở rộng (thừa kế) từ lớp \textbf{Axiom} như trong hình. Các phát biểu có thể là các phát biểu khai báo (declarations), phát biểu về lớp, phát biểu về đặc tính đối tượng/dữ liệu, phát biểu định nghĩa kiểu dữ liuệ, khóa (HasKey), phát biểu khẳng định (assertions), và các phát biểu để chú thích (annotations). Có thể nói những phát biểu (tiên đề) chính là những viên gạch để chúng ta xây dựng nên các tầng ngữ nghĩa (semantic) cho ontology.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=120mm]{Figures/axioms.png}
+	\caption{Các dạng phát biểu của OWL 2\label{overflow}}
+\end{figure}
+
+\subsubsection{Những phát biểu về mô tả lớp - Class Expression Axioms}
+Những phát biểu này cho phép biểu diễn các loại quan hệ giữa những mô tả lớp (Class Expressions) với nhau. Có 4 phát biểu được mở rộng ra từ phát biểu này như trong hình.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=120mm]{Figures/classAxiom.png}
+	\caption{Các dạng phát biểu của OWL 2\label{overflow}}
+\end{figure}
+
+\paragraph{Phát biểu lớp con (SubClass Axioms)} - một phát biểu $SubClassOf($ $CE_{1}$ $CE_{2}$ $)$ nói rằng mô tả lớp $CE_{1}$ là lớp con của mô tả lớp $CE_{2}$. Phát biểu này là phát biểu cơ bản trong OWL 2 được sử dụng để xây dựng một phân cấp lớp trong Ontology. Ví dụ:
+\begin{verbatim}
+SubClassOf( a:Driver a:Adult ) // Mỗi tài xế là một người trưởng thành.
+SubClassOf( a:Adult a:Person ) // Mỗi người trưởng thành là một người.
+ClassAssertion (a:Driver a:Steve ) // Steve là một tài xế.
+\end{verbatim}
+Giải thích: nhờ 2 phát biểu đầu tiên, chúng ta ngầm hiểu tài xế cũng là một người trưởng thành, cũng là một người, vì vậy tất cả những cá thể là tài xế, cũng là người trưởng thành và cũng là người -> Steve là cũng là thành viên của 2 lớp $Adult$ và $Person$.
+
+\paragraph{Phát biểu lớp tương đương (Equivalent Classes)} - một phát biểu $EquivalentClasses($ $CE_{1}$ $CE_{n}$ $)$ nói rằng mỗi mô tả lớp $CE_{i}$, $1<=i<=n$ đều đồng nghĩa với các tất cả các mô tả lớp còn lại trong phát biểu này. Phát biểu $SubClassOf($ $CE_{2}$ $CE_{1}$ $)$ tương đương $SubClassOf($ $CE_{1}$ $CE_{2}$ $)$. Ví dụ:
+\begin{verbatim}
+SubClassOf( a:Bike  a:Bicycle )
+\end{verbatim}
+
+\paragraph{Disjoint Classes} - một phát biểu $DisjointClasses($ $CE_{1}$ ... $CE_{n}$ $)$ nói rằng không cá thể nào của $CE_{i}$ thuộc $CE_{j}$ và ngược lại với $i \neq j$, $1<=i,j<=n$. Ví dụ:
+\begin{verbatim}
+DisjointClasses( a:Man a:Woman )	
+ClassAssertion( a:Man a:Steve )
+\end{verbatim}
+Giải thích: Steve không là nữ - $ObjectComplementOf( a:Girl )$, nếu chúng ta khai báo thêm $ClassAssertion($ $a:Girl$ $a:Steve)$ sẽ làm cho ontology bị thiếu tính nhất quán (sẽ được nếu rõ hơn ở các chương sau).
+
+\subsubsection{Phát biểu về đặc tính đối tượng (Object Property Axioms)}
+Những phát biểu này cho phép biểu diễn các loại quan hệ giữa những mô tả đặc tính đối tượng (Object Property Expressions) với nhau.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=120mm]{Figures/objectpropertyAxiom.png}
+	\caption{Các dạng phát biểu của OWL 2\label{overflow}}
+\end{figure}
+
+\paragraph{Đặc tính đối tượng con (SubObjectPropertyOf)} - một phát biểu $SubObjectPropertyOf($ $OPE_{1}$ $OPE_{2}$ $)$ nói rằng mô tả đặc tính đối tượng $OPE_{1}$ là đặc tính con của mô tả đặc tính đối tượng $OPE_{2}$, có nghĩa nếu một cá thể $x$ được liên kết bởi $OPE_{1}$ với $y$ thì $x$ cũng được liên kết bởi $OPE_{2}$ đến $y$. Ví dụ:
+\begin{verbatim}
+SubObjectPropertyOf( a:hasCat a:hasPet )     
+ObjectPropertyAssertion( a:hasCat a:Peter a:Tom) // Peter có con mèo là Tom
+\end{verbatim}
+Giải thích: ai có mèo thì cũng có thể hiểu là người đó có vật nuôi theo phát biểu đầu tiên, dựa theo phát biểu thứ hai chúng ta có ngầm hiểu là \textit{Peter có vật nuôi là Tom} - $ObjectPropertyAssertion($ $a:hasPet$ $a:Peter$ $a:Brian$ $)$.
+
+\paragraph{Đặc tính đối tượng tương đương (Equivalent Object Properties)} - một phát biểu $EquivalentObjectProperties($ $OPE_{1}$ ... $OPE_{n}$ $)$ nói rằng mỗi mô tả đặc tính $OPE_{i}$, $1<=i<=n$ đều đồng nghĩa với các tất cả các mô tả đặc tính còn lại trong phát biểu này át biểu $SubObjectPropertyOf($ $OPE_{2}$ $OPE_{1}$ $)$ tương đương $SubObjectPropertyOf($ $OPE_{1}$ $OPE_{2}$ $)$. Ví dụ:
+\begin{verbatim}
+EquivalentObjectProperties( a:hasBrother a:hasMaleSibling ) 
+ObjectPropertyAssertion( a:hasBrother a:Chris a:Steve )     
+// Steve là anh của Chris
+ObjectPropertyAssertion( a:hasMaleSibling a:Steve a:Chris ) 
+// Chris là anh chị em ruột (mà là nam) của Steve
+\end{verbatim}
+Giải thích: do phát biểu đầu tiên có nghĩa "có anh" đồng nghĩa với "có anh chị em ruột (là nam)", từ 2 phát biểu sau chúng ta có thể suy ra các phát biểu sau mà cần khai báo chúng $ObjectPropertyAssertion($ $a:hasMaleSibling$ $a:Chris$ $a:Steve)$ và $ObjectPropertyAssertion($ $a:hasBrother$ $a:Stewie$ $a:Chris)$.
+
+\paragraph{Disjoint Object Properties} - ột phát biểu $DisjointObjectProperties($ $OPE_{1}$ ... $OPE_{n}$ $)$ nói rằng không cá thể được liên kết bởi cả của $OPE_{i}$ và $OPE_{j}$ với $i \neq j$, $1<=i,j<=n$. Ví dụ:
+\begin{verbatim}
+DisjointObjectProperties( a:hasFather a:hasMother ) Có ba khác có mẹ.
+ObjectPropertyAssertion( a:hasFather a:Steve a:Peter )	Peter là ba của Steve.
+ObjectPropertyAssertion( a:hasMother a:Steve a:Lois ) Lois là mẹ của Steve.
+\end{verbatim}
+Nếu thêm phát biểu $ObjectPropertyAssertion($ $a:hasMother$ $a:Steve$ $a:Peter)$ sẽ dẫn đến tính thiếu nhất quán.
+
+\paragraph{Đặc tính đối tượng nghịch đảo} - phát biểu $InverseObjectProperties($ $OPE_{1}$ $OPE_{2}$ $)$ nói rằng đặc tính đối tượng $OPE_{2}$ là nghịch đảo của $OPE_{1}$. Nếu cá thể $x$ được kết nối bởi $OPE_{1}$ tới cá thể $y$, thì $y$ sẽ được kết nối bởi $OPE_{2}$ tới $x$ và ngược lại. Ví dụ:
+\begin{verbatim}
+InverseObjectProperties( a:parentOf a:childOf )
+ObjectPropertyAssertion( a:childOf a:Peter a:Steve )	Steve là con của Peter
+\end{verbatim}
+Giải thích: phát biểu đầu có thể hiểu "nếu x là con y" thì "y là ba mẹ của x", do vậy từ các phát biểu trên ta suy ra được Peter là ba mẹ của Steve tương đương $ObjectPropertyAssertion($ $a:parentOf$ $a:Steve$ $a:Peter)$.
+
+\paragraph{Domain của đặc tính đối tượng (Object Property Domain)} - phát biểu $ObjectPropertyDomain($ $OPE$ $CE)$ nêu rõ domain của đặc tính đối tượng là mô tả lớp $CE$ -  nếu một cá thể $x$ được liên kết bới $OPE$ tới cá thể nào đó, thì $x$ phải thuộc mô tả lớp $CE$. Mặc định nếu không có khai báo này thì domain đặc tính đối tượng sẽ là $owl:Thing$
+\begin{verbatim}
+ObjectProertyDomain( a:hasCat a:Person ) // Chỉ có người mới nuôi mèo
+ObjectPropertyAssertion( a:hasCat a:Peter a:Tom ) // Tom là con mèo của Peter
+\end{verbatim}
+Giải thích: mặc dù không khai báo Peter là người nhưng xét theo phát biểu đầu tiên chúng ta ngầm hiểu Peter là người, tương đương phát biểu $ClassAssertion($ $a:Person$ $a:Peter)$.
+
+\paragraph{Miền giới hạn của đặc tính đối tượng (Object Property Range)} - phát biểu $ObjectPropertyRange($ $OPE$ $CE)$ nêu rõ miền giới hạn (range) của đặc tính đối tượng là mô tả lớp $CE$ -  nếu cá thể nào đó được liên kết bới $OPE$ tới cá thể $x$ , thì $x$ phải thuộc mô tả lớp $CE$. Mặc định nếu không có khai báo này thì range của đặc tính đối tượng sẽ là $owl:Thing$. Ví dụ:
+\begin{verbatim}
+ObjectProertyRange( a:hasPet a:Cat ) 
+// ai có vật nuôi thì bắt buộc đó phải là con mèo
+ObjectPropertyAssertion( a:hasPet a:Peter a:Tom ) // Tom là vật nuôi của Peter
+\end{verbatim}
+Giải thích: mặc dù không khai báo Tom là con mèo nhưng do phát biểu đầu tiên, chúng ta ngầm hiều Tom là con mèo, tương đương phát biểu $ClassAssertion($ $a:Cat$ $a:Tom)$.
+
+
+
+
+
+
+
+
+
