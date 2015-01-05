@@ -681,5 +681,57 @@ ObjectPropertyAssertion( a:hasBankAccount a:Peter "0002" )
 \end{verbatim}
 Giải thích: không cần thiết phải khai báo Peter là người vì dựa theo chúng ta cũng kết luận được Peter là người từ 2 phát biểu trên, $ClassAssertion($ $a:Person$ $a:Peter$ $)$.
 
+\paragraph{Miền giá trị của thuộc tính dữ liệu (Data Property Range)} - phát biểu $DataPropertyRange($ $DPE$ $DR)$ nói rằng miền giá trị hợp lệ của mô tả thuộc tính dữ liệu $DPE$ là miền dữ liệu $DR$ - nếu các cá thể được kết nối bởi $DPE$ tới 1 trực nghĩa $x$, thì $x$ trong miền dữ liệu $DR$. Ví dụ:
+%Số lượng kết quả đầu ra bắt buộc bằng 1, tức không tồn tại $x \equiv y \equiv z$, với $y \not\equiv z$ và $y, z \in DR$.
+\begin{verbatim}
+DataPropertyRange( a:hasName xsd:string )
+DataPropertyAssertion( a:hasName a:Peter "Peter Nguyen" )
+\end{verbatim}
+Nếu khai báo $DataPropertyAssertion($ $a:hasName$ $a:Peter$ $"42"^^xsd:integer)$ sẽ làm cho ontology bị thiếu nhất quán (inconsistent).
 
+\paragraph{Functional Data Properties} - phát biểu $FunctionalDataProperty($ $DPE$ $)$ nói rằng với mỗi $x$, chỉ có nhiều nhất một trực nghĩa $y$ mà $x$ được gán cho bởi $DPE$. Ví dụ:
+\begin{verbatim}
+FunctionalDataProperty( a:hasAge )
+// Mọi đối tượng chỉ có tối đa một số tuổi
+DataPropertyAssertion( a:hasAge a:Steve "17"^^xsd:integer )
+\end{verbatim}
+Các phát biểu trên sẽ bị thiếu nhất quán nếu chúng ta thêm vào phát biểu sau $DataPropertyAssertion($ $a:hasAge$ $a:Steve$ $"15"^^xsd:integer)$
 
+% Assertions
+\subsection{Các phát biểu về cá thể (Assertions)} 
+\begin{figure}
+	\centering
+	\includegraphics[width=120mm]{Figures/abox1.png}
+	\caption{Các phát biểu gán lớp cho cá thể và cá thể giống nhau/khác nhau trong OWL 2 \label{overflow}}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=120mm]{Figures/abox2.png}
+	\caption{Các phát biểu về thuộc tính đối trượng của cá thể trong OWL 2 \label{overflow}}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=120mm]{Figures/abox3.png}
+	\caption{Các phát biểu về thuộc tính dữ liệu của cá thể trong OWL 2 \label{overflow}}
+\end{figure}
+Các phát biểu về cá thể thường được gọi là \textit{facts}. Để rõ hơn, các loại assertions khác nhau được thể hiện trong các hình sau.
+
+\begin{description}
+\item[SameIndividual] - khẳng định sự tương đồng của các cá thể trong phát biểu.
+
+\item[DifferentIndividuals] - khẳng định sự khác nhau của các cá thể trong phát biểu.
+
+\item[ClassAssertion] - khẳng định một cá thể thuộc một mô tả lớp/ lớp cụ thể trong phát biểu.
+
+\item[ObjectPropertyAssertion] - khẳng định mối quan hệ từ một cá thể tới một cá thể nào đó bởi một mô tả thuộc tính đối tượng.
+
+\item[NegativeObjectPropertyAssertion] - phủ định mối quan hệ từ một cá thể tới một cá thể khác bởi một mô tả thuộc tinh đối tượng.
+
+\item[DataPropertyAssertion] - khẳng định mối quan hệ từ một cá thể tới một trực nghĩa bởi một mô tả thuộc tính dữ liệu.
+
+\item[NegativeDataPropertyAssertion] - phủ định mối quan hệ từ một cá thể tới một trực nghĩa bởi một mô tả thuộc tính dữ liệu.
+\end{description}
+
+\paragraph{Kết luận} - Trên đây, chúng em đã trình bày những thành phần chính của OWL2 cũng như cách sử dụng của chúng trong quá trình suy luận (reasoning) nhằm tìm ra hàm ý, phát hiện thông tin ẩn chứa trong ý nghĩa của những phát biểu đã khai báo, với mục đích cuối cùng là phục vụ cho quá trình phân loại tự động. Vì độ dài luận văn hạn chế, nên có một số thành phần của OWL 2 chưa được nêu ra ở đây như \textbf{Datatype Definitions}, \textbf{Keys}, \textbf{Annotations}, \textbf{Datatype Maps} xin mời quý thầy cô và các bạn đọc tham khảo thêm ở \cite{owl2spec}. Chương tiếp theo chúng em xin được giới thiệu về Semantic Web Rule Language, một ngôn ngữ điều luật (rule language) có tác dụng trong việc tăng tính quyết định cho ontology, đồng thời chúng em cũng muốn liệt kê ra các trường hợp suy luận (reasoning) phổ biến nhất.
