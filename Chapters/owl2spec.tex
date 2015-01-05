@@ -342,10 +342,10 @@ xsd:minInclusive "5"^^xsd:integer xsd:maxExclusive "10"^^xsd:integer )
 % Class Expressions
 \subsection{Mô tả lớp (Class Expression)}
 Trong OWL2, các lớp và mô tả đặc tính (property expressions) được sử dụng để xây dựng nên các mô tả lớp, hay chúng được gọi là các miêu tả hoặc trong thuật ngữ của Description Logic chúng được gọi là \textit{những khái niệm phức tạp}. Các mô tả lớp 
-biểu diễn tập hợp các cá thể bằng cách chính thức đặt ra các điều kiện quy định cho các đặc tính của các cá thể này; cá thể nào có những đặc tính phù hợp hay thỏa những quy định đó được xem là một thành viên của mô tả lớp đang xét. Có 5 dạng mô tả lớp chính.
+biểu diễn tập hợp các cá thể bằng cách chính thức đặt ra các điều kiện quy định cho các đặc tính của các cá thể này; cá thể nào có những đặc tính phù hợp hay thỏa những quy định đó được xem là một thành viên của mô tả lớp đang xét. Có 5 dạng mô tả lớp chính. Sau đây chúng em xin được nêu ra 3 dạng 
 % Propositional Connectives and Enumeration of Individuals
 \subsubsection{Các mệnh đề logic và liệt kê cá thể}
-\begin{figure}[h!]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=120mm]{Figures/ce_0.png}
 	\caption{Mô tả lớp với các khai báo mệnh đề trong OWL 2\label{overflow}}
@@ -358,25 +358,150 @@ ClassAssertion(a:Teacher a:Peter) // Peter là giáo viên.
 ObjectIntersectionOf( a:Engineer a:Teacher)
 \end{verbatim}
 
+\paragraph{Union of Class Expressions} Tập hội của lớp $ObjectUnionOf$ $($ $CE_{1}$ ... $CE_{n}$ $)$ chức tất cả các cá thể là thành viên của của ít nhất một mô tả lớp $CE_{i}$ với $1<=i<=n$. Ví dụ:
+\begin{verbatim}
+ClassAssertion( a:Man a:Peter )	 // Peter là nam
+ClassAssertion( a:Woman a:Lois ) // Lois là nữ
+ObjectUnionOf( a:Man a:Woman ) 
+// Cả Peter và Lois đều thuộc lớp nam hoặc nữ
+\end{verbatim}
 
+\paragraph{Complement of Class Expressions} - phụ định của một mô tả lớp chứa tất cả các phần tử không thuộc mô tả lớp đó. Cú pháp $ObjectComplementOf(CE)$. Ví dụ:
+\begin{verbatim}
+DisjointClasses( a:Man a:Woman) // Không có cá thể nào vừa làm nam vừa là nữ
+ClassAssertion( a:Woman a:Lois) // Lois là nữ
+ObjectComplementOf( a:Man)
+\end{verbatim}
+Giải thích: Vì Lois là nữa và không có cá thể nào vừa là nam vừa là nữ nên Lois thuộc lớp \textit{không phải nam}.
 
+\paragraph{Enumeration of Individuals} - liệt kê các cá thể $ObjectOneOf($ $a_{1}$ ... $a_{n}$ chứa duy nhất một cá thể $a_{i}$ với $1<=i<=n$. 
 
+% Object Property Restrictions 
+\subsubsection{Ràng buộc theo đặc tính đối tượng (Object Property Restrictions)}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=120mm]{Figures/ce_1.png}
+	\caption{Object Property Restrictions trong OWL 2\label{overflow}}
+\end{figure}
+Các mô tả lớp trong OWL 2 có thể được tạo ra bằng cách kết hợp chúng các đặc tính đối tượng với bằng phát biểu như trong hình.
+\paragraph{Existential Quantification} - một mô tả lớp $ObjectSomeValueFrom($ $OPE$ $CE)$ thể hiện mối quan hệ giữa những cá thể được kết nối bởi mô tả đặc tính đối tượng $OPE$ đến \textbf{ít nhất một} cá thể thuộc mô tả lớp $CE$. Ví dụ:
+\begin{verbatim}
+ObjectPropertyAssertion( a:fatherOf   // Peter là ba của Steve
+a:Peter a:Steve )                     
+ClassAssertion( a:Kid a:Steve )      // Steve là trẻ con.
+ObjectSomeValuesFrom( a:fatherOf a:Kid ) 
+// Peter là ba của một vài (ít nhất một) đứa trẻ
+\end{verbatim} 
 
+\paragraph{Universal Quantification} - mô tả lớp $ObjectAllValuesFrom($ $OPE$ $CE)$ thể hiện mối quan hệ giữa những cá thể được kết nối bởi mô tả đặc tính đối tượng $OPE$ đến \textbf{tất cả} các cá thể thuộc mô tả lớp $CE$. Ví dụ: 
+\begin{verbatim}
+ObjectPropertyAssertion( a:hasPet a:Peter a:Tom)
+// Tom là vật nuôi của Peter
+ClassAssertion( a:Cat a:Tom) 
+// Tom là một con mèo
+ClassAssertion( ObjectMaxCardinality( 1 a:hasPet ) a:Peter )
+// Peter chỉ được phép có một vật nuôi
+ObjectAllValuesFrom( a:hasPet a:Cat)
+// Peter thuộc mô tả lớp trên "có tất cả vật nuôi là mèo" 
+// vì Peter chỉ được nuôi 1 con và Tom là mèo
+\end{verbatim}
 
+\paragraph{Individual Value Restriction} - mô tả  $ObjectHasValue($ $OPE$ $a)$ thể hiện mối quan hệ giữa tất cả các cá thể được kết nối bởi mô tả đặc tính đối tượng $OPE$ và cá thể $a$. Ví dụ:
+\begin{verbatim}
+ObjectPropertyAssertion( a:fatherOf // Peter là ba của Steve
+a:Peter a:Steve)
+// Vậy Peter thuộc mô tả lớp sau
+ObjectHasValue( a:fatherOf a:Steve )
+\end{verbatim}
 
+\paragraph{Self-Restriction} - mô tả $ObjectHasSelf($ $OPE$ $)$ thể hiện mối quan hệ giữa tất cả các cá thể được kết nối bởi mô tả đặc tính đối tượng $OPE$ với chính chúng. Ví dụ:
+\begin{verbatim}
+ObjectPropertyAssertion( a:quayQuanhTruc a:TraiDat a:TraiDat )	
+// Trái đất quay quan trục của trái đất.
+// Vì vậy a:TraiDat là thuộc mô tả lớp sau
+ObjectHasSelf( a:quayQuanhTruc)
+\end{verbatim}
 
+% Object Property Cardinality Restrictions
+\subsubsection{Ràng buộc đặc tính đối tượng theo số lượng}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=120mm]{Figures/ce_2.png}
+	\caption{Object Property Cardinality Restrictions trong OWL 2\label{overflow}}
+\end{figure}
+Các mô tả lớp trong OWL 2 có thể được tạo ra bằng cách đặt ra những số lượng hạn chế các cá thể mà các đặc tính đối tượng có thể liên kết.
+\paragraph{Số lượng tối thiểu (Minimum Cardinality)} - mô tả $ ObjectMinCardinality($ $n$ $OPE$  $CE)$ chỉ ra số lượng tối thiểu $n$ cá thể (khác nhau) thuộc mô tả lớp $CE$ với $n$ là số nguyên không âm mà mô tả đặc tính đối tượng $OPE$ có thể liên kết đến. Nếu $CE$ không được khai báo trong phát biểu trên mặc định sẽ là $owl:Thing$. Ví dụ:
+\begin{verbatim}
+ObjectPropertyAssertion( a:fatherOf 
+a:Peter a:Steve )
+ObjectPropertyAssertion( a:fatherOf 
+a:Peter a:Bush )
+ClassAssertion( a:Kid a:Steve )
+ClassAssertion( a:Kid a:Bush )
+\end{verbatim}
+Giải thích: với các điều kiện như trên thì Peter sẽ là thành viên của mô tả lớp sau 
+$ObjectMinCardinality($ $2$ $a:fatherOf$ $a:Kid)$ - Peter là bố của ít nhất 2 đứa trẻ.
 
+\paragraph{Số lượng tối đa (Maximum Cardinality)} - mô tả $ ObjectMaxCardinality($ $n$ $OPE$  $CE)$ chỉ ra số lượng tối đa $n$ cá thể (khác nhau) thuộc mô tả lớp $CE$ với $n$ là số nguyên không âm mà mô tả đặc tính đối tượng $OPE$ có thể liên kết đến. Nếu $CE$ không được khai báo trong phát biểu trên mặc định sẽ là $owl:Thing$. Ví dụ:
+\begin{verbatim}
+ObjectPropertyAssertion( a:hasPet a:Peter a:Tom)
+// Peter có vật nuôi là Tom
+ClassAssertion( ObjectMaxCardinality( 1 a:hasPet ) a:Peter )
+// Peter thuộc lớp "những ai có tối đa 1 vật nuôi"
+\end{verbatim}
+Giải thích: theo 2 điều kiệu trên thì Peter sẽ thuộc mô tả lớp $ObjectMaxCardinality($ $2$ $a:hasPet$ $)$ chỉ những "ai có tối đa 2 vật nuôi" (số vật nuôi <= 2), vì 2 phát biểu đầu tiên chỉ ra rằng Peter chắc chắn chỉ có một vật nuôi.
 
+\paragraph{Số lượng chính xác (Exact Cardinality)} - mô tả $ObjectExactCardinality($ $n$ $OPE$  $CE)$ chỉ ra số lượng chính xác $n$ cá thể (khác nhau) thuộc mô tả lớp $CE$ với $n$ là nguyên không âm mà mô tả đặc tính đối tượng $OPE$ có thể liên kết đến. Nếu $CE$ không được khai báo trong phát biểu trên mặc định sẽ là $owl:Thing$. Mô tả lớp này tương được khi lấy giao của 2 mô tả số lượng tối đa và số lượng tối thiểu cùng $n$.
+\begin{verbatim}
+ObjectIntersectionOf( ObjectMinCardinality( n OPE CE ) 
+ObjectMaxCardinality( n OPE CE ) ).
+\end{verbatim}
 
+% Data Property Restrictions
+\subsubsection{Ràng buộc theo đặc tính dữ liệu (Data Property Restrictions)}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=120mm]{Figures/ce_3.png}
+	\caption{Data Property Restrictions trong OWL 2\label{overflow}}
+\end{figure}
+Mô tả lớp dạng này được tạo ra bằng cách đặc các ràng buộc về kiểu dữ liệu, giới hạn các giá trị dữ liệu lên mô tả đặc tính dữ liệu (data property expression) như trong hình. Những mô tả này cũng tương tự như ràng buộc đặc tính đối tượng vừa nêu ra ở trên
 
+\paragraph{Existential Quantification} - một mô tả lớp $DataSomeValuesFrom($ $DPE_{1}$ ... $DPE_{n}$ $DR)$ gồm $n$ mô tả đặc tính dữ liệu $DPE_{i}$, $1<=i<=n$, và một miền dữ liệu (data range) $DR$ với số lượng tham số phải bằng $n$. Mô tả lớp này biểu diễn mối quan hệ dữ liệu giữa tất cả các cá thể kết nối với $DPE_{i}$ tới các trực nghĩa $lt_{i}$, $1<=i<=n$ với $($ $lt_{1}$ ... $lt_{n}$ $)$ trong $DR$. Ví dụ:
+\begin{verbatim}
+DataPropertyAssertion( a:hasAge a:Steve "17"^^xsd:integer ) // Steve 17 tuổi.
+\end{verbatim}
+Vì Steve 17 tuổi nên chúng ta ngầm hiểu rằng Steve thuộc những ai có số tuổi là số nguyên và không lớn hơn 20 tuổi, tương đương phát biểu sau
+\begin{verbatim}
+DataSomeValuesFrom( a:hasAge 
+    DatatypeRestriction( xsd:integer xsd:maxExclusive "20"^^xsd:integer ) )
+\end{verbatim}
 
+\paragraph{Universal Quantification} - một mô tả lớp $DataAllValuesFrom($ $DPE_{1}$ ... $DPE_{n}$ $DR)$ gồm $n$ mô tả đặc tính dữ liệu $DPE_{i}$, $1<=i<=n$, và một miền dữ liệu (data range) $DR$ với số lượng tham số phải bằng $n$. Mô tả lớp này biểu diễn mối quan hệ dữ liệu giữa tất cả các cá thể \textbf{chỉ} \textit{(only)} kết nối với $DPE_{i}$ tới các trực nghĩa $lt_{i}$, $1<=i<=n$ với $($ $lt_{1}$ ... $lt_{n}$ $)$ trong $DR$. Ví dụ: 
 
+\begin{verbatim}
+DataPropertyAssertion( a:hasZIP _:a1 "70000"^^xsd:integer ) 
+// Mã vùng của _:a1 là số nguyên 70000
+FunctionalDataProperty( a:hasZIP) 
+// Mỗi đối tượng chỉ có duy nhất một mã vùng
+\end{verbatim}
+Mã vùng của một số quốc gia như Anh và Canada là dạng chuỗi (chứa ký tự và số), dựa vào 2 phát biểu trên chúng ta có thể hiểu rằng mã vùng của \verb|_a:1| thuộc mô tả những mã vùng \textbf{chỉ} gồm số nguyên $DataAllValuesFrom( a:hasZIP xsd:integer )$
 
+\paragraph{Ràng buộc bằng giá trị trực nghĩa - Literal Value Restriction}
+Một mô tả $DataHasValue($ $DPE$ $lt)$ gồm một mô tả đặc tính dữ liệu $DPE$ và một trực nghĩa $lt$, nó biểu diễn quan hệ của những cá thể nào qua $DPE$ tới $lt$. Ví dụ:
+\begin{verbatim}
+DataPropertyAssertion( a:hasAge a:Steve "17"^^xsd:integer )
+\end{verbatim}
+Steve là thành viên của mô tả lớp sau $DataHasValue($ $a:hasAge$ $"17"^^xsd:integer$ $)$ - những ai 17 tuổi.
 
-
-
-
-
-
-
-
+% Data Property Cardinality Restrictions
+\subsubsection{Ràng buộc đặc tính dữ liệu theo số lượng}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=120mm]{Figures/ce_4.png}
+	\caption{Data Property Cardinality Restrictions trong OWL 2\label{overflow}}
+\end{figure}
+Tương tự ràng buộc đặc tính đối tượng theo số lượng, OWL 2 cũng cho phép chúng ta tạo ra các mô tả lớp bằng cách các giá trị dữ liệu ( thay vì cá thể) mà đặc tính dữ liệu có thể liên kết đến. Cấu trúc được mô tả như trong hình.
+\paragraph{Số lượng tối thiểu (Minimum Cardinality)} - Một mô tả lớp $DataMinCardinality($ $n$ $DPE$ $DR)$  chỉ ra số lượng tối thiểu $n$ các trực nghĩa khác nhau thuộc miền dữ liệu  $DR$ ( với $n$ số nguyên không âm), mà mô tả đặc tính dữ liệu $DPE$ có thể liên kết đến. Nếu $DR$ không được khai báo trong phát biểu trên mặc định sẽ là $rdfs:Literal$. Ví dụ:
+\begin{verbatim}
+content...
+\end{verbatim}
