@@ -1,7 +1,7 @@
-\chapter{Suy luận với Semantic Web Rule Language}
+\chapter{Semantic Web Rule Language và các nguyên nhân dẫn đến tính thiếu nhất quán trong ontology}
 Nếu chỉ sử dụng các thành phần của  OWL 2 được trình bày ở chương trước thì không thể diễn tả hết tất cả các mối quan hệ trong ontology. Semantic Web Rule Language (SWRL) là một ngôn ngữ điều luật dựa trên nền tảng của OWL. SWRL cho phép người sử dụng khai báo các điều luật dựa trên các khái niệm của OWL như lớp, thuộc tính đối tượng, thuộc tính dữ liệu nhằm cung cấp một khả năng suy luận mạnh mẽ hơn so với chỉ dùng OWL 2. Về đặc tính ngữ nghĩa, SWRL được xây dựng trên cùng một tổ hợp Description Logic với OWL 2 nhưng cung cấp những cơ chế tốt hơn trong việc chỉ ra những thông tin mới đúc kết từ thông tin được khai báo.
-%Một ví dụ nổi tiếng là \textit{child of married parent} (con của những cặp ba mẹ là vợ chồng) - sẽ được trình bày ngay sau đây
-\section{Cấu trúc của một SWRL Rule}
+
+\section{Cấu trúc của một SWRL Rule \cite{swrlfaq}}
 Một luật SWRL chứa một phần điều kiện, hay còn gọi là rule body, và một phần kết quả, hay còn gọi là rule head. Cả phần body và head đều là giao của các positive atoms.
 \begin{center}
 $atom$ \verb|^| $atom$ ... -> $atom$ \verb|^| $atom$ 
@@ -25,8 +25,8 @@ Một rule đơn giản để khẳng định rằng "ai làm nam đều là ng�
 \begin{verbatim}
 Man(?x) -> Person(?x)
 \end{verbatim}
-\subsection{Atom thuộc tính cá thể (Individual Property atom)}
-Một \textbf{Atom thuộc tính cá thể} gồm một thuộc tính đối tượng (object property) và 2 tham số đại diện cho 2 cá thể trong OWL2 ontology, tham số có thể là biến hoặc tên của cá thể. Ví dụ:
+\subsection{Individual Property Atom}
+Một \textbf{Individual Property atom} gồm một thuộc tính đối tượng (object property) và 2 tham số đại diện cho 2 cá thể trong OWL2 ontology, tham số có thể là biến hoặc tên của cá thể. Ví dụ:
 \begin{verbatim}
 hasBrother(?x, ?y)   // có anh em
 hasSibling(Steve, ?y) // có anh/chị em 
@@ -60,3 +60,208 @@ Person(?p) ^ hasSibling(?p,?s) ^ Man(?s) -> hasBrother(?p,?s)
 ObjectPropertyRange(a:hasBrother a:Man) // Có anh/em trai
 \end{verbatim}
 \textbf{Giải thích:} 2 Rule mâu thuẫn với nhau do phát biểu "có anh/em trai". Bản thân SWRL sẽ không kiểm tra các mâu thuẫn này cho đến khi chúng xảy ra và làm cho ontology bị thiếu nhất quán. Vì vậy, người phát triển ontology cần cẩn thận trong việc kết hợp cả SWRL và OWL2.
+
+\subsection{Data Valued Property Atom}
+Một Data Valued Property Atom gồm một thuộc tính dữ liệu trong OWL2 và 2 tham số. Tham số đầu tiên được gán cho một các thể trong OWL 2, số thể là biến số hay tên của cá thể. Tham số thứ hai gán cho một giá trị dữ liệu, có thể là biến số hay giá trị. Ví dụ:
+\begin{verbatim}
+hasAge(?x, ?age)
+hasAge(?x, 100)
+hasName(?x, "Nguyen")
+hasNumberOfChilds(Peter, ?x)
+\end{verbatim}
+Một rule đơn giản với ý nghĩa "những ai có xe, có bằng lái thì là tài xế":
+\begin{verbatim}
+Person(?p) ^ hasCar(?p, true) ^ hasLicense(?p, true) -> Driver(?p)
+\end{verbatim}
+Chúng ta cũng có thể dùng tên của cá thể cụ thể:
+\begin{verbatim}
+Person(Steve) ^ hasCar(Steve, true) ^ hasLicense(Steve, true) -> Driver(Steve)
+\end{verbatim}
+Rule này chỉ có tác dụng duy nhất lên cá thể \verb|Steve|
+
+\subsection{Different Individuals atom}
+Một \textit{Atom} dạng này gồm cú pháp \textit{differentFrom} với 2 tham số đại diện cho 2 cá thể. Ví dụ:
+\begin{verbatim}
+differentFrom(?x, ?y)
+differentFrom(Steve, Peter)
+\end{verbatim}
+
+\subsection{Same Individuals atom}
+Một \textit{Atom} dạng này gồm cú pháp \textit{sameAs} với 2 tham số đại diện cho 2 cá thể. Ví dụ:
+\begin{verbatim}
+sameAs(?x, ?y)
+sameAs(Steve, Peter)
+\end{verbatim}
+
+\subsection{Data Range atom}
+Một atom data range gồm một dạng dữ liệu hoặc một tập hợp các trực nghĩa (literals) và duy nhất một tham số đại diện cho giá trị dữ liệu. Ví dụ:
+\begin{verbatim}
+xsd:int(?x)
+xsd:string(?x)
+[3,2,1](?x)
+xsd:int[>=5,<=9](?x)
+\end{verbatim}
+
+\subsection{Những Built-in Atom}
+Một trong những tính năng mạnh nhất của SWRL chính là khả năng hỗ trợ người phát triển tự xây dựng các built-in nhằm mở rộng khả năng ra các điều kiện cho SWRL Rule. Trong nội dung báo cáo khóa luận này chúng em sẽ giới thiệu cách xây dựng các SWRL Built-in \cite{swrlbuiltin}, mà chúng em chỉ giới thiệu một số Core Built-Ins \cite{swrlcorebuiltin} có sẵn.
+\subsubsection{Built-In dùng cho các phép so sánh}
+\begin{table}[!h]
+	\centering
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Cú pháp & Ví dụ & Ý nghĩa \\ 
+		\hline
+		swrlb:equal & swrlb:equal(?x,9) & $x = 9$  ? \\		
+		\hline
+		swrlb:notEqual & swrlb:notEqual(?x,9) & $x  9$  ? \\		
+		\hline
+		swrlb:lessThan & swrlb:lessThan(?x, 9) & $x < 9$ ? \\
+		\hline
+		swrlb:lessThanOrEqual & swrlb:lessThanOrEqual(?x, 9) & $x <= 9$ ? \\
+		\hline
+		swrlb:greaterThan & swrlb:greaterThan(?x, 9) & $x > 9$ ? \\
+		\hline
+		swrlb:greaterThanOrEqual & swrlb:greaterThanOrEqual(?x, 9) & $x >= 9$ ? \\
+		\hline
+	\end{tabular}
+\caption{Built-In dùng để so sánh\label{overflow}}
+\end{table}
+Ví dụ:
+\begin{verbatim}
+Person(?p) ^ hasAge(?p, ?age) ^ swrlb:greaterThan(?age, 17) -> Adult(?p)
+Vehicle(?v) ^ canCarryNumberOfPassenger(?v, ?x) ^ swrlb:greaterThan(?x, 30) -> Bus(?v)
+
+\end{verbatim}
+
+
+
+\paragraph{Kết luận:} Trong chương này, chúng em đã giới thiệu về SWRL Rule cũng như cách sử dụng chúng trong OWL2 Ontology 
+
+
+\section{Các nguyên nhân dẫn đến tính thiếu nhất quán trong ontology}
+Như đã được nhắc đến nhiều lần trong báo cáo, tính thiểu nhất quán xảy ra khi các phát biểu được khai báo trong Ontology mâu thuẫn ngữ nghĩa với nhau, trong phần này chúng em xin được liệt kê ra các nguyên nhân và những cách khắc phục khi làm việc với ontology.
+\subsection{Các định nghĩa cần lưu ý \cite{satisfy}}
+% Định nghĩa unsatisfiable class
+\paragraph{Unsatisfiable Class/Concept} dùng để chỉ một lớp hay một khái niệm trong một ontology mà ngữ nghĩa xung đột với ngữ nghĩa khác được nêu ra trong ontology hay có thể nói là các phát biểu về lớp hay khái niệm này mâu thuẫn với nhau hoặc mâu thuẫn với những phát biểu khác trong ontology.
+\begin{description}
+	\item[Ví dụ]
+	\begin{verbatim}
+	Cow
+	SubClassOf: Vegetarian
+	Vegetarian
+	SubClassOf: Animal and eats only Plant
+	DisjointClasses:
+	Plant, Animal
+	\end{verbatim}
+	\item[Giải thích]
+	Trong ví dụ trên thì MadCow chính là một lớp không hợp lý do trong các phát biểu logic của nó mâu thuẫn với nhau Cow là lớp con của Vegeterian mà Vegeterian chỉ ăn Plant (nghĩa là ngoài Plant, Vegeterian không ăn thứ gi khác) trong khi đó khai báo của lớp MadCow là lớp con của Cow và ăn một số Sheep (Sheep là một lớp con của Animal).
+	\\
+	Từ đó việc lý luận có thể đưa ra giả định sai là Sheep cũng có khả năng là một phần của Plant . Điểm quan trọng là Plant và Animal là 2 DisjointClasses, nói cách khác không tồn tại một cá thể nào vừa thuộc lớp Plant và vừa thuộc lớp Animal. Như vậy trong tất cả các phát biểu logic ở ví dụ trên đã có 2 phát biểu gây mâu thuẫn chính là eats only Plant và eats some Sheep, và chúng làm cho lớp MadCow trở nên bất hợp lý (unsatisfiable).
+\end{description}
+% Định nghĩa về incoherent ontology 
+\paragraph{Incoherent Ontology} dùng để chỉ một \textit{ontology/model} có ý nghĩa không mạch lạc rõ ràng do nó có chứa ít nhất một \textit{Unsatisfiable Class/Concept} và với điều kiện là trong những \textit{Unsatisfiable Class} này không được chứa bất kì một cá thể (\textit{Individual}) nào.
+\\
+\hspace{0.05\textwidth} Giả sử ta có ontology A chứa các các phát biếu trong ví dụ trên ngoại trừ phát biểu cuối cùng \texttt{Individual: Dora type: MadCow} thì ta có thể nói ontology A không mạch lạc rõ ràng do nó chứa unsatisfiable class là MadCow. Chúng ta vẫn có sử dụng được ontology A vì nó vẫn còn tính nhất quán (\textit{Consistency})miễn là không có phần tử nào thuộc lớp MadCow.
+% Định nghĩa về inconsistent ontology
+\paragraph{Inconsistent Ontology} dùng để chỉ một ontology chứa ít nhất một \textit{Unsatisfiable Class} và có ít nhất một cá thể(\textit{Individual}) thuộc một trong những lớp \textit{unsatisfiable} này.
+\\
+\hspace{0.05\textwidth} Như đã thể hiện trong ví dụ đầu tiên thì cá thể Dora thuộc lớp MadCow (Một lớp unsatisfiable thì không nên phép có bất kì cá thể nào nếu như chúng ta muốn đảm bảo tính consistency cho ontology), như vậy bất kì ontology nào có những phát biểu trên đều được coi là không nhất quán (\textit{inconsistency}), đều này đồng nghĩa là ontology đó không thể sử dụng được nữa.
+
+\subsection{Các nguyên nhân phổ biến dẫn đến tính thiếu nhất quán (Inconsistency)\cite{inconsitentReason}}
+Các nguyên nhân dẫn đến tính thiếu nhất quán trong ontology gây bởi các lỗi được phân loại thành lỗi gây ra bởi phát biểu ở mức độ lớp (Class level - TBox), các lỗi gây ra bởi phát biểu ở mức độ cá thể (Instance/Individual level - ABox) và lỗi gây ra bởi sự kết hợp của cả 2 nguyên nhân vừa nêu trên.
+% Instantiating an unsatisfiable class (TBox + ABox)
+\subsubsection{Khởi tạo cá thể cho một Unsatisfiable Class) - (TBox + ABox)}
+\begin{itemize}
+	\item
+	Khởi tạo cá thể cho một Unsatisfiable Class được xem là nguyên nhân phổ biến nhất gây ra tính thiếu nhất quán trong ontology.
+	\item
+	Ví dụ:
+	\begin{verbatim}
+	Individual: Dora type: MadCow
+	\end{verbatim}
+	\item
+	Chúng ta không quan tâm đâu là nguyên nhân làm cho \texttt{MadCow} trở nên mâu thuẫn, chỉ cần biết là một Unsatisfiable Class thì không nên có bất kì cá thể nào trong đó. Rõ ràng là không có bất kì ontology nào mà cá thể Dora có thể đáp ứng các điều kiện như trong ví dụ đầu tiên, nói cách khác không tồn tại model nào có thể thỏa được điều kiện trên. Chúng ta phát biểu đó là một ontology không nhất quán.
+\end{itemize}
+% Instantiating disjoint classes (TBox + ABox)
+\subsubsection{Khởi tạo cá thể thuộc 2 class được disjoint với nhau (TBox + ABox)}
+\begin{itemize}
+	\item
+	Đây là một trường hợp dễ bắt gặp vì nó sai ngay trong phát biểu về logic.
+	\item Ví dụ
+	\begin{verbatim}
+	Individual: Dora
+	Types: Vegetarian, Carnivore
+	DisjointClasses: Vegetarian, Carnivore
+	\end{verbatim}
+	\item
+	Lớp A disjoint với B khi và chỉ chi lớp A không có chung bất kì một phần tử/cá thể nào với lớp B. Phát biểu Disjoint Classes(A B C) có nghĩa là mỗi lớp trong đó disjoint với từng lớp còn lại (mutually disjoint). Phát biểu ABox dạng \texttt{DisjointClasses(Vegetarian Carnivore)} là sai vì Dora vừa thuộc Vegetarian vừa thuộc Carnivore dựa vào phát biểu \texttt{Individual: Dora Types: Vegetarian, Carnivore}.
+\end{itemize}  	
+% Conflicting assertions (ABox)	
+\subsubsection{Các phát biểu ABox xung đột với nhau}
+\begin{itemize} 
+	\item{Trường hợp này thì tương tự như nguyên nhân ở trên nhưng khác ở chỗ là lần này sự mâu thuẫn nằm trong các biểu ở cấp độ cá thể (ABox).}
+	\item{Ví dụ:	
+		\begin{verbatim}
+		Individual: Dora
+		Types: Vegetarian, not Vegetarian
+		\end{verbatim}
+	}
+	\item{Dễ thấy được sự mâu thuẫn trong trong phát biểu trên vừa yêu cầu Dora là Vegetarian vừa yêu cầu nó không phải Vegetarian.}
+\end{itemize}
+% Conflicting axioms with nominals (all TBox)
+\subsubsection{Phát biểu xung đột với nghĩa "oneOf" (All TBox)}
+
+\begin{itemize}
+	\item 
+	Phát biểu bao gồm hoặc một trong (oneOf trong cú pháp của OWL) cho phép sử dụng các cá thể trong khai báo phát biểu ABox, sự kết hợp này có thể dẫn đến sự thiếu nhất quán.
+	\item
+	Lấy ví dụ sau:
+	\begin{verbatim}
+	Class: MyFavouriteCow
+	EquivalentTo: {Dora}
+	Class: AllMyCows
+	EquivalentTo: {Dora, Daisy, Patty}
+	DisjointClasses: MyFavouriteCow, AllMyCows
+	\end{verbatim}
+	\item
+	Phần đầu tiên của các phát biểu trên tất cả các thể thuộc lớp \texttt{MyFavouriteCow} phải tương đương với cá thể tên Dora, nói cách khác là \texttt{SameIndividual} với \texttt{Dora}. Phần thứ hai cũng  tương tự tất cả các cá thể thuộc lớp \texttt{AllMyCows} buộc phải tương đương với một trong 3 cá thể tên \texttt{Dora}, \texttt{Daisy} hoặc \texttt{Patty}. Do 2 phát biểu trên chúng ta đã nói Dora thuộc cả 2 lớp \texttt{MyFavoriteCow} và \texttt{AllMyCows} nên mâu thuẫn với phát biểu cuối cùng khi nói 2 lớp này không có chung một cá thể nào. Vì vậy dẫn tới ontology bị thiếu nhất quán (inconsistent).
+\end{itemize}
+% No instantiation possible (all TBox)
+\subsubsection{Không có khả năng khởi tạo bất kì cá thể nào (all TBox)}
+\begin{itemize}
+	\item Ví dụ:
+	\begin{verbatim}
+	Vegetarian or not Vegetarian
+	SubClassOf: Cow and not Cow
+	\end{verbatim}
+	\item
+	Đây chỉ là một ví dụ đơn giản để minh họa cho trường hợp này. Thực tế sẽ ít người dùng nào tạo ra một phát biểu ngớ ngẩn như vậy nhưng nó vẫn có khả năng xảy ra khi phát biểu trên là kết quả từ suy luận (reasoning) của những phát biểu lớn và phức tạp hơn.
+	\item
+	Có thể giải thích ví dụ trên như sau. Đầu tiên để đáp ứng ý nghĩa dòng đầu tiên yêu cầu cá thể vừa là \texttt{Vegetarian} hoặc không phải \texttt{Vegetarian} - bất kỳ phát biểu nào dạng này, "cá thể thuộc hoặc không thuộc một lớp" chính là tất cả cá thể xuất hiện trong ontology. Dòng thứ hai yêu cầu cá thể vừa là Cow vừa không phải là Cow, phát biểu này rơi vào một trong các nguyên nhân vừa nêu ở trên. Tổng hợp lại chúng yêu cầu tất cả cá thể vừa là Cow vừa không phải Cow, điều này gây ra mâu thuẫn trên toàn ontology do phát biểu đầu tiên chỉ tới tất cả các cá thể.
+\end{itemize}
+
+\paragraph{Kết luận}
+Trên đây chúng em đã liệt kê những nguyên nhân phổ biến dẫn đến thiếu nhất quán qua những ví dụ đã được đơn giản hoá để dễ dàng nắm bắt được đâu là căn nguyên gây ra sự mâu thuẫn về logic. Trên thực tế với những ontology có số lượng phát biểu lớn và phức tạp rất khó để người dùng có thể nhận diện được đâu là nguyên nhân chính xác gây ra mâu thuẫn, do vậy sự ra đời của một công cụ giúp chúng ta phát hiện chính xác nguyên nhân gây lỗi là rất cần thiết. Vì vậy trong nội dung chương 2, chúng em sẽ đề cập tới Ontology Debugging một khía cạnh rất được chú trọng khi số lượng phát biểu của ontology ngày càng tăng.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -8,7 +8,7 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: Bibliography.bib
-"{" immediately follows a field name---line 106 of file Bibliography.bib
+"{" immediately follows a field name---line 118 of file Bibliography.bib
  :  Year
  :      {2012}
 I'm skipping whatever remains of this entry
@@ -32,45 +32,45 @@ Warning--empty journal in repair
 Warning--empty booktitle in mups
 
 Done.
-You've used 27 entries,
+You've used 30 entries,
             4783 wiz_defined-function locations,
-            1042 strings with 10972 characters,
-and the built_in function-call counts, 11876 in all, are:
-= -- 1103
+            1051 strings with 11223 characters,
+and the built_in function-call counts, 13016 in all, are:
+= -- 1205
 > -- 127
 < -- 8
-+ -- 100
++ -- 108
 - -- 34
-* -- 591
-:= -- 1950
-add.period$ -- 52
-call.type$ -- 27
-change.case$ -- 52
-chr.to.int$ -- 22
-cite$ -- 48
-duplicate$ -- 931
-empty$ -- 1082
+* -- 648
+:= -- 2114
+add.period$ -- 58
+call.type$ -- 30
+change.case$ -- 58
+chr.to.int$ -- 23
+cite$ -- 54
+duplicate$ -- 1027
+empty$ -- 1202
 format.name$ -- 52
-if$ -- 2505
-int.to.chr$ -- 6
-int.to.str$ -- 28
-missing$ -- 171
-newline$ -- 153
+if$ -- 2751
+int.to.chr$ -- 8
+int.to.str$ -- 31
+missing$ -- 189
+newline$ -- 168
 num.names$ -- 30
-pop$ -- 670
+pop$ -- 754
 preamble$ -- 1
-purify$ -- 27
+purify$ -- 30
 quote$ -- 2
-skip$ -- 841
+skip$ -- 915
 stack$ -- 0
-substring$ -- 96
-swap$ -- 413
+substring$ -- 108
+swap$ -- 452
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 6
-type$ -- 412
+type$ -- 457
 warning$ -- 4
 while$ -- 20
 width$ -- 0
-write$ -- 312
+write$ -- 342
 (There were 4 error messages)
