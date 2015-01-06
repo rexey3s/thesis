@@ -1,0 +1,211 @@
+\chapter{Các thư viện lập trình OWLAPI, SWRLAPI và Vaadin framework sử dụng trong ứng dụng}
+\paragraph{Giới thiệu} Chúng em xin dành chương này để giới thiệu khái quát qua các thư viện lập trình (API) và framework được sử dụng để xây dựng chương trình. Các thư viện sử dụng gồm có OWLAPI \cite{owlapi}, SWRLAPI \cite{swrlapi}, Pellet \cite{pellet}, Google Guava EventBus và thành phần giúp tạo nên giao diện người dùng của ứng dụng Vaadin Framework. Đầu tiên xin được giới thư viện lập trình OWL-API.
+\section{Thư viện lập trình OWLAPI}
+Thư viện lập trình Ontology Web Language là một thư viện mã nguồn mở (phát hành dưới 2 giấy phép \textbf{LGPL} và \textbf{Apache}) \cite{owlapi} được viết bằng JAVA với mục đích hỗ trợ các lập trình viên phát triển các ứng dụng có liên quan đến OWL 2 ontology. Tính đến thời điểm hiện tại thư viện đã được phát triển đến phiên bản 4.0 - cũng là phiên bản được sử dụng trong ứng dụng của chúng em.
+Thư viện có các thành phần chính như sau: 
+\begin{itemize}
+\item API để tương tác với các thành phần của OWL 2 được đề cập trong chương 2.
+\item Renderer và Parser (dùng đọc và ghi OWL 2 ontology) nhiều dạng cú pháp khác nhau đã đề cập ở chương 2 như \textit{RDF/XML}, \textit{OWL/XML}, \textit{OWL Functional Syntax}, \textit{Manchester OWL Syntax} và \textit{Turtle}.
+\item Reasoner interfaces cho các reasoners khác nhau hỗ trợ cho việc suy luận.
+\end{itemize}
+Dưới đây là danh sách các Ontology Reasoner được hỗ trợ trong phiên bản 4.0:
+\begin{itemize}
+\item FaCT++ 
+\item Hermit
+\item Pellet \cite{pellet}
+\item JFact 
+\end{itemize}
+Trong thư viện OWL-API, có nhiều đối tượng được xây dựng dựa trên cấu trúc phân lớp của một OWL2 Ontology, tương tự các thành phần đã được chúng em trình bày trong chương 2. Dưới đây là bảng liệt kê một số thành phần mà OWL-API đã xây dựng dựa trên mô tả trong chương 2 (chi tiết hơn ở trong \cite{owl2spec} và mã nguồn của OWL-API \cite{owlapi}).
+\begin{table}
+	\centering
+	\begin{tabular}{|l|l|p{4cm}|}
+		\hline
+		Thành phần OWL 2 		& Đối tương trong OWL-API 		& Thừa kế từ đối tượng (OWL-API) \\
+		\hline
+		Ontology 				& OWLOntology 					& OWLObject, HasDirectImports,...  \\ 
+		\hline
+		Entity 					& OWLEntity 					& OWLObject,...  \\
+		\hline
+		Class 					& OWLClass 						& OWLClassExpression, OWLEntity, ...   \\		
+		\hline
+		ObjectProperty 			& OWLObjectProperty 			& OWLProperty, OWLEntity, ...   \\		
+		\hline
+		DataProperty 			& OWLDataProperty 				& OWLProperty, OWLEntity, ...   \\
+		\hline
+		NamedIndividual 		& OWLNamedIndividual			& OWLLogicalEntity, OWLEntity, ...  \\
+		\hline
+		Datatype 				& OWLDatatype 					& OWLDataRange, OWLPropertyRange, ...   \\
+		\hline
+		Property 				& OWLProperty 					& OWLLogicalEntity, OWLEntity   \\
+		\hline
+		ClassExpression			& OWLClassExpression			& OWLObject, OWLPropertyRange   \\
+		\hline
+		ObjectUnionOf			& OWLObjectUnionOf				& ClassExpression, ...\\
+		\hline
+		ObjectIntersectionOf	& OWLObjectIntersectionOf		& ClassExpression, ... \\
+		\hline
+		ObjectAllValuesFrom		& OWLObjectAllValueFrom		& ClassExpression, ... \\
+		\hline
+		ObjectSomeValuesFrom	& OWLObjectSomeValuesFrom		& ClassExpression, ... \\
+		\hline
+	\end{tabular}
+	\caption{Các đối tượng OWL2 trong OWL-API\label{overflow}}
+\end{table}
+Trên đây chỉ là một vài thành phần, mọi thành phần OWL2 được trình bày trong chương 2 đều được OWL-API xây dựng thành các đối tượng class, interface trong JAVA để phục vụ cho việc lập trình. Tuy nhiên để tương tác với một kiến trúc đối tượng lớn và phức tạp như 1 ontology cần có cách thức chuyên dùng cho việc này là Visitor Pattern.
+\subsection{Visitor Pattern}
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=110mm]{Figures/visitor_diagram.png}
+	\caption{Visitor Diagram\label{overflow}}
+\end{figure}
+\paragraph{Khái quát} Trong lập trình hướng đối tượng và phát triển ứng dụng, visitor pattern hay visitor design pattern là một cách để tách biệt một giải thuật ra khỏi cấu trúc của đối tượng mà nó đang xử lý. Nhờ sự tách biệt này, chúng ta có khả năng thêm một tính năng mới cho đối tượng mà không cần phải sửa đổi cấu trúc của đối tượng đó. Lấy ví dụ là một visitor trong thư viện OWL-API là \textit{OWLClassExpressionVisitor}, chúng ta đã biết bên dưới có rất nhiều đối tượng thừa kế từ OWLClassExpression (mô tả lớp) như OWLObjectUnionOf, OWLObjectIntersectionOf, OWLClass, OWLObjectAllValueFrom, OWLObjectSomeValuesFrom, ... .Chúng ta các đoạn code như sau
+\begin{verbatim}
+// visitor interface
+public interface OWLClassExpressionVisitor {
+     public void visit(OWLClass cls);
+     public void visit(OWLObjectUnionOf union);
+     ...
+}
+// Lớp visitor
+public class OWLClassExpressionVisitorImpl 
+                 implements OWLClassExpressionVisitor {
+    public void visit(OWLClass cls) {
+        System.out.println("Lớp:" + cls.toString()); // (4)
+    }
+    public void visit(OWLObjectUnionOf union) {
+        // Hàm getOperands trả về các mô tả lớp trong phát biểu unionOf
+        for(OWLClassExpression ce: union.getOperands()) {
+           ce.accept(this); // (2), (2')
+        }
+	}
+	...
+}
+// Interface OWLClassExpression
+public interface OWLClassExpression {
+    public void accept(OWLClassExpressionVisitor visitor);
+}
+// Lớp OWLObjectUnionOf thừa kế từ OWLClassExpression
+public class OWLObjectUnionOfImpl implements OWLClassExpression {
+	public void accept(OWLClassExpressionVisitor visitor) {
+    	visitor.visit(this); // (1)
+    }
+    ...
+}
+// Lớp OWLClass thừa kế từ OWLClassExpression 
+public class OWLClass implements OWLClassExpression {
+    public void accept(OWLClassExpressionVisitor visitor) {
+        visitor.visit(this); // (3)
+    }
+    ...
+}
+// Hàm main 
+public void main(String[] args) {
+   OWLDataFactory factory = OWLManager.getOWLDataFactory();
+   OWLClass car = factory.getOWLClass("a:Car");
+   OWLClass bike = factory.getOWLClass("a:Bike");
+   OWLObjectUnionOf union = factory.getOWLObjectUnionOf(car, bike);
+   OWLClassExpressionVisitor visitor = new OWLClassExpressionVisitorImpl();
+   union.accept(visitor);                                       
+}
+// Output của hàm main sẽ là 
+Lớp: a:Car
+Lớp: a:Bike
+\end{verbatim}
+Đối tượng \textit{OWLDataFactory} sẽ được trình bày ở mục sau, chúng ta có thể hiểu hàm \textit{main} như sau factory tạo ra 2 đối tượng OWLClass là car, bike tương đương với 2 lớp trong OWL2 a:Car, a:Bike, tiếp đó factory tạo ra một đối tượng union tương đương \textit{ObjectUnionOf( a:Car a:Bike )} trong OWL2. Cuối cùng ta sử dụng cho union.accept(visitor) thì thứ tự gọi hàm cho tới khi in ra từng dòng output là (1),(2),(3) và (4). 
+\\
+Đây chính là cách một \textit{visitor} hoạt động, thư viện OWL-API sử dụng lặp đi, lặp lại rất nhiều lần các interface visitor cho nhiều tác vụ khác nhau từ parser (dịch raw text thành cú pháp của OWL 2), renderer(dùng đọc các thành phần của ontology) như ví dụ trên qua các interface như OWLObjectVisitor, OWLDatatypeVisitor,... hoặc đọc và dịch SWRL Rule qua interface SWRLObjectVisitor. Chúng em cũng sử dụng \textit{visitor pattern} rất nhiều lần trong ứng dụng của mình để thực hiện nhiều tác vụ tương tự.
+\subsection{Các hàm và đối tượng quan trọng cần biết khi sử dụng OWL-API}
+\subsubsection{OWLOntologyManager}
+Đây là thành phần đầu tiên cần khởi tạo trước khi chúng ta muốn nạp hay tạo một OWL2 Ontology nào, chức năng quản lý các ontology được khởi tạo, nạp. Cú pháp:
+\begin{verbatim}
+OWLOntologyManager modelManager = OWLManager.createOWLOntologyManager();
+OWLOntolgoy ont  = modelManager.loadOntologyFromOntologyDocument(ontologyIRI);
+OWLOntolgoy ont2  = modelManager.createOntology(ontologyIRI);
+\end{verbatim}
+\subsubsection{OWLDataFactory}
+OWLDataFactory hoạt động giống như một nhà máy tạo ra tất cả đối tượng các thành phần trong OWL2 mô tả trong \cite{owl2spec} và chương 2. Cú pháp:
+\begin{verbatim}
+ OWLDataFactory factory = modelManager.getOWLDataFactory();
+ OWLClass car = factory.getOWLClass("a:Car")
+ OWLObjectProperty hasId = factory.getObjectProperty(":hasId",prefixManager);
+\end{verbatim}
+\subsubsection{PrefixManager}
+Có chức năng quản lý các OntologyIRI, OntologyID, VersionIRI. Cú pháp
+\begin{verbatim}
+// Khởi tạo PrefixManger và set IRI mặc định là "DemoIRI"
+PrefixManager pm = new DefaultPrefixManager(null, null, "DemoIRI#");
+\end{verbatim}
+\subsubsection{OWLOntology}
+Là một bản mapping của OWL2 ontology thành các đối tượng trong JAVA, tất cả được lưu trong bộ nhớ (in-memory). Load ontology từ file nội bộ và URI:
+\begin{verbatim}
+String uri = "http://chuongdang.com/transport.owl";
+File file = new File("./transport.owl");
+OWLOntolgoy ont  = modelManager.loadOntologyFromOntologyDocument(IRI.create(uri));
+OWLOntolgoy ont2 = modelManager.loadOntologyFromOntologyDocument(IRI.create(file));
+\end{verbatim}
+\subsubsection{OWLObjectRenderer}
+Đảm nhiệm khả năng ghi và biên dịch các thành phần của ontology từ IRI thành dạng vắng tắt, mỗi một dạng cú pháp sẽ có một đối tượng renderer khác nhau implements OWLObjectRenderer. Ví dụ cú pháp Manchester Syntax:
+\begin{verbatim}
+OWLObjectRenderer renderer = new ManchesterOWLSyntaxOWLObjectRendererImpl();
+// Render Class carIRI: http://Demo.org#Car
+OWLClass car = factory.getOWLClass("http://vehicle.org#Car");
+System.out.println(renderer.render(car));
+// Output: Car
+// Render ClassExpression
+OWLObjectProperty buy = factory.getOWLObjectProperty("http://vehicle.org#Buy");
+OWLObjectSomeValuesFrom ce = factory.getOWLObjectSomeValuesFrom(buy, car);
+System.out.println(renderer.render(ce));
+// Output: Buy some Car <- Manchester Syntax
+\end{verbatim}
+Còn rất nhiều thành phần quan trọng mà chúng em sử dụng đến trong việc phát triển ứng dụng , chúng em sẽ trình bày trong chương sau khi nói về quá trình phát triển ứng dụng phát triển ontology trên web.
+
+\section{Vaadin Framework }
+Vaadin Framework là nền tảng xây dựng một ứng dụng web Java được thiết kế giúp tạo ra một ứng dụng web chất lượng cao một cách dễ dàng nhất. Vaadin hỗ trợ 2 mô hình lập trình: client và server. Mô hình lập trình phía server mạnh mẽ hơn. Nó giúp chúng ta tạm quên đi về web và giao diện người dùng, thay vào đú chúng ta lập trình như một ứng dụng desktop thông thường với các công cụ Java tiện ích như AWT, Swing, hay SWT. Mô hình lập trình phía server đảm nhận phần giao diện trên trình duyệt và giao tiếp AJAX giữa trình duyệt và server.
+\subsection{Kiến trúc}
+Hình sau mô tả kiến trúc cơ bản của một ứng dụng web được lập trình từ Vaadin Framework. Kiến trúc ứng dụng phía server bao gồm nền tảng server (Server-side framework) và hệ thống phía client (client-side engine). Hệ thống chạy trên trình duyệt nhờ những đoạn mã Javascript, thiết lập nên giao diện người dùng, và chuyển các tương tác của người dùng đến server. Logic UI (user interface) của ứng dụng nhưi dạng một Java Servlel nằm trong một ứng dụng server Java.
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=100mm]{Figures/vaadin_architecture.png}
+	\caption{Kiến trúc của Vaadin\label{overflow}}
+\end{figure}
+\\
+Vì hệ thống phía client được thực thi bằng JavaScript được tích hợp sẵn trên trình duyệt, nên không cần thêm plugins khi sử dụng các ứng dụng xây dựng bằng Vaadin. Đây là một ưu thế so với các nền tảng trên Flash, Java Applets hay các plugins khác. Vaadin dựa trên sự hỗ trợ của Google Web Toolkit cho nhiều trình duyệt khác nhau, nên lập trình viên không cần lo lắng về sự tương thích của các trình duyệt cho ứng dụng của mình.
+\\
+Vì HTML, JavaScript, hay các công nghệ web khác thường được tách biệt so với phần logic 
+của ứng dụng, nên có thể xem trình duyệt như một mô hình client thu nhỏ. Client sẽ hiển thị giao diện người dùng và truyền các thao tác người dùng đến server ở lớp thấp nhất. Logic điều khiển giao diện người dùng chạy trên web server Java, cùng với logic xử lý dữ liệu. Một mô hình kiến trúc client-server thông thường, với ứng dụng phía client, sẽ bao gồm nhiều giao tiếp giữa client và server. Tách biệt giao diện người dùng ra khỏi kiến trúc của ứng dụng giúp chúng ta dễ dàng tiếp cận hiệu quả hơn.
+\\
+Bên trong mô hình lập trình server, Vaadin sử dụng tối đa công nghệ AJAX ( Asynchronous
+JavaScript and XML) để có thể tạo ra Rich Internet Applications (RIA), tạm gọi là Ứng dụng Internet cao cấp, với sự tương tác và phản hồi cao như một ứng dụng desktop.
+\\
+Bên cạnh việc phát triển ứng dụng phía server, chúng ta cũng có thể sử dụng Vaadin để lập trình phía client, sử dụng các widgets trong Java, tạo ra một ứng dụng client chạy tốt trên trình duyệt. Kết hợp với các công cụ Google Web Toolkit (GWT), hỗ trợ phiên dịch từ Java sang JavaScript chạy được trên trình duyệt, giúp việc thiết kế giao diện trở nên đa dạng hơn. Như vậy, với Vaadin, cả client và server đều được lập trình bằng ngôn ngữ Java thuần tuý.
+{\let\thefootnote\relax\footnotetext{*\textit{
+			Vaadin Addon: https://vaadin.com/directory}}
+}
+\\
+Vaadin sử dụng hệ thống phía client để thiết kế nên giao diện của ứng dụng phía server hiển thị trên trình duyệt. Tất cả giao tiếp tương tác client-server đều được ẩn giấu bên dưới. Vaadin được thiết kế để dễ dàng mở rộng, tích hợp thêm các widgets bên ngoài, cũng như các tiện ích add-ons có thể tìm kiếm tại Vaadin Directory \textsuperscript{*}.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=120mm]{Figures/vaadin_architecture1.png}
+	\caption{Các UI Components của Vaadin\label{overflow}}
+\end{figure}
+\subsection{Các thành phần đáng chú ý}
+\subsubsection{Data Model}
+Vaadin Data Model cho phép các view (UI components) truy xuất tới dữ liệu một cách trực tiếp, bằng cách cung cấp một interface chuẩn cho mọi loại dữ liệu. Mô hình này cho phép binding các view trực tiếp đến dữ liệu để hiển thị, và cập nhật sự thay đổi ngay lập tức khi dữ liệu được chỉnh sửa. Trong mô hình này có 3 cấp độ cấu trúc khác nhau : property, item và container.
+\\
+Cần lưu ý rằng Data Model không định nghĩa cách mô tả dữ liệu, mà chỉ định nghĩa interfaces cho việc binding dữ liệu đến các view. Điều này cho phép dữ liệu trong Data Model không bị giới hạn, có thể là các object Java thông thường, đường dẫn hệ thống, hoặc có thể là các câu truy vấn cơ sở dữ liệu.
+\\
+Data Model được sử dụng rất nhiều trong các component của Vaadin, đặc biệt là các component thừa kế interface Field hoặc AbstractField. Một tính năng đặc trưng quan trọng của các component tạo sẵn của Vaadin là nó có thể quản lý dữ liệu được gắn vào, thông qua interface Property.
+\subsubsection{Properties}
+Interface Property là thành phần cơ bản của Vaadin Data Model. Nó cung cấp cho đối tượng dữ liệu các phương thức đọc (get), ghi (set) cơ bản. Kiểu dữ liệu của một property có thể là bất kì lớp Java nào, và nó cũng hỗ trợ chuyển đổi giữa các kiểu dữ liệu.
+\\
+Phương thức setValue() dùng để ghi dữ liệu.
+\\
+Phương thức getValue() dùng để đọc dữ liệu.
+\\
+Các thay đổi của property sẽ kích hoạt sự kiện ValueChangeEvent, và được xử lý bằng ValueChangeListener. Truy xuất đến property bằng cách gọi phương thức getProperty() của event. Property thường không có định danh riêng. Chỉ khi chúng được chứa trong Item, chúng sẽ được định danh bằng các PID (Property Identifier). Tương tự, khi các Item được chứa trong Container, chúng sẽ có các định danh là các IID (Item Identifier).
+\\
+Mỗi component đều có một thuộc tính dùng để liên kết với nguồn dữ liệu được binding, sử dụng phương thức setPropertyDataSource() để thực hiện liên kết này.
+\subsubsection{Converter}
+Khi thực hiện binding, chúng ta sẽ gặp phải trường hợp kiểu dữ liệu của data khác với kiểu dữ liệu của component. Để giải quyết điều này, Vaadin cung cấp interface Converter, cho phép lập trình viên sử dụng để rạo ra các converter tuỳ theo mục đích sử dụng, để chuyển đổi kiểu dữ liệu của data sang kiểu dữ liệu hiển thị được của component. Vaadin cung cấp sẵn một vài converter thông dụng, như chuyển đổi giữa string và integer.
+\subsubsection{Container}
+Container là cấp cao nhất của mô hình dữ liệu Vaadin ( Vaadin Data Model ), chứa đựng và quản lý các item, trong các item lại chứa đựng và quản lý các property. Container hiển thị dữ liệu dưới dạng cấu trúc, như các dữ liệu thường thấy trong các bảng (Table), hay cây (Tree).

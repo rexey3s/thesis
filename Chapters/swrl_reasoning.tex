@@ -113,7 +113,7 @@ Một trong những tính năng mạnh nhất của SWRL chính là khả năng 
 		\hline
 		swrlb:equal & swrlb:equal(?x,9) & $x = 9$  ? \\		
 		\hline
-		swrlb:notEqual & swrlb:notEqual(?x,9) & $x  9$  ? \\		
+		swrlb:notEqual & swrlb:notEqual(?x,9) & $x \neq 9$  ? \\		
 		\hline
 		swrlb:lessThan & swrlb:lessThan(?x, 9) & $x < 9$ ? \\
 		\hline
@@ -129,7 +129,8 @@ Một trong những tính năng mạnh nhất của SWRL chính là khả năng 
 Ví dụ:
 \begin{verbatim}
 Person(?p) ^ hasAge(?p, ?age) ^ swrlb:greaterThan(?age, 17) -> Adult(?p)
-Vehicle(?v) ^ canCarryNumberOfPassenger(?v, ?x) ^ swrlb:greaterThan(?x, 30) -> Bus(?v)
+Vehicle(?v) ^ canCarryNumberOfPassenger(?v, ?x) ^ 
+									swrlb:greaterThan(?x, 30) -> Bus(?v)
 
 \end{verbatim}
 
