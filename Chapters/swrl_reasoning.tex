@@ -6,12 +6,57 @@ Một luật SWRL chứa một phần điều kiện, hay còn gọi là rule bo
 \begin{center}
 $atom$ \verb|^| $atom$ ... -> $atom$ \verb|^| $atom$ 
 \end{center}
-Có thể hiểu một SWRL Rule theo cách như sau nếu tất cả các thành phần đơn vị (atom) trong phần điều kiện (body) đều đúng (hay xảy ra) thì chắc chắn rằng những ý được nêu ra trong phần kết quả (head) cũng đúng.
-\\
-Một rule $atom$ được biểu diễn theo dạng:
-
+Có thể hiểu một SWRL Rule theo cách như sau khi tất cả các điều kiện nhỏ nhất (atom) trong phần điều kiện (body) đúng thì chắc chắn rằng những ý được nêu ra trong phần kết quả (head) cũng đúng. Một rule \textit{atom} có dạng:
 \begin{center}
 $p($ $arg_{1}$, $arg_{2}$, ... $arg_{n}$ $)$
 \end{center}
-
-trong đó $p$ là nội dung điều kiện (predicate) và $arg_{i}$, $1<=i<=n$ là những khái niệm hay tham số của mô tả. Trong SWRL, nội dung điều kiện có thể gồm các lớp, thuộc tính hoặc kiêu dữ liệu trong OWL 2. Tham số truyền vào có thể là cá thể, giá trị dữ liệu, hoặc biến để chỉ tới chúng. Tên biến trong cùng một rule không được phép trùng nhau, tên biến của 2 rule khác nhau có thể trùng nhau.
+Trong đó $p$ là kí hiệu cho nội dung điều kiện (Predicate) và $arg_{i}$, $1<=i<=n$, là những khái niệm hay tham số của một \textit{Rule Atom}. Trong SWRL, nội dung điều kiện có thể là các lớp, các thuộc tính hoặc kiêu dữ liệu trong OWL 2. Tham số truyền vào có thể là cá thể, giá trị dữ liệu, hoặc biến để gán cho các khái niệm vừa nêu. Tên biến chỉ có hiệu lực trong cùng một rule, vì vậy có thể sử dụng lại tên biến cho 2 rule khác nhau.
+\section{Các loại Rule Atom}
+Sau đây, chúng em xin trình bày các loại \textit{Atom} trong SWRL Rule, đồng thời cùng kèm theo những ví dụ cơ bản giúp thể hiện tính năng quyết định dựa trên các điều kiện của SWRL.
+\subsection{Class Atom}
+Một \textbf{Class Atom} gồm một tên lớp hay mô tả lớp trong OWL2 Ontology và một tham số duy nhất đại diện cho cá thể của lớp đó. Ví dụ:
+\begin{verbatim}
+Person(?p)
+Vehicle(?v)
+Man(Peter)
+\end{verbatim}
+Tham số có thể là biến đại diện cho cá thể \verb|?p|, \verb|?v| hoặc tên của cá thể \verb|Peter|.
+Một rule đơn giản để khẳng định rằng "ai làm nam đều là người":
+\begin{verbatim}
+Man(?x) -> Person(?x)
+\end{verbatim}
+\subsection{Atom thuộc tính cá thể (Individual Property atom)}
+Một \textbf{Atom thuộc tính cá thể} gồm một thuộc tính đối tượng (object property) và 2 tham số đại diện cho 2 cá thể trong OWL2 ontology, tham số có thể là biến hoặc tên của cá thể. Ví dụ:
+\begin{verbatim}
+hasBrother(?x, ?y)   // có anh em
+hasSibling(Steve, ?y) // có anh/chị em 
+\end{verbatim}
+Trong ví dụ, \textit{hasBrother} và \textit{hasSibling} là các thuộc tính đối tượng, \verb|?x| và \verb|?y| là biến đại diện cho các cá thể, và \verb|Steve| là tên của một cá thể (named individual). Xem ví dụ sau:
+\begin{verbatim}
+Person(?p) ^ hasSibling(?p,?s) ^ Man(?s) -> hasBrother(?p,?s)
+\end{verbatim}
+\textbf{Giải thích:} Nếu một người \verb|?p| nào đó có một anh chị em \verb|?s| nào đó, và người \verb|?s| này là nam thì người \verb|?p| có anh là người \verb|?s|. Rule này cũng có thể được biểu diễn trong bằng các phát biểu về lớp, domain và range OWL2 như sau:
+\begin{verbatim}
+SubClassOf(a:Man a:Person)
+SubClassOf(a:Woman a:Person)
+DisjointClasses(a:Woman a:Man)
+SubObjectProperty(a:hasBrother a:hasSibling)
+ObjectPropertyRange(a:hasBrother a:Man)
+ObjectPropertyRange(a:hasSibling a:Person)
+ObjectPropertyDomain(a:hasSibling a:Person)
+ObjectPropertyDomain(a:hasBrother a:Person)
+\end{verbatim}
+Trong trường hợp chúng ta có các khẳng định sau về 2 cá thể \verb|Peter| và \verb|Nguyen|
+\begin{verbatim}
+ClassAssertion(a:Person a:Peter)
+ClassAssertion(a:Man a:Nguyen)
+ObjectPropertyAssertion(a:hasSibling a:Peter a:Nguyen)
+\end{verbatim}
+Dựa vào rule đã khai báo ở trên \textit{hoặc} các phát biểu về lớp, domain, range như trên, thì các khẳng định vừa nêu sẽ suy ra cùng một kết quả đó là "Peter có anh là Nguyen" tương đương với phát biểu \textit{ObjectProperyAssertion(a:hasBrother a:Peter a:Nguyen)}.
+\textbf{Nhận xét:} qua các ví dụ này, có thể thấy SWRL có lợi thế hơn trong việc suy ra các ẩn ý so với việc chỉ sử dụng các phát biểu của OWL2, tuy nhiên có một nhược điểm đó là tính nhất quán (consistency) của ontology dễ bị vi phạm hơn do rule có thể xung đột với các phát biểu của OWL2. Lấy lại các phát biểu và rule trong ví dụ trên:
+\begin{verbatim}
+Person(?p) ^ hasSibling(?p,?s) ^ Woman(?s) -> hasBrother(?p,?s)
+Person(?p) ^ hasSibling(?p,?s) ^ Man(?s) -> hasBrother(?p,?s)
+ObjectPropertyRange(a:hasBrother a:Man) // Có anh/em trai
+\end{verbatim}
+\textbf{Giải thích:} 2 Rule mâu thuẫn với nhau do phát biểu "có anh/em trai". Bản thân SWRL sẽ không kiểm tra các mâu thuẫn này cho đến khi chúng xảy ra và làm cho ontology bị thiếu nhất quán. Vì vậy, người phát triển ontology cần cẩn thận trong việc kết hợp cả SWRL và OWL2.
