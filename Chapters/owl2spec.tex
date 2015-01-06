@@ -1,5 +1,5 @@
 \chapter{Chi tiết Ontology Web Language}
-\paragraph{Giới thiệu } - Như đã được đề cập trong phần cuối của chương trước, chức năng chính của OWL là một ngôn ngữ ontology cung cấp ngữ nghĩa cho Semantic Web. Trong nội dung chương này, chúng em sẽ giới thiệu về cú pháp, định dạng và chi tiết các thuộc tính của ngôn ngữ Ontology Web. Phiên bản Ontology Web Language chúng em sử dụng là phiên bản 2 \cite{owl2} được tổ chức W3C khuyến khích sử dụng so với phiên bản OWL cũ 1.1 . Một cách ngắn gọn OWL là một ngôn ngữ ontology dựa trên Description Logic (DL) $SROIQ_{(D)}$ \cite{DL}, với ưu điểm là khả năng mô hình hóa các đối tượng trong các lĩnh vực (domain) tri thức được biết đến thành những khái niệm (concept) và đồng thời là khả năng biểu diễn ngữ nghĩa mạnh mẽ, giúp việc suy luận có thể được thực hiện tự động thông qua các ẩn ý (implications).
+\paragraph{Giới thiệu }Như đã được đề cập trong phần cuối của chương trước, chức năng chính của OWL là một ngôn ngữ ontology cung cấp ngữ nghĩa cho Semantic Web. Trong nội dung chương này, chúng em sẽ giới thiệu về cú pháp, định dạng và chi tiết các thuộc tính của ngôn ngữ Ontology Web. Phiên bản Ontology Web Language chúng em sử dụng là phiên bản 2 \cite{owl2} được tổ chức W3C khuyến khích sử dụng so với phiên bản OWL cũ 1.1 . Một cách ngắn gọn OWL là một ngôn ngữ ontology dựa trên Description Logic (DL) $SROIQ_{(D)}$ \cite{DL}, với ưu điểm là khả năng mô hình hóa các đối tượng trong các lĩnh vực (domain) tri thức được biết đến thành những khái niệm (concept) và đồng thời là khả năng biểu diễn ngữ nghĩa mạnh mẽ, giúp việc suy luận có thể được thực hiện tự động thông qua các ẩn ý (implications).
 \section{Khái quát về OWL 2}
 \subsection{Tổng quan}
 \begin{figure}[ht!]
@@ -14,8 +14,8 @@ Phần lớn những người phát triển Ontology bằng OWL2 sẽ chỉ cầ
 Bất kì ontology OWL2 nào đều có thể được định dạng như một đồ thị RDF. Mối quan hệ giữa 2 cách này được quy định bởi các tài liệu Mapping to RDF Graphs document [\href{http://www.w3.org/TR/owl2-overview/#ref-owl-2-rdf-mapping}{OWL 2 RDF Mapping}] \cite{mapping_rdf_graph}, trong tài liệu này định nghĩa rất rõ ràng một bảng map từ định dạng cấu trúc của ontology qua đồ thị RDF, và ngược lại. 
 \subsection{Cú pháp}
 Trong thực tế, một cú pháp cụ thể rất cần thiết để lưu trữ các OWL2 Ontologies và để trao đổi chúng giữa các công cụ và ứng dụng khác nhau. Cú pháp đầu tiên có khả năng hoán đổi là RDF/XML [\href{http://www.w3.org/TR/owl2-overview/#ref-rdf-syntax}{RDF Syntax}] \cite{rdfxml}. Ngoài RDF/XML có khả năng cung cấp khả năng tương tác giữ nhiều ứng dụng OWl2 khác nhau, các loại cú pháp khác đều có thể được sử dụng. Dưới đây là bảng so sánh và liệt kê các cú pháp.
-\begin{table}[!h]
-\begin{tabular}{ |p{3cm}|p{4cm}|p{3cm}|p{4cm}|}
+\begin{table}[H]
+\begin{tabular}{ |p{3cm}|p{4cm}|p{2cm}|p{4cm}|}
 \hline
 Tên cú pháp & Mô tả & Trạng thái & Mục đích sử dụng\\
 \hline
@@ -124,7 +124,7 @@ Ontology IRI và các version IRI kết hợp với nhau giúp định danh mộ
 Các thực thể (entities) là thành phần cơ bản nhất của OWL2 Ontology, chúng định nghĩa các từ vừng - cụ thể là những đặt tên ra các khái niệm (named term) - của một ontology. Bên cạnh các thực thể, OWL 2 ontologies thường có thêm các trực nghĩa (literals), như strings hay integers.
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=140mm]{Figures/entities.png}
+	\includegraphics[width=150mm, height=80mm]{Figures/entities.png}
 	\caption{Entities, Literals, Anonymous Individuals trong OWL2 \label{overflow}}
 \end{figure}
 \\
@@ -196,11 +196,13 @@ Cá thể trong OWL2 là một đối tượng cụ thể thuộc một tập/l�
 % Named Individuals
 \paragraph{Cá thể có tên (Named Individuals)} được định danh bằng một IRI. Vì vậy, nên cá thể có tên cũng là một thực thể (entity) tương tự lớp, thuộc tính và kiểu dữ liệu. Ví dụ khai báo một các thể thuộc 1 lớp:
 
+
 \begin{verbatim}
 ClassAssertion( a:Person a:Peter)
 \end{verbatim}
 
-\textit{Giải thích:} Peter là một người.
+
+\textbf{Giải thích:} Peter là một người.
 
 % Anonymous Individuals
 \paragraph{Cá thể ẩn danh (Anonymous Individuals)} Nếu cần một cá thể chỉ sử dụng ở nội bộ ontology, chúng ta có thể sử dụng cá thể ẩn danh, được định danh bằng một node ID cục bộ thay vì sử dụng IRI toàn cục. Cá thể ẩn danh tương tự như một node rỗng trong đồ thị RDF \cite{rdf_concept}. Ví dụ khai báo thuộc tính đối tượng giữa cá thể ẩn danh với cá thể có tên:
@@ -222,7 +224,8 @@ Trực nghĩa biểu diễn các giá trị dữ liệu như chuỗi và số ng
 \end{itemize}
 \textbf{Cú pháp:}
 \begin{verbatim}
-Literal      := typedLiteral | stringLiteralNoLanguage | stringLiteralWithLanguage
+Literal      := typedLiteral | stringLiteralNoLanguage 
+| stringLiteralWithLanguage
 typedLiteral := lexicalForm '^^' Datatype
 lexicalForm  := quotedString
 stringLiteralNoLanguage := quotedString
@@ -268,16 +271,17 @@ Các thuộc tính được sử dụng trong OWL 2 để tạo ra các mô tả
 Thuộc tính đối tượng được sử dụng trong OWL 2 để tạo thành các mô tả thuộc tính đối tượng (object property expression), diễn tả các mối quan hệ giữa các cặp cá thể. Chúng được diễn giải trong tài liệu cấu trúc chi tiết của OWL 2 như trong hình sau.
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=110mm]{Figures/object_property_expression.png}
+	\includegraphics[width=120mm]{Figures/object_property_expression.png}
 	\caption{Mô tả thuộc tính đối tượng OWL 2\label{overflow}}
 \end{figure}
 Như được thể hiện trong hình, OWL 2 hỗ trợ 2 loại mô tả thuộc tính đối tượng. Thuộc tính đối tượng là dạng đơn giản của mô tả thuộc tính đối tượng, thuộc tính đối tượng nghịch đảo (inverse object properties) cho phép thể hiện các mối quan hệ 2 chiều giữa biểu hiện các mô tả lớp (class expression) và các phát biểu (axiom).
 \\ \textbf{Mô tả thuộc tính đối tượng nghịch đảo}
 
 \begin{verbatim}
-ObjectPropertyAssertion( a:fatherOf a:Peter a:Steve) // Peter là ba của Steve
+ObjectPropertyAssertion( a:fatherOf a:Peter a:Steve) 
+// Peter là ba của Steve
 \end{verbatim}}
-Với phát biểu trên, ontology sẽ hiểu \textit{a:Steve} liến kết với \textit{a:Peter} qua một thuộc tính nghịch đảo của \textit{a:fatherOf} là \textit{ObjectInverseOf( a:fatherOf)}. Chúng ta cũng có thể khai báo tường minh nghịch đảo của \textit{a:fatherOf} bằng phát biểu \textit{ InverseObjectProperties(a:fatherOf a:childOf)}.
+Với phát biểu trên, ontology sẽ hiểu \textit{a:Steve} liến kết với \textit{a:Peter} qua một thuộc tính nghịch đảo của \textit{a:fatherOf} là \textit{ObjectInverseOf( a:fatherOf)}. Chúng ta cũng có thể khai báo tường minh nghịch đảo của \textit{a:fatherOf} bằng phát biểu  \textit{InverseObjectProperties( a:fatherO a:childOf )}.
 
 % Data Property Expression
 \subsubsection{Mô tả thuộc tính dữ liệu (Data Property Expression)}
@@ -293,27 +297,27 @@ Tương đương với biểu hiện thuộc tính đối tượng, trong tài l
 Kiểu dữ liệu như\textit{xsd:string} hoặc \textit{xsd:integer} và trực nghĩa \verb|"1"^^xsd:integer| được dùng để biểu diễn miền dữ liệu - tập hợp danh sách có thứ tự (tuples) của các trực nghĩa, mà mỗi phần tử trong danh sách này chỉ chứa một trực nghĩa duy nhất để định nghĩa chính nó. Miền dữ liệu được dùng để tạo ra ràng buộc (hay những dữ liệu hợp lệ) cho thuộc tính dữ liệu. Cấu trúc của miền dữ liệu trong OWL 2 được mô tả trong hình. Thành phần đơn giản của miền dữ liệu chính là kiểu dữ liệu : một kiểu dữ liệu (Datatype) cũng chính là một miền dữ liệu (Data Range).
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=120mm]{Figures/datarange.png}
+	\includegraphics[width=150mm, height=80mm]{Figures/datarange.png}
 	\caption{Cấu trúc miền dữ liệu (data range) quy định theo OWL 2\label{overflow}}
 \end{figure}
 
 % DataIntersectionOf
 \subsubsection{Giao của các miền dữ liệu (Intersection of Data Ranges)}
-Giao của miền dữ liệu $DataIntersectionOf($ $DR_{1} ... DR_{n}$ $)$  chứa tất cả các danh sách của các trực nghĩa nằng trong $DR_{i}$ với $1 <= i <= n$. Tất cả miền dữ liệu $DR_{i}$ phải có cùng số lượng tham số, và cũng phải có cùng số lượng số kết quả trả về. Ví dụ về miền dữ liệu chỉ chứa số 0:
+Giao của miền dữ liệu \textit{DataIntersectionOf(} $DR_{1} ... DR_{n}$ \textit{)}  chứa tất cả các danh sách của các trực nghĩa nằng trong $DR_{i}$ với $1 <= i <= n$. Tất cả miền dữ liệu $DR_{i}$ phải có cùng số lượng tham số, và cũng phải có cùng số lượng số kết quả trả về. Ví dụ về miền dữ liệu chỉ chứa số 0:
 \begin{verbatim}
 DataIntersectionOf( xsd:nonNegativeInteger xsd:nonPositiveInteger )
 \end{verbatim}
 
 % DataUnionOf
 \subsubsection{Hội của các miền dữ liệu (Union of Data Ranges)}
-Điều kiện về số lượng tham số và số lượng kết quả trả về của từng $DR_{i}$ với điều kiện $1 <= i <= n$ phải giống nhau. Cú pháp $DataIntersectionOf($ $DR_{1} ... DR_{n}$ $)$. Ví dụ về việc miền dữ liệu chứa tất cả các chuỗi và số nguyên:
+Điều kiện về số lượng tham số và số lượng kết quả trả về của từng $DR_{i}$ với điều kiện $1 <= i <= n$ phải giống nhau. Cú pháp \textit{DataIntersectionOf( $DR_{1} ... DR_{n}$ )}. Ví dụ về việc miền dữ liệu chứa tất cả các chuỗi và số nguyên:
 \begin{verbatim}
 DataUnionOf( xsd:string xsd:integer )
 \end{verbatim}
 
 % DataComplementOf
 \subsubsection{Phủ định của miền dữ liệu (Complement of Data Ranges)}
-Cú pháp $DataComplementOf($ $DR$ $)$ chứa tất cả các miền dữ liệu còn lại trong năng trong miền dữ liệu $DR$. Yêu câu số lượng tham số và kết quả phải bằng $DR$
+Cú pháp \textit{DataComplementOf( DR )} chứa tất cả các miền dữ liệu còn lại trong năng trong miền dữ liệu \textit{DR}. Yêu câu số lượng tham số và kết quả phải bằng \textit{DR}
 \begin{verbatim}
 DataComplementOf( xsd:positiveInteger )
 \end{verbatim}
@@ -321,7 +325,7 @@ DataComplementOf( xsd:positiveInteger )
 
 % DataOneOf
 \subsubsection{Liệt kê trực nghĩa (Enumeration Of Literals)}
-Một danh sách liệt kê các trực nghĩa (literals) với cú pháp $DataOneOf($ $lt_{1} ... lt_{n}$ $)$,  $lt_{i}$ với $1 <= i <= n$.  Miễn dữ liệu chỉ áp dụng lên một trực nghĩa nằm trong danh sách (\textit{"oneOf"}). Ví dụ khai báo miền dữ liệu cho thuộc tính dữ liệu \textit{canMoveOnOrIn} chỉ có thể là một trong 4 giá trị chuỗi \textit{"OnRoadOrOffRoad"}, \textit{"Rail"}, \textit{"Sky"} và \textit{"Water"}.
+Một danh sách liệt kê các trực nghĩa (literals) với cú pháp \textit{DataOneOf(} $lt_{1} ... lt_{n}$ \textit{)},  $lt_{i}$ với $1 <= i <= n$.  Miễn dữ liệu chỉ áp dụng lên một trực nghĩa nằm trong danh sách (\textit{"oneOf"}). Ví dụ khai báo miền dữ liệu cho thuộc tính dữ liệu \textit{canMoveOnOrIn} chỉ có thể là một trong 4 giá trị chuỗi \textit{"OnRoadOrOffRoad"}, \textit{"Rail"}, \textit{"Sky"} và \textit{"Water"}.
 \begin{verbatim}
 DataPropertyRange(:canMoveOnOrIn 
      DataOneOf("OnRoadOrOffRoad" "Rail" "Sky" "Water"))
@@ -329,7 +333,7 @@ DataPropertyRange(:canMoveOnOrIn
 
 % Datatype Restrictions
 \subsubsection{Ràng buộc cho kiểu dữ liệu (Datatype Restrictions)}
-Một ràng buộc cho kiểu dữ liệu (hay một tập các giá trị hợp lệ của kiễu dữ liệu) $DatatypeRestriction($ $DT$ $F_{1}$ $lt_{1}$ ... $F_{n}$ $lt_{n}$ $)$ gồm một kiểu dữ liệu đơn (unary datatype) $DT$ và $n$ cặp $($ $F_{i}$, $lt_{i}$ $)$. Vùng dữ liệu hợp lệ được tính ra bằng cách hạn chế vùng giá trị của $DT$ và lấy giao tất cả các cặp $(F_{i}$, $v_{i}$ $)$ trong đó $v_{i}$ là giá trị dữ liệu của trực nghĩa $lt_{i}$. Ví dụ miền dữ liệu sau chỉ gồm đúng các số 5,6,7,8,9:
+Một ràng buộc cho kiểu dữ liệu (hay một tập các giá trị hợp lệ của kiễu dữ liệu) \textit{DatatypeRestriction(} $DT$ $F_{1}$ $lt_{1}$ ... $F_{n}$ $lt_{n}$ \textit{ )} gồm một kiểu dữ liệu đơn (unary datatype) $DT$ và $n$ cặp $($ $F_{i}$, $lt_{i}$ $)$. Vùng dữ liệu hợp lệ được tính ra bằng cách hạn chế vùng giá trị của $DT$ và lấy giao tất cả các cặp $(F_{i}$, $v_{i}$ $)$ trong đó $v_{i}$ là giá trị dữ liệu của trực nghĩa $lt_{i}$. Ví dụ miền dữ liệu sau chỉ gồm đúng các số 5,6,7,8,9:
 \begin{verbatim}
 DatatypeRestriction( xsd:integer 
 xsd:minInclusive "5"^^xsd:integer xsd:maxExclusive "10"^^xsd:integer )
@@ -343,53 +347,57 @@ biểu diễn tập hợp các cá thể bằng cách chính thức đặt ra c�
 \subsubsection{Các mệnh đề logic và liệt kê cá thể}
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=120mm]{Figures/ce_0.png}
+	\includegraphics[width=150mm]{Figures/ce_0.png}
 	\caption{Mô tả lớp với các khai báo mệnh đề trong OWL 2\label{overflow}}
 \end{figure}
-OWL2 cho phép liệt kê các cá thể của một lớp, khai báo các mệnh đề logic như trong hình sau. Các khai báo $ObjectIntersectionOf$, $ObjectUnionOf$, và $ObjectComplementOf$ cho phép thực hiện các phép toán luân lý (and ,or, not) lên những mô tả lớp. $ObjectOneOf$ quy định chính xác những cá thể cho mô tả lớp đang khai báo.
-\paragraph{Intersection of Class Expressions} - Tập giao của các mô tả lớp $ObjectIntersectionOf$ $($ $CE_{1}$ ... $CE_{n}$ $)$ gồm tất cả các cá thể là thành viên của tất cả các mô tả lớp $CE_{i}$ với $1<=i<=n$. Ví dụ: cá thể \verb|a:Peter| vừa là kĩ sư, vừa là bác sĩ theo các khai báo sau:
+OWL2 cho phép liệt kê các cá thể của một lớp, khai báo các mệnh đề logic như trong hình sau. Các khai báo \textit{ObjectIntersectionOf}, \textit{ObjectUnionOf}, và \textit{ObjectComplementOf} cho phép thực hiện các phép toán luân lý (and ,or, not) lên những mô tả lớp. \textit{ObjectOneOf} quy định chính xác những cá thể cho mô tả lớp đang khai báo.
+
+%% Intersection of Class Expressions
+\paragraph{Intersection of Class Expressions} Tập giao của các mô tả lớp \textit{ObjectIntersectionOf(} $CE_{1}$ ... $CE_{n}$ \textit{)} gồm tất cả các cá thể là thành viên của tất cả các mô tả lớp $CE_{i}$ với $1<=i<=n$. Ví dụ: 
 \begin{verbatim}
 ClassAssertion(a:Engineer a:Peter)  // Peter là kĩ sư.
 ClassAssertion(a:Teacher a:Peter) // Peter là giáo viên.
-ObjectIntersectionOf( a:Engineer a:Teacher)
 \end{verbatim}
+\textbf{Giải thích: } với khai báo như trên, một hàm ý sẽ được suy ra mà không cần khai báo đó là \textit{Peter vừa là giáo viên vừa là kĩ sư} hay tương đương với phát biểu \textit{ObjectIntersectionOf( a:Engineer a:Teacher )}. 
 
-\paragraph{Union of Class Expressions} Tập hội của lớp $ObjectUnionOf$ $($ $CE_{1}$ ... $CE_{n}$ $)$ chức tất cả các cá thể là thành viên của của ít nhất một mô tả lớp $CE_{i}$ với $1<=i<=n$. Ví dụ:
+%% Union of Class Expressions
+\paragraph{Union of Class Expressions} Tập hội của lớp \textit{ObjectUnionOf(} $CE_{1}$ ... $CE_{n}$ \textit{)} chức tất cả các cá thể là thành viên của của ít nhất một mô tả lớp $CE_{i}$ với $1<=i<=n$. Ví dụ:
 \begin{verbatim}
 ClassAssertion( a:Man a:Peter )	 // Peter là nam
 ClassAssertion( a:Woman a:Lois ) // Lois là nữ
-ObjectUnionOf( a:Man a:Woman ) 
-// Cả Peter và Lois đều thuộc lớp nam hoặc nữ
 \end{verbatim}
+\textbf{Giải thích: } với khai báo như trên, một hàm ý sẽ được suy ra mà không cần khai báo đó là \textit{cả Peter và Lois đều thuộc lớp nam hoặc nữ} hay tương đương với phát biểu O\textit{bjectUnionOf( a:Man a:Woman )}.
 
-\paragraph{Complement of Class Expressions} - phụ định của một mô tả lớp chứa tất cả các phần tử không thuộc mô tả lớp đó. Cú pháp $ObjectComplementOf(CE)$. Ví dụ:
+%% Complement of Class Expressions
+\paragraph{Complement of Class Expressions} Phủ định của một mô tả lớp chứa tất cả các phần tử không thuộc mô tả lớp đó. Cú pháp \textit{ObjectComplementOf(CE)}. Ví dụ:
 \begin{verbatim}
-DisjointClasses( a:Man a:Woman) // Không có cá thể nào vừa làm nam vừa là nữ
-ClassAssertion( a:Woman a:Lois) // Lois là nữ
-ObjectComplementOf( a:Man)
+DisjointClasses( a:Man a:Woman) 
+// Không có cá thể nào vừa làm nam vừa là nữ
+ClassAssertion( a:Woman a:Lois) 
+// Lois là nữ
 \end{verbatim}
-Giải thích: Vì Lois là nữa và không có cá thể nào vừa là nam vừa là nữ nên Lois thuộc lớp \textit{không phải nam}.
+\textbf{Giải thích:} Vì \textit{Lois} là nữa và không có cá thể nào vừa là nam vừa là nữ nên \textit{Lois} thuộc lớp \textit{không phải nam} tương đương với phát biểu \textit{ObjectComplementOf( a:Man )}.
 
-\paragraph{Enumeration of Individuals} - liệt kê các cá thể $ObjectOneOf($ $a_{1}$ ... $a_{n}$ chứa duy nhất một cá thể $a_{i}$ với $1<=i<=n$. 
+\paragraph{Enumeration of Individuals} Liệt kê các cá thể \textit{ObjectOneOf(} $a_{1}$ ... $a_{n}$ \textit{)} chứa duy nhất một cá thể $a_{i}$ với $1<=i<=n$. 
 
 % Object Property Restrictions 
 \subsubsection{Ràng buộc cho thuộc tính đối tượng (Object Property Restrictions)}
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=120mm]{Figures/ce_1.png}
+	\includegraphics[width=150mm]{Figures/ce_1.png}
 	\caption{Object Property Restrictions trong OWL 2\label{overflow}}
 \end{figure}
 Các mô tả lớp trong OWL 2 có thể được tạo ra bằng cách kết hợp chúng các thuộc tính đối tượng với bằng phát biểu như trong hình.
-\paragraph{Existential Quantification} - một mô tả lớp $ObjectSomeValueFrom($ $OPE$ $CE)$ thể hiện mối quan hệ giữa những cá thể được kết nối bởi mô tả thuộc tính đối tượng $OPE$ đến \textbf{ít nhất một} cá thể thuộc mô tả lớp $CE$. Ví dụ:
+\paragraph{Existential Quantification} Một mô tả lớp \textit{ObjectSomeValueFrom( OPE CE )} thể hiện mối quan hệ giữa những cá thể được kết nối bởi mô tả thuộc tính đối tượng \textit{OPE} đến \textbf{ít nhất một} cá thể thuộc mô tả lớp \textit{CE}. Ví dụ:
 \begin{verbatim}
-ObjectPropertyAssertion( a:fatherOf   // Peter là ba của Steve
-a:Peter a:Steve )                     
-ClassAssertion( a:Kid a:Steve )      // Steve là trẻ con.
-ObjectSomeValuesFrom( a:fatherOf a:Kid ) 
-// Peter là ba của một vài (ít nhất một) đứa trẻ
+ObjectPropertyAssertion( a:fatherOf a:Peter a:Steve ) 
+// Peter là ba của Steve                    
+ClassAssertion( a:Kid a:Steve )         
+// Steve là trẻ con.
 \end{verbatim} 
+\textbf{Giải thích:} với khai báo như trên, một hàm ý sẽ được suy ra mà không cần khai báo đó là \textit{Peter là ba của một vài (ít nhất một) đứa trẻ} hay tương đương với phát biểu \textit{ObjectSomeValuesFrom( a:fatherOf a:Kid )}.
 
-\paragraph{Universal Quantification} - mô tả lớp $ObjectAllValuesFrom($ $OPE$ $CE)$ thể hiện mối quan hệ giữa những cá thể được kết nối bởi mô tả thuộc tính đối tượng $OPE$ đến \textbf{tất cả} các cá thể thuộc mô tả lớp $CE$. Ví dụ: 
+\paragraph{Universal Quantification} Mô tả lớp \textit{ObjectAllValuesFrom( OPE CE)} thể hiện mối quan hệ giữa những cá thể được kết nối bởi mô tả thuộc tính đối tượng $OPE$ đến \textbf{tất cả} các cá thể thuộc mô tả lớp $CE$. Ví dụ: 
 \begin{verbatim}
 ObjectPropertyAssertion( a:hasPet a:Peter a:Tom)
 // Tom là vật nuôi của Peter
@@ -397,36 +405,32 @@ ClassAssertion( a:Cat a:Tom)
 // Tom là một con mèo
 ClassAssertion( ObjectMaxCardinality( 1 a:hasPet ) a:Peter )
 // Peter chỉ được phép có một vật nuôi
-ObjectAllValuesFrom( a:hasPet a:Cat)
-// Peter thuộc mô tả lớp trên "có tất cả vật nuôi là mèo" 
-// vì Peter chỉ được nuôi 1 con và Tom là mèo
 \end{verbatim}
+\textbf{Giải thích:} với khai báo như trên, một hàm ý sẽ được suy ra mà không cần khai báo đó là \textit{Peter thuộc mô tả lớp "có tất cả vật nuôi là mèo"} hay tương đương với phát biểu \textit{ObjectAllValuesFrom( a:hasPet a:Cat )}.
 
-\paragraph{Individual Value Restriction} - mô tả  $ObjectHasValue($ $OPE$ $a)$ thể hiện mối quan hệ giữa tất cả các cá thể được kết nối bởi mô tả thuộc tính đối tượng $OPE$ và cá thể $a$. Ví dụ:
+\paragraph{Individual Value Restriction} Mô tả  \textit{ObjectHasValue(OPE a)} thể hiện mối quan hệ giữa tất cả các cá thể được kết nối bởi mô tả thuộc tính đối tượng \textit{OPE} và cá thể $a$. Ví dụ:
 \begin{verbatim}
 ObjectPropertyAssertion( a:fatherOf // Peter là ba của Steve
 a:Peter a:Steve)
-// Vậy Peter thuộc mô tả lớp sau
-ObjectHasValue( a:fatherOf a:Steve )
 \end{verbatim}
+\textbf{Giải thích:} với khai báo như trên, \textit{Peter thuộc mô tả lớp sau} mà không cần khai báo là \textit{ObjectHasValue( a:fatherOf a:Steve )}.
 
-\paragraph{Self-Restriction} - mô tả $ObjectHasSelf($ $OPE$ $)$ thể hiện mối quan hệ giữa tất cả các cá thể được kết nối bởi mô tả thuộc tính đối tượng $OPE$ với chính chúng. Ví dụ:
+\paragraph{Self-Restriction} Mô tả \textit{ObjectHasSelf( OPE )} thể hiện mối quan hệ giữa tất cả các cá thể được kết nối bởi mô tả thuộc tính đối tượng \textit{OPE} với chính chúng. Ví dụ:
 \begin{verbatim}
 ObjectPropertyAssertion( a:quayQuanhTruc a:TraiDat a:TraiDat )	
 // Trái đất quay quan trục của trái đất.
-// Vì vậy a:TraiDat là thuộc mô tả lớp sau
-ObjectHasSelf( a:quayQuanhTruc)
 \end{verbatim}
+\textbf{Giải thích:} với khai báo như trên, \textit{a:TraiDat thuộc mô tả lớp sau} mà không cần khai báo là \textit{ObjectHasSelf( a:quayQuanhTruc )}.
 
 % Object Property Cardinality Restrictions
 \subsubsection{Ràng buộc thuộc tính đối tượng theo số lượng}
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=120mm]{Figures/ce_2.png}
+	\includegraphics[width=150mm]{Figures/ce_2.png}
 	\caption{Object Property Cardinality Restrictions trong OWL 2\label{overflow}}
 \end{figure}
 Các mô tả lớp trong OWL 2 có thể được tạo ra bằng cách đặt ra những số lượng hạn chế các cá thể mà các thuộc tính đối tượng có thể liên kết.
-\paragraph{Số lượng tối thiểu (Minimum Cardinality)} - mô tả $ ObjectMinCardinality($ $n$ $OPE$  $CE)$ cbiểu diễn mọi các thể được kết nối bởi mô tả thuộc tính đối tượng $OPE$ đến số lượng tối thiểu $n$ cá thể (khác nhau) thuộc mô tả lớp $CE$ với $n$ là số nguyên không âm. Nếu $CE$ không được khai báo trong phát biểu trên mặc định sẽ là $owl:Thing$. Ví dụ:
+\paragraph{Số lượng tối thiểu (Minimum Cardinality)} - mô tả \textit{ObjectMinCardinality(n OPE  CE)} cbiểu diễn mọi các thể được kết nối bởi mô tả thuộc tính đối tượng \textit{OPE} đến số lượng tối thiểu $n$ cá thể (khác nhau) thuộc mô tả lớp \textit{CE} với $n$ là số nguyên không âm. Nếu \textit{CE} không được khai báo trong phát biểu trên mặc định sẽ là $owl:Thing$. Ví dụ:
 \begin{verbatim}
 ObjectPropertyAssertion( a:fatherOf 
 a:Peter a:Steve )
@@ -435,19 +439,19 @@ a:Peter a:Bush )
 ClassAssertion( a:Kid a:Steve )
 ClassAssertion( a:Kid a:Bush )
 \end{verbatim}
-Giải thích: với các điều kiện như trên thì Peter sẽ là thành viên của mô tả lớp sau 
-$ObjectMinCardinality($ $2$ $a:fatherOf$ $a:Kid)$ - Peter là bố của ít nhất 2 đứa trẻ.
+\textbf{Giải thích:} với các điều kiện như trên thì Peter sẽ được ngầm hiểu thành viên của mô tả lớp sau 
+$ObjectMinCardinality($ 2 a:fatherOf a:Kid $)$ - Peter là bố của ít nhất 2 đứa trẻ.
 
-\paragraph{Số lượng tối đa (Maximum Cardinality)} - mô tả $ ObjectMaxCardinality($ $n$ $OPE$  $CE)$ biểu diễn mọi các thể được kết nối bởi mô tả thuộc tính đối tượng $OPE$ đến số lượng tối đa $n$ cá thể (khác nhau) thuộc mô tả lớp $CE$ với $n$ là số nguyên không âm. Nếu $CE$ không được khai báo trong phát biểu trên mặc định sẽ là $owl:Thing$. Ví dụ:
+\paragraph{Số lượng tối đa (Maximum Cardinality)} Mô tả \textit{ObjectMaxCardinality( n OPE CE)} biểu diễn mọi các thể được kết nối bởi mô tả thuộc tính đối tượng $OPE$ đến số lượng tối đa $n$ cá thể (khác nhau) thuộc mô tả lớp \textit{CE} với $n$ là số nguyên không âm. Nếu $CE$ không được khai báo trong phát biểu trên mặc định sẽ là \textit{owl:Thing}. Ví dụ:
 \begin{verbatim}
 ObjectPropertyAssertion( a:hasPet a:Peter a:Tom)
 // Peter có vật nuôi là Tom
 ClassAssertion( ObjectMaxCardinality( 1 a:hasPet ) a:Peter )
 // Peter thuộc lớp "những ai có tối đa 1 vật nuôi"
 \end{verbatim}
-Giải thích: theo 2 điều kiệu trên thì Peter sẽ thuộc mô tả lớp $ObjectMaxCardinality($ $2$ $a:hasPet$ $)$ chỉ những "ai có tối đa 2 vật nuôi" (số vật nuôi <= 2), vì 2 phát biểu đầu tiên chỉ ra rằng Peter chắc chắn chỉ có một vật nuôi.
+\textbf{Giải thích:} theo 2 điều kiệu trên thì Peter sẽ thuộc mô tả lớp \textit{ObjectMaxCardinality( 2 a:hasPet )} chỉ những "ai có tối đa 2 vật nuôi" (số vật nuôi <= 2), vì 2 phát biểu đầu tiên chỉ ra rằng Peter chắc chắn chỉ có một vật nuôi.
 
-\paragraph{Số lượng chính xác (Exact Cardinality)} - mô tả $ObjectExactCardinality($ $n$ $OPE$  $CE)$ biểu diễn mọi các thể được kết nối bởi mô tả thuộc tính đối tượng $OPE$ đến số lượng chính xác $n$ cá thể (khác nhau) thuộc mô tả lớp $CE$ với $n$ là số nguyên không âm. Nếu $CE$ không được khai báo trong phát biểu trên mặc định sẽ là $owl:Thing$. Mô tả lớp này tương được khi lấy giao của 2 mô tả số lượng tối đa và số lượng tối thiểu cùng $n$.
+\paragraph{Số lượng chính xác (Exact Cardinality)} - mô tả \textit{ObjectExactCardinality( n OPE CE)} biểu diễn mọi các thể được kết nối bởi mô tả thuộc tính đối tượng \textit{OPE} đến số lượng chính xác $n$ cá thể (khác nhau) thuộc mô tả lớp $CE$ với $n$ là số nguyên không âm. Nếu \textit{CE} không được khai báo trong phát biểu trên mặc định sẽ là \textit{owl:Thing}. Mô tả lớp này tương được khi lấy giao của 2 mô tả số lượng tối đa và số lượng tối thiểu cùng $n$.
 \begin{verbatim}
 ObjectIntersectionOf( ObjectMinCardinality( n OPE CE ) 
 ObjectMaxCardinality( n OPE CE ) ).
@@ -457,124 +461,133 @@ ObjectMaxCardinality( n OPE CE ) ).
 \subsubsection{Ràng buộc cho thuộc tính dữ liệu (Data Property Restrictions)}
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=120mm]{Figures/ce_3.png}
+	\includegraphics[width=150mm]{Figures/ce_3.png}
 	\caption{Data Property Restrictions trong OWL 2\label{overflow}}
 \end{figure}
 Mô tả lớp dạng này được tạo ra bằng cách đặc các ràng buộc về kiểu dữ liệu, giới hạn các giá trị dữ liệu lên mô tả thuộc tính dữ liệu (data property expression) như trong hình. Những mô tả này cũng tương tự như ràng buộc thuộc tính đối tượng vừa nêu ra ở trên
 
-\paragraph{Existential Quantification} - một mô tả lớp $DataSomeValuesFrom($ $DPE_{1}$ ... $DPE_{n}$ $DR)$ gồm $n$ mô tả thuộc tính dữ liệu $DPE_{i}$, $1<=i<=n$, và một miền dữ liệu (data range) $DR$ với số lượng tham số phải bằng $n$. Mô tả lớp này biểu diễn mối quan hệ dữ liệu giữa tất cả các cá thể kết nối với $DPE_{i}$ tới các trực nghĩa $lt_{i}$, $1<=i<=n$ với $($ $lt_{1}$ ... $lt_{n}$ $)$ trong $DR$. Ví dụ:
+%% Existential Quantification
+\paragraph{Existential Quantification} Một mô tả lớp \textit{DataSomeValuesFrom(} $DPE_{1}$ ... $DPE_{n}$ $DR$ \textit{)} gồm $n$ mô tả thuộc tính dữ liệu $DPE_{i}$, $1<=i<=n$, và một miền dữ liệu (data range) $DR$ với số lượng tham số phải bằng $n$. Mô tả lớp này biểu diễn mối quan hệ dữ liệu giữa tất cả các cá thể kết nối với $DPE_{i}$ tới các trực nghĩa $lt_{i}$, $1<=i<=n$ với $($ $lt_{1}$ ... $lt_{n}$ $)$ trong $DR$. Ví dụ:
 \begin{verbatim}
 DataPropertyAssertion( a:hasAge a:Steve "17"^^xsd:integer ) // Steve 17 tuổi.
 \end{verbatim}
-Vì Steve 17 tuổi nên chúng ta ngầm hiểu rằng Steve thuộc những ai có số tuổi là số nguyên và không lớn hơn 20 tuổi, tương đương phát biểu sau
+\textbf{Giải thích:} Vì Steve 17 tuổi nên chúng ta ngầm hiểu rằng Steve thuộc những ai có số tuổi là số nguyên và không lớn hơn 20 tuổi, tương đương phát biểu sau
 \begin{verbatim}
 DataSomeValuesFrom( a:hasAge 
     DatatypeRestriction( xsd:integer xsd:maxExclusive "20"^^xsd:integer ) )
 \end{verbatim}
 
-\paragraph{Universal Quantification} - một mô tả lớp $DataAllValuesFrom($ $DPE_{1}$ ... $DPE_{n}$ $DR)$ gồm $n$ mô tả thuộc tính dữ liệu $DPE_{i}$, $1<=i<=n$, và một miền dữ liệu (data range) $DR$ với số lượng tham số phải bằng $n$. Mô tả lớp này biểu diễn mối quan hệ dữ liệu giữa tất cả các cá thể \textbf{chỉ} \textit{(only)} kết nối với $DPE_{i}$ tới các trực nghĩa $lt_{i}$, $1<=i<=n$ với $($ $lt_{1}$ ... $lt_{n}$ $)$ trong $DR$. Ví dụ: 
-
+%% Universal Quantification
+\paragraph{Universal Quantification} Một mô tả lớp \textit{DataAllValuesFrom(} $DPE_{1}$ ... $DPE_{n}$ $DR$ \textit{)} gồm $n$ mô tả thuộc tính dữ liệu $DPE_{i}$, $1<=i<=n$, và một miền dữ liệu (data range) $DR$ với số lượng tham số phải bằng $n$. Mô tả lớp này biểu diễn mối quan hệ dữ liệu giữa tất cả các cá thể \textbf{chỉ} \textit{(only)} kết nối với $DPE_{i}$ tới các trực nghĩa $lt_{i}$, $1<=i<=n$ với $($ $lt_{1}$ ... $lt_{n}$ $)$ trong $DR$. Ví dụ: 
 \begin{verbatim}
 DataPropertyAssertion( a:hasZIP _:a1 "70000"^^xsd:integer ) 
 // Mã vùng của _:a1 là số nguyên 70000
 FunctionalDataProperty( a:hasZIP) 
 // Mỗi đối tượng chỉ có duy nhất một mã vùng
 \end{verbatim}
-Mã vùng của một số quốc gia như Anh và Canada là dạng chuỗi (chứa ký tự và số), dựa vào 2 phát biểu trên chúng ta có thể hiểu rằng mã vùng của \verb|_a:1| thuộc mô tả những mã vùng \textbf{chỉ} gồm số nguyên $DataAllValuesFrom( a:hasZIP xsd:integer )$
+\textbf{Giải thích:} Mã vùng của một số quốc gia như Anh và Canada là dạng chuỗi (chứa ký tự và số), dựa vào 2 phát biểu trên chúng ta có thể hiểu rằng mã vùng của \verb|_a:1| thuộc mô tả những mã vùng \textbf{chỉ} gồm số nguyên $DataAllValuesFrom( a:hasZIP xsd:integer )$
 
+% Literal Value Restriction
 \paragraph{Ràng buộc bằng giá trị trực nghĩa - Literal Value Restriction}
-Một mô tả $DataHasValue($ $DPE$ $lt)$ gồm một mô tả thuộc tính dữ liệu $DPE$ và một trực nghĩa $lt$, nó biểu diễn quan hệ của những cá thể nào qua $DPE$ tới $lt$. Ví dụ:
+Một mô tả \textit{DataHasValue(} $DPE$ $lt$ \textit{)} gồm một mô tả thuộc tính dữ liệu \textit{DPE} và một trực nghĩa $lt$, nó biểu diễn quan hệ của những cá thể nào qua \textit{DPE} tới $lt$. Ví dụ:
 \begin{verbatim}
 DataPropertyAssertion( a:hasAge a:Steve "17"^^xsd:integer )
 \end{verbatim}
-Steve là thành viên của mô tả lớp sau $DataHasValue($ $a:hasAge$ $"17"^^xsd:integer$ $)$ - những ai 17 tuổi.
+\textbf{Giải thích:} Steve là thành viên của mô tả lớp sau mà không cần khai báo "những ai 17 tuổi".
+\begin{verbatim}
+DataHasValue( a:hasAge "17"^^xsd:integer )
+\end{verbatim}
 
 % Data Property Cardinality Restrictions
 \subsubsection{Ràng buộc thuộc tính dữ liệu theo số lượng}
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=120mm]{Figures/ce_4.png}
+	\includegraphics[width=150mm]{Figures/ce_4.png}
 	\caption{Data Property Cardinality Restrictions trong OWL 2\label{overflow}}
 \end{figure}
 Tương tự ràng buộc thuộc tính đối tượng theo số lượng, OWL 2 cũng cho phép chúng ta tạo ra các mô tả lớp bằng cách các giá trị dữ liệu ( thay vì cá thể) mà thuộc tính dữ liệu có thể liên kết đến. Cấu trúc được mô tả như trong hình.
-\paragraph{Số lượng tối thiểu (Minimum Cardinality)} - Một mô tả lớp $DataMinCardinality($ $n$ $DPE$ $DR)$  biểu diễn mọi cá thể được kết nối bởi thuộc tính dữ liệu $DPE$ đến số lượng tối thiểu $n$ các trực nghĩa khác nhau thuộc miền dữ liệu  $DR$ với $n$ số nguyên không âm. Nếu $DR$ không được khai báo trong phát biểu trên mặc định sẽ là $rdfs:Literal$. Ví dụ:
+
+%% Minimum Cardinality)
+\paragraph{Số lượng tối thiểu (Minimum Cardinality)} Một mô tả lớp \textit{DataMinCardinality( n DPE DR)}  biểu diễn mọi cá thể được kết nối bởi thuộc tính dữ liệu \textit{DPE} đến số lượng tối thiểu $n$ các trực nghĩa khác nhau thuộc miền dữ liệu  \textit{DR} với $n$ số nguyên không âm. Nếu \textit{DR} không được khai báo trong phát biểu trên mặc định sẽ là \textit{rdfs:Literal}. Ví dụ:
 \begin{verbatim}
 DataPropertyAssertion( a:hasPhoneNumber a:Steve "0123456789" )
 DataPropertyAssertion( a:hasPhoneNumber a:Steve "0987654321" )
 \end{verbatim}
-Với 2 phát biểu như trên tồn tại, có thể hiểu Steve thuộc lớp những ai có ít nhất 2 số điện thoại $DataMinCardinality($ $2$ $a:hasPhoneNumber)$.
+\textbf{Giải thích:} Với 2 phát biểu như trên tồn tại, có thể hiểu Steve thuộc lớp những ai có ít nhất 2 số điện thoại \textit{DataMinCardinality(2 a:hasPhoneNumber)}.
 
-\paragraph{Số lượng tối đa (Maximum Cardinality)} - Một mô tả lớp $DataMaxCardinality($ $n$ $DPE$ $DR)$ biểu diễn mọi cá thể được kết nối bởi thuộc tính dữ liệu $DPE$ đến số lượng tối đa $n$ các trực nghĩa khác nhau thuộc miền dữ liệu  $DR$ với $n$ số nguyên không âm. Nếu $DR$ không được khai báo trong phát biểu trên mặc định sẽ là $rdfs:Literal$. Ví dụ:
+%% Maximum Cardinality
+\paragraph{Số lượng tối đa (Maximum Cardinality)} Một mô tả lớp \textit{DataMaxCardinality( n DPE DR)} biểu diễn mọi cá thể được kết nối bởi thuộc tính dữ liệu $DPE$ đến số lượng tối đa $n$ các trực nghĩa khác nhau thuộc miền dữ liệu  $DR$ với $n$ số nguyên không âm. Nếu $DR$ không được khai báo trong phát biểu trên mặc định sẽ là $rdfs:Literal$. Ví dụ:
 \begin{verbatim}
 DataPropertyAssertion( a:hasID a:Steve "0001" ) // Steve số CMND là 0001
 FunctionalDataProperty( a:hasID ) // Mỗi người chỉ có duy nhất một số CMND
 \end{verbatim}
-Với 2 phát biểu như trên tồn tại, có thể hiểu Steve thuộc lớp "những ai có nhiều nhất 2 số CMND" ( số CMND <=2), $DataMaxCardinality($ $2$ $a:hasID)$.
+\textbf{Giải thích:} Với 2 phát biểu như trên tồn tại, có thể hiểu Steve thuộc lớp "những ai có nhiều nhất 2 số CMND" ( số CMND <=2), \textit{DataMaxCardinality(2 a:hasID)}.
 
-\paragraph{Số lượng chính xác (Exact Cardinality)} - Một mô tả lớp $DataMaxCardinality($ $n$ $DPE$ $DR)$  biểu diễn mọi cá thể được kết nối bởi thuộc tính dữ liệu $DPE$ đến số lượng chính xác $n$ các trực nghĩa khác nhau thuộc miền dữ liệu  $DR$ với $n$ số nguyên không âm. Nếu $DR$ không được khai báo trong phát biểu trên mặc định sẽ là $rdfs:Literal$. Ví dụ:
+%% Exact Cardinality
+\paragraph{Số lượng chính xác (Exact Cardinality)} Một mô tả lớp \textit{DataExactCardinality( n DPE DR)}  biểu diễn mọi cá thể được kết nối bởi thuộc tính dữ liệu \textit{DPE} đến số lượng chính xác $n$ các trực nghĩa khác nhau thuộc miền dữ liệu  \textit{DR} với $n$ số nguyên không âm. Nếu \textit{DR} không được khai báo trong phát biểu trên mặc định sẽ là \textit{rdfs:Literal}. Ví dụ:
 \begin{verbatim}
 DataPropertyAssertion( a:hasID a:Steve "0001" ) // Steve số CMND là 0001
 FunctionalDataProperty( a:hasID ) // Mỗi người chỉ có duy nhất một số CMND
 \end{verbatim}
-Với 2 phát biểu như trên tồn tại, có thể hiểu Steve thuộc lớp "có duy nhất 1 CMND" $DataExactCardinality($ $1$ $a:hasName)$.
+\textbf{Giải thích:} Với 2 phát biểu như trên tồn tại, có thể hiểu Steve thuộc lớp "có duy nhất 1 CMND" \textit{DataExactCardinality(1 a:hasName)}.
 
-
+% Axioms
 \subsection{Các tiên đề (Axioms)}
 {\let\thefootnote\relax\footnotetext{* Lưu ý:\textit{
 			trong nội dung báo cáo này chúng em sẽ gọi vắng tắt các tiên đề - những phát biểu hiển nhiên đúng trong một lĩnh vực là \textit{những phát biểu} nhằm diễn giải các lý thuyết, nguyên lý trở dễ hiểu hơn.
 		}}
 }
 Thành phần chính của một OWL 2 Ontology chính là một tập hợp gồm các tiên đề \textsuperscript{*} - những phát biểu mà chúng ta cho là đúng trong một lĩnh vực. OWL 2 cung cấp một loạt các loại phát biểu được mở rộng (thừa kế) từ lớp \textbf{Axiom} như trong hình. Các phát biểu có thể là các phát biểu khai báo (declarations), phát biểu về lớp, phát biểu về thuộc tính đối tượng/dữ liệu, phát biểu định nghĩa kiểu dữ liuệ, khóa (HasKey), phát biểu khẳng định (assertions), và các phát biểu để chú thích (annotations). Có thể nói những phát biểu (tiên đề) chính là những viên gạch để chúng ta xây dựng nên các tầng ngữ nghĩa (semantic) cho ontology.
-\begin{figure}[h]
+\begin{figure}[!h]
 	\centering
-	\includegraphics[width=120mm]{Figures/axioms.png}
+	\includegraphics[width=150mm]{Figures/axioms.png}
 	\caption{Các dạng phát biểu của OWL 2\label{overflow}}
 \end{figure}
 
 \subsubsection{Những phát biểu về mô tả lớp - Class Expression Axioms}
 Những phát biểu này cho phép biểu diễn các loại quan hệ giữa những mô tả lớp (Class Expressions) với nhau. Có 4 phát biểu được mở rộng ra từ phát biểu này như trong hình.
-\begin{figure}[h]
+\begin{figure}[!h]
 	\centering
 	\includegraphics[width=120mm]{Figures/classAxiom.png}
 	\caption{Các dạng phát biểu về lớp của OWL 2\label{overflow}}
 \end{figure}
 
-\paragraph{Phát biểu lớp con (SubClass Axioms)} - một phát biểu $SubClassOf($ $CE_{1}$ $CE_{2}$ $)$ nói rằng mô tả lớp $CE_{1}$ là lớp con của mô tả lớp $CE_{2}$. Phát biểu này là phát biểu cơ bản trong OWL 2 được sử dụng để xây dựng một phân cấp lớp trong Ontology. Ví dụ:
+\paragraph{Phát biểu lớp con (SubClass Axioms)} - một phát biểu \textit{SubClassOf(}$CE_{1}$ $CE_{2}$ \textit{)} nói rằng mô tả lớp $CE_{1}$ là lớp con của mô tả lớp $CE_{2}$. Phát biểu này là phát biểu cơ bản trong OWL 2 được sử dụng để xây dựng một phân cấp lớp trong Ontology. Ví dụ:
 \begin{verbatim}
 SubClassOf( a:Driver a:Adult ) // Mỗi tài xế là một người trưởng thành.
 SubClassOf( a:Adult a:Person ) // Mỗi người trưởng thành là một người.
 ClassAssertion (a:Driver a:Steve ) // Steve là một tài xế.
 \end{verbatim}
-Giải thích: nhờ 2 phát biểu đầu tiên, chúng ta ngầm hiểu tài xế cũng là một người trưởng thành, cũng là một người, vì vậy tất cả những cá thể là tài xế, cũng là người trưởng thành và cũng là người -> Steve là cũng là thành viên của 2 lớp $Adult$ và $Person$.
+\textbf{Giải thích:} nhờ 2 phát biểu đầu tiên, chúng ta ngầm hiểu tài xế cũng là một người trưởng thành, cũng là một người, vì vậy tất cả những cá thể là tài xế, cũng là người trưởng thành và cũng là người -> Steve là cũng là thành viên của 2 lớp $Adult$ và $Person$.
 
-\paragraph{Phát biểu lớp tương đương (Equivalent Classes)} - một phát biểu $EquivalentClasses($ $CE_{1}$ $CE_{n}$ $)$ nói rằng mỗi mô tả lớp $CE_{i}$, $1<=i<=n$ đều đồng nghĩa với các tất cả các mô tả lớp còn lại trong phát biểu này. Phát biểu $EquivalentClasses($ $CE_{2}$ $CE_{1}$ $)$ tương đương $EquivalentClasses($ $CE_{1}$ $CE_{2}$ $)$. Ví dụ:
+\paragraph{Phát biểu lớp tương đương (Equivalent Classes)} - một phát biểu \textit{EquivalentClasses( $CE_{1}$ $CE_{n}$ )} nói rằng mỗi mô tả lớp $CE_{i}$, $1<=i<=n$ đều đồng nghĩa với các tất cả các mô tả lớp còn lại trong phát biểu này. Phát biểu \textit{EquivalentClasses( $CE_{2}$ $CE_{1}$ )} tương đương \textit{EquivalentClasses( $CE_{1}$ $CE_{2}$ )}. Ví dụ:
 \begin{verbatim}
 SubClassOf( a:Bike  a:Bicycle )
 \end{verbatim}
 
-\paragraph{Disjoint Classes} - một phát biểu $DisjointClasses($ $CE_{1}$ ... $CE_{n}$ $)$ nói rằng không cá thể nào của $CE_{i}$ thuộc $CE_{j}$ và ngược lại với $i \neq j$, $1<=i,j<=n$. Ví dụ:
+\paragraph{Disjoint Classes} - một phát biểu \textit{DisjointClasses( $CE_{1}$ ... $CE_{n}$ )}nói rằng không cá thể nào của $CE_{i}$ thuộc $CE_{j}$ và ngược lại với $i \neq j$, $1<=i,j<=n$. Ví dụ:
 \begin{verbatim}
 DisjointClasses( a:Man a:Woman )	
 ClassAssertion( a:Man a:Steve )
 \end{verbatim}
-Giải thích: Steve không là nữ - $ObjectComplementOf( a:Girl )$, nếu chúng ta khai báo thêm $ClassAssertion($ $a:Girl$ $a:Steve)$ sẽ làm cho ontology bị thiếu tính nhất quán (sẽ được nếu rõ hơn ở các chương sau).
+\textbf{Giải thích:} Steve không là nữ - \textit{ObjectComplementOf( a:Girl )}, nếu chúng ta khai báo thêm $ClassAssertion($ $a:Girl$ $a:Steve)$ sẽ làm cho ontology bị thiếu tính nhất quán (sẽ được nếu rõ hơn ở các chương sau).
 
 \subsubsection{Phát biểu về thuộc tính đối tượng (Object Property Axioms)}
 Những phát biểu này cho phép biểu diễn các loại quan hệ giữa những mô tả thuộc tính đối tượng (Object Property Expressions) với nhau.
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=120mm]{Figures/objectpropertyAxiom.png}
+	\includegraphics[width=160mm]{Figures/objectpropertyAxiom.png}
 	\caption{Các dạng phát biểu về thuộc tính đối tượng của OWL 2 (phần 1)\label{overflow}}
 \end{figure}
 
-\paragraph{Thuộc tính đối tượng con (SubObjectPropertyOf)} - một phát biểu $SubObjectPropertyOf($ $OPE_{1}$ $OPE_{2}$ $)$ nói rằng mô tả thuộc tính đối tượng $OPE_{1}$ là thuộc tính con của mô tả thuộc tính đối tượng $OPE_{2}$, có nghĩa nếu một cá thể $x$ được liên kết bởi $OPE_{1}$ với $y$ thì $x$ cũng được liên kết bởi $OPE_{2}$ đến $y$. Ví dụ:
+\paragraph{Thuộc tính đối tượng con (SubObjectPropertyOf)} - một phát biểu \textit{SubObjectPropertyOf( $OPE_{1}$ $OPE_{2}$ )} nói rằng mô tả thuộc tính đối tượng $OPE_{1}$ là thuộc tính con của mô tả thuộc tính đối tượng $OPE_{2}$, có nghĩa nếu một cá thể $x$ được liên kết bởi $OPE_{1}$ với $y$ thì $x$ cũng được liên kết bởi $OPE_{2}$ đến $y$. Ví dụ:
 \begin{verbatim}
 SubObjectPropertyOf( a:hasCat a:hasPet )     
 ObjectPropertyAssertion( a:hasCat a:Peter a:Tom) // Peter có con mèo là Tom
 \end{verbatim}
-Giải thích: ai có mèo thì cũng có thể hiểu là người đó có vật nuôi theo phát biểu đầu tiên, dựa theo phát biểu thứ hai chúng ta có ngầm hiểu là \textit{Peter có vật nuôi là Tom} - $ObjectPropertyAssertion($ $a:hasPet$ $a:Peter$ $a:Brian$ $)$.
+\textbf{Giải thích:} ai có mèo thì cũng có thể hiểu là người đó có vật nuôi theo phát biểu đầu tiên, dựa theo phát biểu thứ hai chúng ta có ngầm hiểu là \textit{Peter có vật nuôi là Tom} - \textit{ObjectPropertyAssertion( a:hasPet a:Peter a:Brian )}.
 
-\paragraph{Thuộc tính đối tượng tương đương (Equivalent Object Properties)} - một phát biểu $EquivalentObjectProperties($ $OPE_{1}$ ... $OPE_{n}$ $)$ nói rằng mỗi mô tả thuộc tính $OPE_{i}$, $1<=i<=n$ đều đồng nghĩa với các tất cả các mô tả thuộc tính còn lại trong phát biểu này phát biểu $EquivalentObjectProperties($ $OPE_{2}$ $OPE_{1}$ $)$ tương đương $EquivalentObjectProperties($ $OPE_{1}$ $OPE_{2}$ $)$. Ví dụ:
+\paragraph{Thuộc tính đối tượng tương đương (Equivalent Object Properties)} - một phát biểu \textit{EquivalentObjectProperties( $OPE_{1}$ ... $OPE_{n}$ )} nói rằng mỗi mô tả thuộc tính $OPE_{i}$, $1<=i<=n$ đều đồng nghĩa với các tất cả các mô tả thuộc tính còn lại trong phát biểu này phát biểu \textit{EquivalentObjectProperties( $OPE_{2}$ $OPE_{1}$ )} tương đương \textit{EquivalentObjectProperties( $OPE_{1}$ $OPE_{2}$ )}. Ví dụ:
 \begin{verbatim}
 EquivalentObjectProperties( a:hasBrother a:hasMaleSibling ) 
 ObjectPropertyAssertion( a:hasBrother a:Chris a:Steve )     
@@ -582,64 +595,68 @@ ObjectPropertyAssertion( a:hasBrother a:Chris a:Steve )
 ObjectPropertyAssertion( a:hasMaleSibling a:Steve a:Chris ) 
 // Chris là anh chị em ruột (mà là nam) của Steve
 \end{verbatim}
-Giải thích: do phát biểu đầu tiên có nghĩa "có anh" đồng nghĩa với "có anh chị em ruột (là nam)", từ 2 phát biểu sau chúng ta có thể suy ra các phát biểu sau mà cần khai báo chúng $ObjectPropertyAssertion($ $a:hasMaleSibling$ $a:Chris$ $a:Steve)$ và $ObjectPropertyAssertion($ $a:hasBrother$ $a:Stewie$ $a:Chris)$.
+\textbf{Giải thích:} do phát biểu đầu tiên có nghĩa "có anh" đồng nghĩa với "có anh chị em ruột (là nam)", từ 2 phát biểu sau chúng ta có thể suy ra các phát biểu sau mà cần khai báo chúng \textit{ObjectPropertyAssertion(a:hasMaleSibling a:Chris a:Steve)} và \textit{ObjectPropertyAssertion(a:hasBrother a:Stewie a:Chris)}.
 
-\paragraph{Disjoint Object Properties} - ột phát biểu $DisjointObjectProperties($ $OPE_{1}$ ... $OPE_{n}$ $)$ nói rằng không cá thể được liên kết bởi cả của $OPE_{i}$ và $OPE_{j}$ với $i \neq j$, $1<=i,j<=n$. Ví dụ:
+\paragraph{Disjoint Object Properties} - ột phát biểu \textit{DisjointObjectProperties($OPE_{1}$ ... $OPE_{n}$)} nói rằng không cá thể được liên kết bởi cả của $OPE_{i}$ và $OPE_{j}$ với $i \neq j$, $1<=i,j<=n$. Ví dụ:
 \begin{verbatim}
 DisjointObjectProperties( a:hasFather a:hasMother ) Có ba khác có mẹ.
 ObjectPropertyAssertion( a:hasFather a:Steve a:Peter )	Peter là ba của Steve.
 ObjectPropertyAssertion( a:hasMother a:Steve a:Lois ) Lois là mẹ của Steve.
 \end{verbatim}
-Nếu thêm phát biểu $ObjectPropertyAssertion($ $a:hasMother$ $a:Steve$ $a:Peter)$ sẽ dẫn đến tính thiếu nhất quán.
+Nếu thêm phát biểu \textit{ObjectPropertyAssertion(a:hasMother a:Steve a:Peter)} sẽ dẫn đến tính thiếu nhất quán.
 
-\paragraph{Thuộc tính đối tượng nghịch đảo} - phát biểu $InverseObjectProperties($ $OPE_{1}$ $OPE_{2}$ $)$ nói rằng thuộc tính đối tượng $OPE_{2}$ là nghịch đảo của $OPE_{1}$. Nếu cá thể $x$ được kết nối bởi $OPE_{1}$ tới cá thể $y$, thì $y$ sẽ được kết nối bởi $OPE_{2}$ tới $x$ và ngược lại. Ví dụ:
+\paragraph{Thuộc tính đối tượng nghịch đảo} - \textit{phát biểu InverseObjectProperties( $OPE_{1}$ $OPE_{2}$ )} nói rằng thuộc tính đối tượng $OPE_{2}$ là nghịch đảo của $OPE_{1}$. Nếu cá thể $x$ được kết nối bởi $OPE_{1}$ tới cá thể $y$, thì $y$ sẽ được kết nối bởi $OPE_{2}$ tới $x$ và ngược lại. Ví dụ:
 \begin{verbatim}
 InverseObjectProperties( a:parentOf a:childOf )
-ObjectPropertyAssertion( a:childOf a:Peter a:Steve )	Steve là con của Peter
+ObjectPropertyAssertion( a:childOf a:Peter a:Steve ) 
+// Steve là con của Peter
 \end{verbatim}
-Giải thích: phát biểu đầu có thể hiểu "nếu x là con y" thì "y là ba mẹ của x", do vậy từ các phát biểu trên ta suy ra được Peter là ba mẹ của Steve tương đương $ObjectPropertyAssertion($ $a:parentOf$ $a:Steve$ $a:Peter)$.
+\textbf{Giải thích:} phát biểu đầu có thể hiểu "nếu x là con y" thì "y là ba mẹ của x", do vậy từ các phát biểu trên ta suy ra được Peter là ba mẹ của Steve tương đương \textit{ObjectPropertyAssertion( a:parentOf a:Steve a:Peter)}.
 
-\paragraph{Domain của thuộc tính đối tượng (Object Property Domain)} - phát biểu $ObjectPropertyDomain($ $OPE$ $CE)$ nêu rõ domain của thuộc tính đối tượng là mô tả lớp $CE$ -  nếu một cá thể $x$ được liên kết bởi $OPE$ tới cá thể nào đó, thì $x$ phải thuộc mô tả lớp $CE$. Mặc định nếu không có khai báo này thì domain thuộc tính đối tượng sẽ là $owl:Thing$
+\paragraph{Domain của thuộc tính đối tượng (Object Property Domain)} - phát biểu \textit{ObjectPropertyDomain(OPE CE)} nêu rõ domain của thuộc tính đối tượng là mô tả lớp \textit{CE} -  nếu một cá thể $x$ được liên kết bởi \textit{OPE} tới cá thể nào đó, thì $x$ phải thuộc mô tả lớp \textit{CE}. Mặc định nếu không có khai báo này thì domain thuộc tính đối tượng sẽ là \textit{owl:Thing}
 \begin{verbatim}
-ObjectProertyDomain( a:hasCat a:Person ) // Con người mới nuôi mèo
-ObjectPropertyAssertion( a:hasCat a:Peter a:Tom ) // Tom là con mèo của Peter
+ObjectProertyDomain( a:hasCat a:Person ) 
+// Con người mới nuôi mèo
+ObjectPropertyAssertion( a:hasCat a:Peter a:Tom ) 
+// Tom là con mèo của Peter
 \end{verbatim}
-Giải thích: mặc dù không khai báo Peter là người nhưng xét theo phát biểu đầu tiên chúng ta ngầm hiểu Peter là người, tương đương phát biểu $ClassAssertion($ $a:Person$ $a:Peter)$.
+\textbf{Giải thích:} mặc dù không khai báo Peter là người nhưng xét theo phát biểu đầu tiên chúng ta ngầm hiểu Peter là người, tương đương phát biểu \textit{ClassAssertion(a:Person a:Peter)}.
 
-\paragraph{Miền giới hạn của thuộc tính đối tượng (Object Property Range)} - phát biểu $ObjectPropertyRange($ $OPE$ $CE)$ nêu rõ miền giới hạn (range) của thuộc tính đối tượng là mô tả lớp $CE$ -  nếu cá thể nào đó được liên kết bới $OPE$ tới cá thể $x$ , thì $x$ phải thuộc mô tả lớp $CE$. Mặc định nếu không có khai báo này thì range của thuộc tính đối tượng sẽ là $owl:Thing$. Ví dụ:
+\paragraph{Miền giới hạn của thuộc tính đối tượng (Object Property Range)} - phát biểu \textit{ObjectPropertyRange( $OPE$ $CE$)} nêu rõ miền giới hạn (range) của thuộc tính đối tượng là mô tả lớp \textit{CE} -  nếu cá thể nào đó được liên kết bới $OPE$ tới cá thể $x$ , thì $x$ phải thuộc mô tả lớp $CE$. Mặc định nếu không có khai báo này thì range của thuộc tính đối tượng sẽ là $owl:Thing$. Ví dụ:
 \begin{verbatim}
 ObjectProertyRange( a:hasPet a:Cat ) 
 // ai có vật nuôi thì bắt buộc đó phải là con mèo
-ObjectPropertyAssertion( a:hasPet a:Peter a:Tom ) // Tom là vật nuôi của Peter
+ObjectPropertyAssertion( a:hasPet a:Peter a:Tom ) 
+// Tom là vật nuôi của Peter
 \end{verbatim}
-Giải thích: mặc dù không khai báo Tom là con mèo nhưng do phát biểu đầu tiên, chúng ta ngầm hiều Tom là con mèo, tương đương phát biểu $ClassAssertion($ $a:Cat$ $a:Tom)$.
-\\
+\textbf{Giải thích:} mặc dù không khai báo Tom là con mèo nhưng do phát biểu đầu tiên, chúng ta ngầm hiều Tom là con mèo, tương đương phát biểu \textit{ClassAssertion($a:Cat$ $a:Tom$)}.
+
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=120mm]{Figures/objectpropertyAxiom1.png}
+	\includegraphics[width=150mm, height=100mm]{Figures/objectpropertyAxiom1.png}
 	\caption{Các dạng phát biểu về thuộc tính đối tượng của OWL 2 (phần 2) \label{overflow}}
 \end{figure}
-Ngoài các dạng phát biểu được nêu, mô tả thuộc tính đối tượng còn có thêm các phát biểu trong hình sau, nhằm quy định tính chất của mô tả thuộc tính đối tượng hay giữa các cá thể được kết nối bằng các thuộc tính đối tượng này, chẳng hạn thuộc tính $SymmetricObjectProperty$ quy định mô tả thuộc tính đối tượng có tính đối xứng - nếu $x$ là bạn $y$ thì $y$ cũng là bạn $x$. 
+Ngoài các dạng phát biểu được nêu, mô tả thuộc tính đối tượng còn có thêm các phát biểu trong hình sau, nhằm quy định tính chất của mô tả thuộc tính đối tượng hay giữa các cá thể được kết nối bằng các thuộc tính đối tượng này, chẳng hạn thuộc tính\textit{ SymmetricObjectProperty} quy định mô tả thuộc tính đối tượng có tính đối xứng - nếu $x$ là bạn $y$ thì $y$ cũng là bạn $x$. 
 
-\paragraph{Functional Object Properties} - phát biểu \textit{FunctionalObjectProperty( OPE )} quy định với từng cá thể $x$, chỉ tồn tại nhiều nhất một cá thể $y$ mà $x$ được kết nối với $y$ qua $OPE$. Ví dụ mỗi đối tượng chỉ có tối đa một người cha - $FunctionalObjectProperty($ $a:hasFather$ $)$. 
+\paragraph{Functional Object Properties} phát biểu \textit{FunctionalObjectProperty( OPE )} quy định với từng cá thể $x$, chỉ tồn tại nhiều nhất một cá thể $y$ mà $x$ được kết nối với $y$ qua $OPE$. Ví dụ mỗi đối tượng chỉ có tối đa một người cha - \textit{FunctionalObjectProperty( a:hasFather )}. 
 
-\paragraph{Inverse-Functional Object Properties} - phát biểu \textit{InverseFunctionalObjectProperty( OPE )} quy định với từng cá thể $x$, chỉ tồn tại nhiều nhất một cá thể $y$ mà $y$ được kết nối qua $OPE$ tới $x$ . Ví dụ mỗi tương tự $FunctionalObjectProperty(OPE)$.
+\paragraph{Inverse-Functional Object Properties} phát biểu \textit{InverseFunctionalObjectProperty( OPE )} quy định với từng cá thể $x$, chỉ tồn tại nhiều nhất một cá thể $y$ mà $y$ được kết nối qua \textit{OPE} tới $x$ . Ví dụ mỗi tương tự \textit{FunctionalObjectProperty(OPE)}.
 
-\paragraph{Reflexive Object Properties} - phát biểu \textit{ReflexiveObjectProperty( OPE )} nói rằng mô tả thuộc tính có tính phản xạ, nghĩa là với từng kết nối bởi $OPE$ tới chính nó. Ví dụ: $ReflexiveObjectProperty($ $a:knows$ $)$, ai cũng biết bản thân họ, với khai báo $ClassAssertion(a:Person$ $a:Peter)$ thì có thể suy ra được phát biểu sau $ObjectPropertyAssertion(a:knows$ $a:Peter$ $a:Peter)$.
+\paragraph{Reflexive Object Properties} phát biểu \textit{ReflexiveObjectProperty( OPE )} nói rằng mô tả thuộc tính có tính phản xạ, nghĩa là với từng kết nối bởi \textit{OPE} tới chính nó. Ví dụ: \textit{ReflexiveObjectProperty(a:knows)}, ai cũng biết bản thân họ, với khai báo \textit{ClassAssertion(a:Person a:Peter)} thì có thể suy ra được phát biểu sau \textit{ObjectPropertyAssertion(a:knows a:Peter a:Peter)}.
 
-\paragraph{Irreflexive Object Properties} - ngược lại với phát biểu trên  \textit{IrreflexiveObjectProperty( OPE )}, không có cá thể nào tự kết nối với chính nó qua $OPE$. Ví dụ: $IrreflexiveObjectProperty($ $a:marriedTo$ $)$, không ai cưới chính mình.
+\paragraph{Irreflexive Object Properties} ngược lại với phát biểu trên  \textit{IrreflexiveObjectProperty( OPE )}, không có cá thể nào tự kết nối với chính nó qua \textit{OPE}. Ví dụ: \textit{IrreflexiveObjectProperty(a:marriedTo)}, không ai cưới chính mình.
 
-\paragraph{Symmetric Object Properties} - phát biểu \textit{SymmetricObjectProperty( OPE )} nói rằng $OPE$ có tính đối xứng, nếu $x$ nối với $y$ qua $OPE$ thì $y$ cũng nối với $x$ bởi $OPE$. Ví dụ: với $SymmetricObjectProperty($ $a:friendOf$ $)$ và $ObjectPropertyAssertion(a:friend$ $a:Peter$ $a:Bush)$ thì chúng ta suy ra được $ObjectPropertyAssertion(a:friend$ $a:Bush$ $a:Peter)$.
+\paragraph{Symmetric Object Properties} phát biểu \textit{SymmetricObjectProperty( OPE )} nói rằng \textit{OPE} có tính đối xứng, nếu $x$ nối với $y$ qua \textit{OPE} thì $y$ cũng nối với $x$ bởi \textit{OPE}. Ví dụ: với\textit{ SymmetricObjectProperty( a:friendOf )} và \textit{ObjectPropertyAssertion(a:friend a:Peter a:Bush)} thì chúng ta suy ra được \textit{ObjectPropertyAssertion(a:friend a:Bush a:Peter)}.
 
-\paragraph{Asymmetric Object Properties} - phát biểu \textit{AsymmetricObjectProperty( OPE )} nói rằng $OPE$ có tính bất đối xứng, nếu $x$ nối với $y$ qua $OPE$, thì $y$ không thể kết nối với $x$ bởi $OPE$. Ví dụ: với $AsymmetricObjectProperty($ $a:parentOf$ $)$  và $ObjectPropertyAssertion(a:parentOf$ $a:Peter$ $a:Bush)$ thì nếu ta thêm thêm phát biểu $ObjectPropertyAssertion(a:parentOf$ $a:Bush$ $a:Peter)$ sẽ làm cho ontology mất tính nhất quán (inconsistent).
+\paragraph{Asymmetric Object Properties} phát biểu \textit{AsymmetricObjectProperty( OPE )} nói rằng \textit{OPE} có tính bất đối xứng, nếu $x$ nối với $y$ qua \textit{OPE}, thì $y$ không thể kết nối với $x$ bởi \textit{OPE}. Ví dụ: với \textit{AsymmetricObjectProperty( a:parentOf )}  và \textit{ObjectPropertyAssertion(a:parentOf a:Peter a:Bush)} thì nếu ta thêm thêm phát biểu \textit{ObjectPropertyAssertion(a:parentOf a:Bush a:Peter)} sẽ làm cho ontology mất tính nhất quán (inconsistent).
 
-\paragraph{Transitive Object Properties} - phát biểu \textit{TransitiveObjectProperty(OPE)} nói rằng $OPE$ có tính bắc cầu, nếu $x$ nối với $y$ bởi $OPE$ và $y$ nối với $z$ cũng bằng $OPE$ thì $x$ nối với $z$ qua $OPE$. Ví dụ:
+\paragraph{Transitive Object Properties} phát biểu \textit{TransitiveObjectProperty(OPE)} nói rằng \textit{OPE} có tính bắc cầu, nếu $x$ nối với $y$ bởi \textit{OPE} và $y$ nối với $z$ cũng bằng \textit{OPE} thì $x$ nối với $z$ qua \textit{OPE}. Ví dụ:
 \begin{verbatim}
 	TransitiveObjectProperty( a:partOf ) 
 	ObjectPropertyAssertion( a:partOf a:KhoaMMT a:UIT )
 	ObjectPropertyAssertion( a:partOf a:UIT a:VNU )
 \end{verbatim}
-Giải thích nếu khoa mạng thuộc UIT, UIT thuộc đại học Quốc Gia (VNU), nhờ phát biểu đầu tiến chúng ta $partOf$ có tính chất bắc cầu nên suy ra được khoa mạng thuộc đại học Quốc Gia - $ObjectPropertyAssertion($ $a:partOf$ $a:KhoaMMT$ $a:VNU)$
+Giải thích nếu khoa mạng thuộc UIT, UIT thuộc đại học Quốc Gia (VNU), nhờ phát biểu đầu tiến chúng ta $partOf$ có tính chất bắc cầu nên suy ra được khoa mạng thuộc đại học Quốc Gia - \textit{ObjectPropertyAssertion( a:partOf a:KhoaMMT a:VNU)}
 
 % Data Property Axioms
 \subsubsection{Các phát biểu về thuộc tính dữ liệu}
@@ -648,44 +665,47 @@ Giải thích nếu khoa mạng thuộc UIT, UIT thuộc đại học Quốc Gia
 	\includegraphics[width=150mm]{Figures/datapropertyAxiom.png}
 	\caption{Các dạng phát biểu về thuộc tính dữ liệu của OWL 2 (phần 2) \label{overflow}}
 \end{figure}
-Cũng giống như mô tả thuộc tính đối tượng, mô tả thuộc tính dữ liệu cũng được cung cấp các phát biểu như \textit{SubDataPropertyOf}, \textit{EquivalentDataProperties}, \textit{DataPropertyDomain}, \textit{DataProperyRange}
+Cũng giống như mô tả thuộc tính đối tượng, mô tả thuộc tính dữ liệu cũng được cung cấp các phát biểu như \textit{SubDataPropertyOf}, \textit{EquivalentDataProperties}, \textit{DataPropertyDomain}, \textit{DataProperyRange}.
 
-\paragraph{Phát biểu thuộc tính dữ liệu con (Data subproperties)} - phát biểu $SubDataPropertyOf($ $DPE_{1}$ $DPE_{2}$ $)$ nói rằng mô tả thuộc tính dữ liệu $DPE_{1}$ là thuộc tính con của mô tả dữ liệu $DPE_{2}$ - có nghĩa nếu một cá thể $x$ được kết nối bởi $DPE_{1}$ tới một trực nghĩa $y$, thì $x$ được kết nối bởi $DPE_{2}$. Ví dụ:
+\paragraph{Phát biểu thuộc tính dữ liệu con (Data subproperties)} Phát biểu SubDataPropertyOf( $DPE_{1}$ $DPE_{2}$ ) nói rằng mô tả thuộc tính dữ liệu $DPE_{1}$ là thuộc tính con của mô tả dữ liệu $DPE_{2}$ - có nghĩa nếu một cá thể $x$ được kết nối bởi $DPE_{1}$ tới một trực nghĩa $y$, thì $x$ được kết nối bởi $DPE_{2}$. Ví dụ:
 \begin{verbatim}
 SubDataPropertyOf( a:hasLastName a:hasName) 
 // Họ của một người cũng là tên họ của người đó
 DataPropertyAssertion( a:hasLastName a:Peter "Smith" )
 // Họ của Peter là "Smith"
 \end{verbatim}
-Giải thích: vì "có họ" \textbf{(hasLastName)} là thuộc tính con của "có tên" \textit{(hasName)} nên chúng ta ngầm hiểu phát biểu sau mà không cần khai báo tên của Peter là "Smith", tương đương $DataPropertyAssertion($ $a:hasName$ $a:Peter$ $"Griffin")$
+\textbf{Giải thích:} vì "có họ" \textbf{(hasLastName)} là thuộc tính con của "có tên" \textit{(hasName)} nên chúng ta ngầm hiểu phát biểu sau mà không cần khai báo tên của Peter là "Smith", tương đương \textit{DataPropertyAssertion(a:hasName a:Peter "Griffin")}
 
-\paragraph{Phát biểu thuộc tính dữ liệu tương đương (Equivalent Data Properties)} -  một phát biểu $EquivalentDataProperties($ $DPE_{1}$ ... $DPE_{n}$ $)$ nói rằng mỗi mô tả thuộc tính $DPE_{i}$, $1<=i<=n$ đều đồng nghĩa với các tất cả các mô tả thuộc tính còn lại trong phát biểu này phát biểu $EquivalentDataProperties($ $DPE_{2}$ $DPE_{1}$ $)$ tương đương $EquivalentDataProperties($ $DPE_{1}$ $DPE_{2}$ $)$. Ví dụ:
+\paragraph{Phát biểu thuộc tính dữ liệu tương đương (Equivalent Data Properties)} Một phát biểu \textit{EquivalentDataProperties( $DPE_{1}$ ... $DPE_{n}$)} nói rằng mỗi mô tả thuộc tính $DPE_{i}$, $1<=i<=n$ đều đồng nghĩa với các tất cả các mô tả thuộc tính còn lại trong phát biểu này phát biểu \textit{EquivalentDataProperties( $DPE_{2}$ $DPE_{1}$ )} cũng tương đương EquivalentDataProperties( $DPE_{1}$ $DPE_{2}$ ). Ví dụ:
 \begin{verbatim}
 EquivalentDataProperties( a:hasName a:HoTen ) 
 // a:hasName tương đượng với a:HoTen trong Tiếng Việt
 DataPropertyAssertion( a:hasName a:Peter "Peter Nguyen" )
 DataPropertyAssertion( a:HoTen a:Peter "Peter Nguyễn" )
 \end{verbatim}
-Giải thích: do phát biểu đầu tiên, từ phát biểu thứ 2 ta ngầm hiểu $DataPropertyAssertion($ $a:hasName$ $a:Peter$ $"Peter Nguyễn")$ tên tiếng Anh "Peter Nguyen" tương đương tên tiếng Viết "Peter Nguyễn" và ngược lại $DataPropertyAssertion($ $a:HoTen$ $a:Peter$ $"Peter Nguyen")$ .
+\textbf{Giải thích:} do phát biểu đầu tiên, từ phát biểu thứ 2 ta ngầm hiểu \textit{DataPropertyAssertion( a:hasName a:Peter "Peter Nguyễn" )} tên tiếng Anh "Peter Nguyen" tương đương tên tiếng Viết "Peter Nguyễn" và ngược lại \textit{DataPropertyAssertion( a:HoTen $a:Peter$ "Peter Nguyen") }.
 
-\paragraph{Domain của thuộc tính dữ liệu (Data Property Domain)} - phát biểu $DataPropertyDomain($ $DPE$ $CE)$ nêu rõ domain của thuộc tính dữ liệu là mô tả lớp $CE$ -  nếu một cá thể $x$ được liên kết bởi $DPE$ tới vài trực nghĩa nào đó, thì $x$ phải là cá thể thuộc mô tả lớp $CE$.
+\paragraph{Domain của thuộc tính dữ liệu (Data Property Domain)} Phát biểu \textit{DataPropertyDomain( DPE CE )} nêu rõ domain của thuộc tính dữ liệu là mô tả lớp $CE$ -  nếu một cá thể $x$ được liên kết bởi \textit{DPE} tới vài trực nghĩa nào đó, thì $x$ phải là cá thể thuộc mô tả lớp \textit{CE}.
 \begin{verbatim}
 DataPropertyDomain( a:hasBankAccount a:Person ) 
 // Con người mới có tài khoản ngân hàng
 ObjectPropertyAssertion( a:hasBankAccount a:Peter "0002" ) 
 // Peter có tài khoản ngân hàng "0002"
 \end{verbatim}
-Giải thích: không cần thiết phải khai báo Peter là người vì dựa theo chúng ta cũng kết luận được Peter là người từ 2 phát biểu trên, $ClassAssertion($ $a:Person$ $a:Peter$ $)$.
+\textbf{Giải thích:} không cần thiết phải khai báo Peter là người vì dựa theo chúng ta cũng kết luận được Peter là người từ 2 phát biểu trên, \textit{ClassAssertion(a:Person a:Peter)}.
 
-\paragraph{Miền giá trị của thuộc tính dữ liệu (Data Property Range)} - phát biểu $DataPropertyRange($ $DPE$ $DR)$ nói rằng miền giá trị hợp lệ của mô tả thuộc tính dữ liệu $DPE$ là miền dữ liệu $DR$ - nếu các cá thể được kết nối bởi $DPE$ tới 1 trực nghĩa $x$, thì $x$ trong miền dữ liệu $DR$. Ví dụ:
+\paragraph{Miền giá trị của thuộc tính dữ liệu (Data Property Range)} - phát biểu \textit{DataPropertyRange(DPE DR)} nói rằng miền giá trị hợp lệ của mô tả thuộc tính dữ liệu \textit{DPE} là miền dữ liệu \textit{DR} - nếu các cá thể được kết nối bởi \textit{DPE} tới 1 trực nghĩa $x$, thì $x$ trong miền dữ liệu \textit{DR}. Ví dụ:
 %Số lượng kết quả đầu ra bắt buộc bằng 1, tức không tồn tại $x \equiv y \equiv z$, với $y \not\equiv z$ và $y, z \in DR$.
 \begin{verbatim}
 DataPropertyRange( a:hasName xsd:string )
 DataPropertyAssertion( a:hasName a:Peter "Peter Nguyen" )
 \end{verbatim}
-Nếu khai báo $DataPropertyAssertion($ $a:hasName$ $a:Peter$ $"42"^^xsd:integer)$ sẽ làm cho ontology bị thiếu nhất quán (inconsistent).
+Nếu khai báo sau sẽ làm cho ontology bị thiếu nhất quán (inconsistent):
+\begin{verbatim}
+DataPropertyAssertion( a:hasName a:Peter "42"^^xsd:integer)
+\end{verbatim}
 
-\paragraph{Functional Data Properties} - phát biểu $FunctionalDataProperty($ $DPE$ $)$ nói rằng với mỗi $x$, chỉ có nhiều nhất một trực nghĩa $y$ mà $x$ được gán cho bởi $DPE$. Ví dụ:
+\paragraph{Functional Data Properties} - phát biểu \textit{FunctionalDataProperty(DPE)} nói rằng với mỗi $x$, chỉ có nhiều nhất một trực nghĩa $y$ mà $x$ được gán cho bởi \textit{DPE}. Ví dụ:
 \begin{verbatim}
 FunctionalDataProperty( a:hasAge )
 // Mọi đối tượng chỉ có tối đa một số tuổi
