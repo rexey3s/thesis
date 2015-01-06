@@ -7,11 +7,11 @@
 	\includegraphics[width=120mm]{Figures/owl2structure.png}
 	\caption{Cấu trúc của OWL 2\label{overflow}}
 \end{figure}
-Hình trên cho chúng ta cái nhìn tổng quan về các định dạng file, các loại cú pháp và cách khả năng serialization thành RDF Graph của Ontology. Như chúng ta thấy trong hình thì hình eclipse ở giữa thể hiện khái niệm trừu tượng của một ontology, có thể hiểu là một cấu trúc trừu tượng hay một đồ thi RDF. Chúng ta có thể dùng nhiều cú pháp để biểu diễn ontology và định dạng chúng dưới dạng file khác nhau (Syntex layer trong hình), các định dạng và cú pháp này hoàn toàn có thể chuyển đổi qua lại với nhau. Lớp ngữ nghĩa trong hình (semantic layer) cho thấy ngữ nghĩa được quy định theo 2 tiêu chuẩn kỹ thuật khác nhau là Direct Semantics và RDF-Based Semantics.
+Hình trên cho chúng ta cái nhìn tổng quan về các định dạng file, các loại cú pháp và các khả năng serialization thành RDF Graph của Ontology. Như chúng ta thấy trong hình thì hình eclipse ở giữa thể hiện khái niệm trừu tượng của một ontology, có thể hiểu là một cấu trúc trừu tượng hay một đồ thi RDF. Chúng ta có thể dùng nhiều cú pháp để biểu diễn ontology và định dạng chúng dưới dạng file khác nhau (Syntex layer trong hình), các định dạng và cú pháp này hoàn toàn có thể chuyển đổi qua lại với nhau. Lớp ngữ nghĩa trong hình (semantic layer) cho thấy ngữ nghĩa được quy định theo 2 tiêu chuẩn kỹ thuật khác nhau là Direct Semantics và RDF-Based Semantics.
 \\
 Phần lớn những người phát triển Ontology bằng OWL2 sẽ chỉ cần 1 cú pháp (tương đương với 1 định dạng file) và một dạng biểu diễn ngữ nghĩa.
 \subsection{Ontologies}
-Bất kì ontology OWL2 nào đều có thể được định dạng như một đồ thị RDF. Mối quan hệ giữa 2 cách này được quy định bới cách tài liệu Mapping to RDF Graphs document [\href{http://www.w3.org/TR/owl2-overview/#ref-owl-2-rdf-mapping}{OWL 2 RDF Mapping}] \cite{mapping_rdf_graph}, trong tài liệu này định nghĩa rất rõ ràng một bảng map từ định dạng cấu trúc của ontology qua đồ thị RDF, và ngược lại. 
+Bất kì ontology OWL2 nào đều có thể được định dạng như một đồ thị RDF. Mối quan hệ giữa 2 cách này được quy định bởi các tài liệu Mapping to RDF Graphs document [\href{http://www.w3.org/TR/owl2-overview/#ref-owl-2-rdf-mapping}{OWL 2 RDF Mapping}] \cite{mapping_rdf_graph}, trong tài liệu này định nghĩa rất rõ ràng một bảng map từ định dạng cấu trúc của ontology qua đồ thị RDF, và ngược lại. 
 \subsection{Cú pháp}
 Trong thực tế, một cú pháp cụ thể rất cần thiết để lưu trữ các OWL2 Ontologies và để trao đổi chúng giữa các công cụ và ứng dụng khác nhau. Cú pháp đầu tiên có khả năng hoán đổi là RDF/XML [\href{http://www.w3.org/TR/owl2-overview/#ref-rdf-syntax}{RDF Syntax}] \cite{rdfxml}. Ngoài RDF/XML có khả năng cung cấp khả năng tương tác giữ nhiều ứng dụng OWl2 khác nhau, các loại cú pháp khác đều có thể được sử dụng. Dưới đây là bảng so sánh và liệt kê các cú pháp.
 \begin{table}[!h]
@@ -42,7 +42,7 @@ Turtle & Mapping to RDF Graphs \cite{mapping_rdf_graph} & Tùy chọn, không đ
 \subsubsection{Functional Syntax}
 \begin{verbatim}
 // Khai báo lớp
-Declaration (Class (Animal)) l
+Declaration (Class (Animal)) 
 Declaration (Class (Grass))) 
 // Khai báo Object Property
 Declaration (ObjectProperty (canEat))  
@@ -99,7 +99,7 @@ ObjectProperty: canEat
 
 
 \section{Các thuộc tính chi tiết của OWL2}
-Ngôn ngữ Ontology Web Language 2 (hay OWL 2) đảm nhiệm chức năng thể hiện ngữ nghĩa cho Semantic Web như chúng ta đã thấy trong hình Semantic Web  Stack. OWL2 ontologies cung cấp các lớp (class), thuộc tính (property), cá thể (individual) và các giá trị dữ liệu (data value), tất cả chúng sẽ được biểu diễn bằng các tài liệu và cú pháp được đề cập ở trên, phần này sẽ đi vào giải thích các thành phần vừa nêu ra của một ontology được viết bằng ngôn ngữ OWL2 . Đây cũng chính là các thành phần cấu trúc mà thư viện OWLAPI \cite{owlapi} áp dụng để xây dựng nên bộ thư viện giúp người phát triển ứng dụng ontology tương tác dễ dàng hơn với các tài liệu ontology.
+Ngôn ngữ Ontology Web Language 2 (hay OWL 2) đảm nhiệm chức năng thể hiện ngữ nghĩa cho Semantic Web như chúng ta đã thấy trong hình Semantic Web Stack. OWL2 ontologies cung cấp các lớp (class), đặc tính (property), cá thể (individual) và các giá trị dữ liệu (data value), tất cả chúng sẽ được biểu diễn bằng các tài liệu và cú pháp được đề cập ở trên, phần này sẽ đi vào giải thích các thành phần vừa nêu ra của một ontology được viết bằng ngôn ngữ OWL2 . Đây cũng chính là các thành phần cấu trúc mà thư viện OWLAPI \cite{owlapi} áp dụng để xây dựng nên bộ thư viện giúp người phát triển ứng dụng ontology tương tác dễ dàng hơn với các tài liệu ontology.
 Đầu tiên chúng em xin được giới thiệu tới đối tượng lớn nhất trong quy định của ngôn ngữ OWL2. 
 \\
 Tiếp theo, chúng em xin được trình bày về một qua các định nghĩa những thành phần cấu tạo của ontology mà có ảnh hướng đến quá trình xây dựng ứng dụng, các thành phần không liên quan sẽ không được đề cập.
@@ -132,7 +132,7 @@ Cấu trúc của các thực thể và trực nghĩa trong OWL 2 được thể
 \begin{itemize}
 \item Lớp (class) đại diện cho một tập gồm nhiều cá thể(individuals).
 \item Kiểu dữ liệu (datatype) là một tập của các trực nghĩa như strings hoặc integers.
-\item Thuộc tính đối tượng và dữ liệu (object \& data property) được sử dũng để biểu diễn các mối quan hệ giữa các cá thể với cá thể khác và giữa cá thể với kiểu dữ liệu trong một miền (domain) nào đó.
+\item Thuộc tính đối tượng và dữ liệu (object \& data property) được sử dụng để biểu diễn các mối quan hệ giữa các cá thể với cá thể khác và giữa cá thể với trực nghĩa (literal) trong một lĩnh vực (domain) nào đó.
 \item Thuộc tính chú thích (annotation) được dùng để đưa thêm những thông tin không có tính ngữ nghĩa( non-logical) như các chú thích, giải nghĩa, ngôn ngữ gắn với ontologies, các phát biểu/ tiên đề (axioms) và các thực thể.
 \item  Các cá thể có tên có thể được dụng để biểu diễn một đối tượng cụ thể từ một lớp nào đó.
 \end{itemize}
@@ -142,14 +142,12 @@ Bên cạnh các cá thể có tên, OWL2 còn cung cấp một khái niệm g�
 Lớp được hiểu như tập hợp các cá thể. Hai lớp với IRIs \textit{owl:Nothing} và \textit{owl:Thing} là các lớp được định nghĩa sẵn trong OWL2 với ý nghĩa như sau:
 \begin{itemize}
 \item \textbf{owl:Thing} là tập hợp gồm tất cả các cá thể.
-\item \textbf{owl:Nothing} là tập hợp rỗng,
+\item \textbf{owl:Nothing} là tập hợp rỗng.
 \end{itemize}
-Không nên sử dụng 2 định nghĩa trên để gán cho bất kì lớp nào trong OWL 2 DL Ontology. Lớp \textit{a:Child} và đều lớp \textit{a:Person} để chỉ tập tất cả người mà là trẻ con trong một miền ứng dụng. Vì vậy, 2 lớp trên có thể được khai báo theo phát biểu sau đây:
-
+Không nên sử dụng 2 định nghĩa trên để gán cho bất kì lớp nào trong OWL 2 DL Ontology. Ví dụ:
 \begin{verbatim}
 SubClassOf( a:Child a:Person) 
 \end{verbatim}
-
 \textbf{Giải thích:} Mỗi đứa trẻ đều là một người.
 
 % Datatypes
@@ -169,13 +167,11 @@ Thuộc tính đối tượng kết nối các cặp cá thể - tạo ra mối 
 \item \textbf{owl:topObjectProperty} kết nối tất cả các cặp cá thể có thể kết nối.
 \item \textbf{owl:bottomObjectProperty} không kết nối bất kì cặp cá thể nào. 
 \end{itemize}
-Cũng không nên sử dụng 2 định nghĩa trên để gán cho bất kỳ thuộc tính đối tượng nào trong OWL 2 DL Ontology. Thuộc tính đối tượng \textit{a:parentOf} được dùng để nói lên mối quan hệ giữ các cá thể. Nó có thể được sử dụng như trong phát biểu sau:
-
+Tương tự lớp cũng không nên sử dụng 2 định nghĩa trên để gán cho bất kỳ thuộc tính đối tượng nào trong OWL 2 DL Ontology. Ví dụ:
 \begin{verbatim}
 ObjectPropertyAssertion( a:parentOf a:Peter a:Chris)  
 \end{verbatim}
-
-\textbf{Giải thích:} Peter là ba mẹ của Chris.
+\textbf{Giải thích:} Peter là ba mẹ của Chris. Thuộc tính đối tượng \textit{a:parentOf} được dùng để nói lên mối quan hệ giữ các cá thể trong ví dụ trên.
 
 % Data Properties
 \subsubsection{Thuộc tính dữ liệu (data properties)}
@@ -649,7 +645,7 @@ Giải thích nếu khoa mạng thuộc UIT, UIT thuộc đại học Quốc Gia
 \subsubsection{Các phát biểu về thuộc tính dữ liệu}
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=120mm]{Figures/datapropertyAxiom.png}
+	\includegraphics[width=150mm]{Figures/datapropertyAxiom.png}
 	\caption{Các dạng phát biểu về thuộc tính dữ liệu của OWL 2 (phần 2) \label{overflow}}
 \end{figure}
 Cũng giống như mô tả thuộc tính đối tượng, mô tả thuộc tính dữ liệu cũng được cung cấp các phát biểu như \textit{SubDataPropertyOf}, \textit{EquivalentDataProperties}, \textit{DataPropertyDomain}, \textit{DataProperyRange}
@@ -695,25 +691,28 @@ FunctionalDataProperty( a:hasAge )
 // Mọi đối tượng chỉ có tối đa một số tuổi
 DataPropertyAssertion( a:hasAge a:Steve "17"^^xsd:integer )
 \end{verbatim}
-Các phát biểu trên sẽ bị thiếu nhất quán nếu chúng ta thêm vào phát biểu sau $DataPropertyAssertion($ $a:hasAge$ $a:Steve$ $"15"^^xsd:integer)$
+Các phát biểu trên sẽ bị thiếu nhất quán nếu chúng ta thêm vào phát biểu sau 
+\begin{verbatim}
+DataPropertyAssertion( a:hasAge a:Steve "15"^^xsd:integer)
+\end{verbatim}
 
 % Assertions
 \subsection{Các phát biểu về cá thể (Assertions)} 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=120mm]{Figures/abox1.png}
 	\caption{Các phát biểu gán lớp cho cá thể và cá thể giống nhau/khác nhau trong OWL 2 \label{overflow}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[ht!]
 	\centering
-	\includegraphics[width=120mm]{Figures/abox2.png}
+	\includegraphics[width=120mm,height=110mm]{Figures/abox2.png}
 	\caption{Các phát biểu về thuộc tính đối trượng của cá thể trong OWL 2 \label{overflow}}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[hb!]
 	\centering
-	\includegraphics[width=120mm]{Figures/abox3.png}
+	\includegraphics[width=120mm,height=110mm]{Figures/abox3.png}
 	\caption{Các phát biểu về thuộc tính dữ liệu của cá thể trong OWL 2 \label{overflow}}
 \end{figure}
 Các phát biểu về cá thể thường được gọi là \textit{facts}. Để rõ hơn, các loại assertions khác nhau được thể hiện trong các hình sau.
