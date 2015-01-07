@@ -160,35 +160,93 @@ System.out.println(renderer.render(ce));
 Còn rất nhiều thành phần quan trọng mà chúng em sử dụng đến trong việc phát triển ứng dụng , chúng em sẽ trình bày trong chương sau khi nói về quá trình phát triển ứng dụng phát triển ontology trên web.
 
 \section{Vaadin Framework }
-Vaadin Framework là nền tảng xây dựng một ứng dụng web Java được thiết kế giúp tạo ra một ứng dụng web chất lượng cao một cách dễ dàng nhất. Vaadin hỗ trợ 2 mô hình lập trình: client và server. Mô hình lập trình phía server mạnh mẽ hơn. Nó giúp chúng ta tạm quên đi về web và giao diện người dùng, thay vào đú chúng ta lập trình như một ứng dụng desktop thông thường với các công cụ Java tiện ích như AWT, Swing, hay SWT. Mô hình lập trình phía server đảm nhận phần giao diện trên trình duyệt và giao tiếp AJAX giữa trình duyệt và server.
+\paragraph{Giới thiệu} Vaadin Framework là nền tảng xây dựng một ứng dụng web trên Java được thiết kế giúp tạo ra một ứng dụng web chất lượng cao một cách dễ dàng nhất - tập trung chủ yếu vào one-page web application. Không giống như những framework web hiện nay đòi hỏi lập trình viên phải có kiến thức về HTML5, javascript và ít nhất một ngôn ngữ back-end. Vaadin giúp chúng ta tạm quên việc đi việc phải viết các client javascript hay từng dòng HTML để xây dựng giao diện người dùng - nói cách khác nó làm cho công việc phát triển front-end trở nên cực kì đơn giản, dễ hình dung nhất là việc phát triển một ứng dụng web trên Vaadin cũng tương tự khi chúng ta phát triển một ứng dụng desktop thông thường với các công cụ Java như AWT, Swing, hay SWT hoặc window form với C-Sharp.  Với Vaadin để phát triển được toàn bộ một ứng dụng, ngôn ngữ duy nhất chúng ta cần nắm đó là Java. Một ví dụ minh họa về tính đơn giản trong khi sử dụng Vaadin:
+\begin{verbatim}
+ Button button = new Button("Demo");
+ button.addClickListener( new ClickListener() {
+    layout.addComponent(new Label("The button was clicked"));
+ }
+\end{verbatim}
+Đây là kết quả:
+\begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=80mm]{Figures/vaadin_democlick.png}
+ 	\caption{Vaadin Demo Click\label{overflow}}
+\end{figure}
+Thử nhìn lại nếu chúng ta xây dựng cùng chức năng trên dù là thủ công hay sử dụng các framework Web thông thường thì đều cần phải có một client script đảm nhận việc bắt sự kiện click của người dùng ở browser (front-end) và truyền nó lên server, ngay khi server nhận được (phải có đoạn code ở server "back-end" để xử lý thông tin click truyền lên từ browser), server sẽ trả về thông báo "The button was clicked", rồi front-end javascript phải thêm hay chèn một đoạn text "The button was clicked" vài HTML. Với Vaadin tác vụ vừa mô tả được thực hiện bằng đoạn code trên.
 \subsection{Kiến trúc}
-Hình sau mô tả kiến trúc cơ bản của một ứng dụng web được lập trình từ Vaadin Framework. Kiến trúc ứng dụng phía server bao gồm nền tảng server (Server-side framework) và hệ thống phía client (client-side engine). Hệ thống chạy trên trình duyệt nhờ những đoạn mã Javascript, thiết lập nên giao diện người dùng, và chuyển các tương tác của người dùng đến server. Logic UI (user interface) của ứng dụng nhưi dạng một Java Servlel nằm trong một ứng dụng server Java.
+Vaadin hỗ trợ 2 mô hình lập trình: client và server. Mô hình lập trình phía server mạnh mẽ hơn. Mô hình lập trình phía server đảm nhận phần giao diện trên trình duyệt và giao tiếp AJAX giữa trình duyệt và server - hay nói cách khác các giao tiếp giữa server-client nhằm hỗ trợ những thao tác của người dùng đã được xử lý bởi framework và được cài đặt vào bên trong các \textit{Component} của Vaadin. Trong phạm vi ứng dụng mà chúng em xây dựng chỉ sử dụng những thành phần server - chỉ sử dụng các \textit{Component} mà Vaadin cung cấp, cộng với một vài plugin (được viết sẵn cho Vaadin) từ Vaadin Directory \cite{vaadindirectory} để giúp việc phát triển nhanh chóng hơn. 
+\\
+Hình sau mô tả kiến trúc cơ bản của một ứng dụng web trên Vaadin Framework. Kiến trúc ứng dụng phía server bao gồm nền tảng server (Server-side framework) và hệ thống phía client (client-side engine). 
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=100mm]{Figures/vaadin_architecture.png}
+	\includegraphics[width=100mm]{Figures/vaadin_architecture0.png}
 	\caption{Kiến trúc của Vaadin\label{overflow}}
 \end{figure}
+
+\subsubsection{Web Server}
+\begin{description}
+\item[Components] Các \textit{Built-in Components}, \textit{Add-on Components} đều là những thành phần được xây dựng sẵn bởi Vaadin  hoặc được cung cấp dưới dạng các add-on từ Vaadin Directory \cite{vaadindirectory} nhằm giúp việc phát triển UI nhanh chóng hơn. Chúng đảm nhiệm back-end code để giao tiếp với các \textit{Built-in Widgets}, \textit{Add-on Widgets} ở phía browser (client side).
+\item[UI Logic, Service và Custom Components] Là những phần mà lập trình viên phải tự viết code để cài đặt các tác vụ tương tác mà họ mong muốn, tuy nhiên Vaadin cũng cung cấp các abstract class, interface để hỗ trợ việc này. 
+\item[Back-end] Trong một ứng dụng thông thường thì đây chính là nơi để xử lý giao tiếp với các đối tượng trong cơ sở dữ liệu - nơi thực hiện các thao tác Create
+Read Update Delete (CRUD).
+\end{description}
+\subsubsection{Client-Side Engine}
+\begin{description}
+\item[Built-in Widgets] Đây chính là thành phần client-side của \textit{Built-in Components} đảm nhiệm bắt các sự kiện của người dùng với browser và giao tiếp với các \textit{Built-in Components} ở server.
+\item[Add-on Widgets] là client-side của \textit{Add-on Components}.
+\item[Custom-Widgets] là client-side của \textit{Custom Components}.
+\end{description}
+Toàn bộ các thành phần ở Client-side Engine đều được xây dựng bằng JavaScript. Đây là một ưu thế so với các nền tảng trên Flash, Java Applets hay các plugins khác. Vaadin dựa trên sự hỗ trợ của Google Web Toolkit cho nhiều trình duyệt khác nhau, nên lập trình viên không cần lo lắng về sự tương thích của các trình duyệt cho ứng dụng của mình.
 \\
-Vì hệ thống phía client được thực thi bằng JavaScript được tích hợp sẵn trên trình duyệt, nên không cần thêm plugins khi sử dụng các ứng dụng xây dựng bằng Vaadin. Đây là một ưu thế so với các nền tảng trên Flash, Java Applets hay các plugins khác. Vaadin dựa trên sự hỗ trợ của Google Web Toolkit cho nhiều trình duyệt khác nhau, nên lập trình viên không cần lo lắng về sự tương thích của các trình duyệt cho ứng dụng của mình.
+Như đã nói ở trên, không giống với các framework web khác là tách biệt font-end và back-end ra, Vaadin làm điều ngược lại đó là đem cả hai thứ đó tích hợp vào cái gọi là \textit{Vaadin Components}, ở hình trên chúng ta sẽ thấy một \textit{Vaadin Component} sẽ gồm một \textit{Widget} ở client-side  và một \textit{Component} tương ứng ở server side. Phân tích ví dụ Demo Click ở bên trên 
+\begin{itemize}
+\item \textbf{Vaadin Component} chính là một Vaadin Component.
+\item \textbf{UILogic} chính là \textit{layout.addComponent(new Label("The button was clicked"));}
+\end{itemize}
+
+Tóm tắt lại, Vaadin cung cấp sẵn gần như đầy đủ mọi thành phần UI chúng ta cần để phát triển một ứng dụng web tương tác tốt với người dùng một cách nhanh chóng và tiện lợi. Chúng ta sẽ giảm bớt được công việc khi phải viết javascript, HTML cho cliend-side khi sử dụng các Vaadin UI Components.
 \\
-Vì HTML, JavaScript, hay các công nghệ web khác thường được tách biệt so với phần logic 
-của ứng dụng, nên có thể xem trình duyệt như một mô hình client thu nhỏ. Client sẽ hiển thị giao diện người dùng và truyền các thao tác người dùng đến server ở lớp thấp nhất. Logic điều khiển giao diện người dùng chạy trên web server Java, cùng với logic xử lý dữ liệu. Một mô hình kiến trúc client-server thông thường, với ứng dụng phía client, sẽ bao gồm nhiều giao tiếp giữa client và server. Tách biệt giao diện người dùng ra khỏi kiến trúc của ứng dụng giúp chúng ta dễ dàng tiếp cận hiệu quả hơn.
-\\
-Bên trong mô hình lập trình server, Vaadin sử dụng tối đa công nghệ AJAX ( Asynchronous
-JavaScript and XML) để có thể tạo ra Rich Internet Applications (RIA), tạm gọi là Ứng dụng Internet cao cấp, với sự tương tác và phản hồi cao như một ứng dụng desktop.
-\\
-Bên cạnh việc phát triển ứng dụng phía server, chúng ta cũng có thể sử dụng Vaadin để lập trình phía client, sử dụng các widgets trong Java, tạo ra một ứng dụng client chạy tốt trên trình duyệt. Kết hợp với các công cụ Google Web Toolkit (GWT), hỗ trợ phiên dịch từ Java sang JavaScript chạy được trên trình duyệt, giúp việc thiết kế giao diện trở nên đa dạng hơn. Như vậy, với Vaadin, cả client và server đều được lập trình bằng ngôn ngữ Java thuần tuý.
+Tuy là tích hợp mọi thứ vào UI components của mình, Vaadin tách biệt UI Logic với các thiết kế giao diện. Điều này đồng nghĩa bên cạnh một giao diện mặc định rất tốt của Vaadin chúng ta có thể thiết kế giao diện một cách dễ dàng thông qua các file CSS hoặc cũng có thể tự định nghĩa HTML Template cho riêng mình \textsuperscript{*}. 
 {\let\thefootnote\relax\footnotetext{*\textit{
-			Vaadin Addon: https://vaadin.com/directory}}
+			Vaadin Theme: https://vaadin.com/book/-/page/themes.html}}
 }
-\\
-Vaadin sử dụng hệ thống phía client để thiết kế nên giao diện của ứng dụng phía server hiển thị trên trình duyệt. Tất cả giao tiếp tương tác client-server đều được ẩn giấu bên dưới. Vaadin được thiết kế để dễ dàng mở rộng, tích hợp thêm các widgets bên ngoài, cũng như các tiện ích add-ons có thể tìm kiếm tại Vaadin Directory \textsuperscript{*}.
+
+
+%Trong hình sẽ cung cấp những thông tin chi tiết hơn về các đối tượng mà Vaadin xây dựng nhằm phục vụ cho việc thực thi các yêu cầu từ client-server và ngược lại. Mô hình trên còn được gọi là kiến trúc server-driven development.
+
+\subsection{Vaadin UI Components}
+Như đã được nhắc đến nhiều lần trong mục trước, Vaadin UI Component chính là những thành phần tạo nên Vaadin và đơn giản rất nhiều thứ khi chúng ta phát triển ứng dụng web. Dưới đây chúng em xin được nêu lên những thành phần đáng chú ý nhất. Đầu tiên xin giới thiệu thành phần quan trong nhất.
+
+\subsubsection{User Interface} 
+\paragraph{Chức năng} Ứng dụng Vaadin cung cấp một giao diện người dùng để lập trình viên có thể mở rộng ra và phát triển các chức năng mà mình mong muốn. Về mặt kĩ thuật, thành phần này sẽ được đảm nhiệm bởi các đối tượng thừa kế từ \textit{com.vaadin.ui.UI} trong source code.
+\paragraph{Nhiệm vụ} Khởi tạo lớp UI, từ đây lớp UI sẽ đảm nhiệm các công việc như nạp tất cả UI Components được khai báo bên trong, cài đặt các event listener để tiếp nhận thao tác từ người dùng. Cuối cùng UI được load lên trình duyệt bằng URL, hoặc được nhúng 
+vào bất kì trang HTML nào \cite{vaadinarchitecture}.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=120mm]{Figures/vaadin_architecture1.png}
 	\caption{Các UI Components của Vaadin\label{overflow}}
 \end{figure}
+
 \subsection{Các thành phần đáng chú ý}
+Dưới đây chúng em xin được liệt kê các Components được chúng em sử dụng nhiều trong việc phát triển ứng dụng OWLEditor.
+\subsubsection{Layout}
+Vaadin cung cấp nhiều dạng layout khác nhau để hỗ trợ việc tổ chức các components bên trong một cách khoa học, gọn gàng. \cite{vaadinbook}
+\begin{description}
+\item[HorizontalLayout] tổ chức các components theo chiều ngang, các component được sắp xếp từ trái qua phải.
+\item[VerticalLayout] tổ chức các components theo chiều dọc, các component được sắp xếp từ trên xuống.
+\item[AbsoluteLayout] tổ chức các components theo đúng vị trí tuyệt đối được khai báo.
+\item[CssLayout] tổ chức các components theo định nghĩa từ các file css tương ứng. Đây là cách giúp chúng ta có thể tuỳ chỉnh tối đa bố cục của ứng dụng so với các layout trên.
+\end{description}} 
+\subsubsection{Field}
+Là những components được thừa kế từ \verb|AbstractField| với chứng năng là xử lý các tác vụ input từ người dùng.
+\begin{description}
+\item[Button] Đảm nhiệm tính năng click từ người dùng, hành động click được xử lý bởi Button.ClickListener và ClickEvent.
+\item[CheckBox] Component đảm nhiệm đánh dấu tick từ người dùng, sự kiện được xử lý bởi ValueChangeListener và ValueChangeEvent.
+\item
+\end{description} 
+
+
 \subsubsection{Data Model}
 Vaadin Data Model cho phép các view (UI components) truy xuất tới dữ liệu một cách trực tiếp, bằng cách cung cấp một interface chuẩn cho mọi loại dữ liệu. Mô hình này cho phép binding các view trực tiếp đến dữ liệu để hiển thị, và cập nhật sự thay đổi ngay lập tức khi dữ liệu được chỉnh sửa. Trong mô hình này có 3 cấp độ cấu trúc khác nhau : property, item và container.
 \\

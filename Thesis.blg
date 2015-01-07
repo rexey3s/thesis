@@ -32,45 +32,45 @@ Warning--empty journal in repair
 Warning--empty booktitle in mups
 
 Done.
-You've used 31 entries,
+You've used 32 entries,
             4783 wiz_defined-function locations,
-            1055 strings with 11301 characters,
-and the built_in function-call counts, 13394 in all, are:
-= -- 1245
+            1058 strings with 11355 characters,
+and the built_in function-call counts, 13772 in all, are:
+= -- 1279
 > -- 127
 < -- 8
-+ -- 110
++ -- 112
 - -- 34
-* -- 666
-:= -- 2177
-add.period$ -- 59
-call.type$ -- 31
-change.case$ -- 59
-chr.to.int$ -- 24
-cite$ -- 56
-duplicate$ -- 1057
-empty$ -- 1235
+* -- 683
+:= -- 2232
+add.period$ -- 61
+call.type$ -- 32
+change.case$ -- 61
+chr.to.int$ -- 25
+cite$ -- 58
+duplicate$ -- 1089
+empty$ -- 1275
 format.name$ -- 52
-if$ -- 2832
+if$ -- 2914
 int.to.chr$ -- 8
-int.to.str$ -- 32
-missing$ -- 195
-newline$ -- 173
+int.to.str$ -- 33
+missing$ -- 201
+newline$ -- 178
 num.names$ -- 30
-pop$ -- 770
+pop$ -- 798
 preamble$ -- 1
-purify$ -- 31
+purify$ -- 32
 quote$ -- 2
-skip$ -- 948
+skip$ -- 974
 stack$ -- 0
-substring$ -- 111
-swap$ -- 466
+substring$ -- 115
+swap$ -- 478
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 6
-type$ -- 472
+type$ -- 487
 warning$ -- 4
 while$ -- 20
 width$ -- 0
-write$ -- 353
+write$ -- 363
 (There were 4 error messages)
