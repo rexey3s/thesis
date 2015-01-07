@@ -238,7 +238,7 @@ Vaadin cung cấp nhiều dạng layout khác nhau để hỗ trợ việc tổ 
 \item[VerticalLayout] tổ chức các components theo chiều dọc, các component được sắp xếp từ trên xuống.
 \item[AbsoluteLayout] tổ chức các components theo đúng vị trí tuyệt đối được khai báo.
 \item[CssLayout] tổ chức các components theo định nghĩa từ các file css tương ứng. Đây là cách giúp chúng ta có thể tuỳ chỉnh tối đa bố cục của ứng dụng so với các layout trên.
-\end{description}} 
+\end{description} 
 \subsubsection{Field Component}
 Là những components được thừa kế từ \verb|AbstractField| với chức năng là xử lý các tác vụ input từ người dùng.
 \begin{description}
@@ -254,6 +254,12 @@ Là những components được thừa kể từ \verb|AbstractSelect| với ch�
 \item[ListSelect] Hiển thị các Data Model theo dạng danh sách, hỗ trợ các thao tác chọn từng dòng, nhiều dòng, thêm dòng và xóa dòng trong danh sách.
 \item[ComboBox] Hiện thị các Data Model theo dạng danh sách sổ xuống, hỗ trợ các thao tác như chọn một, thêm dòng mới trong danh sách.
 \end{description}
+\subsubsection{TabSheet}
+\hspace{0.05\textwidth} Tabsheet là một thành phần của Vaadin, là một không gian đa thành phần (multicomponent), có thể chứa nhiều thành phần con bên trong, cho phép chuyển đổi giữa các thành phần bằng cách thay đổi "tab". Các "tab" được sắp xếp như một thanh công cụ luôn nằm ở vị trí cao nhất trong Tabsheet. Khi các "tab" được thay đổi qua lại, thành phần chính của tab đó sẽ trở thành vùng hiển thị chính trên giao diện. Nếu có nhiều tab trong thanh công cụ, các nút điều hướng sẽ được tự động hiển thị. Mỗi tab được xem như là một đối tượng Tab, dùng để quản lý tiêu đề, icon và các thuộc tính khác như ẩn, hiện 
+\\
+Khi click một tab, Vaadin sẽ kích họat sự kiện TabSheet.SelectedTabChangeEvent, có thể 
+được xử lý với interface TabSheet.SelectedTabChangeListener. Thông qua phương thức 
+getTabSheet() để lấy được đối tượng tabsheet, và dùng phương thức getSelectedTab() để biết được tab đã được người dùng lựa chọn.
 
 \subsection{Data Model}
 Vaadin Data Model cho phép các view (UI components) truy xuất tới dữ liệu một cách trực tiếp, bằng cách cung cấp một interface chuẩn cho mọi loại dữ liệu. Mô hình này cho phép binding các view trực tiếp đến dữ liệu để hiển thị, và cập nhật sự thay đổi ngay lập tức khi dữ liệu được chỉnh sửa. Trong mô hình này có 3 cấp độ cấu trúc khác nhau : property, item và container.
@@ -269,11 +275,11 @@ Data Model được sử dụng rất nhiều trong các component của Vaadin,
 \subsubsection{Properties}
 Interface Property là thành phần cơ bản của Vaadin Data Model. Nó cung cấp cho đối tượng dữ liệu các phương thức đọc (get), ghi (set) cơ bản. Kiểu dữ liệu của một property có thể là bất kì lớp Java nào, và nó cũng hỗ trợ chuyển đổi giữa các kiểu dữ liệu.
 \begin{itemize}
-Phương thức setValue() dùng để ghi dữ liệu.
-Phương thức getValue() dùng để đọc dữ liệu.
+\item Phương thức setValue() dùng để ghi dữ liệu.
+\item Phương thức getValue() dùng để đọc dữ liệu.
 \end{itemize}
 Các thay đổi của property sẽ kích hoạt sự kiện ValueChangeEvent, và được xử lý bằng ValueChangeListener. Truy xuất đến property bằng cách gọi phương thức getProperty() của event. Property thường không có định danh riêng. Chỉ khi chúng được chứa trong Item, chúng sẽ được định danh bằng các PID (Property Identifier). Tương tự, khi các Item được chứa trong Container, chúng sẽ có các định danh là các IID (Item Identifier). Mỗi component đều có một thuộc tính dùng để liên kết với nguồn dữ liệu được binding, sử dụng phương thức setPropertyDataSource() để thực hiện liên kết này.
-\subsubsection{Converter}
-Khi thực hiện binding, chúng ta sẽ gặp phải trường hợp kiểu dữ liệu của data khác với kiểu dữ liệu của component. Để giải quyết điều này, Vaadin cung cấp interface Converter, cho phép lập trình viên sử dụng để rạo ra các converter tuỳ theo mục đích sử dụng, để chuyển đổi kiểu dữ liệu của data sang kiểu dữ liệu hiển thị được của component. Vaadin cung cấp sẵn một vài converter thông dụng, như chuyển đổi giữa string và integer. Tuy 
+\paragraph{Converter} Khi thực hiện binding, chúng ta sẽ gặp phải trường hợp kiểu dữ liệu của data khác với kiểu dữ liệu của component. Để giải quyết điều này, Vaadin cung cấp interface Converter, cho phép lập trình viên sử dụng để rạo ra các converter tuỳ theo mục đích sử dụng, để chuyển đổi kiểu dữ liệu của data sang kiểu dữ liệu hiển thị được của component. Vaadin cung cấp sẵn một vài converter thông dụng, như chuyển đổi giữa string và integer. Tuy nhiên trong ứng dụng OWLEditor, chúng em đã tự định nghĩa ra các Converter của mình để chuyển đổi giữa String và các đối tượng OWLEnity như OWLClass, OWLObjectProperty. Tất cả converter tự xây dựng được khuyến khich để trong ConverterFactory mà Vaadin cung cấp nhầm tự động phát hiện kiểu dữ liệu của MODEL và PRESENTATION để chọn converter thích hợp mà không cần cài đặt converter cho component.
+\subsubsection{Item} Item được xem như một tập hợp dùng để chứa và quản lý các property. Mỗi property sẽ được gán định danh PID (Property Identifier) và được truy xuất đến bằng cách gọi phương thức getItemProperty() từ đối tượng Item. Item được xem như tương đương với một đối tượng cơ bản trong lập trình hướng đối tượng, tuy nhiên mở rộng hơn với khả năng xử lý được các sự kiện thay đổi liên quan tới nó. Khi các property trong Item bị thay đổi, Item kích hoạt sự kiện PropertySetChangeEvent được xử lý thông qua interface PropertySetChangeListener .
 \subsubsection{Container}
-Container là cấp cao nhất của mô hình dữ liệu Vaadin ( Vaadin Data Model ), chứa đựng và quản lý các item, trong các item lại chứa đựng và quản lý các property. Container hiển thị dữ liệu dưới dạng cấu trúc, như các dữ liệu thường thấy trong các bảng (Table), hay cây (Tree).
+Container là cấp cao nhất của mô hình dữ liệu Vaadin ( Vaadin Data Model ), chứa đựng và quản lý các item, trong các item lại chứa đựng và quản lý các property. Container hiển thị dữ liệu dưới dạng cấu trúc, như các dữ liệu thường thấy trong các bảng (Table), hay cây (Tree). Các item trong container được định dang bằng IID (Item Identifier), và các property trong item được định dang bằng PID (Property Identifier).
