@@ -1,7 +1,5 @@
-\chapter{Semantic Web và Ontology Language}
-% Semantic Web
-\section{Web ngữ nghĩa (Semantic Web)}
-\subsection{Giới thiệu}
+\chapter{Web ngữ nghĩa - Semantic Web}
+\paragraph{Giới thiệu}
 Semantic Web được các nhà nghiên cứu kỳ vọng sẽ trở thành Web 3.0, với đặc trưng riêng biệt là phương thức liên kết dữ liệu (linked data) giữa các hệ thống hoặc các thực thể cho phép thể hiện được nhiều hơn, và rõ ràng hơn mối liên kết giữa các dữ liệu trên mạng lưới web toàn cầu. Cụ thể hơn, Semantic Web có khả năng chuyển đổi văn bản HTML của con người (human readable HTML documents) sang ngôn ngữ máy tính (machine readable documents), giúp cho máy tính làm được nhiều công việc suy nghĩ hơn cho con người \cite{semantic1}.
 \\
 Ngày nay, đa phần dữ liệu trên web được cung cấp dưới dạng trang web (web pages) - văn bản HTML được liên kết với nhau bằng các liên kết (hyperlinks). Cả người và máy tính đều có thể dễ dàng đọc hiểu những văn bản đó, tuy nhiên thay vì tìm kiếm những từ khoá trong trang web, máy tính lại gặp trở ngại khi chọn lọc những ý nghĩa trong các văn bản đó. Một trang web chứa rất nhiều thông tin, nhưng những thông tin đó không phải là những thông tin thô - mà chỉ là những văn bản HTML được xây dựng từ cơ sở dữ liệu.
@@ -11,7 +9,7 @@ Ngày nay, đa phần dữ liệu trên web được cung cấp dưới dạng t
 \item Khuyến khích các doanh nghiệp sử dụng dữ liệu đã có sẵn trên web.
 \end{itemize}
 
-\subsection{Semantic Web dựa trên giả định thế giới mở (OWA)} 
+\section{Semantic Web dựa trên giả định thế giới mở (OWA)} 
 Như chúng ta đã biết thì về mục tiêu mà Semantic Web hướng đến, để đạt được những mục tiêu đó, cần có khả năng xử lý thông tin ở khắp mọi nơi đòi hỏi các tiêu chuẩn cũng như các nguyên lý tổ chức dữ liệu sẽ không giống như trước (khi chúng ta vẫn còn tổ chức dữ liệu thành các bảng dữ liệu quan hệ) theo giả định thế giới đóng. Do đó với tính chất muốn bao quát hết tất cả thông tin trên web ( gồm luôn những thông tin chưa đầy đủ - imcomplete information) thì Semantic Web đã lấy Giả định Thế Giới Mở (có thể xem ở phụ lục thêm A) nhằm đảm bảo một hệ thống luôn sẵn sàng mở rộng và tiếp nhận thông tin mới mà không đòi hỏi phải thiết kế lại.
 \\
 Một so sánh ngắn gọn giữa giả định Thế Giới Mở (Open World Assumption - OWA)\cite{OWA_0} được Semantic Web chấp nhận và giả định Thế Giới Đóng (Closed World Assumption - CWA).
@@ -23,7 +21,7 @@ Một so sánh ngắn gọn giữa giả định Thế Giới Mở (Open World A
 	\item[Ví dụ]
 	Xem xét một câu nói sau đây: "A là một công dân của nước Hoa Kỳ". Nếu có ai đó hỏi "A có phải là một công dân của Việt Nam hay không ?". Xét theo CWA, câu trả lời là \textit{không}, ngược lại với OWA thì câu trả lời là \textit{chưa biết}. 
 \end{description}
-\subsubsection{Các tiêu chuẩn và thành phần của Semantic Web}
+\section{Các tiêu chuẩn và thành phần của Semantic Web}
 Khái niệm "Semantic Web" thường được sử dụng cụ thể hơn nhằm chỉ đến những định dạng và công nghệ để hiện thực hóa nó. Việc tổ chức, tập hợp và phục hồi dữ liệu liên kết thực hiện được nhờ vào các công đặc tả chính thức về các khái niệm, định nghĩa và mối quan hệ trong một vùng tri thức (knowledge domain) cho trước. Tất cả các công nghệ này đều được quy định thành một tiêu chuẩn của W3C \cite{semantic2}. Các tiêu chuẩn được liệt kê dưới đây
 \begin{figure}[h!]
 	\centering
