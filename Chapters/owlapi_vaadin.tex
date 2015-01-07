@@ -222,14 +222,15 @@ Như đã được nhắc đến nhiều lần trong mục trước, Vaadin UI C
 \paragraph{Chức năng} Ứng dụng Vaadin cung cấp một giao diện người dùng để lập trình viên có thể mở rộng ra và phát triển các chức năng mà mình mong muốn. Về mặt kĩ thuật, thành phần này sẽ được đảm nhiệm bởi các đối tượng thừa kế từ \textit{com.vaadin.ui.UI} trong source code.
 \paragraph{Nhiệm vụ} Khởi tạo lớp UI, từ đây lớp UI sẽ đảm nhiệm các công việc như nạp tất cả UI Components được khai báo bên trong, cài đặt các event listener để tiếp nhận thao tác từ người dùng. Cuối cùng UI được load lên trình duyệt bằng URL, hoặc được nhúng 
 vào bất kì trang HTML nào \cite{vaadinarchitecture}.
+
+
+\subsection{Các UI Component đáng chú ý}
+Dưới đây chúng em xin được liệt kê các Components được chúng em sử dụng nhiều trong việc phát triển ứng dụng OWLEditor.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=120mm]{Figures/vaadin_architecture1.png}
 	\caption{Các UI Components của Vaadin\label{overflow}}
 \end{figure}
-
-\subsection{Các thành phần đáng chú ý}
-Dưới đây chúng em xin được liệt kê các Components được chúng em sử dụng nhiều trong việc phát triển ứng dụng OWLEditor.
 \subsubsection{Layout}
 Vaadin cung cấp nhiều dạng layout khác nhau để hỗ trợ việc tổ chức các components bên trong một cách khoa học, gọn gàng. \cite{vaadinbook}
 \begin{description}
@@ -238,32 +239,41 @@ Vaadin cung cấp nhiều dạng layout khác nhau để hỗ trợ việc tổ 
 \item[AbsoluteLayout] tổ chức các components theo đúng vị trí tuyệt đối được khai báo.
 \item[CssLayout] tổ chức các components theo định nghĩa từ các file css tương ứng. Đây là cách giúp chúng ta có thể tuỳ chỉnh tối đa bố cục của ứng dụng so với các layout trên.
 \end{description}} 
-\subsubsection{Field}
-Là những components được thừa kế từ \verb|AbstractField| với chứng năng là xử lý các tác vụ input từ người dùng.
+\subsubsection{Field Component}
+Là những components được thừa kế từ \verb|AbstractField| với chức năng là xử lý các tác vụ input từ người dùng.
 \begin{description}
 \item[Button] Đảm nhiệm tính năng click từ người dùng, hành động click được xử lý bởi Button.ClickListener và ClickEvent.
 \item[CheckBox] Component đảm nhiệm đánh dấu tick từ người dùng, sự kiện được xử lý bởi ValueChangeListener và ValueChangeEvent.
-\item
+\item[TextField] Đảm nhiệm việc nhập liệu từ người dùng, sự kiện là TextChangeEvent được xử lý bởi TextChangeListener. Hỗ trợ validation cho dữ liệu được nhập vào qua AbstractValidator.
 \end{description} 
+\subsubsection{Select Component}
+Là những components được thừa kể từ \verb|AbstractSelect| với chức năng chính là hiển thị các Data Model (sẽ được đê cập ngay ở mục sau) ra thành các dạng sau.
+\begin{description}
+\item[Tree] Component cho phép hiển thị Data Model thành dạng cây (ví dụ như cây thư mục), hỗ trợ nhiều tương tác như chọn, thêm, xóa node trên cây.
+\item[Table] Component cho phép hiện thị Data Model thành dạng bảng (ví dụ dữ liệu bảng từ SQL Table), hỗ trợ các thao tác như chọn, thêm , xóa dòng trên bảng.
+\item[ListSelect] Hiển thị các Data Model theo dạng danh sách, hỗ trợ các thao tác chọn từng dòng, nhiều dòng, thêm dòng và xóa dòng trong danh sách.
+\item[ComboBox] Hiện thị các Data Model theo dạng danh sách sổ xuống, hỗ trợ các thao tác như chọn một, thêm dòng mới trong danh sách.
+\end{description}
 
-
-\subsubsection{Data Model}
+\subsection{Data Model}
 Vaadin Data Model cho phép các view (UI components) truy xuất tới dữ liệu một cách trực tiếp, bằng cách cung cấp một interface chuẩn cho mọi loại dữ liệu. Mô hình này cho phép binding các view trực tiếp đến dữ liệu để hiển thị, và cập nhật sự thay đổi ngay lập tức khi dữ liệu được chỉnh sửa. Trong mô hình này có 3 cấp độ cấu trúc khác nhau : property, item và container.
 \\
 Cần lưu ý rằng Data Model không định nghĩa cách mô tả dữ liệu, mà chỉ định nghĩa interfaces cho việc binding dữ liệu đến các view. Điều này cho phép dữ liệu trong Data Model không bị giới hạn, có thể là các object Java thông thường, đường dẫn hệ thống, hoặc có thể là các câu truy vấn cơ sở dữ liệu.
 \\
-Data Model được sử dụng rất nhiều trong các component của Vaadin, đặc biệt là các component thừa kế interface Field hoặc AbstractField. Một tính năng đặc trưng quan trọng của các component tạo sẵn của Vaadin là nó có thể quản lý dữ liệu được gắn vào, thông qua interface Property.
+Data Model được sử dụng rất nhiều trong các component của Vaadin, đặc biệt là các component thừa kế interface Field hoặc AbstractField được đề cập ở mục trên. Một điều thú vị đó là khi tương tác làm cho dữ liệu trong Data Model thay đổi thì dữ liệu hiển thị trên UI Component liên kết với Data Model sẽ tự động được cập nhật. Data Model được tổ chức thành 3 cấp độ khác nhau:
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=100mm]{Figures/vaadin_datamodel.png}
+	\caption{DataModel trong Vaadin\label{overflow}}
+\end{figure}
 \subsubsection{Properties}
 Interface Property là thành phần cơ bản của Vaadin Data Model. Nó cung cấp cho đối tượng dữ liệu các phương thức đọc (get), ghi (set) cơ bản. Kiểu dữ liệu của một property có thể là bất kì lớp Java nào, và nó cũng hỗ trợ chuyển đổi giữa các kiểu dữ liệu.
-\\
+\begin{itemize}
 Phương thức setValue() dùng để ghi dữ liệu.
-\\
 Phương thức getValue() dùng để đọc dữ liệu.
-\\
-Các thay đổi của property sẽ kích hoạt sự kiện ValueChangeEvent, và được xử lý bằng ValueChangeListener. Truy xuất đến property bằng cách gọi phương thức getProperty() của event. Property thường không có định danh riêng. Chỉ khi chúng được chứa trong Item, chúng sẽ được định danh bằng các PID (Property Identifier). Tương tự, khi các Item được chứa trong Container, chúng sẽ có các định danh là các IID (Item Identifier).
-\\
-Mỗi component đều có một thuộc tính dùng để liên kết với nguồn dữ liệu được binding, sử dụng phương thức setPropertyDataSource() để thực hiện liên kết này.
+\end{itemize}
+Các thay đổi của property sẽ kích hoạt sự kiện ValueChangeEvent, và được xử lý bằng ValueChangeListener. Truy xuất đến property bằng cách gọi phương thức getProperty() của event. Property thường không có định danh riêng. Chỉ khi chúng được chứa trong Item, chúng sẽ được định danh bằng các PID (Property Identifier). Tương tự, khi các Item được chứa trong Container, chúng sẽ có các định danh là các IID (Item Identifier). Mỗi component đều có một thuộc tính dùng để liên kết với nguồn dữ liệu được binding, sử dụng phương thức setPropertyDataSource() để thực hiện liên kết này.
 \subsubsection{Converter}
-Khi thực hiện binding, chúng ta sẽ gặp phải trường hợp kiểu dữ liệu của data khác với kiểu dữ liệu của component. Để giải quyết điều này, Vaadin cung cấp interface Converter, cho phép lập trình viên sử dụng để rạo ra các converter tuỳ theo mục đích sử dụng, để chuyển đổi kiểu dữ liệu của data sang kiểu dữ liệu hiển thị được của component. Vaadin cung cấp sẵn một vài converter thông dụng, như chuyển đổi giữa string và integer.
+Khi thực hiện binding, chúng ta sẽ gặp phải trường hợp kiểu dữ liệu của data khác với kiểu dữ liệu của component. Để giải quyết điều này, Vaadin cung cấp interface Converter, cho phép lập trình viên sử dụng để rạo ra các converter tuỳ theo mục đích sử dụng, để chuyển đổi kiểu dữ liệu của data sang kiểu dữ liệu hiển thị được của component. Vaadin cung cấp sẵn một vài converter thông dụng, như chuyển đổi giữa string và integer. Tuy 
 \subsubsection{Container}
 Container là cấp cao nhất của mô hình dữ liệu Vaadin ( Vaadin Data Model ), chứa đựng và quản lý các item, trong các item lại chứa đựng và quản lý các property. Container hiển thị dữ liệu dưới dạng cấu trúc, như các dữ liệu thường thấy trong các bảng (Table), hay cây (Tree).
