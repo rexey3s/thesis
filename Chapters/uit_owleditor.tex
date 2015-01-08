@@ -199,11 +199,14 @@ OWLClassExpression ce2 = eKit.parseClassExpression("Has some Kid");
 \end{verbatim}
 
 \subsubsection{Suy luận các phát biểu}
-Một ứng dụng phát triển ontology sẽ không còn ý nghĩa nếu không có tính năng reasoning,
-Reasoner sử dụng trong UIT-OWL Editor là Pellet Reasoner \cite{pellet}. Reasoner này cũng đã được tạo sẵn trong \verb|OWLEditorKitImpl|, sử dụng thông qua getter \verb|getReasoner()|. Ví dụ:
+Tính năng suy luận được đáp ứng bới Pellet Reasoner đề cập ở chương trước. Reasoner cũng đã được tạo sẵn trong \verb|OWLEditorKitImpl|, truy cập thông qua getter \verb|getReasoner()| và sử dụng như mô tả ở chương trước.
+
+\subsubsection{Áp dụng các thay đổi về phát biểu cho ontology}
+Chức năng này được thực thi bởi đối tượng \verb|OWLOntologyManager| được khởi tạo cùng với lớp \verb|OWLEditorKitImpl|, sử dụng thông qua getter \verb|getModelManager()|.  
+%Khi chúng ta thực hiện các thao tác trên giao diện, những thay đổi đó phải đi từ UI Components đến đối tự \verb|OWLOntologyManager| này để được áp dụng, sau khi áp dụng các thay đổi sẽ được cập nhật trực tiếp qua giao diện hoặc qua Data Model mà UI Component đó liên kết với.
+Đảm nhiệm việc áp dụng các thay đổi về phát biểu lên ontology
 \begin{verbatim}
-Set<OWLCLass> inferredClasses = eKit
-               .getReasoner().getSubClass(
+
 \end{verbatim}
 
 \subsection{Một số đối tượng quan trong khác trong OWLEditorKitImpl}
