@@ -1,4 +1,4 @@
-\chapter{Các thư viện lập trình OWLAPI, SWRLAPI và Vaadin framework sử dụng trong ứng dụng}
+\chapter{Các thư viện lập trình OWLAPI, Pellet Reasoner, SWRLAPI và Vaadin framework sử dụng trong ứng dụng}
 \paragraph{Giới thiệu} Chúng em xin dành chương này để giới thiệu khái quát qua các thư viện lập trình (API) và framework được sử dụng để xây dựng chương trình. Các thư viện sử dụng gồm có OWLAPI \cite{owlapi}, SWRLAPI \cite{swrlapi}, Pellet \cite{pellet}, Google Guava EventBus và thành phần giúp tạo nên giao diện người dùng của ứng dụng Vaadin Framework. Đầu tiên xin được giới thư viện lập trình OWL-API.
 \section{Thư viện lập trình OWLAPI}
 Thư viện lập trình Ontology Web Language là một thư viện mã nguồn mở (phát hành dưới 2 giấy phép \textbf{LGPL} và \textbf{Apache}) \cite{owlapi} được viết bằng JAVA với mục đích hỗ trợ các lập trình viên phát triển các ứng dụng có liên quan đến OWL 2 ontology. Tính đến thời điểm hiện tại thư viện đã được phát triển đến phiên bản 4.0 - cũng là phiên bản được sử dụng trong ứng dụng của chúng em.
@@ -143,6 +143,18 @@ File file = new File("./transport.owl");
 OWLOntolgoy ont  = modelManager.loadOntologyFromOntologyDocument(IRI.create(uri));
 OWLOntolgoy ont2 = modelManager.loadOntologyFromOntologyDocument(IRI.create(file));
 \end{verbatim}
+\subsubsection{EntitySearcher}
+Static class \verb|EntitySearcher| cho phép truy vấn đến các cá thể trong OWL2 Ontology một cách nhanh nhất nếu chúng đã được khai báo. Ví dụ để tìm các mô tả lớp con của một lớp nào đó trong OWL 2 Ontology:
+\begin{verbatim}
+OWLOntology ont = modelManager.loadOntologyFromOntologyDocument(ontologyIRI);
+OWLClass person = factory.getOWLClass("a:Person");
+// Tìm các lớp con của person trong ontology "ont"
+Collection<OWLCLassExpression> subClasses = 
+			EntitySearcher.getSubClasses(person, ont);
+			
+\end{verbatim}
+Lưu ý: cần phân biệt các tính năng của của \verb|EntitySearcher| với thành phần reasoner vì reasoner cũng có các hàm đảm nhiệm tính năng tương tự. EntitySearher chỉ tìm những phát biểu \textbf{đã} khai báo trong ontology, còn Reasoner tìm những phát biểu \textbf{được suy luận} ra từ dữ kiện của ontology.
+
 \subsubsection{OWLObjectRenderer}
 Đảm nhiệm khả năng ghi và biên dịch các thành phần của ontology từ IRI thành dạng vắng tắt, mỗi một dạng cú pháp sẽ có một đối tượng renderer khác nhau implements OWLObjectRenderer. Ví dụ cú pháp Manchester Syntax:
 \begin{verbatim}
@@ -158,6 +170,56 @@ System.out.println(renderer.render(ce));
 // Output: Buy some Car <- Manchester Syntax
 \end{verbatim}
 Còn rất nhiều thành phần quan trọng mà chúng em sử dụng đến trong việc phát triển ứng dụng , chúng em sẽ trình bày trong chương sau khi nói về quá trình phát triển ứng dụng phát triển ontology trên web.
+\section{Pellet Reasoner}
+Như đã đươc lặp lại nhiều lần trong báo cáo, suy luận được xem là một điểm đáng giá của ngôn ngữ OWL2. Tuy nhiên, việc suy luận ra các phát biểu hàm ý rõ ràng không phải là một việc dễ dàng nếu chúng ta thực hiện thủ công bằng cách đọc và hiểu các phát biểu như đã làm trong chương 2. Sử dụng Reasoner sẽ làm cho công việc suy ra các mảnh thông tin ẩn chứa bên trong Ontology trở nên dễ dàng hơn rất nhiều, có rất nhiều reaoner được phát triển để thực hiện tác vụ này. Trong số đó Pellet \cite{pellet} là một thư viện tối ưu nhất và  một ưu dăc biệt hơn nữa là  khả năng suy luận từ những luật SWRL Rule.
+
+Pellet được phát triển bởi Clark và Parsia \cite{repair} \cite{axiomPinpoint} là những tác giả của kỹ thuật BlackBox, AxiomPinpoint và giải thuật HST được trình bày trong chương \textit{Tính nhất quán của Ontology}, đồng tác giả của các module explanation và modularity trong thư viện OWL-API vừa nêu. Vì vậy, không khó hiểu khi Pellet và OWL-API hoạt động rất tốt khi kết hợp với nhau.
+\\
+Pellet Reasoner được phát hiện theo giấy phép open source (AGPL) và phiên bản được chúng em sử dụng là 2.2.2, phiên bản mới hơn 3.0 là phiên bản thương mại hóa.
+\\
+Sau đây, chúng em xin trình bày một ví dụ về cách sử dụng Pellet với OWL-API:
+\begin{verbatim}
+// Có ontology sau
+Declaration(Class(a:Person))
+Declaration(NamedIndividual(a:Nguyen))
+Declaration(DataPropery(a:HasAge))
+DataPropertyAssertion(a:HasAge a:Nguyen "22"^^xsd:int)
+// Người có số tuổi sẽ đều là người ~ Person
+DataPropertyDomain(a:HasAge a:Person)
+...
+OWLOntology ontology = // load từ IRI 
+OWLNamedIndividual Nguyen = factory.getOWLNamedIndividual("a:Nguyen"); 
+OWLReasonerFactory reasonerFactory = PelletReasonerFactory.getInstance();
+OWLReasoner reasoner = 
+      reasonerFactory.createReasoner(ontology, new SimpleConfiguration());
+reasoner.precomputeInferences();
+// Tìm xem Nguyen thuộc những lớp nào
+Set<OWLClass> hiddenMeaning = reasoner
+      .getTypes(Nguyen, false).getFlattened();
+hiddenMeaing.forEach(cls -> System.out.println(cls));
+// Output
+a:Person
+a:Thing
+\end{verbatim}
+Nhớ lại \verb|EntitySearcher| cũng có tính năng |getTypes| tương tự tuy nhiên nó sẽ không in ra output nào trong trường hợp này vì nó chỉ tìm những phát biểu đã \textbf{khai báo} trong ontology, không giống như Reasoner là tìm những phát biểu được suy luận ra. Lưu ý: nếu trong \verb|getTypes| trong ví dụ trên nếu ta để \verb|true| thì kết quả sẽ không có \textit{a:Thing}, \verb|false| có nghĩa là tìm luôn những lớp bên mà \textit{a:Person} là lớp con của chúng, \verb|true| thì ngược lại.
+\\
+Trên đây chỉ là một ví dụ đơn giản về cách sử dụng của reasoner, thầy cô và bạn đọc có thể tham khảo thêm ở \cite{pellet}.
+
+\section{SWRL API}
+SWRL API được xây dựng bởi nhóm phát triển dự án Protege \cite{protege} với mục tiêu tổ chức các SWRL Rule theo tên nhằm dễ dàng quản lý, đồng thời họ cũng giới thiệu SQWRL \cite{swrlapi} một ngôn ngữ truy vấn dành cho Ontology. Trong nội dung báo cáo, chúng em chỉ sử dụng tính năng SWRL Rule của SWRLAPI các tính năng còn lại có thể được tham khảo tại \cite{swrlapi}. Các tính năng mà chúng em sử dụng gồm render, parse SWRL Rule và thêm/xóa SWRL Rule theo tên của chúng. Một ví dụ nhanh về cách sử dụng API này với OWL-API:
+\begin{verbatim}
+OWLOntology ont = // load ontology ../
+// Convert OWLOntology -> SWRLAPIOWLOntology
+SWRLAPIOWLOntology SWRLOnt =  SWRLAPIFactory.createOntology(ont);
+   
+SWRLAPIRenderer ruleRenderer = 
+                  new DefaultSWRLAPIRenderer(SWRLOnt);
+// Rule được tự động add và cập nhật trong đối tượng OWLOntology                  
+SWRLAPIRule apiRule = SWRLOnt.createSWRLRule(
+                 "RuleName", "Driver(?x) -> Person(?x)");
+// Render rule -> string
+System.out.println(ruleRenderer.render(apiRule));
+\end{verbatim}
 
 \section{Vaadin Framework }
 \paragraph{Giới thiệu} Vaadin Framework là nền tảng xây dựng một ứng dụng web trên Java được thiết kế giúp tạo ra một ứng dụng web chất lượng cao một cách dễ dàng nhất - tập trung chủ yếu vào one-page web application. Không giống như những framework web hiện nay đòi hỏi lập trình viên phải có kiến thức về HTML5, javascript và ít nhất một ngôn ngữ back-end. Vaadin giúp chúng ta tạm quên việc đi việc phải viết các client javascript hay từng dòng HTML để xây dựng giao diện người dùng - nói cách khác nó làm cho công việc phát triển front-end trở nên cực kì đơn giản, dễ hình dung nhất là việc phát triển một ứng dụng web trên Vaadin cũng tương tự khi chúng ta phát triển một ứng dụng desktop thông thường với các công cụ Java như AWT, Swing, hay SWT hoặc window form với C-Sharp.  Với Vaadin để phát triển được toàn bộ một ứng dụng, ngôn ngữ duy nhất chúng ta cần nắm đó là Java. Một ví dụ minh họa về tính đơn giản trong khi sử dụng Vaadin:

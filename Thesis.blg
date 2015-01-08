@@ -22,8 +22,8 @@ Reallocated global_strs (elt_size=20001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Name 1 in "A. Kalyanpur, B. Parsia, B. Cuenca-Grau, and E. Sirin" has a comma at the end for entry repair
 while executing---line 2696 of file IEEEtranN.bst
-Warning--empty journal in OWA_CWA
 Warning--empty year in matt_horridge
+Warning--empty journal in OWA_CWA
 Name 1 in "A. Kalyanpur, B. Parsia, B. Cuenca-Grau, and E. Sirin" has a comma at the end for entry repair
 while executing---line 2710 of file IEEEtranN.bst
 Name 1 in "A. Kalyanpur, B. Parsia, B. Cuenca-Grau, and E. Sirin" has a comma at the end for entry repair
@@ -32,45 +32,45 @@ Warning--empty journal in repair
 Warning--empty booktitle in mups
 
 Done.
-You've used 34 entries,
+You've used 35 entries,
             4783 wiz_defined-function locations,
-            1063 strings with 11495 characters,
-and the built_in function-call counts, 14530 in all, are:
-= -- 1352
+            1066 strings with 11558 characters,
+and the built_in function-call counts, 14906 in all, are:
+= -- 1385
 > -- 127
 < -- 8
-+ -- 117
++ -- 119
 - -- 34
-* -- 722
-:= -- 2350
-add.period$ -- 64
-call.type$ -- 34
-change.case$ -- 64
-chr.to.int$ -- 26
-cite$ -- 62
-duplicate$ -- 1151
-empty$ -- 1348
+* -- 739
+:= -- 2405
+add.period$ -- 66
+call.type$ -- 35
+change.case$ -- 66
+chr.to.int$ -- 27
+cite$ -- 64
+duplicate$ -- 1183
+empty$ -- 1388
 format.name$ -- 52
-if$ -- 3076
+if$ -- 3157
 int.to.chr$ -- 9
-int.to.str$ -- 35
-missing$ -- 213
-newline$ -- 188
+int.to.str$ -- 36
+missing$ -- 219
+newline$ -- 193
 num.names$ -- 30
-pop$ -- 842
+pop$ -- 870
 preamble$ -- 1
-purify$ -- 34
+purify$ -- 35
 quote$ -- 2
-skip$ -- 1030
+skip$ -- 1056
 stack$ -- 0
-substring$ -- 122
-swap$ -- 506
+substring$ -- 126
+swap$ -- 518
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 6
-type$ -- 517
+type$ -- 532
 warning$ -- 4
 while$ -- 20
 width$ -- 0
-write$ -- 384
+write$ -- 394
 (There were 4 error messages)

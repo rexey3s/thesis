@@ -98,56 +98,123 @@ Demo Tab không nằm trong thành phần tiêu chuẩn mà một Ontology Edito
 \item Panel phía trên bên phải sẽ hiện thị một sơ đồ thể hiện gợi ý phân loại cho lớp được chọn.
 \end{enumerate}}
 
-%\section{Cấu trúc package của ứng dụng}
-%\subsection{vn.edu.uit.owleditor}
-%Chứa các đối tượng có vai trò là nơi đầu tiên code được thực thi khi người dùng gõ vào URL của ứng dụng. Gồm các đối tượng quan trọng sau
-%\begin{description}
-%\item[OWLEditorUI] là đối tượng được mở rộng (thừa kế) lớp \verb|UI| của Vaadin với chứng năng là nạp các component từ Entry 
-%\end{description}
-%\subsection{vn.edu.uit.owleditor.core}
-%Gồm thành phần quan trọng nhất \verb|OWLEditorKit| (sẽ được trình ngay ở phần sau) và một số implementations của một vài interfaces trong OWL-API.
-%\subsection{vn.edu.uit.owleditor.data}
-%\begin{description}
-%\item[vn.edu.uit.owleditor.data.hierarchy] Chứa các Data Model mở rộng từ lớp HierarchicalContainer của Vaadin.
-%\item[vn.edu.uit.owleditor.list] Chứa các Data Model mở rộng từ lớp IndexedContainer của Vaadin.
-%\item[vn.edu.uit.owleditor.property] Chức các Data Model implement interface Property của Vaadin.
-%\end{description}
-%\subsection{vn.edu.uit.owleditor.event}
-%Chứa các sự kiện và các EventHandler Inteface của toàn ứng dụng UIT-OWL Editor.
-%\subsection{vn.edu.uit.owleditor.view}
-%Chứa các Tab vừa được nêu ở mục trên, EntryView và MainView.
-%\subsubsection{vn.edu.uit.owleditor.view.component}
-%Chứa các thành phần quan trọng như ClassExpressionEditor, AbstractExpressionPanel, SWRLRuleEditor.
-%\subsubsection{vn.edu.uit.owleditor.view.panel}
-%Chứa các Class/ObjectProperty/DataProperty HierarchicalPanel và ClassExpression/ObjectProperty/DataProperty/NamedIndividual PanelContainer
-%\subsubsection{vn.edu.uit.owleditor.view.window}
-%Chứa các lớp được mở rộng từ sub-window của Vaadin như build{Add/Edit}ClassExpressionWindow dùng để thêm/chỉnh sửa các mô tả lớp.
-%\subsection{vn.edu.uit.owleditor.utils}
-%Chứa enumeration OWLEditorData liệt kê các kiểu dữ liệu trong UIT-OWL Editor.
-%\subsubsection{vn.edu.uit.owleditor.converter}
-%Chứa các Converter tự định nghĩa được implement từ \textit{Converter} interface của Vaadin.
-%\subsubsection{vn.edu.uit.owleditor.validator}
-%Chứa các validator tự định nghĩa được implement từ \textit{Validator} interface của Vaadin.
-
 \section{OWLEditorKit}
 \begin{description}
-\item[interface] vn.edu.uit.owleditor.OWLEditorKit
-\item[class implementation] vn.edu.uit.owleditor.OWLEditorKitImpl
+\item[Interface:] \verb|vn.edu.uit.owleditor.OWLEditorKit|
+\item[Class implementation:] \verb|vn.edu.uit.owleditor.OWLEditorKitImpl|
 \end{description}
-Đây là thành quan trọng nhất của toàn bộ ứng dụng đảm nhiệm việc khai thác các API từ OWL-API, nạp/tạo Ontology từ IRI, reasoning, giải thích các phát biểu, làm parser cho các mô tả lớp và dữ liệu. Thực ra, các chứng năng vừa kể trên hầu hết đều được thực thi nhờ các API củaj OWL-API, lớp này chỉ đơng giản đóng gói tất cả lại thành một đối tượng để dễ dàng sử dụng trong các UI Component hơn. Các chức năng của OWLEditorKit gồm:
+Đây là thành quan trọng nhất của toàn bộ ứng dụng đảm nhiệm việc khai thác các API từ OWL-API, nạp/tạo Ontology từ IRI, suy luận, giải thích các phát biểu, parse các chuỗi viết theo cú pháp \textit{Manchester} thành các mô tả lớp và dữ liệu. Thực ra, các chứng năng vừa kể trên hầu hết đều được thực thi nhờ các API của OWL-API, \verb|OWLEditorKit| đóng gói tất cả lại thành một đối tượng để dễ dàng sử dụng trong các UI Component hơn, cũng như tránh việc phải khởi tạo nhiều lần các API.
+\subsection{Các chức năng của OWLEditorKit}
 
-\subsection{Load Ontology}
-Tương ứng với hàm \textit{loadOntologyFromOntologyDocument}, load các tài liệu OWL2 từ đối tượng IRI của OWL-API, ontology khi load xong sẽ được gán cho đối tượng \verb|activeOntology|. 
-\subsubsection{Active Ontology}
+\subsubsection{Load Ontology}
+Tương ứng với hàm \verb|loadOntologyFromOntologyDocument|, load các tài liệu OWL2 từ tham số là đối tượng \verb|IRI| của OWL-API, ontology khi load xong sẽ được gán cho đối tượng Active Ontology (sẽ được đề cập ngay sau).
 \begin{verbatim}
-OWLOntology activeOntology;
+OWLEditor kit = new OWLEditorKitImpl();
+kit.loadOntologyFromOntologyDocument(IRI.create("some url"));
 \end{verbatim}
-\verb|activeOntology| là một đối tượng được khai báo trong OWLEditorKitImpl. Mọi thay đổi về thêm/xóa/sửa các phát biểu qua các giao diện đều sẽ được cập nhật và áp dụng lên đối tượng này.
-\subsubsection{OWLOntologyManager}
-Là một dạng đối tượng tù thư viện OWL-API, đối tượng này được khởi tạo khi hàm OWLEditorKitImpl được khởi tạo.
-\subsubsection{OWLDataFactory}
-OWLEditorKit cũng có một OWLDataFactory đảm nhiệm việc xây dựng cá lớp/thuộc tính đối tượng/thuộc tính đối tượng dữ liệu, các mô tả lớp/thuộc tính và các phát biểu về lớp/thuộc tính cá thể.
-\subsection{Reasoning}
+\subsubsection{Giải thích các phát biểu trong OWL2 Ontology}
+Tương ứng với hàm \verb|explain|, tham số nhận vào là một phát biểu tương đương đối tượng \verb|OWLAxiom| trong OWL-API. Kết quả trả về là một đối tượng \verb|ExplanationTree| chứa các phát biểu giải thích.
+
+\subsubsection{Xóa các thực thể (Entities) trong OWL2 Ontology}
+Xóa các phát biểu trong OWL 2 Ontology không phải là một tác vụ dễ dàng vì một phát biểu có thể được sử dụng để xây dựng nên phát biểu khác. Ví dụ:
+\begin{verbatim}
+Declaration( Class( A ))
+SubClassOf(A B)
+EquivalentClasses(A C D)
+\end{verbatim}
+Giả sử chúng ta muốn xóa phát biểu \textit{Declaration( Class( A ))} thì \textbf{bắt buộc} chúng ta phải xóa luôn những phát biểu có liên quan đến \verb|A| là \textit{SubClassOf và EquivalentClasses}  bởi vì không có phát biểu khẳng định sự tồn tại của \verb|A| thì những phát biểu còn lại sẽ trở nên vô nghĩa. Tuy nhiên để thực hiện tác vụ này OWL-API cung cấp cho chúng ta một đối tượng là \verb|OWLEntityRemover| với tính năng duyệt qua mọi phát biểu có liên quan đến thực thể cần xóa, xóa tất cả các phát biểu đó trước khi xóa thực thể. Đối tượng này được sử dụng qua getter \verb|getEntityRemover|.
+
+\subsubsection{Nhà máy sản xuất ra mọi loại đối tượng trong OWL 2 Ontology}
+Một chức năng thực sự hữu ích được khai thác từ đối tượng \verb|OWLDataFactory| của OWL-API, với số lượng đối tượng (thực thể, mô tả lớp, thuộc tính, phát biểu, ...) rất lớn để cập ở chương 2, rất khó để chúng ta có thể nhớ và sử dụng chúng dễ dàng. \verb|OWLDataFactory| cung cơ chế để tạo ra mọi loại phát biểu trong OWL 2 Ontology một cách tiện lợi ví dụ như:
+\begin{verbatim}
+// Declaration( Class(a:Person) )
+OWLClass person = factory.getOWLClass("a:Person");
+
+// Declaration( NamedIndividual(a:Peter) )
+OWLNamedIndividual Peter = factory.getOWLNameIndividual("a:Peter");
+
+// Declaration( DataProperty(a:HasAge) )
+OWLDataProperty hasAge = factory.getOWLDataProperty("a:HasAge");
+
+// ClassAssertion( a:Person a:Peter )
+OWLClassAssertionAxiom axiom1 = 
+         factory.getOWLClassAssertionAxiom(person, Peter);
+         
+// "22"^^xsd:integer 
+OWLLiteral age = factory.getOWLLiteral(22);
+
+// DataPropertyAssertion( a:HasAge a:Peter "22"^^xsd:integer); 
+OWLDataPropertyAssertionAxiom phatbieu = 
+         factory.getOWLDataPropertyAssertionAxiom(hasAge, Peter, age);
+\end{verbatim}
+Trong \verb|OWLEditorKit|, \verb|OWLDataFactory| được truy xuất qua getter \verb|getOWLDataFactory()|.
+
+\subsubsection{Nhà máy sản xuất ra mọi loại đối tượng dữ liệu cho ứng dụng UIT-OWL Editor}
+{\let\thefootnote\relax\footnotetext{
+		*\textit{http://en.wikipedia.org/wiki/Factory\_method\_pattern}}
+}
+\begin{description}
+\item[Interface:] \verb|vn.edu.uit.owleditor.data.OWLEditorDataFactory|
+\item[Class Implementation:] \verb|vn.edu.uit.owleditor.data.OWLEditorDataFactoryImpl|
+\end{description}
+Học tập mô hình \textit{Factory Pattern} \textsuperscript{*} từ đối tượng \verb|OWLDataFactory|, chúng em cũng tự xây dựng một đối tượng với mục tiêu là cung cấp một cơ chế tiện lợi để tạo ra các đối tượng dữ liệu và các event trong UIT-OWL Editor. Tham số khởi tạo của \verb|OWLEditorDataFactory| chính là \verb|OWLEditorKit|. Ví dụ để tạo sự kiện thêm một phát biểu về lớp vào Ontology:
+\begin{verbatim}
+// Khởi tạo OWLEditorDataFactory
+OWLEditorKit kit = new OWLEditorKit();
+OWLEditorDataFactory editorFactory = new OWLEditorDataFactoryImpl(kit);
+// Tạo sự kiện thêm phát biểu về lớp
+OWLClass person = factory.getOWLClass("a:Person");
+OWLClass man = factory.getOWLClass("a:Man");
+OWLEditorEvent.ClassAxiomAdded event =
+        owlEditorDataFactory.getSubClassOfAddEvent(man, person);
+\end{verbatim}
+Một cái nhìn chi tiết vào trong \verb|OWLEditorDataFactoryImpl| sẽ làm gì với dòng cuối cùng trong đoạn code ở 
+\begin{verbatim}
+// Bên trong lớp OWLEditorDataFactoryImpl
+private final OWLEditorKit editorKit;
+public OWLEditorDataFactoryImpl(OWLEditorKit eKit) {
+   this.editorKit = eKit;
+}
+...
+OWLEditorEvent.ClassAxiomAdded getClassAssertionAddEvent(OWLClass owner,
+  OWLNamedIndividual expression) {
+
+  return new OWLEditorEvent.ClassAxiomAdded(editorKit.getOWLDataFactory()
+                    .getOWLClassAssertionAxiom(owner, expression), owner);
+}
+\end{verbatim}
+Để sử dụng đối tượng \verb|OWLEditorDataFactory|, chúng ta sẽ sử dụng qua getter \verb|OWLEditorDataFactory| của \verb|OWLEditorKit| để tránh khởi tạo nhiều lần (đối tượng này đã được khởi tạo ngay bên trong \verb|OWLEditorKitImpl|.
+
+\subsubsection{Parse chuỗi thành các mô tả lớp (OWLClassExpression)}
+OWLEditorKit cũng được tích hợp một đối tượng \verb|ManchesterOWLSyntaxParser| trong OWL-API, nhiệm vụ là để parse các đoạn text từ người dùng theo cú pháp \textit{Manchester} thành các mô tả lớp (OWLClassExpression) hay các miền dữ liệu (OWLDataRange). Parser này được sử dụng thông qua getter \verb|getParser| hoặc parse trực tiếp qua hàm \verb|parseClassExpression(String stringToParse)| . Ví dụ:
+\begin{verbatim}
+OWLEditorKit eKit = new OWLEditorKitImpl();
+// nạp ontology ...
+// Cách 1
+ManchesterOWLSyntaxParser parser = eKit.getParser();
+parser.setStringToParse("Has some Friend");
+OWLClassExpression ce1 = parser.parseClassExpression();
+// Cách 2 
+OWLClassExpression ce2 = eKit.parseClassExpression("Has some Kid");
+\end{verbatim}
+
+\subsubsection{Suy luận các phát biểu}
+Một ứng dụng phát triển ontology sẽ không còn ý nghĩa nếu không có tính năng reasoning,
+Reasoner sử dụng trong UIT-OWL Editor là Pellet Reasoner \cite{pellet}. Reasoner này cũng đã được tạo sẵn trong \verb|OWLEditorKitImpl|, sử dụng thông qua getter \verb|getReasoner()|. Ví dụ:
+\begin{verbatim}
+Set<OWLCLass> inferredClasses = eKit
+               .getReasoner().getSubClass(
+\end{verbatim}
+
+\subsection{Một số đối tượng quan trong khác trong OWLEditorKitImpl}
+Ngoài các chức năng đi kèm với các đối tượng quan trong kể trên trong implementation của \verb|OWLEditorKit| cũng có một số đối tượng mà chúng ta cũng cần phải lưu ý.
+\subsubsection{Active Ontology}
+Biến  \verb|activeOntology| là một đối tượng \verb|OWLOntology| của OWL-API được khai báo trong OWLEditorKitImpl. Biến này chính là OWL2 Ontology hiện hành đang được thao tác trên giao diện. Các thao tác thêm/xóa/sửa các phát biểu qua các giao diện đều sẽ được cập nhật và áp dụng lên đối tượng \verb|OWLOntology| này.
+\subsubsection{OWLOntologyManager tích hợp}
+Bên trong \verb|OWLEditorKitImpl| cũng có một đối tượng \verb|OWLOntologyManager| được tích hơp để quản lý các OWL 2 Ontology được nạp vào.
+\subsubsection{OWLDataFactory tích hợp}
+Đối tượng \verb|OWLDataFactory| tích đảm nhiệm việc xây dựng cá lớp/thuộc tính đối tượng/thuộc tính đối tượng dữ liệu, các mô tả lớp/thuộc tính và các phát biểu về lớp/thuộc tính cá thể.
+\subsubsection{Reasoner tích hợp}
 
 
 
