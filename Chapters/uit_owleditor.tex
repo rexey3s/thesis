@@ -160,7 +160,7 @@ Trong \textit{OWLEditorKit}, \textit{OWLDataFactory} được truy xuất qua ge
 
 \subsubsection{Nhà máy sản xuất ra mọi loại đối tượng dữ liệu cho ứng dụng UIT-OWL Editor}
 {\let\thefootnote\relax\footnotetext{
-		*\textit{http://en.wikipedia.org/wiki/Factory\_method\_pattern}}
+		*: \textit{http://en.wikipedia.org/wiki/Factory\_method\_pattern}}
 }
 \begin{description}
 \item[Interface:] \verb|vn.edu.uit.owleditor.data.OWLEditorDataFactory|
@@ -225,24 +225,150 @@ Hàm static \textit{OWLEditorKitImpl.getShortForm(OWLEntity)} dùng lấy tên c
 
 
 \section{Xử lý sự kiện trong UIT-OWL Editor}
-Qua phần đầu tiên về bố cục của ứng dụng, cũng có thể thấy với nhiều Tab và các Panel như vậy thì việc xây dựng các Event (sự kiện) và các EventListener sẽ đòi hỏi một công sức khá lớn nếu viết theo kiểu truyền thống Java. Vì thế chúng em đã chọn một cách tiếp cận khác đó sử dụng thư viện Google Guava EventBus \cite{guava}. Thư viện này cho phép nhanh chóng đăng ký (register) một hàm subscriber trong một UI Component để biến nó thành EventListener, sự kiện có thể đến từ bất kì component nào khác mà chúng ta không nhất thiết phải quan tâm vì đã có \textit{OWLEditorEventBus} xử lý. Cái chúng ta cần quan tâm đó là kiểu của đối tượng event được post (truyền lên) EventBus. Trong ứng dụng của chúng em, việc sử dụng  \textit{Guava EventBus} được đơn giản hóa bằng các hàm tĩnh nằm trong \textit{OWLEditorEventBus}.
-Dòng sự kiện trong hầu hết các UI Component của ứng dụng sẽ giống như hình sau:
+{\let\thefootnote\relax\footnotetext{
+		*: \textit{http://en.wikipedia.org/wiki/Publish\%E2\%80\%93subscribe\_pattern}}
+}
+Để xử lý các sự kiện trong ứng dụng, chúng em sử dụng thư viện Guava EventBus \cite{guava}. \textit{EventBus} cho phép giao tiếp theo kiểu công bố và theo dõi (\textit{publish-subscribe}\textsuperscript{*}), các UI Component không cần thiết phải khai báo với nhau (để biết được tồn tại của nhau). Thư viện được được thiết kế nhằm thay thế kiểu giao tiếp chia sẻ sự kiện trong tiến trình (in-process event distribution) bằng cách khai báo rõ ràng các thành phần có liên quan tới sự kiện với nhau (khai báo đối tượng tạo ra sự kiện, đối tượng sẽ lắng nghe sự kiện với nhau). Cơ chế xử lý sự kiện này của ứng dụng có thể được miêu tả trong hình sau:
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=120mm]{Figures/eventBusChart.png}
-	\caption{Dòng sự kiện trong UIT-OWL Editor\label{overflow}}
+	\includegraphics[width=145mm]{Figures/owleditor_eventBus.png}
+	\caption{Xử lý sự kiện trong UIT-OWL Editor\label{overflow}}
 \end{figure}
-Chúng em xin lấy một \textit{ClassExpressionPanelsContainer} ra làm ví dụ:
+Để hiểu rõ hơn nữa, chúng em xin được lấy sự kiện thêm một phát biểu \textit{SubClassOf} trong Panel có tên tương ứng nằm trong Tab "Classes". Panel này là một đối tượng lớp \textit{ClassPanel} nằm trong \textit{ClassExpressionPanelContainer} và các chức năng \textit{EventBus} của toàn ứng dụng có thể được sử dụng qua lớp \textit{OWLEditorEventBus}. 
+\begin{verbatim}
+class ClassExpressionPanelContainer extends AbstractPanelContainer {
+    ClassPanel subClsPanel; 
+    public ClassExpressionPanelContainer {
+       subClsPanel = new ClassPanel("SubClass Of: ") {
+          void initActionADD() { 
+          // Mở một cửa số nhỏ nhằm nhập mô tả lớp mới vào
+          UI.getCurrent()
+            .addWindow(new buildAddClassExpressionWindow(...));            
+             ...
+          }
+       }
+       this.addComponent(subClsPanel); 
+	   OWLEditorEventBus.register(this); // Bước 1 trong sơ đồ
+    }
+    ...
+    // Annotation @Subscribe được cung cấp bởi thư viện EventBus
+    // Bước 4 trong sơ đồ 
+    @Subscribe 
+    public void handlAxiomAdd(OWLEditorEvent.ClassAxiomAdded event) {
+       // Bước 5 trong sơ đồ
+       OWLEditorKit kit = OWLEditorUI.getEditorKit();
+       kit.getModelManager.applyChange(new 
+           AddAxiom(kit.getActiveOntology(),event.getAxiom));
+	       // render các thay đổi lên các UI Components
+    }  
+}
+class buildAddClassExpressionWindow extends ... {
+    ...
+    // sự kiện khi nhấn save tương ứng bước 2 trong sơ đồ
+    Button.ClickListener initSaveListener() {
+       return click -> {
+          OWLClassExpression ce = editorKit
+            .parseClassExpression("some value from Textfield");
+          // tương ướng bước 3 
+          OWLEditorEventBus.post(ClassAxiomAdded(.., ce));
+       }
+    }
+}
+\end{verbatim}
+Hình sau miêu tả lại thao tác người dùng trên UI:
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=145mm]{Figures/eventBusExplain.png}
+	\caption{Xử lý sự kiện trong UIT-OWL Editor\label{overflow}}
+\end{figure}
+Đầu tiên trước khai mọi sự kiện diễn ra một \textit{Subscriber} cần được đăng ký trong một Component nào đó bằng Annotation @Subscribe và method \textit{register} (đăng ký đây sẽ là listener/subscriber để theo dõi các sự kiện tương ứng). Khi người dùng, nhấn dấu cộng ở góc của Panel \textit{SubClassOf} sẽ mở ra một cửa sổ để nhập vào mô tả lớp, nút save được bấm thì cũng là lúc mà sự kiện được công bô (publish) lên \textit{EventBus} (qua phương thức \textit{post} ở bước 3), do đã đăng ký trước nên phương thức \textit{Subscribe} sẽ được EventBus truyền cho đúng kiểu event mà nó đang theo dõi. Lưu ý: là phương thức nào làm Subscriber thì bắt buộc phải có một tham số duy nhất là sự kiện với kiểu tương ứng với nơi mà sự kiện đó được công bố, đồng thời access-level của phương thức phải là public.
+\\
+Như đã nếu, nguyên tắc của EventBus để phân biệt các sự kiện chỉ là kiểu của nó. Chính vì thế mà với mỗi loại hành động thêm/xóa/sửa trên loại thực thể, hoặc phát biểu của thực thể sẽ có một loại sự kiện tương ứng. Ví dụ: đối với các phát biểu liên quan tới lớp sẽ có 3 loại tương ứng là ClassAxiomAdded, ClassAxiomRemoved và ClassAxiomEdit. Tương tự cho các thực thể và phát biểu còn lại. Chi tiết hơn, thầy cô và bạn đọc có thể tham khảo thêm trong lớp \textit{vn.edu.uit.owleditor.event.OWLEdtiorEvent} trong mã nguồn của ứng dụng \cite{owleditorSrc}.
 
 
-
-
-
-
-
-
-
-
+\section{Tổ chức các đối tượng dữ liệu - Data Model}
+Đã được đề cập trong lúc giới thiệu về Vaadin, data model trong Vaadin được chia làm 3 cấp từ thấp đến cao Property, Item và Container. Trong ứng dụng, chúng em chỉ sử dụng 2 dạng data model là Property và Container. 
+\subsection{HierarchicalContainer}
+%Vaadin cung cấp một lớp gọi là \textit{HierarchicalContainer} chuyên dùng để chứa dạng dữ liệu có cấu trúc phân cấp. Qua giới thiệu ở chương 2, chúng ta đã biết rằng các t đều là những đối tượng có quan hệ SubClassOf, SubObjectPropertyOf và SubDataPropertyOf hay có thể nói 3 thực thể kể trên có cấu trúc phân cấp.
+Để thể hiện tính chất phân cấp của các thực thể như lớp, thuộc tính đối tượng và dữ liệu trong OWL 2 Ontology, chúng ta có thể dùng Tree Component của Vaadin. Tuy nhiên, với việc UI Component Tree được sử dụng lặp lại nhiều lần trong ứng dụng, nên việc tách biệt các đối tượng dữ liệu với UI đã sẽ giúp chúng ta tiết kiệm được những khai báo lại không cần thiết, dữ liệu thay đổi trong DataModel cũng sẽ được cập nhật đến toàn bộ những UI Component mà nó được sử dụng (binding). Để hiểu rõ hơn về cách tổ chức của \textit{HierarchicalContainer} chúng em xin được lấy  \textit{AbstractOWLObjectHierarchicalContainer}, được thừa kế bởi \textit{HierarchicalContainer} của lớp, thuộc tính đối tượng và dữ liệu. Nó gồm những đặc điểm quan trọng sau:
+\begin{itemize}
+\item Thừa kế từ HierarachicalContainer của Vaadin nên sẽ có sẵn các phương thức \textit{addItem}, \textit{setParent} phục vụ cho việc thêm, và sắp xếp item theo cấu trúc cây.
+\item Gồm một \textit{OWLEntityRemover} dùng để xóa thực thể (OWLEntity) khi nhận yêu cầu xóa từ UI Component.
+\item Gốm một đối tượng OWLNamedObjectVisitor (xem lại Visitor Pattern ở chương trước) có chức năng tìm đóng loại cá thể, sau đó thêm chúng vào HierachicalContainer.
+\item Gồm một \textit{OWLOntologyChangeVisitor} dùng để cập nhật sự thay đổi trong container cho đồng bộ với sự thay đổi của OWLOntology khi thêm/xóa các thực thể và phát biểu SubClass/SubPropertyOf.
+\item Gồm một hàm đệ quy với mục đích là sắp xếp các item trong HierarchicalContainer cho đúng với sự phân cấp của chúng trong OWL2 Ontology.
+\end{itemize}
+Dưới đây là sơ đồ mô tả lại giải thuật thêm và sắp xếp các item lên cấu trúc cây của \textit{OWLClassHierarchicalContainer} thừa kế từ lớp Abstract ở trên. Chú thích: \textit{contains} là một hàm nhằm xác định đối tượng được xét đã tồn tại trong Container chưa.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=150mm]{Figures/owleditor_hccontainer.png}
+	\caption{OWLClassHierarchicalContainer trong UIT-OWL Editor\label{overflow}}
+\end{figure}
+\subsection{List}
+Đây thật ra là lớp mà HierarchicalContainer trong Vaadin thừa kế IndexedContainer, mục đích của Container dạng này là dùng để chứa các item theo dạng danh sách, chúng em sử dụng chúng để chứa các đối tượng như OWLNamedIndividual, OWL2Datatype . Bảng sau liệt kê đối tượng của các Container dạng này trong ứng dụng.
+\begin{table}
+	\centering
+	\begin{tabular}{|l|l|}
+		\hline
+		IndexContainer  & Đối tượng chứa \\
+		\hline
+		DataRangeShortFormContainer	& OWLDatatype dạng ShortForm(String) \\ 
+		\hline
+		OWL2DatatypeContainer	& OWLDatatype  \\
+		\hline
+		OWLEntitiesShortFormContainer & OWLEntity dạng ShortForm(String)	\\	
+		\hline
+		OWLNamedIndividualContainer & OWLNamedIndividual  \\		
+		\hline
+	\end{tabular}
+	\caption{List Container trong UIT-OWLEditor\label{overflow}}
+\end{table}
+\subsection{Property}
+Mục đích đưa các đối tượng thành Property của Vaadin cũng tương tự như Container, các đối tượng OWL2 sẽ được sử dụng lại nhiều lần bởi các UI Component sử dụng (binding) nó nên sử dụng Property chứa các đối tượng OWLObject sẽ giúp tiết kiệm những lần truyền tham số (là các OWLObject) giữa các UI Component. Các Property và đối tượng OWLObject tương ứng được tổng hợp trong bảng sau.
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|l|l|}
+		\hline
+		Property & OWLObject tương ứng  \\
+		\hline
+		OWLClassSource	& OWLClass \\ 
+		\hline
+		OWLDataProperty ExpressionSource & OWLDataPropertyExpression  \\
+		\hline
+		OWLObjectPropertySource & OWLObjectProperty  \\		
+		\hline
+		OWLDataPropertySource	& OWLDataProperty   \\
+		\hline
+		OWLNamedIndividualSource& OWLNamedIndividual   \\
+		\hline
+		OWLDataRangeSource	& OWLDataRange   \\
+		\hline
+		OWLPropertySource 	& OWLProperty   \\
+		\hline
+		OWLLogicalEntitySource & OWLLogicalEntity \\
+		\hline
+		OWLEntitySource	& OWLEntity	 \\
+		\hline
+		OWLLiteralSource	& OWLLiteral \\
+		\hline
+		OWLProperty AssertionObjectSource & OWLProperty AssertionObject \\
+		\hline
+		OWLClassExpressionSource	& OWLClassExpression \\		
+		\hline
+		OWLProperty ExpressionSource	& OWLPropertyExpression  \\		
+		\hline
+		OWLDataProperty ExpressionSource	& OWLData PropertyExpression \\		
+		\hline
+		OWLObjectProperty ExpressionSource	& OWLObject PropertyExpression \\	
+		SWRLRuleSource	& SWRLRule	 \\
+		\hline
+		SWRLAPIRuleSource	& SWRLAPIRule \\
+		\hline
+		OWLObjectSource & OWLObject \\
+		\hline
+	\end{tabular}
+	\caption{Các Property trong UIT-OWL Editor\label{overflow}}
+\end{table}
 
 
 
