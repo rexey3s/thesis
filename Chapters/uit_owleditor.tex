@@ -111,9 +111,10 @@ Diagram Tab gồm các đồ thị, sơ đồ về biểu diễn cấu trúc ph�
 \end{figure}
 Demo Tab không nằm trong thành phần tiêu chuẩn mà một Ontology Editor bắt buộc phải có như các Tab đã giới thiệu. Tuy nhiên, chúng em cài đặt Demo Tab ở đây với mục đích thử nghiệm tính năng hỗ trợ phân loại (sẽ được đề cập trong phần sau của chương này). Các thành phần của tab này gồm:
 \begin{enumerate}
-\item Panel bên trái là ClassHierachicalPanel.
-\item Panel phía trên bên phải sẽ hiện thị một sơ đồ thể hiện gợi ý phân loại cho lớp được chọn.
-\item Panel bên phải phía dưới dùng để điền vào các phát biểu được gợi ý trong sơ đồ ở phía trên về các cá thể thuộc lớp đang được chọn ở bên phải.
+\item Panel bên trái phía trên là ClassHierachicalPanel có một cấu trúc dạng cây với các node chính là các lớp nằm trong OWL2 Ontology, với các chức năng thêm/xóa Sub/Sibling Class. Khi chọn một lớp ở đây thì ListSelect ở bên dưới sẽ hiển thị một danh sách cá thể thuộc lớp này.
+\item Panel bên trái phía dưới là IndividualList hiển thị một danh sách gồm các cá thể thuộc lớp được chọn ở trên, có các tính năng thêm/xóa cá thể.
+\item Panel phía trên bên phải sẽ hiện thị một sơ đồ thể hiện gợi ý phân loại lớp mà cá thể được chọn đang là thành viên.
+\item Panel bên phải phía dưới dùng để điền thêm vào các phát biểu cho cá thể dự theo sơ đồ ở trên.
 \end{enumerate}}
 % Demo Sheet
 
@@ -317,7 +318,7 @@ Dưới đây là sơ đồ mô tả lại giải thuật thêm và sắp xếp 
 \end{figure}
 \subsection{List}
 Đây thật ra là lớp mà HierarchicalContainer trong Vaadin thừa kế IndexedContainer, mục đích của Container dạng này là dùng để chứa các item theo dạng danh sách, chúng em sử dụng chúng để chứa các đối tượng như OWLNamedIndividual, OWL2Datatype . Bảng sau liệt kê đối tượng của các Container dạng này trong ứng dụng.
-\begin{table}
+\begin{table}[h!]
 	\centering
 	\begin{tabular}{|l|l|}
 		\hline
@@ -336,7 +337,7 @@ Dưới đây là sơ đồ mô tả lại giải thuật thêm và sắp xếp 
 \end{table}
 \subsection{Property}
 Mục đích đưa các đối tượng thành Property của Vaadin cũng tương tự như Container, các đối tượng OWL2 sẽ được sử dụng lại nhiều lần bởi các UI Component sử dụng (binding) nó nên sử dụng Property chứa các đối tượng OWLObject sẽ giúp tiết kiệm những lần truyền tham số (là các OWLObject) giữa các UI Component. Các Property và đối tượng OWLObject tương ứng được tổng hợp trong bảng sau.
-\begin{table}[h!]
+\begin{table}[H]
 	\centering
 	\begin{tabular}{|l|l|}
 		\hline
@@ -344,7 +345,7 @@ Mục đích đưa các đối tượng thành Property của Vaadin cũng tươ
 		\hline
 		OWLClassSource	& OWLClass \\ 
 		\hline
-		OWLDataProperty ExpressionSource & OWLDataPropertyExpression  \\
+		OWLDataPropertyExpressionSource & OWLDataPropertyExpression  \\
 		\hline
 		OWLObjectPropertySource & OWLObjectProperty  \\		
 		\hline
@@ -362,15 +363,16 @@ Mục đích đưa các đối tượng thành Property của Vaadin cũng tươ
 		\hline
 		OWLLiteralSource	& OWLLiteral \\
 		\hline
-		OWLProperty AssertionObjectSource & OWLProperty AssertionObject \\
+		OWLPropertyAssertionObjectSource & OWLPropertyAssertionObject \\
 		\hline
 		OWLClassExpressionSource	& OWLClassExpression \\		
 		\hline
-		OWLProperty ExpressionSource	& OWLPropertyExpression  \\		
+		OWLPropertyExpressionSource	& OWLPropertyExpression  \\		
 		\hline
-		OWLDataProperty ExpressionSource	& OWLData PropertyExpression \\		
+		OWLDataPropertyExpressionSource	& OWLDataPropertyExpression \\		
 		\hline
-		OWLObjectProperty ExpressionSource	& OWLObject PropertyExpression \\	
+		OWLObjectPropertyExpressionSource	& OWLObjectPropertyExpression \\
+		\hline	
 		SWRLRuleSource	& SWRLRule	 \\
 		\hline
 		SWRLAPIRuleSource	& SWRLAPIRule \\
@@ -380,19 +382,67 @@ Mục đích đưa các đối tượng thành Property của Vaadin cũng tươ
 	\end{tabular}
 	\caption{Các Property trong UIT-OWL Editor\label{overflow}}
 \end{table}
-\section{Các tính năng của UIT-OWL Editor}
-
-\subsection{Tính năng suy luận Reasoning}
-Để sử dụng tính năng suy luận, chúng ta chọn biểu tượng bánh răng ở góc phải của Panel chứa cây các lớp trong Ontology, sẽ mở ra một menu với tùy chọn "Start reasoner". Hãy chọn nó, chương trình sẽ thông báo "Reasoner Activated". Đối với Tab \textit{Individual}, chọn bất kì một lớp nào trong cây rồi chọn một trong các cá thể của lớp đó, các phát biểu có liên quan đến cá thể đó sẽ hiển thị ở bên trái
+\subsection{Converter}
+Trong ứng dụng chúng em có sử dụng một số Converter tự định nghĩa vốn được xây dựng từ interface Converter (phần giới thiệu Vaadin Framework) với mục đích chuyển đổi các thực thể gồm lớp, thuộc tính đối tượng, thuộc tính dữ liệu và cá thể có tên. Mục tiêu xây dựng các Converter này là sẽ giúp chuyển đối giữ chuỗi sang đối tượng tương ứng là OWLClass, OWLObjectProperty, OWLDataProperty và OWLNamedIndividual một cách nhanh chóng khi thêm các cá thể mới. Ví dụ:
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=150mm]{Figures/owleditor_reasoning.png}
+	\frame{\includegraphics[width=140mm]{Figures/owleditor_converter.png}}
+	\caption{Converter trong UIT-OWL Editor\label{overflow}}
+\end{figure}
+TextField mà trong hình được cài đặt converter:
+\begin{verbatim}
+textField.setConverter(new StringToNamedIndividualConverter(editorKit));
+// Bên trong StringToNamedIndividualConverter 
+// Hàm đổi chuỗi thành OWLNamedIndividual
+public OWLNamedIndividual convertToModel(String valueInTextField,
+                          Class<? extends OWLNamedIndividual> targetType,
+                          ...) {
+   ...
+   return editorKit.getOWLDataFactory()
+                   .getOWLNamedIndividual(valueInTextField,
+                                  editorKit.getPrefixManager());
+}                          
+\end{verbatim}
+Các converter còn lại cũng có cơ chế tương tự trong ví dụ này, chi tiết hơn có thể xem package \textit{vn.edu.uit.owleditor.utils.converter} \cite{owleditorSrc}.
+
+\section{Các tính năng nổi bật của UIT-OWL Editor}
+Ngoài những tính năng đã trình bày sơ qua trong phần đầu UI, phần này chúng em xin dành để liệt kê ra một số tính năng nổi bật trong ứng dụng.
+
+\subsection{Trình biên tập các mô tả lớp}
+Trình biên tập cho phép nhập các chuỗi các khai báo về mô tả lớp (class expression) theo cú pháp Manchester, trình biên tập mô tả lớp cũng được tích hợp một danh sách autocomplete gồm các thực thể đã được khai báo trong ontology. Mỗi loại cá thể trong danh sách autocomplete sẽ được hiện thị theo một Icon khác nhau tương ứng với chữ cái đầu tiên của loại đó như \textbf{O} cho ObjectProperty, \textbf{C} cho Class, \textbf{D} cho DataProperty và \textbf{I} cho NamedIndividual. Khi nhấn nút save, ứng dụng sẽ tự động parse chuỗi thành Đối tượng OWLClassExpression bằng ManchesterSyntaxParser trong OWLEditorKit, sẽ có thông báo lỗi nếu cú pháp nhập sai.
+\begin{figure}[h!]
+	\centering
+	\frame{\includegraphics[width=145mm]{Figures/owleditor_ceeditor.png}}
+	\caption{Biên tập mô tả lớp trong UIT-OWL Editor\label{overflow}}
+\end{figure}
+\\
+Lý do chọn Manchester Syntax vì chúng em nhận thấy cú pháp của nó thân thiện, gần với ngôn ngữ con người hay sử dụng hàng ngày (thầy cô và bạn đọc có thể xem lại trong chương giới thiệu về OWL 2).
+\subsection{Trình biên tập SWRL Rule}
+Trình biên tập cho phép biên tập SWRL Rule bằng cú pháp được giới thiệu trong chương \textit{Semantic Web Rule Language}, tổ chức các Rule theo tên, và thêm giải thích cho Rule.
+\begin{figure}[h!]
+	\centering
+	\frame{\includegraphics[width=145mm]{Figures/owleditor_ruleeditor.png}}
+	\caption{Biên tập SWRL Rule trong UIT-OWL Editor\label{overflow}}
+\end{figure}
+Trình biện tập rule được đảm nhiệm bởi thành phần \textit{SWRLAPIRuleOntology} trong \textit{OWLEditorKit} đã được giới thiệu ở trên.
+
+\subsection{Tính năng suy luận Reasoning}
+Để sử dụng tính năng suy luận, chúng ta chọn biểu tượng bánh răng ở góc phải của Panel chứa cây các lớp trong Ontology, sẽ mở ra một menu với tùy chọn "Start reasoner". Hãy chọn nó, chương trình sẽ thông báo "Reasoner Activated". Đối với Tab \textit{Individual}, chọn bất kì một lớp nào trong cây rồi chọn một trong các cá thể của lớp đó, các phát biểu có liên quan đến cá thể đó sẽ hiển thị các panel nhỏ tương ứng với các loại phát biểu của cá thể.
+\begin{figure}[h!]
+	\centering
+	\frame{\includegraphics[width=145mm]{Figures/owleditor_reasoning.png}}
 	\caption{Tính năng suy luận trong UIT-OWL Editor\label{overflow}}
 \end{figure}
-Trong hình 
+Trong hình, các phát biểu được tô đậm chính là các phát biểu được suy luận ra từ Ontology nhờ Pellet Reasoner. Để xem giải thích tại sao cho các phát biểu này chúng ta chọn biểu tượng ? ở cuối mỗi phát biểu. Ví dụ để xem tại sao cá thể \textit{AudiQ7} lại được phân loại thuộc lớp \textit{Car} chúng ta chọn biểu tượng ? ở cuối phát biểu \textit{"Car"}.
+\begin{figure}[H]
+	\centering
+	\frame{\includegraphics[width=145mm]{Figures/owleditor_explanationWindow.png}}
+	\caption{Giải thích suy luận trong UIT-OWL Editor\label{overflow}}
+\end{figure}
+Việc giải thích được đảm nhiệm bởi đối tượng \textit{DefaultExplanationGenerator} của OWL-API hoạt động theo nguyên lý được mô tả ở chương \textit{"Tính nhất quán của Ontology"}.
 
-
-
+\section{Thử nghiệm tính năng hỗ trợ phân loại - Demo Tab}
+Bên cạnh việc sử dụng tính năng suy luận mà OWL 2 Ontology cung cấp qua đặc điểm ngôn ngữ của nó hay cộng với sự hỗ trợ từ SWRL Rule
 
 
 
