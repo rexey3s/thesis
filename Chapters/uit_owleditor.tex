@@ -1,16 +1,11 @@
 \chapter{Xây dựng UIT-OWL Editor}
 \paragraph{Giới thiệu} Qua các chương trước, chúng em đã trình bày các cơ sở lý thuyết từ Semantic Web, Ontology Web Language và giới thiệu khái quát về OWL-API, Vaadin Framework- 2 công cụ chính xây dựng nên ứng dụng chỉnh sửa và phát triển Ontology trên Web mà chúng em tạm gọi là UIT-OWL Editor. Trong chương này, chúng em sẽ trình bày một cách chi tiết nhất có thể về quá trình xây dựng và phát triển nên ứng dụng này.
-\section{Bố cục của ứng dụng}
-\begin{figure}[h!]
-	\centering
-	\frame{\includegraphics[width=100mm]{Figures/owleditor_entryview.png}}
-	\caption{EntryView của UIT-OWL Editor\label{overflow}}
-\end{figure}
-\begin{figure}[h!]
-	\centering
-	\frame{\includegraphics[width=150mm]{Figures/owleditor_mainview.png}}
-	\caption{MainView của UIT-OWL Editor\label{overflow}}
-\end{figure}
+\section{UI của ứng dụng}
+%\begin{figure}[h!]
+%	\centering
+%	\frame{\includegraphics[width=100mm]{Figures/owleditor_entryview.png}}
+%	\caption{EntryView của UIT-OWL Editor\label{overflow}}
+%\end{figure}
 \subsection{OWLEditorUI}
 Lớp \textit{OWLEditorUI} thừa kế từ lớp \textit{UI} của Vaadin chính là User Interface của toàn bộ ứng dụng, hoạt động của lớp này tương tự miêu tả của chúng em ở chương trước khi giới thiệu về Vaadin. Chức năng của lớp này gồm:
 \begin{enumerate}
@@ -22,9 +17,14 @@ Lớp \textit{OWLEditorUI} thừa kế từ lớp \textit{UI} của Vaadin chín
 \end{enumerate}
 %
 \subsection{Các view chính}
-Ứng dụng UIT-OWLEditor chỉ gồm 2 View chính:
+Ứng dụng UIT-OWLEditor chỉ gồm 2 View chính: 
 \begin{description}
-\item[Entry View] tương đương với lớp \textit{vn.edu.uit.owleditor.EntryView} trong mã nguồn, là nơi chúng tập nhập vào URL của file OWL2 Ontology hoặc tải file OWL2 Ontology với các định dạng được trình bày trong chương 2. Khi load được ontology \textit{EntryView} sẽ lưu đối tượng \textit{OWLEditorKit} lại trong \textit{HttpSession} phòng trường hợp người dùng mất kết nối với ứng dụn.
+\item[Entry View] tương đương với lớp \textit{vn.edu.uit.owleditor.EntryView} trong mã nguồn, là nơi chúng tập nhập vào URL của file OWL2 Ontology hoặc tải file OWL2 Ontology với các định dạng được trình bày trong chương 2. Khi load được ontology \textit{EntryView} sẽ lưu đối tượng \textit{OWLEditorKit} lại trong \textit{HttpSession} phòng trường hợp người dùng mất kết nối với ứng dụng.
+\begin{figure}[h!]
+	\centering
+	\frame{\includegraphics[width=100mm]{Figures/owleditor_entryview.png}}
+	\caption{EntryView của UIT-OWL Editor\label{overflow}}
+\end{figure}
 \item[Main View] tương đướng với lớp \textit{vn.edu.uit.owleditor.MainView} trong mã nguồn,là giao diện chính của ứng dụng UIT-OWL Editor.
 \end{description}
 %
@@ -35,7 +35,7 @@ Trong \textbf{MainView} sử dụng Component TabSheet các chứa các Tab tư�
 \subsubsection{Tab Classes} 
 \begin{figure}[h!]
 	\centering
-	\frame{\includegraphics[width=150mm]{Figures/owleditor_classSheet.png}}
+	\frame{\includegraphics[width=145mm]{Figures/owleditor_classSheet.png}}
 	\caption{Class Tab trong UIT-OWL Editor\label{overflow}}
 \end{figure}
 Tương ứng với lớp \verb|vn.edu.uit.owleditor.view.ClassesSheet| trong mã nguồn. Giao diện sử dụng HorizontalLayout của Vaadin gồm 
@@ -48,7 +48,7 @@ Tương ứng với lớp \verb|vn.edu.uit.owleditor.view.ClassesSheet| trong m�
 \subsubsection{Tab Object Properties}  
 \begin{figure}[h!]
 	\centering
-	\frame{\includegraphics[width=150mm]{Figures/owleditor_opSheet.png}}
+	\frame{\includegraphics[width=145mm]{Figures/owleditor_opSheet.png}}
 	\caption{Object Properties Tab trong UIT-OWL Editor\label{overflow}}
 \end{figure}
 Tương ứng với lớp \verb|vn.edu.uit.owleditor.view.ObjectPropertiesSheet| trong mã nguồn. Giao diện sử dụng HorizontalLayout của Vaadin gồm 
@@ -62,7 +62,7 @@ Tương ứng với lớp \verb|vn.edu.uit.owleditor.view.ObjectPropertiesSheet|
 \subsubsection{Tab Data Properties}
 \begin{figure}[h!]
 	\centering
-	\frame{\includegraphics[width=150mm]{Figures/owleditor_dpSheet.png}}
+	\frame{\includegraphics[width=145mm]{Figures/owleditor_dpSheet.png}}
 	\caption{Data Properties Tab trong UIT-OWL Editor\label{overflow}}
 \end{figure}
 Tương ứng với lớp \verb|vn.edu.uit.owleditor.view.DataPropertiesSheet| trong mã nguồn. Các thành phần của tab này gồm:
@@ -75,7 +75,7 @@ Tương ứng với lớp \verb|vn.edu.uit.owleditor.view.DataPropertiesSheet| t
 \subsubsection{Tab Individual}
 \begin{figure}[h!]
 	\centering
-	\frame{\includegraphics[width=150mm]{Figures/owleditor_individualSheet.png}}
+	\frame{\includegraphics[width=145mm]{Figures/owleditor_individualSheet.png}}
 	\caption{Individuals Tab trong UIT-OWL Editor\label{overflow}}
 \end{figure}
 Tương ứng với lớp \verb|vn.edu.uit.owleditor.view.IndividualsSheet| trong mã nguồn. Các thành phần của tab này gồm:
@@ -89,23 +89,34 @@ Tương ứng với lớp \verb|vn.edu.uit.owleditor.view.IndividualsSheet| tron
 \subsubsection{Tab SWRL}
 \begin{figure}[h!]
 	\centering
-	\frame{\includegraphics[width=150mm]{Figures/owleditor_individualSheet.png}}
+	\frame{\includegraphics[width=145mm]{Figures/owleditor_swrlSheet.png}}
 	\caption{SWRL Rule Tab trong UIT-OWL Editor\label{overflow}}
 \end{figure}
 Tương ứng với lớp \verb|vn.edu.uit.owleditor.view.RuleSheet| trong mã nguồn. Tab này chỉ gồm một thành phần chính là một Table chứa các SWRL trong tài liệu OWL 2 Ontology. Khi right-click sẽ có các chức năng thêm/xóa/sửa rule được chọn.
+
+\subsubsection{Tab Diagram}
+\begin{figure}[h!]
+	\centering
+	\frame{\includegraphics[width=145mm]{Figures/owleditor_diagramSheet.png}}
+	\caption{Diagram Tab trong UIT-OWL Editor\label{overflow}}
+\end{figure}
+Diagram Tab gồm các đồ thị, sơ đồ về biểu diễn cấu trúc phân cáp của lớp bằng các đồ thị từ thư viện D3js.
 
 % Demo Sheet
 \subsubsection{Tab Demo}
 \begin{figure}[h!]
 	\centering
-	\frame{\includegraphics[width=150mm]{Figures/owleditor_demoSheet.png}}
+	\frame{\includegraphics[width=145mm]{Figures/owleditor_demoSheet.png}}
 	\caption{Demo Tab trong UIT-OWL Editor\label{overflow}}
 \end{figure}
-Demo Tab không nằm trong thành phần tiêu chuẩn mà một Ontology Editor bắt buộc phải có như các Tab đã giới thiệu. Tuy nhiên, chúng em cài đặt Demo Tab ở đây với mục đích thử nghiệm tính năng gợi ý phân loại dựa theo SWRL Rule, và sử dụng các Domain và Range restriction để hạn chế các giá trị mà người dùng có thể thêm cho vào cho một cá thể. Các thành phần của tab này gồm:
+Demo Tab không nằm trong thành phần tiêu chuẩn mà một Ontology Editor bắt buộc phải có như các Tab đã giới thiệu. Tuy nhiên, chúng em cài đặt Demo Tab ở đây với mục đích thử nghiệm tính năng hỗ trợ phân loại (sẽ được đề cập trong phần sau của chương này). Các thành phần của tab này gồm:
 \begin{enumerate}
 \item Panel bên trái là ClassHierachicalPanel.
 \item Panel phía trên bên phải sẽ hiện thị một sơ đồ thể hiện gợi ý phân loại cho lớp được chọn.
+\item Panel bên phải phía dưới dùng để điền vào các phát biểu được gợi ý trong sơ đồ ở phía trên về các cá thể thuộc lớp đang được chọn ở bên phải.
 \end{enumerate}}
+% Demo Sheet
+
 
 \section{OWLEditorKit}
 \begin{description}
@@ -369,10 +380,16 @@ Mục đích đưa các đối tượng thành Property của Vaadin cũng tươ
 	\end{tabular}
 	\caption{Các Property trong UIT-OWL Editor\label{overflow}}
 \end{table}
+\section{Các tính năng của UIT-OWL Editor}
 
-
-
-
+\subsection{Tính năng suy luận Reasoning}
+Để sử dụng tính năng suy luận, chúng ta chọn biểu tượng bánh răng ở góc phải của Panel chứa cây các lớp trong Ontology, sẽ mở ra một menu với tùy chọn "Start reasoner". Hãy chọn nó, chương trình sẽ thông báo "Reasoner Activated". Đối với Tab \textit{Individual}, chọn bất kì một lớp nào trong cây rồi chọn một trong các cá thể của lớp đó, các phát biểu có liên quan đến cá thể đó sẽ hiển thị ở bên trái
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=150mm]{Figures/owleditor_reasoning.png}
+	\caption{Tính năng suy luận trong UIT-OWL Editor\label{overflow}}
+\end{figure}
+Trong hình 
 
 
 
