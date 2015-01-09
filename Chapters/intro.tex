@@ -1,27 +1,36 @@
 \chapter {Giới thiệu đề tài}
 \section{Tên đề tài}
-Trình biên soạn Ontology 
+Trình biên tập Ontology UIT-OWL Editor
+
 \section{Nội dung và giới hạn đề tài}
 \subsection{Nội dung đề tài}
-OWL ( Web Ontology Language ) là một dạng ngôn ngữ biểu diễn tri thức. Ngôn ngữ này thường được sử dụng phổ biến trong Semantic Web, và được trình bày dưới dạng RDF-XML. Ngày 27 tháng 10 năm 2009, tổ chức W3C (World Wide Web Consortium) cho công bố OWL 2, với trình chỉnh sửa Protégé và các bộ reasoner như Pellet, HermiT, v.v .
+Định hướng ban đầu của đề tài là sử dụng Ontology hay cụ thể hơn là ngôn ngữ OWL2 kết hợp với SWRL nhằm hỗ trợ cho việc phân loại hàng hóa tự động. Tuy nhiên, trong quá trình đi sâu vào nghiên cứu và phát triển một ontology để thực hiện việc phân loại tự động, chúng em cùng với sự cố vấn của giảng viên hướng dẫn đã tập trung tìm hiểu về ngôn ngữ OWL2, SWRL, chúng em nhận thấy sự thiếu hụt trong các công cụ nhằm hỗ trợ xây dựng các Ontology nói chung và ontology phân loại nói riêng. Ngoài những trình biên tập Ontology đã tồn tại trên Desktop từ rất lâu như Protégé, Swoop Editor môi trường Web chỉ mới có WebProtege là trình biên tập ontology, tuy vậy giao diện lại khá phức tạp. Cuối cùng, chúng em đã đi đến quyết định một trình biên soạn Ontology trên môi trường web. Bên cạnh đó, chúng em cũng thiết kế một ontology \textit{Transport} \cite{owleditorSrc} để trình diễn cho khả năng phân loại mà ngôn ngữ OWL2, SWRL mang lại.
+%OWL ( Web Ontology Language ) là một dạng ngôn ngữ biểu diễn tri thức. Ngôn ngữ này thường được sử dụng phổ biến trong Semantic Web, và được trình bày dưới dạng RDF-XML. Ngày 27 tháng 10 năm 2009, tổ chức W3C (World Wide Web Consortium) cho công bố OWL 2, với trình biên tập Protégé và các bộ reasoner như Pellet, HermiT, v.v .
+%\\
+%OWL và Semantic Web hiện đang được nghiên cứu và phát triển, nhằm nhanh chóng đưa vào sử dụng, vì những lợi ích rất đáng kể của nó, được ví như là công nghệ web phiên bản 3.0. Do đó, nhóm quyết định nghiên cứu về OWL, về phương thức hoạt động của các bộ reasoner, và đặc biệt là thiết kế một trình chỉnh sửa OWL trên web với giao diện thân thiện và dễ sử dụng, với các tính năng gần như đầy đủ so với chương trình Protégé. 
+%\\
+%Chắc chắn trong vài năm sắp tới, Semantic Web sẽ phát triển ngày càng lớn mạnh hơn, dần dần thay đổi phương thức tiếp cận và lưu trữ dữ liệu trên web. Vậy nên, việc tìm hiểu và nghiên cứu về ngôn ngữ OWL - một trong những thành phần quan trọng của Semantic Web, có thể coi như một bước “đón đầu công nghệ”, nhằm mục đích sẵn sàng thích nghi với sự chuyển biến không ngừng của thế giới công nghệ thông tin.
 \\
-OWL và Semantic Web hiện đang được nghiên cứu và phát triển, nhằm nhanh chóng đưa vào sử dụng, vì những lợi ích rất đáng kể của nó, được ví như là công nghệ web phiên bản 3.0. Do đó, nhóm quyết định nghiên cứu về OWL, về phương thức hoạt động của các bộ reasoner, và đặc biệt là thiết kế một trình chỉnh sửa OWL trên web với giao diện thân thiện và dễ sử dụng, với các tính năng gần như đầy đủ so với chương trình Protégé. 
-\\
-Chắc chắn trong vài năm sắp tới, Semantic Web sẽ phát triển ngày càng lớn mạnh hơn, dần dần thay đổi phương thức tiếp cận và lưu trữ dữ liệu trên web. Vậy nên, việc tìm hiểu và nghiên cứu về ngôn ngữ OWL - một trong những thành phần quan trọng của Semantic Web, có thể coi như một bước “đón đầu công nghệ”, nhằm mục đích sẵn sàng thích nghi với sự chuyển biến không ngừng của thế giới công nghệ thông tin.
-\\
-Đề tài sẽ làm những việc sau:
-\begin{enumerate}
+Đề tài đã làm những việc sau:
+\begin{itemize}
 \item Tìm hiểu về Semantic Web.
 \item Tìm hiểu về ngôn ngữ Web Ontology Language (OWL) và Semantic Web Rule Language(SWRL).
+\item Tìm hiểu về tính nhất quán trong Ontology
 \item Tìm hiểu về OWLAPI và SWRL API.
-\item Tìm hiểu về nguyên lý hoạt động của OWL Reasoner (cụ thể là Pellet Reasoner).
 \item Tìm hiểu về Vaadin Framework.
-\item Sử dụng Vaadin Framework để xây dựng công cụ phục vụ phát triển Ontology trên web.
-\item Giới thiệu những đặc điểm và tính năng nổi bật của phần mềm.
-\item Kết luận và hướng phát triển nghiên cứu.
-\end{enumerate}
+\item Xây dựng thành công một trình biên tập OWL2 Ontology online với các tính năng biên tập ontology, suy luận reasoning, và hỗ trợ phân loại.
+\end{itemize}
 \subsection{Giới hạn của đề tài}
-Lĩnh vực Semantic Web là rất rộng lớn, 
-
+Trong phạm vi của đề tài, chúng em chỉ xây dựng một ứng dụng biên tập ontology trong môi trường web và trình bày tính năng phân loại của ngôn ngữ OWL2, SWRL. Tính năng phân loại chỉ mang tính chất là một bản mẫu thực nghiệm, chứng minh các lý thuyết mà các công nghệ mới như OWL2 Ontology mang lại, chúng không có mục đích thay thế các hệ thống phân loại đang hoạt động ngoài thị trường.
 \subsection{Cấu trúc luận văn}
-Luận văn được chia thành các chương như sau : 
+Luận văn được chia thành các chương sau:
+\begin{enumerate}
+\item Giới thiệu đề tài
+\item Web ngữ nghĩa - Semantic Web: Giới thiệu về Semantic Web
+\item Ontology Web Language: những kiến thức nên tảng về Ontology Web Language, đây là cơ sở lý thuyết để chúng em xây dựng ứng dụng
+\item Semantic Web Rule Language: những kiến thức cơ bản về Semantic Web Rule Language.
+\item Tính nhất quán trong Ontology: kiến thức về tính nhất quán, một tính chất bắt buộc để thực hiện suy luận.
+\item Các thư viện lập trình OWLAPI, Pellet Reasoner, SWRLAPI và Vaadin framework sử dụng trong ứng dụng.
+\item Xây dựng UIT-OWL Editor: Xây dựng trình biên tập ontology
+\item Kết luận 
+\end{enumerate}
