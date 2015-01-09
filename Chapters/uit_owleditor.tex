@@ -441,28 +441,42 @@ Trong hình, các phát biểu được tô đậm chính là các phát biểu 
 \end{figure}
 Việc giải thích được đảm nhiệm bởi đối tượng \textit{DefaultExplanationGenerator} của OWL-API hoạt động theo nguyên lý được mô tả ở chương \textit{"Tính nhất quán của Ontology"}.
 
-\section{Thử nghiệm tính năng hỗ trợ phân loại - Demo Tab}
-Bên cạnh việc sử dụng đặc tính suy luận của Ontology để thực hiện phân loại, chúng em tự thiết kế một tính năng hỗ trợ phân loại dựa theo những thông tin khai báo trong SWRLRule, và dùng những ràng buộc về lĩnh vực (domain) và miền dữ liệu giới hạn (range) để hạn chế dữ liệu mà người dùng có thể lựa chọn qua đó làm giảm thời gian điền vào các mảnh thông tin còn thiếu. 
-\\
-Để phác họa cho ý tưởng này em xin trích một đoạn chứa các SWRLRule trong ontology \textit{Transport.owl} \cite{owleditorSrc} (được chúng em xây dựng để làm demo cho tính năng phân loại):
+\section{Tính năng hỗ trợ phân loại - Demo Tab}
+Việc sử dụng SWRL Rule hay đơn giản hơn là đọc và hiểu ý nghĩa có nó thường rất khó đối với người dùng thông thường, chưa kể đến việc chưa có cơ chế tổ chức các SWRL rule một cách khoa học, sẽ có những trường hợp chúng ta vô tình tạo ra những điều kiện trùng nhau dẫn đến 2 kết quả khác nhau hoặc ngược lại. Hiểu được nhược điểm này của SWRL Rule, chúng em đã thiết kế thêm tính năng hỗ trợ phân loại với giao diện là Tab Demo trong ứng dụng, với khả năng vẽ ra một sơ đồ dựa theo chuỗi các điều kiện - kết quả có liên quan đến lớp đang chứa cá thể được chọn để phân loại. Để minh họa cho tính năng này ,chúng em xin trích một đoạn chứa các SWRLRule trong ontology \textit{Transport.owl} \cite{owleditorSrc} (được chúng em xây dựng để làm demo cho tính năng phân loại):
 \begin{verbatim}
-# 
+# Phương tiện đường bộ có thể chở hàng hóa (Cargo) là xe tải (Truck)
 OnRoadAndOffRoadVehicle(?x) ^ canCarry(?x, ?y) ^ Cargo(?y)  -> Truck(?x)
-#
+# Phương tiện đường bộ có khả năng chở hàng là xe tải (Truck)
 OnRoadAndOffRoadVehicle(?x) ^ canCarryCargo(?x, true) -> Truck(?x)
-# Phương tiện đường bộ có số 4 <= chỗ ngồi <= 7 là xe hơi
+# Phương tiện đường bộ có số 4 <= chỗ ngồi <= 7 là xe hơi (Car)
 OnRoadAndOffRoadVehicle(?x) ^ hasNumberOfSeats(?x, ?s)
                             ^ swrlb:greaterThanOrEqual(?s, 4) 
                             ^ swrlb:lessThanOrEqual(?s, 7)  -> Car(?x)
-#
+# Phương tiện đường bộ có số chỗ ngồi >= 20 là xe Bus 
 OnRoadAndOffRoadVehicle(?x) ^ hasNumberOfSeats(?x, ?s) 
                             ^ swrlb:greaterThan(?s,20) -> Bus(?x)                               
 \end{verbatim}
-
-
-
-
-
+Dưới đây là hình ảnh mô tả sơ đồ biểu diễn của các rule trên
+\begin{figure}[h!]
+	\centering
+	\frame{\includegraphics[width=145mm]{Figures/owleditor_demo1.png}}
+	\caption{Tính năng hỗ trợ phân loại trong UIT-OWL Editor (phần 1)\label{overflow}}
+\end{figure}
+\\
+trong hình chỉ miêu tả những rule nào có liên quan đến lớp \textit{OnRoadAndOffRoadVehicle} vốn là lớp chứa cá thể \textit{XeBus150} trong hình, làm vậy để hạn chế những thông tin không cần thiết đối với người dùng. Khi chọn \textit{Suggest Me} sẽ tạo ra một loại các UI component phục vụ để tạo ra các phát biểu về cá thế \textit{XeBus150}.
+\begin{figure}[h!]
+	\centering
+	\frame{\includegraphics[width=145mm]{Figures/owleditor_demo2.png}}
+	\caption{Tính năng hỗ trợ phân loại trong UIT-OWL Editor (phần 2)\label{overflow}}
+\end{figure}
+\\
+Trong hình trên mỗi bước sẽ tương ứng với những phát biểu có liên quan đến \textit{OnRoadAndOffRoadVehicle} như trong sơ đồ. Miền dữ liệu (Range) của thuộc tính dữ liệu và thuộc tính đối tượng cũng sẽ được áp dụng nhằm giảm bớt những thông tin không cần thiết, thuộc tính \textit{hasNumberOfSeats} có DataPropertyRange( xsd:int) nên ở cột bên phải chúng ta chỉ thấy kiểu dữ liệu này thay vì là một loạt kiểu dữ liệu như xsd:string, xsd:byte, v.v... . Khi đến bước cuối cùng, reasoner sẽ đánh giá lại các thông tin mà chúng ta vừa nhập vào ở các bước trước để đưa kết quả phân loại phù hợp như đã được biểu diễn trong sơ đồ.
+\begin{figure}[h!]
+	\centering
+	\frame{\includegraphics[width=145mm]{Figures/owleditor_demo3.png}}
+	\caption{Tính năng hỗ trợ phân loại trong UIT-OWL Editor (phần 3)\label{overflow}}
+\end{figure}
+\paragraph{Kết luận} Qua chương này, chúng em đã trình bày về các tính năng nổi bật mà một trình biên soạn Ontology phải có, đồng thời chúng em cũng đã trình bày về những khả năng phân loại mà ngôn ngữ OWL2, SWRL mang lại qua những tính năng suy luận, giải thích và hỗ trợ phân loại. Ở chương kế và cũng là cuối cùng, chúng em xin dành để tổng hợp lại những kết quả đã làm được, những mặt khó khăn, thuận lợi và những hạn chế còn tồn tại, qua quan trọng không kém chính là hướng phát triển tương lai của công nghệ dạng này.
 
 
 

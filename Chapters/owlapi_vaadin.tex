@@ -15,8 +15,7 @@ Dưới đây là danh sách các Ontology Reasoner được hỗ trợ trong ph
 \item Pellet \cite{pellet}
 \item JFact 
 \end{itemize}
-Trong thư viện OWL-API, có nhiều đối tượng được xây dựng dựa trên cấu trúc phân lớp của một OWL2 Ontology, tương tự các thành phần đã được chúng em trình bày trong chương 2. Dưới đây là bảng liệt kê một số thành phần mà OWL-API đã xây dựng dựa trên mô tả trong chương 2 (chi tiết hơn ở trong \cite{owl2spec} và mã nguồn của OWL-API \cite{owlapi}).
-\begin{table}
+\begin{table}[h]
 	\centering
 	\begin{tabular}{|l|l|p{4cm}|}
 		\hline
@@ -51,9 +50,9 @@ Trong thư viện OWL-API, có nhiều đối tượng được xây dựng dự
 	\end{tabular}
 	\caption{Các đối tượng OWL2 trong OWL-API\label{overflow}}
 \end{table}
-Trên đây chỉ là một vài thành phần, mọi thành phần OWL2 được trình bày trong chương 2 đều được OWL-API xây dựng thành các đối tượng class, interface trong JAVA để phục vụ cho việc lập trình. Tuy nhiên để tương tác với một kiến trúc đối tượng lớn và phức tạp như 1 ontology cần có cách thức chuyên dùng cho việc này là Visitor Pattern.
+Trong thư viện OWL-API, có nhiều đối tượng được xây dựng dựa trên cấu trúc phân lớp của một OWL2 Ontology, tương tự các thành phần đã được chúng em trình bày trong chương 2. Dưới đây là bảng liệt kê một số thành phần mà OWL-API đã xây dựng dựa trên mô tả trong chương 2 (chi tiết hơn ở trong \cite{owl2spec} và mã nguồn của OWL-API \cite{owlapi}). Trên đây chỉ là một vài thành phần, mọi thành phần OWL2 được trình bày trong chương 2 đều được OWL-API xây dựng thành các đối tượng class, interface trong JAVA để phục vụ cho việc lập trình. Tuy nhiên để tương tác với một kiến trúc đối tượng lớn và phức tạp như 1 ontology cần có cách thức chuyên dùng cho việc này là Visitor Pattern.
 \subsection{Visitor Pattern}
-\begin{figure}[ht!]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=110mm]{Figures/visitor_diagram.png}
 	\caption{Visitor Diagram\label{overflow}}
@@ -136,12 +135,14 @@ Có chức năng quản lý các OntologyIRI, OntologyID, VersionIRI. Cú pháp
 PrefixManager pm = new DefaultPrefixManager(null, null, "DemoIRI#");
 \end{verbatim}
 \subsubsection{OWLOntology}
-Là một bản mapping của OWL2 ontology thành các đối tượng trong JAVA, tất cả được lưu trong bộ nhớ (in-memory). Load ontology từ file nội bộ và URI:
+Là một bản mapping của OWL2 ontology thành các đối tượng trong Java, tất cả được lưu trong bộ nhớ (in-memory). Load ontology từ file nội bộ và URI:
 \begin{verbatim}
 String uri = "http://chuongdang.com/transport.owl";
 File file = new File("./transport.owl");
-OWLOntolgoy ont  = modelManager.loadOntologyFromOntologyDocument(IRI.create(uri));
-OWLOntolgoy ont2 = modelManager.loadOntologyFromOntologyDocument(IRI.create(file));
+OWLOntolgoy ont  = modelManager
+                  .loadOntologyFromOntologyDocument(IRI.create(uri));
+OWLOntolgoy ont2 = modelManager
+                  .loadOntologyFromOntologyDocument(IRI.create(file));
 \end{verbatim}
 \subsubsection{EntitySearcher}
 Static class \verb|EntitySearcher| cho phép truy vấn đến các cá thể trong OWL2 Ontology một cách nhanh nhất nếu chúng đã được khai báo. Ví dụ để tìm các mô tả lớp con của một lớp nào đó trong OWL 2 Ontology:
@@ -158,13 +159,11 @@ Lưu ý: cần phân biệt các tính năng của của \verb|EntitySearcher| v
 \subsubsection{OWLObjectRenderer}
 Đảm nhiệm khả năng ghi và biên dịch các thành phần của ontology từ IRI thành dạng vắng tắt, mỗi một dạng cú pháp sẽ có một đối tượng renderer khác nhau implements OWLObjectRenderer. Ví dụ cú pháp Manchester Syntax:
 \begin{verbatim}
-OWLObjectRenderer renderer = new ManchesterOWLSyntaxOWLObjectRendererImpl();
-// Render Class carIRI: http://Demo.org#Car
-OWLClass car = factory.getOWLClass("http://vehicle.org#Car");
-System.out.println(renderer.render(car));
-// Output: Car
+OWLObjectRenderer renderer = 
+                  new ManchesterOWLSyntaxOWLObjectRendererImpl();
 // Render ClassExpression
-OWLObjectProperty buy = factory.getOWLObjectProperty("http://vehicle.org#Buy");
+OWLObjectProperty buy = factory
+                   .getOWLObjectProperty("http://vehicle.org#Buy");
 OWLObjectSomeValuesFrom ce = factory.getOWLObjectSomeValuesFrom(buy, car);
 System.out.println(renderer.render(ce));
 // Output: Buy some Car <- Manchester Syntax
