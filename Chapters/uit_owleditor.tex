@@ -426,7 +426,7 @@ Trình biên tập cho phép biên tập SWRL Rule bằng cú pháp được gi�
 \end{figure}
 Trình biện tập rule được đảm nhiệm bởi thành phần \textit{SWRLAPIRuleOntology} trong \textit{OWLEditorKit} đã được giới thiệu ở trên.
 
-\subsection{Tính năng suy luận Reasoning}
+\subsection{Tính năng suy luận - Reasoning}
 Để sử dụng tính năng suy luận, chúng ta chọn biểu tượng bánh răng ở góc phải của Panel chứa cây các lớp trong Ontology, sẽ mở ra một menu với tùy chọn "Start reasoner". Hãy chọn nó, chương trình sẽ thông báo "Reasoner Activated". Đối với Tab \textit{Individual}, chọn bất kì một lớp nào trong cây rồi chọn một trong các cá thể của lớp đó, các phát biểu có liên quan đến cá thể đó sẽ hiển thị các panel nhỏ tương ứng với các loại phát biểu của cá thể.
 \begin{figure}[h!]
 	\centering
@@ -442,7 +442,22 @@ Trong hình, các phát biểu được tô đậm chính là các phát biểu 
 Việc giải thích được đảm nhiệm bởi đối tượng \textit{DefaultExplanationGenerator} của OWL-API hoạt động theo nguyên lý được mô tả ở chương \textit{"Tính nhất quán của Ontology"}.
 
 \section{Thử nghiệm tính năng hỗ trợ phân loại - Demo Tab}
-Bên cạnh việc sử dụng tính năng suy luận mà OWL 2 Ontology cung cấp qua đặc điểm ngôn ngữ của nó hay cộng với sự hỗ trợ từ SWRL Rule
+Bên cạnh việc sử dụng đặc tính suy luận của Ontology để thực hiện phân loại, chúng em tự thiết kế một tính năng hỗ trợ phân loại dựa theo những thông tin khai báo trong SWRLRule, và dùng những ràng buộc về lĩnh vực (domain) và miền dữ liệu giới hạn (range) để hạn chế dữ liệu mà người dùng có thể lựa chọn qua đó làm giảm thời gian điền vào các mảnh thông tin còn thiếu. 
+\\
+Để phác họa cho ý tưởng này em xin trích một đoạn chứa các SWRLRule trong ontology \textit{Transport.owl} \cite{owleditorSrc} (được chúng em xây dựng để làm demo cho tính năng phân loại):
+\begin{verbatim}
+# 
+OnRoadAndOffRoadVehicle(?x) ^ canCarry(?x, ?y) ^ Cargo(?y)  -> Truck(?x)
+#
+OnRoadAndOffRoadVehicle(?x) ^ canCarryCargo(?x, true) -> Truck(?x)
+# Phương tiện đường bộ có số 4 <= chỗ ngồi <= 7 là xe hơi
+OnRoadAndOffRoadVehicle(?x) ^ hasNumberOfSeats(?x, ?s)
+                            ^ swrlb:greaterThanOrEqual(?s, 4) 
+                            ^ swrlb:lessThanOrEqual(?s, 7)  -> Car(?x)
+#
+OnRoadAndOffRoadVehicle(?x) ^ hasNumberOfSeats(?x, ?s) 
+                            ^ swrlb:greaterThan(?s,20) -> Bus(?x)                               
+\end{verbatim}
 
 
 
