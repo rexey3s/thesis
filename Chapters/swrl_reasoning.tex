@@ -1,18 +1,18 @@
-\chapter{Semantic Web Rule Language}
-Nếu chỉ sử dụng các thành phần của  OWL 2 được trình bày ở chương trước thì không thể diễn tả hết tất cả các mối quan hệ trong ontology. Semantic Web Rule Language (SWRL) là một ngôn ngữ điều luật dựa trên nền tảng của OWL. SWRL cho phép người sử dụng khai báo các điều luật dựa trên các khái niệm của OWL như lớp, thuộc tính đối tượng, thuộc tính dữ liệu nhằm cung cấp một khả năng suy luận mạnh mẽ hơn so với chỉ dùng OWL 2. Về đặc tính ngữ nghĩa, SWRL được xây dựng trên cùng một tổ hợp Description Logic với OWL 2 nhưng cung cấp những cơ chế tốt hơn trong việc chỉ ra những thông tin mới đúc kết từ thông tin được khai báo.
+\chapter{Semantic Web Rule Language và các nguyên nhân dẫn đến tính thiếu nhất quán trong ontology}
+Nếu chỉ sử dụng các thành phần của OWL 2 được trình bày ở chương trước thì vẫn chưa đủ diễn tả hết tất cả các mối quan hệ trong ontology. Semantic Web Rule Language (SWRL) là một ngôn ngữ điều luật dựa trên nền tảng của OWL. SWRL cho phép người sử dụng khai báo các điều luật dựa trên các khái niệm của OWL như lớp, thuộc tính đối tượng, thuộc tính dữ liệu nhằm cung cấp một khả năng suy luận mạnh mẽ hơn so với chỉ dùng OWL 2. Về đặc tính ngữ nghĩa, SWRL được xây dựng trên cùng một tổ hợp Description Logic với OWL 2 nhưng cung cấp những cơ chế tốt hơn trong việc chỉ ra những thông tin mới đúc kết từ thông tin được khai báo.
 
 \section{Cấu trúc của một SWRL Rule \cite{swrlfaq}}
 Một luật SWRL chứa một phần điều kiện, hay còn gọi là rule body, và một phần kết quả, hay còn gọi là rule head. Cả phần body và head đều là giao của các positive atoms.
 \begin{center}
 $atom$ \verb|^| $atom$ ... -> $atom$ \verb|^| $atom$ 
 \end{center}
-Có thể hiểu một SWRL Rule theo cách như sau khi tất cả các điều kiện nhỏ nhất (atom) trong phần điều kiện (body) đúng thì chắc chắn rằng những ý được nêu ra trong phần kết quả (head) cũng đúng. Một rule \textit{atom} có dạng:
+Có thể hiểu một SWRL Rule theo cách như sau : Khi tất cả các điều kiện nhỏ nhất (atom) trong phần điều kiện (body) đúng thì chắc chắn rằng những ý được nêu ra trong phần kết quả (head) cũng đúng. Một rule \textit{atom} có dạng:
 \begin{center}
 $p($ $arg_{1}$, $arg_{2}$, ... $arg_{n}$ $)$
 \end{center}
 Trong đó $p$ là kí hiệu cho nội dung điều kiện (Predicate) và $arg_{i}$, $1<=i<=n$, là những khái niệm hay tham số của một \textit{Rule Atom}. Trong SWRL, nội dung điều kiện có thể là các lớp, các thuộc tính hoặc kiêu dữ liệu trong OWL 2. Tham số truyền vào có thể là cá thể, giá trị dữ liệu, hoặc biến để gán cho các khái niệm vừa nêu. Tên biến chỉ có hiệu lực trong cùng một rule, vì vậy có thể sử dụng lại tên biến cho 2 rule khác nhau.
 \section{Các loại Rule Atom}
-Sau đây, chúng em xin trình bày các loại \textit{Atom} trong SWRL Rule, đồng thời cùng kèm theo những ví dụ cơ bản giúp thể hiện tính năng quyết định dựa trên các điều kiện của SWRL.
+Sau đây, chúng em xin trình bày các loại \textit{Atom} trong SWRL Rule, đồng thời kèm theo những ví dụ cơ bản thể hiện tính năng quyết định dựa trên các điều kiện của SWRL.
 \subsection{Class Atom}
 Một \textbf{Class Atom} gồm một tên lớp hay mô tả lớp trong OWL2 Ontology và một tham số duy nhất đại diện cho cá thể của lớp đó. Ví dụ:
 \begin{verbatim}
@@ -26,7 +26,7 @@ Một rule đơn giản để khẳng định rằng "ai làm nam đều là ng�
 Man(?x) -> Person(?x)
 \end{verbatim}
 \subsection{Individual Property Atom}
-Một \textbf{Individual Property atom} gồm một thuộc tính đối tượng (object property) và 2 tham số đại diện cho 2 cá thể trong OWL2 ontology, tham số có thể là biến hoặc tên của cá thể. Ví dụ:
+Một \textbf{Individual Property Atom} gồm một thuộc tính đối tượng (object property) và 2 tham số đại diện cho 2 cá thể trong OWL2 ontology, tham số có thể là biến hoặc tên của cá thể. Ví dụ:
 \begin{verbatim}
 hasBrother(?x, ?y)   // có anh em
 hasSibling(Steve, ?y) // có anh/chị em 
@@ -35,7 +35,7 @@ Trong ví dụ, \textit{hasBrother} và \textit{hasSibling} là các thuộc tí
 \begin{verbatim}
 Person(?p) ^ hasSibling(?p,?s) ^ Man(?s) -> hasBrother(?p,?s)
 \end{verbatim}
-\textbf{Giải thích:} Nếu một người \verb|?p| nào đó có một anh chị em \verb|?s| nào đó, và người \verb|?s| này là nam thì người \verb|?p| có anh là người \verb|?s|. Rule này cũng có thể được biểu diễn trong bằng các phát biểu về lớp, domain và range OWL2 như sau:
+\textbf{Giải thích:} Nếu một người \verb|?p| nào đó có một anh chị em \verb|?s| nào đó, và người \verb|?s| này là nam thì người \verb|?p| có anh/em trai là người \verb|?s|. Rule này cũng có thể được biểu diễn trong bằng các phát biểu về lớp, domain và range OWL2 như sau:
 \begin{verbatim}
 SubClassOf(a:Man a:Person)
 SubClassOf(a:Woman a:Person)
@@ -52,8 +52,8 @@ ClassAssertion(a:Person a:Peter)
 ClassAssertion(a:Man a:Nguyen)
 ObjectPropertyAssertion(a:hasSibling a:Peter a:Nguyen)
 \end{verbatim}
-Dựa vào rule đã khai báo ở trên \textit{hoặc} các phát biểu về lớp, domain, range như trên, thì các khẳng định vừa nêu sẽ suy ra cùng một kết quả đó là "Peter có anh là Nguyen" tương đương với phát biểu \textit{ObjectProperyAssertion(a:hasBrother a:Peter a:Nguyen)}.
-\textbf{Nhận xét:} qua các ví dụ này, có thể thấy SWRL có lợi thế hơn trong việc suy ra các ẩn ý so với việc chỉ sử dụng các phát biểu của OWL2, tuy nhiên có một nhược điểm đó là tính nhất quán (consistency) của ontology dễ bị vi phạm hơn do rule có thể xung đột với các phát biểu của OWL2. Lấy lại các phát biểu và rule trong ví dụ trên:
+Dựa vào rule đã khai báo ở trên \textit{hoặc} các phát biểu về lớp, domain, range như trên, thì các khẳng định vừa nêu sẽ suy ra cùng một kết quả đó là "Peter có anh/em trai là Nguyen" tương đương với phát biểu \textit{ObjectProperyAssertion(a:hasBrother a:Peter a:Nguyen)}.
+\textbf{Nhận xét:} Qua các ví dụ này, có thể thấy rõ ràng SWRL có lợi thế hơn trong việc suy ra các ẩn ý so với việc chỉ sử dụng các phát biểu của OWL2, tuy nhiên có một nhược điểm đó là tính nhất quán (consistency) của ontology dễ bị vi phạm hơn do rule có thể xung đột với các phát biểu của OWL2. Lấy lại các phát biểu và rule trong ví dụ trên:
 \begin{verbatim}
 Person(?p) ^ hasSibling(?p,?s) ^ Woman(?s) -> hasBrother(?p,?s)
 Person(?p) ^ hasSibling(?p,?s) ^ Man(?s) -> hasBrother(?p,?s)
@@ -62,7 +62,7 @@ ObjectPropertyRange(a:hasBrother a:Man) // Có anh/em trai
 \textbf{Giải thích:} 2 Rule mâu thuẫn với nhau do phát biểu "có anh/em trai". Bản thân SWRL sẽ không kiểm tra các mâu thuẫn này cho đến khi chúng xảy ra và làm cho ontology bị thiếu nhất quán. Vì vậy, người phát triển ontology cần cẩn thận trong việc kết hợp cả SWRL và OWL2.
 
 \subsection{Data Valued Property Atom}
-Một Data Valued Property Atom gồm một thuộc tính dữ liệu trong OWL2 và 2 tham số. Tham số đầu tiên được gán cho một các thể trong OWL 2, số thể là biến số hay tên của cá thể. Tham số thứ hai gán cho một giá trị dữ liệu, có thể là biến số hay giá trị. Ví dụ:
+Một Data Valued Property Atom gồm một thuộc tính dữ liệu trong OWL2 và 2 tham số. Tham số đầu tiên được gán cho một các thể trong OWL 2, có thể là biến số hay tên của cá thể. Tham số thứ hai gán cho một giá trị dữ liệu, có thể là biến số hay giá trị. Ví dụ:
 \begin{verbatim}
 hasAge(?x, ?age)
 hasAge(?x, 100)
@@ -77,24 +77,24 @@ Chúng ta cũng có thể dùng tên của cá thể cụ thể:
 \begin{verbatim}
 Person(Steve) ^ hasCar(Steve, true) ^ hasLicense(Steve, true) -> Driver(Steve)
 \end{verbatim}
-Rule này chỉ có tác dụng duy nhất lên cá thể \verb|Steve|
+Rule này chỉ có tác dụng duy nhất lên cá thể \verb|Steve|.
 
-\subsection{Different Individuals atom}
+\subsection{Different Individuals Atom}
 Một \textit{Atom} dạng này gồm cú pháp \textit{differentFrom} với 2 tham số đại diện cho 2 cá thể. Ví dụ:
 \begin{verbatim}
 differentFrom(?x, ?y)
 differentFrom(Steve, Peter)
 \end{verbatim}
 
-\subsection{Same Individuals atom}
+\subsection{Same Individuals Atom}
 Một \textit{Atom} dạng này gồm cú pháp \textit{sameAs} với 2 tham số đại diện cho 2 cá thể. Ví dụ:
 \begin{verbatim}
 sameAs(?x, ?y)
 sameAs(Steve, Peter)
 \end{verbatim}
 
-\subsection{Data Range atom}
-Một atom data range gồm một dạng dữ liệu hoặc một tập hợp các trực nghĩa (literals) và duy nhất một tham số đại diện cho giá trị dữ liệu. Ví dụ:
+\subsection{Data Range Atom}
+Một Data Range Atom gồm một dạng dữ liệu hoặc một tập hợp các trực nghĩa (literals) và duy nhất một tham số đại diện cho giá trị dữ liệu. Ví dụ:
 \begin{verbatim}
 xsd:int(?x)
 xsd:string(?x)
@@ -103,7 +103,7 @@ xsd:int[>=5,<=9](?x)
 \end{verbatim}
 
 \subsection{Những Built-in Atom}
-Một trong những tính năng mạnh nhất của SWRL chính là khả năng hỗ trợ người phát triển tự xây dựng các built-in nhằm mở rộng khả năng ra các điều kiện cho SWRL Rule. Trong nội dung báo cáo khóa luận này chúng em sẽ giới thiệu cách xây dựng các SWRL Built-in \cite{swrlbuiltin}, mà chúng em chỉ giới thiệu một số Core Built-Ins \cite{swrlcorebuiltin} có sẵn.
+Một trong những tính năng mạnh nhất của SWRL chính là khả năng hỗ trợ người phát triển tự xây dựng các built-in nhằm mở rộng khả năng ra các điều kiện cho SWRL Rule. Trong nội dung báo cáo khóa luận này chúng em sẽ không đề cập đến cách xây dựng các SWRL Built-in \cite{swrlbuiltin}, mà chúng em chỉ giới thiệu một số Core Built-Ins \cite{swrlcorebuiltin} có sẵn.
 \subsubsection{Built-In dùng cho các phép so sánh}
 \begin{table}[!h]
 	\centering
@@ -136,7 +136,7 @@ Vehicle(?v) ^ canCarryNumberOfPassenger(?v, ?x) ^
 
 
 
-%\paragraph{Kết luận:} Trong chương này, chúng em đã giới thiệu về SWRL Rule cũng như cách sử dụng chúng trong OWL2 Ontology ...
+\paragraph{Kết luận:} Trong chương này, chúng em đã giới thiệu về SWRL Rule cũng như cách sử dụng chúng trong OWL2 Ontology ...
 
 
 

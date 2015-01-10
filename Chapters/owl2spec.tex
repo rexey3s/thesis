@@ -1,6 +1,5 @@
-\chapter{Ontology Web Language}
+\chapter{Chi tiết Ontology Web Language}
 \paragraph{Giới thiệu }Như đã được đề cập trong phần cuối của chương trước, chức năng chính của OWL là một ngôn ngữ ontology cung cấp ngữ nghĩa cho Semantic Web. Trong nội dung chương này, chúng em sẽ giới thiệu về cú pháp, định dạng và chi tiết các thuộc tính của ngôn ngữ Ontology Web. Phiên bản Ontology Web Language chúng em sử dụng là phiên bản 2 \cite{owl2} được tổ chức W3C khuyến khích sử dụng so với phiên bản OWL cũ 1.1 . Một cách ngắn gọn, OWL là một ngôn ngữ ontology dựa trên Description Logic (DL) $SROIQ_{(D)}$ \cite{DL}, với ưu điểm là khả năng mô hình hóa các đối tượng trong các lĩnh vực (domain) tri thức được biết đến thành những khái niệm (concept) và đồng thời là khả năng biểu diễn ngữ nghĩa mạnh mẽ, giúp việc suy luận có thể được thực hiện tự động thông qua các ẩn ý (implications).
-
 \clearpage
 \section{Khái quát về OWL 2}
 \subsection{Tổng quan}
@@ -9,13 +8,13 @@
 	\includegraphics[width=120mm]{Figures/owl2structure.png}
 	\caption{Cấu trúc của OWL 2\label{overflow}}
 \end{figure}
-Hình trên cho chúng ta cái nhìn tổng quan về các định dạng file, các loại cú pháp và các khả năng serialization thành RDF Graph của Ontology. Chúng ta thấy trong hình, hình eclipse ở giữa thể hiện khái niệm trừu tượng của một ontology, có thể hiểu là một cấu trúc trừu tượng hay một đồ thi RDF. Chúng ta có thể dùng nhiều cú pháp để biểu diễn ontology và định dạng chúng dưới dạng file khác nhau (Syntax layer trong hình), các định dạng và cú pháp này hoàn toàn có thể chuyển đổi qua lại với nhau. Lớp ngữ nghĩa trong hình (semantic layer) cho thấy ngữ nghĩa được quy định theo 2 tiêu chuẩn kỹ thuật khác nhau là Direct Semantics và RDF-Based Semantics. Phần lớn những người phát triển Ontology bằng OWL2 sẽ chỉ cần 1 cú pháp (tương đương với 1 định dạng file) và một dạng biểu diễn ngữ nghĩa.
+Hình trên cho chúng ta cái nhìn tổng quan về các định dạng file, các loại cú pháp và các khả năng serialization thành RDF Graph của Ontology. Chúng ta thấy trong hình, hình eclipse ở giữa thể hiện khái niệm trừu tượng của một ontology, có thể hiểu là một cấu trúc trừu tượng hay một đồ thi RDF. Chúng ta có thể dùng nhiều cú pháp để biểu diễn ontology và định dạng chúng dưới dạng file khác nhau (Syntex layer trong hình), các định dạng và cú pháp này hoàn toàn có thể chuyển đổi qua lại với nhau. Lớp ngữ nghĩa trong hình (semantic layer) cho thấy ngữ nghĩa được quy định theo 2 tiêu chuẩn kỹ thuật khác nhau là Direct Semantics và RDF-Based Semantics.
+\\
+Phần lớn những người phát triển Ontology bằng OWL2 sẽ chỉ cần 1 cú pháp (tương đương với 1 định dạng file) và một dạng biểu diễn ngữ nghĩa.
 \subsection{Ontologies}
 Bất kì ontology OWL2 nào đều có thể được định dạng như một đồ thị RDF. Mối quan hệ giữa 2 cách này được quy định bởi các tài liệu Mapping to RDF Graphs document [\href{http://www.w3.org/TR/owl2-overview/#ref-owl-2-rdf-mapping}{OWL 2 RDF Mapping}] \cite{mapping_rdf_graph}, trong tài liệu này định nghĩa rất rõ ràng một bảng map từ định dạng cấu trúc của ontology qua đồ thị RDF, và ngược lại. 
 \subsection{Cú pháp}
 Trong thực tế, một cú pháp cụ thể rất cần thiết để lưu trữ các OWL2 Ontologies và để trao đổi chúng giữa các công cụ và ứng dụng khác nhau. Cú pháp đầu tiên có khả năng hoán đổi là RDF/XML [\href{http://www.w3.org/TR/owl2-overview/#ref-rdf-syntax}{RDF Syntax}] \cite{rdfxml}. Ngoài RDF/XML có khả năng cung cấp khả năng tương tác giữa nhiều ứng dụng OWl2 khác nhau, các loại cú pháp khác đều có thể được sử dụng. Dưới đây là bảng so sánh và liệt kê các cú pháp.
-
-
 \begin{table}[H]
 \begin{tabular}{ |p{3cm}|p{4cm}|p{2cm}|p{4cm}|}
 \hline
@@ -102,9 +101,9 @@ ObjectProperty: canEat
 
 \section{Các thuộc tính chi tiết của OWL2}
 Ngôn ngữ Ontology Web Language 2 (hay OWL 2) đảm nhiệm chức năng thể hiện ngữ nghĩa cho Semantic Web như chúng ta đã thấy trong hình Semantic Web Stack. OWL2 ontologies cung cấp các lớp (class), đặc tính (property), cá thể (individual) và các giá trị dữ liệu (data value), tất cả sẽ được biểu diễn bằng các tài liệu và cú pháp được đề cập ở trên, phần này sẽ đi vào giải thích các thành phần vừa nêu ra của một ontology được viết bằng ngôn ngữ OWL2. Đây cũng chính là các thành phần cấu trúc mà thư viện OWLAPI \cite{owlapi} áp dụng để xây dựng nên bộ thư viện giúp người phát triển ứng dụng ontology tương tác dễ dàng hơn với các tài liệu ontology.
+Đầu tiên chúng em xin được giới thiệu về đối tượng lớn nhất trong quy định của ngôn ngữ OWL2. 
 \\
 Tiếp theo, chúng em xin được trình bày định nghĩa của những thành phần cấu tạo nên ontology mà có ảnh hướng đến quá trình xây dựng ứng dụng, các thành phần không liên quan sẽ không được đề cập.
-
 \section{Định nghĩa các thành phần cấu tạo nên một ontology}
 \subsection{Ontology IRI và Version IRI}
 Mỗi ontology đều có thế có\textit{một ontology IRI} \cite{iri} \textsuperscript{*} (Internationalized Resource Identifier), dùng để định danh cho ontology. Nếu một ontology có một ontology IRI, thì ontology này có thể có thêm một version IRI, dùng để xác định phiên bản cho ontology này. Version IRI có thể trùng hoặc không cần thiết phải trùng với ontology IRI. Một ontology không có ontology IRI thì không có version IRI.
@@ -119,19 +118,17 @@ Dưới đây là những quy ước chọn ontology IRIs và version IRIs trong
 \end{itemize}
 Ontology IRI và các version IRI kết hợp với nhau giúp định danh một phiên bản cụ thể của của ontology từ một bộ chứa tất cả các phiên bản của một ontology cụ thể nào đó được định danh chung bằng ontology IRI. Trong mỗi bộ ontology như vậy, sẽ có chính xác một ontology được dùng như một ontology hiện hành - khi dùng ontology IRI để truy vấn ontology mà không đề cập đến version IRI, mặc định ontology có verison IRI hiện hành sẽ được trả về.
 
-
 %\subsubsection{Tài liệu Ontology}
 %Bản chất OWL 2 Ontology chỉ là một khái niệm trừu tượng chiếu theo định nghĩa trong các thuộc tính cấu tạo của nó, để biểu diễn những ngữ nghĩa trong ontology và lưu trữ chúng, chúng ta cần một dạng tài liệu được quy ước. Cụm từ "Tài liệu ontology" (\textit{Ontology Document}) muốn nói đến khả năng một số lượng lớn ontologies có thể được lưu giữ trong một tài liệu thực sự được biểu diễn dưới dạng một trong các cú pháp vừa nếu ở phần. 
 
 \subsection{Thực thể, trực nghĩa và cá thể ẩn danh - Entities, Literals and Anonymous Individuals}
 Các thực thể (entities) là thành phần cơ bản nhất của OWL2 Ontology, chúng định nghĩa các từ vựng - cụ thể là những đặt tên ra các khái niệm (named term) - của một ontology. Bên cạnh các thực thể, OWL 2 ontologies thường có thêm các trực nghĩa (literals), như strings hay integers.
-
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=150mm, height=80mm]{Figures/entities.png}
 	\caption{Entities, Literals, Anonymous Individuals trong OWL2 \label{overflow}}
 \end{figure}
-
+\\
 Cấu trúc của các thực thể và trực nghĩa trong OWL 2 được thể hiện trong hình bên. Các lớp (classes), kiểu dữ liệu (datatypes), thuộc tính đối tượng (object properties), thuộc tính dữ liệu (data properties), thuộc tính chú thích và các cá thể có tên đều được gọi chung là các thực thể (entities), tất cả chúng được được định danh bằng một IRI duy nhất. 
 \begin{itemize}
 \item Lớp (class) đại diện cho một tập gồm nhiều cá thể(individuals).
@@ -148,7 +145,8 @@ Lớp được hiểu như tập hợp các cá thể. Hai lớp với IRIs \tex
 \item \textbf{owl:Thing} là tập hợp gồm tất cả các cá thể.
 \item \textbf{owl:Nothing} là tập hợp rỗng.
 \end{itemize}
-Không nên sử dụng 2 định nghĩa trên để gán cho bất kì lớp nào trong OWL 2 DL Ontology. Ví dụ:
+Không nên sử dụng 2 định nghĩa trên để gán cho bất kì lớp nào trong OWL 2 DL Ontology. 
+Ví dụ:
 \begin{verbatim}
 SubClassOf( a:Child a:Person) 
 \end{verbatim}
@@ -157,7 +155,6 @@ SubClassOf( a:Child a:Person)
 % Datatypes
 \subsubsection{Kiểu dữ liệu (datatypes)}
 Kiểu dữ liệu là thực thể được xem như tập hợp của các giá trị dữ liệu. Như vậy, kiểu dữ liệu cũng tương tự lớp, khác biệt chính là thay vì chứa các cá thể (individuals) như lớp thì lại chứa các giá trị dữ liệu như strings, numbers,... Kiểu dữ liệu có thể được dùng tạo ra các dữ liệu giới hạn (datarange). Ví dụ kiểu dữ liệu \textit{xsd:positiveInteger} đại diện cho tập hợp gồm tất cả các số nguyên dương. Nó được sử dụng để quy định kiểu dữ liệu mà thuộc tính \textit{hasAge} có thể chấp nhận:
-
 
 \begin{verbatim}
 DataPropertyRange( a:hasAge xsd:positiveInteger) 
@@ -168,24 +165,20 @@ DataPropertyRange( a:hasAge xsd:positiveInteger)
 % Object Properties
 \subsubsection{Thuộc tính đối tượng (object properties)} 
 Thuộc tính đối tượng kết nối các cặp cá thể - tạo ra mối liên hệ (relationship) giữa các cá thể. Tương tự như lớp cũng có 2 thuộc tính đối tượng được định nghĩa sẵn trong OWL 2 với ý nghĩa như sau:
-
 \begin{itemize}
 \item \textbf{owl:topObjectProperty} kết nối tất cả các cặp cá thể có thể kết nối.
 \item \textbf{owl:bottomObjectProperty} không kết nối bất kì cặp cá thể nào. 
 \end{itemize}
 Không nên sử dụng 2 định nghĩa trên để gán cho bất kỳ thuộc tính đối tượng nào trong OWL 2 DL Ontology. Ví dụ:
-
 \begin{verbatim}
 ObjectPropertyAssertion( a:parentOf a:Peter a:Chris)  
 \end{verbatim}
 \textbf{Giải thích:} Peter là ba mẹ của Chris. Thuộc tính đối tượng \textit{a:parentOf} được dùng để nói lên mối quan hệ giữa các cá thể trong ví dụ trên.
 
-
 % Data Properties
 \subsubsection{Thuộc tính dữ liệu (data properties)}
 Thuộc tính dữ liệu liên kết các cá thể với các trực nghĩa. Trong một vài hệ thống biểu diễn tri thức, thuộc tính dữ liệu chức năng được gọi là thuộc tính.
 Hai định nghĩa sẵn \textit{owl:topDataProperty} và \textit{owl:bottomDataProperty} có ý nghĩa như sau :
-
 \begin{itemize}
 \item \textbf{owl:topDataProperty} liên kết tất cả cá thể với tất cả các trực nghĩa.
 \item \textbf{owl:bottomDataProperty} không liên kết bất kì cá thể với trực nghĩa nào.
@@ -252,7 +245,6 @@ Mỗi IRI \textit{I} được sử dụng trong OWL 2 ontology \textit{O} cần 
 \begin{itemize}
 \item Khẳng định sự tồn tại trong \textit{I} trong \textit{O}
 \item Khai báo gắn với loại của thực thể \textit{I} - phân loại xem \textit{I} có phải là một lớp, một kiểu dữ liệu, một thuộc tính đối tượng, một thuộc tính dữ liệu, một đặt tính chú thích hay một cá thể.
-
 \end{itemize}
 Bối cảnh sử dụng khái báo \textbf{Declaration} thường gắn liền với chức năng \textit{Add New Class/Property/Datatype} trong một Ontology Editor nào đó.
 \\ \textbf{Cú pháp:}
@@ -293,11 +285,9 @@ ObjectPropertyAssertion( a:fatherOf a:Peter a:Steve)
 \end{verbatim}}
 Với phát biểu trên, ontology sẽ hiểu \textit{a:Steve} liên kết với \textit{a:Peter} qua một thuộc tính nghịch đảo của \textit{a:fatherOf} là \textit{ObjectInverseOf( a:fatherOf)}. Chúng ta cũng có thể khai báo tường minh nghịch đảo của \textit{a:fatherOf} là \textit{a:childOf} bằng phát biểu  \textit{InverseObjectProperties( a:fatherO a:childOf )}.
 
-
 % Data Property Expression
 \subsubsection{Mô tả thuộc tính dữ liệu (Data Property Expression)}
 Tương đương với biểu hiện thuộc tính đối tượng, trong tài liệu cấu trúc chi tiết của OWL2 cũng giới thiệu định nghĩa mô tả thuộc tính dữ liệu (data property expressions), nhằm biểu diễn mối quan hệ giữa một cá thể và một trực nghĩa. Cấu trúc của mô tả thuộc tính dữ liệu thể hiện trong hình bên. Như chúng ta thấy thuộc tính dữ liệu (data property) cũng chính là 1 mô tả thuộc tính dữ liệu (data property expression), cấu trúc như vậy được xây dựng nhằm tạo thuận lợi cho nhu cầu mở rộng sau này nếu có.
-
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=110mm]{Figures/data_property_expression.png}
@@ -330,7 +320,6 @@ DataUnionOf( xsd:string xsd:integer )
 % DataComplementOf
 \subsubsection{Phủ định của miền dữ liệu (Complement of Data Ranges)}
 Cú pháp \textit{DataComplementOf( DR )} chứa tất cả các miền dữ liệu còn lại trong miền dữ liệu \textit{DR}. Yêu câu số lượng tham số và kết quả phải bằng \textit{DR}
-
 \begin{verbatim}
 DataComplementOf( xsd:positiveInteger )
 \end{verbatim}
@@ -354,8 +343,8 @@ xsd:minInclusive "5"^^xsd:integer xsd:maxExclusive "10"^^xsd:integer )
 
 % Class Expressions
 \subsection{Mô tả lớp (Class Expression)}
-Trong OWL2, các lớp và mô tả thuộc tính (property expressions) được sử dụng để xây dựng nên các mô tả lớp, hay chúng được gọi là các miêu tả hoặc trong thuật ngữ của Description Logic chúng được gọi là \textit{những khái niệm phức tạp}. Các mô tả lớp biểu diễn tập hợp các cá thể bằng cách chính thức đặt ra các điều kiện quy định cho các thuộc tính của các cá thể này; cá thể nào có những thuộc tính phù hợp hay thỏa những quy định đó được xem là một thành viên của mô tả lớp đang xét. Có 5 dạng mô tả lớp chính. Sau đây chúng em xin được trình bày 3 dạng mô tả lớp.
-
+Trong OWL2, các lớp và mô tả thuộc tính (property expressions) được sử dụng để xây dựng nên các mô tả lớp, hay chúng được gọi là các miêu tả hoặc trong thuật ngữ của Description Logic chúng được gọi là \textit{những khái niệm phức tạp}. Các mô tả lớp 
+biểu diễn tập hợp các cá thể bằng cách chính thức đặt ra các điều kiện quy định cho các thuộc tính của các cá thể này; cá thể nào có những thuộc tính phù hợp hay thỏa những quy định đó được xem là một thành viên của mô tả lớp đang xét. Có 5 dạng mô tả lớp chính. Sau đây chúng em xin được trình bày 3 dạng mô tả lớp.
 % Propositional Connectives and Enumeration of Individuals
 \subsubsection{Các mệnh đề logic và liệt kê cá thể}
 \begin{figure}[h]
@@ -364,7 +353,6 @@ Trong OWL2, các lớp và mô tả thuộc tính (property expressions) đượ
 	\caption{Mô tả lớp trong OWL 2\label{overflow}}
 \end{figure}
 OWL2 cho phép liệt kê các cá thể của một lớp, khai báo các mệnh đề logic như trong hình sau. Các khai báo \textit{ObjectIntersectionOf}, \textit{ObjectUnionOf}, và \textit{ObjectComplementOf} cho phép thực hiện các phép toán luân lý (and ,or, not) trên những mô tả lớp. \textit{ObjectOneOf} quy định chính xác những cá thể cho mô tả lớp đang khai báo.
-
 
 %% Intersection of Class Expressions
 \paragraph{Intersection of Class Expressions} Tập giao của các mô tả lớp \textit{ObjectIntersectionOf(} $CE_{1}$ ... $CE_{n}$ \textit{)} gồm tất cả các cá thể là thành viên của tất cả các mô tả lớp $CE_{i}$ với $1<=i<=n$. Ví dụ: 
@@ -402,8 +390,6 @@ ClassAssertion( a:Woman a:Lois)
 	\caption{Object Property Restrictions trong OWL 2\label{overflow}}
 \end{figure}
 Các mô tả lớp trong OWL 2 có thể được tạo ra bằng cách kết hợp chúng với các thuộc tính đối tượng bằng phát biểu như trong hình.
-
-
 \paragraph{Existential Quantification} Một mô tả lớp \textit{ObjectSomeValueFrom( OPE CE )} thể hiện mối quan hệ giữa những cá thể được kết nối bởi mô tả thuộc tính đối tượng \textit{OPE} đến \textbf{ít nhất một} cá thể thuộc mô tả lớp \textit{CE}. Ví dụ:
 \begin{verbatim}
 ObjectPropertyAssertion( a:fatherOf a:Peter a:Steve ) 
@@ -426,8 +412,8 @@ ClassAssertion( ObjectMaxCardinality( 1 a:hasPet ) a:Peter )
 
 \paragraph{Individual Value Restriction} Mô tả  \textit{ObjectHasValue(OPE a)} thể hiện mối quan hệ giữa tất cả các cá thể được kết nối bởi mô tả thuộc tính đối tượng \textit{OPE} và cá thể $a$. Ví dụ:
 \begin{verbatim}
-// Peter là ba của Steve
 ObjectPropertyAssertion( a:fatherOf a:Peter a:Steve)
+// Peter là ba của Steve
 \end{verbatim}
 \textbf{Giải thích:} với khai báo như trên, \textit{Peter thuộc mô tả lớp sau} mà không cần khai báo là \textit{ObjectHasValue( a:fatherOf a:Steve )}.
 
@@ -446,7 +432,7 @@ ObjectPropertyAssertion( a:quayQuanhTruc a:TraiDat a:TraiDat )
 	\caption{Object Property Cardinality Restrictions trong OWL 2\label{overflow}}
 \end{figure}
 Các mô tả lớp trong OWL 2 có thể được tạo ra bằng cách đặt ra những số lượng hạn chế các cá thể mà các thuộc tính đối tượng có thể liên kết.
-\paragraph{Số lượng tối thiểu (Minimum Cardinality)} - mô tả \textit{ObjectMinCardinality(n OPE  CE)} cbiểu diễn mọi các thể được kết nối bởi mô tả thuộc tính đối tượng \textit{OPE} đến số lượng tối thiểu $n$ cá thể (khác nhau) thuộc mô tả lớp \textit{CE} với $n$ là số nguyên không âm. Nếu \textit{CE} không được khai báo trong phát biểu trên mặc định sẽ là $owl:Thing$. Ví dụ:
+\paragraph{Số lượng tối thiểu (Minimum Cardinality)} - mô tả \textit{ObjectMinCardinality(n OPE  CE)} biểu diễn mọi các thể được kết nối bởi mô tả thuộc tính đối tượng \textit{OPE} đến số lượng tối thiểu $n$ cá thể (khác nhau) thuộc mô tả lớp \textit{CE} với $n$ là số nguyên không âm. Nếu \textit{CE} không được khai báo trong phát biểu trên mặc định sẽ là $owl:Thing$. Ví dụ:
 \begin{verbatim}
 ObjectPropertyAssertion( a:fatherOf a:Peter a:Steve )
 ObjectPropertyAssertion( a:fatherOf a:Peter a:Bush )
@@ -479,7 +465,6 @@ ObjectMaxCardinality( n OPE CE ) ).
 	\caption{Data Property Restrictions trong OWL 2\label{overflow}}
 \end{figure}
 Mô tả lớp dạng này được tạo ra bằng cách đặc các ràng buộc về kiểu dữ liệu, giới hạn các giá trị dữ liệu lên mô tả thuộc tính dữ liệu (data property expression) như trong hình. Những mô tả này cũng tương tự như ràng buộc thuộc tính đối tượng vừa nêu ra ở trên.
-
 
 %% Existential Quantification
 \paragraph{Existential Quantification} Một mô tả lớp \textit{DataSomeValuesFrom(} $DPE_{1}$ ... $DPE_{n}$ $DR$ \textit{)} gồm $n$ mô tả thuộc tính dữ liệu $DPE_{i}$, $1<=i<=n$, và một miền dữ liệu (data range) $DR$ với số lượng tham số phải bằng $n$. Mô tả lớp này biểu diễn mối quan hệ dữ liệu giữa tất cả các cá thể kết nối với $DPE_{i}$ tới các trực nghĩa $lt_{i}$, $1<=i<=n$ với $($ $lt_{1}$ ... $lt_{n}$ $)$ trong $DR$. Ví dụ:
@@ -549,11 +534,10 @@ FunctionalDataProperty( a:hasID ) // Mỗi người chỉ có duy nhất một s
 % Axioms
 \subsection{Các tiên đề (Axioms)}
 {\let\thefootnote\relax\footnotetext{* Lưu ý:\textit{
-			trong nội dung báo cáo này chúng em sẽ gọi vắng tắt các tiên đề - những phát biểu hiển nhiên đúng trong một lĩnh vực là \textit{những phát biểu} nhằm diễn giải các lý thuyết, nguyên lý trở dễ hiểu hơn.
+			Trong nội dung báo cáo này chúng em sẽ gọi vắng tắt các tiên đề - những phát biểu hiển nhiên đúng trong một lĩnh vực là \textit{những phát biểu} nhằm diễn giải các lý thuyết, nguyên lý trở dễ hiểu hơn.
 		}}
 }
 Thành phần chính của một OWL 2 Ontology chính là một tập hợp gồm các tiên đề \textsuperscript{*} - những phát biểu mà chúng ta cho là đúng trong một lĩnh vực. OWL 2 cung cấp một loạt các loại phát biểu được mở rộng (thừa kế) từ lớp \textbf{Axiom} như trong hình. Các phát biểu có thể là các phát biểu khai báo (declarations), phát biểu về lớp, phát biểu về thuộc tính đối tượng/dữ liệu, phát biểu định nghĩa kiểu dữ liệu, khóa (HasKey), phát biểu khẳng định (assertions), và các phát biểu chú thích (annotations). Có thể nói những phát biểu (tiên đề) chính là những viên gạch để chúng ta xây dựng nên các tầng ngữ nghĩa (semantic) cho ontology.
-
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=150mm]{Figures/axioms.png}
@@ -603,7 +587,6 @@ ObjectPropertyAssertion( a:hasCat a:Peter a:Tom) // Peter có con mèo là Tom
 \end{verbatim}
 \textbf{Giải thích:} Ai có mèo thì cũng có thể hiểu là người đó có vật nuôi theo phát biểu đầu tiên, dựa theo phát biểu thứ hai chúng ta có ngầm hiểu là \textit{Peter có vật nuôi là Tom} - \textit{ObjectPropertyAssertion( a:hasPet a:Peter a:Brian )}.
 
-
 \paragraph{Thuộc tính đối tượng tương đương (Equivalent Object Properties)} - một phát biểu \textit{EquivalentObjectProperties( $OPE_{1}$ ... $OPE_{n}$ )} nói rằng mỗi mô tả thuộc tính $OPE_{i}$, $1<=i<=n$ đều đồng nghĩa với các tất cả các mô tả thuộc tính còn lại trong phát biểu này phát biểu \textit{EquivalentObjectProperties( $OPE_{2}$ $OPE_{1}$ )} tương đương \textit{EquivalentObjectProperties( $OPE_{1}$ $OPE_{2}$ )}. Ví dụ:
 \begin{verbatim}
 EquivalentObjectProperties( a:hasBrother a:hasMaleSibling ) 
@@ -614,9 +597,7 @@ ObjectPropertyAssertion( a:hasMaleSibling a:Steve a:Chris )
 \end{verbatim}
 \textbf{Giải thích:} Do phát biểu đầu tiên có nghĩa "có anh" đồng nghĩa với "có anh chị em ruột (là nam)", từ 2 phát biểu sau chúng ta có thể suy ra các phát biểu sau mà cần khai báo chúng \textit{ObjectPropertyAssertion(a:hasMaleSibling a:Chris a:Steve)} và \textit{ObjectPropertyAssertion(a:hasBrother a:Stewie a:Chris)}.
 
-
-+\paragraph{Disjoint Object Properties} - một phát biểu \textit{DisjointObjectProperties($OPE_{1}$ ... $OPE_{n}$)} nói rằng không cá thể được liên kết bởi cả của $OPE_{i}$ và $OPE_{j}$ với $i \neq j$, $1<=i,j<=n$. Ví dụ:
-
+\paragraph{Disjoint Object Properties} - một phát biểu \textit{DisjointObjectProperties($OPE_{1}$ ... $OPE_{n}$)} nói rằng không cá thể được liên kết bởi cả của $OPE_{i}$ và $OPE_{j}$ với $i \neq j$, $1<=i,j<=n$. Ví dụ:
 \begin{verbatim}
 DisjointObjectProperties( a:hasFather a:hasMother ) Có ba khác có mẹ.
 ObjectPropertyAssertion( a:hasFather a:Steve a:Peter )	Peter là ba của Steve.
@@ -632,7 +613,6 @@ ObjectPropertyAssertion( a:childOf a:Peter a:Steve )
 \end{verbatim}
 \textbf{Giải thích:} Phát biểu đầu có thể hiểu "nếu x là con y" thì "y là ba mẹ của x", do vậy từ các phát biểu trên ta suy ra được Peter là ba mẹ của Steve tương đương \textit{ObjectPropertyAssertion( a:parentOf a:Steve a:Peter)}.
 
-
 \paragraph{Domain của thuộc tính đối tượng (Object Property Domain)} - phát biểu \textit{ObjectPropertyDomain(OPE CE)} nêu rõ domain của thuộc tính đối tượng là mô tả lớp \textit{CE} -  nếu một cá thể $x$ được liên kết bởi \textit{OPE} tới cá thể nào đó, thì $x$ phải thuộc mô tả lớp \textit{CE}. Mặc định nếu không có khai báo này thì domain thuộc tính đối tượng sẽ là \textit{owl:Thing}
 \begin{verbatim}
 ObjectProertyDomain( a:hasCat a:Person ) 
@@ -641,7 +621,6 @@ ObjectPropertyAssertion( a:hasCat a:Peter a:Tom )
 // Tom là con mèo của Peter
 \end{verbatim}
 \textbf{Giải thích:} Mặc dù không khai báo Peter là người nhưng xét theo phát biểu đầu tiên chúng ta ngầm hiểu Peter là người, tương đương phát biểu \textit{ClassAssertion(a:Person a:Peter)}.
-
 
 \paragraph{Miền giới hạn của thuộc tính đối tượng (Object Property Range)} - phát biểu \textit{ObjectPropertyRange( $OPE$ $CE$)} nêu rõ miền giới hạn (range) của thuộc tính đối tượng là mô tả lớp \textit{CE} -  nếu cá thể nào đó được liên kết bới $OPE$ tới cá thể $x$ , thì $x$ phải thuộc mô tả lớp $CE$. Mặc định nếu không có khai báo này thì range của thuộc tính đối tượng sẽ là $owl:Thing$. Ví dụ:
 \begin{verbatim}
@@ -652,7 +631,6 @@ ObjectPropertyAssertion( a:hasPet a:Peter a:Tom )
 \end{verbatim}
 \textbf{Giải thích:} Mặc dù không khai báo Tom là con mèo nhưng do phát biểu đầu tiên, chúng ta ngầm hiều Tom là con mèo, tương đương phát biểu \textit{ClassAssertion($a:Cat$ $a:Tom$)}.
 
-
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=150mm, height=100mm]{Figures/objectpropertyAxiom1.png}
@@ -662,9 +640,7 @@ Ngoài các dạng phát biểu được nêu, mô tả thuộc tính đối tư
 
 \paragraph{Functional Object Properties} phát biểu \textit{FunctionalObjectProperty( OPE )} quy định với từng cá thể $x$, chỉ tồn tại nhiều nhất một cá thể $y$ mà $x$ được kết nối với $y$ qua $OPE$. Ví dụ : Mỗi đối tượng chỉ có tối đa một người cha - \textit{FunctionalObjectProperty( a:hasFather )}. 
 
-
 \paragraph{Inverse-Functional Object Properties} phát biểu \textit{InverseFunctionalObjectProperty( OPE )} quy định với từng cá thể $x$, chỉ tồn tại nhiều nhất một cá thể $y$ mà $y$ được kết nối qua \textit{OPE} tới $x$ . Ví dụ tương tự \textit{FunctionalObjectProperty(OPE)}.
-
 
 \paragraph{Reflexive Object Properties} phát biểu \textit{ReflexiveObjectProperty( OPE )} nói rằng mô tả thuộc tính có tính phản xạ, nghĩa là với từng kết nối bởi \textit{OPE} tới chính nó. Ví dụ: \textit{ReflexiveObjectProperty(a:knows)}, ai cũng biết bản thân họ, với khai báo \textit{ClassAssertion(a:Person a:Peter)} thì có thể suy ra được phát biểu sau \textit{ObjectPropertyAssertion(a:knows a:Peter a:Peter)}.
 
@@ -672,9 +648,7 @@ Ngoài các dạng phát biểu được nêu, mô tả thuộc tính đối tư
 
 \paragraph{Symmetric Object Properties} phát biểu \textit{SymmetricObjectProperty( OPE )} nói rằng \textit{OPE} có tính đối xứng, nếu $x$ nối với $y$ qua \textit{OPE} thì $y$ cũng nối với $x$ bởi \textit{OPE}. Ví dụ: Với\textit{ SymmetricObjectProperty( a:friendOf )} và \textit{ObjectPropertyAssertion(a:friend a:Peter a:Bush)} chúng ta suy ra được \textit{ObjectPropertyAssertion(a:friend a:Bush a:Peter)}.
 
-
 \paragraph{Asymmetric Object Properties} phát biểu \textit{AsymmetricObjectProperty( OPE )} nói rằng \textit{OPE} có tính bất đối xứng, nếu $x$ nối với $y$ qua \textit{OPE}, thì $y$ không thể kết nối với $x$ bởi \textit{OPE}. Ví dụ: Với \textit{AsymmetricObjectProperty( a:parentOf )}  và \textit{ObjectPropertyAssertion(a:parentOf a:Peter a:Bush)} thì nếu ta thêm thêm phát biểu \textit{ObjectPropertyAssertion(a:parentOf a:Bush a:Peter)} sẽ làm cho ontology mất tính nhất quán (inconsistent).
-
 
 \paragraph{Transitive Object Properties} phát biểu \textit{TransitiveObjectProperty(OPE)} nói rằng \textit{OPE} có tính bắc cầu, nếu $x$ nối với $y$ bởi \textit{OPE} và $y$ nối với $z$ cũng bằng \textit{OPE} thì $x$ nối với $z$ qua \textit{OPE}. Ví dụ:
 \begin{verbatim}
@@ -682,8 +656,7 @@ Ngoài các dạng phát biểu được nêu, mô tả thuộc tính đối tư
 	ObjectPropertyAssertion( a:partOf a:KhoaMMT a:UIT )
 	ObjectPropertyAssertion( a:partOf a:UIT a:VNU )
 \end{verbatim}
-\textbf{Giải thích} nếu khoa mạng thuộc UIT, UIT thuộc đại học Quốc Gia (VNU), nhờ phát biểu đầu tiên chúng ta $partOf$ có tính chất bắc cầu nên suy ra được khoa mạng thuộc đại học Quốc Gia - \textit{ObjectPropertyAssertion( a:partOf a:KhoaMMT a:VNU)}
-
+Giải thích nếu khoa mạng thuộc UIT, UIT thuộc đại học Quốc Gia (VNU), nhờ phát biểu đầu tiên chúng ta $partOf$ có tính chất bắc cầu nên suy ra được khoa mạng thuộc đại học Quốc Gia - \textit{ObjectPropertyAssertion( a:partOf a:KhoaMMT a:VNU)}
 
 % Data Property Axioms
 \subsubsection{Các phát biểu về thuộc tính dữ liệu}
@@ -703,7 +676,6 @@ DataPropertyAssertion( a:hasLastName a:Peter "Smith" )
 \end{verbatim}
 \textbf{Giải thích:} Vì "có họ" \textbf{(hasLastName)} là thuộc tính con của "có tên" \textit{(hasName)} nên chúng ta ngầm hiểu phát biểu sau mà không cần khai báo tên của Peter là "Smith", tương đương \textit{DataPropertyAssertion(a:hasName a:Peter "Griffin")}
 
-
 \paragraph{Phát biểu thuộc tính dữ liệu tương đương (Equivalent Data Properties)} Một phát biểu \textit{EquivalentDataProperties( $DPE_{1}$ ... $DPE_{n}$)} nói rằng mỗi mô tả thuộc tính $DPE_{i}$, $1<=i<=n$ đều đồng nghĩa với các tất cả các mô tả thuộc tính còn lại trong phát biểu này phát biểu \textit{EquivalentDataProperties( $DPE_{2}$ $DPE_{1}$ )} cũng tương đương EquivalentDataProperties( $DPE_{1}$ $DPE_{2}$ ). Ví dụ:
 \begin{verbatim}
 EquivalentDataProperties( a:hasName a:HoTen ) 
@@ -711,8 +683,7 @@ EquivalentDataProperties( a:hasName a:HoTen )
 DataPropertyAssertion( a:hasName a:Peter "Peter Nguyen" )
 DataPropertyAssertion( a:HoTen a:Peter "Peter Nguyễn" )
 \end{verbatim}
-\textbf{Giải thích:} Do phát biểu đầu tiên, từ phát biểu thứ 2 ta ngầm hiểu \textit{DataPropertyAssertion( a:hasName a:Peter "Peter Nguyễn" )} tên tiếng Anh "Peter Nguyen" tương đương tên tiếng Viết "Peter Nguyễn" và ngược lại \textit{DataPropertyAssertion( a:HoTen a:Peter "Peter Nguyen") }.
-
+\textbf{Giải thích:} Do phát biểu đầu tiên, từ phát biểu thứ 2 ta ngầm hiểu \textit{DataPropertyAssertion( a:hasName a:Peter "Peter Nguyễn" )} tên tiếng Anh "Peter Nguyen" tương đương tên tiếng Viết "Peter Nguyễn" và ngược lại \textit{DataPropertyAssertion( a:HoTen $a:Peter$ "Peter Nguyen") }.
 
 \paragraph{Domain của thuộc tính dữ liệu (Data Property Domain)} Phát biểu \textit{DataPropertyDomain( DPE CE )} nêu rõ domain của thuộc tính dữ liệu là mô tả lớp $CE$ -  nếu một cá thể $x$ được liên kết bởi \textit{DPE} tới vài trực nghĩa nào đó, thì $x$ phải là cá thể thuộc mô tả lớp \textit{CE}.
 \begin{verbatim}
@@ -723,15 +694,13 @@ ObjectPropertyAssertion( a:hasBankAccount a:Peter "0002" )
 \end{verbatim}
 \textbf{Giải thích:} Không cần thiết phải khai báo Peter là người vì dựa theo chúng ta cũng kết luận được Peter là người từ 2 phát biểu trên, \textit{ClassAssertion(a:Person a:Peter)}.
 
-
 \paragraph{Miền giá trị của thuộc tính dữ liệu (Data Property Range)} - phát biểu \textit{DataPropertyRange(DPE DR)} nói rằng miền giá trị hợp lệ của mô tả thuộc tính dữ liệu \textit{DPE} là miền dữ liệu \textit{DR} - nếu các cá thể được kết nối bởi \textit{DPE} tới 1 trực nghĩa $x$, thì $x$ trong miền dữ liệu \textit{DR}. Ví dụ:
 %Số lượng kết quả đầu ra bắt buộc bằng 1, tức không tồn tại $x \equiv y \equiv z$, với $y \not\equiv z$ và $y, z \in DR$.
 \begin{verbatim}
 DataPropertyRange( a:hasName xsd:string )
 DataPropertyAssertion( a:hasName a:Peter "Peter Nguyen" )
 \end{verbatim}
-Nếu khai báo được thêm sẽ làm cho ontology bị thiếu nhất quán (inconsistent):
-
+Nếu khai báo thêm phát biểu sau sẽ làm cho ontology bị thiếu nhất quán (inconsistent):
 \begin{verbatim}
 DataPropertyAssertion( a:hasName a:Peter "42"^^xsd:integer)
 \end{verbatim}
@@ -742,7 +711,7 @@ FunctionalDataProperty( a:hasAge )
 // Mọi đối tượng chỉ có tối đa một số tuổi
 DataPropertyAssertion( a:hasAge a:Steve "17"^^xsd:integer )
 \end{verbatim}
-Các phát biểu trên sẽ bị thiếu nhất quán nếu chúng ta thêm vào phát biểu sau 
+Các phát biểu trên sẽ bị thiếu nhất quán nếu chúng ta thêm vào phát biểu sau :
 \begin{verbatim}
 DataPropertyAssertion( a:hasAge a:Steve "15"^^xsd:integer)
 \end{verbatim}
@@ -755,13 +724,13 @@ DataPropertyAssertion( a:hasAge a:Steve "15"^^xsd:integer)
 	\caption{Các phát biểu gán lớp cho cá thể và cá thể giống nhau/khác nhau trong OWL 2 \label{overflow}}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
 	\centering
 	\includegraphics[width=120mm,height=110mm]{Figures/abox2.png}
 	\caption{Các phát biểu về thuộc tính đối trượng của cá thể trong OWL 2 \label{overflow}}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[hb!]
 	\centering
 	\includegraphics[width=120mm,height=110mm]{Figures/abox3.png}
 	\caption{Các phát biểu về thuộc tính dữ liệu của cá thể trong OWL 2 \label{overflow}}
@@ -784,4 +753,4 @@ Các phát biểu về cá thể thường được gọi là \textit{facts}. Đ
 \item[NegativeDataPropertyAssertion] - phủ định mối quan hệ từ một cá thể tới một trực nghĩa bởi một mô tả thuộc tính dữ liệu.
 \end{description}
 
-\paragraph{Kết luận} - Trên đây, chúng em đã trình bày những thành phần chính của OWL2 cũng như cách sử dụng của chúng trong quá trình suy luận (reasoning) nhằm tìm ra hàm ý, phát hiện thông tin ẩn chứa trong ý nghĩa của những phát biểu đã khai báo, với mục đích cuối cùng là phục vụ cho quá trình phân loại tự động. Vì độ dài luận văn hạn chế, nên có một số thành phần của OWL 2 chưa được nêu ra ở đây như \textbf{Datatype Definitions}, \textbf{Keys}, \textbf{Annotations}, \textbf{Datatype Maps} xin mời quý thầy cô và các bạn đọc tham khảo thêm ở \cite{owl2spec}. Chương tiếp theo chúng em xin được giới thiệu về Semantic Web Rule Language, một ngôn ngữ điều luật (rule language) có tác dụng trong việc tăng tính quyết định cho ontology, đồng thời chúng em cũng muốn nêu ra các nguyên nhân dẫn đến tính thiếu nhất quán trong ontology (inconsistency), và các giải pháp nhằm làm giảm các nguyên nhân đó.
+\paragraph{Kết luận} - Trên đây, chúng em đã trình bày những thành phần chính của OWL2 cũng như cách sử dụng của chúng trong quá trình suy luận (reasoning) nhằm tìm ra hàm ý, phát hiện thông tin ẩn chứa trong ý nghĩa của những phát biểu đã khai báo, với mục đích cuối cùng là phục vụ cho quá trình phân loại tự động. Vì độ dài luận văn hạn chế, nên có một số thành phần của OWL 2 chưa được nêu ra ở đây như \textbf{Datatype Definitions}, \textbf{Keys}, \textbf{Annotations}, \textbf{Datatype Maps}. Xin mời quý thầy cô và các bạn đọc tham khảo thêm ở \cite{owl2spec}. Chương tiếp theo chúng em xin được giới thiệu về Semantic Web Rule Language, một ngôn ngữ điều luật (rule language) có tác dụng trong việc tăng tính quyết định cho ontology, đồng thời chúng em cũng trình bày các nguyên nhân dẫn đến tính thiếu nhất quán trong ontology (inconsistency), và các giải pháp nhằm làm giảm tính thiếu nhất quán đó.

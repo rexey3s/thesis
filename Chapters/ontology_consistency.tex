@@ -1,9 +1,9 @@
-nhấ\chapter{Tính nhất quán trong Ontology}
-\paragraph{Giới thiệu} Khái niệm tính nhất quán (consistency) đã được nhắc đến nhiều lần trong các chương trước của báo cáo, tính nhất quán ở đây muốn nói đến sự nhất quán về ý nghĩa của những phát biểu trong ontology, tức ý nghĩa của chúng không mâu thuẫn với nhau. Tính nhất quán cực kì quan trọng đối với bất kì một ontology nào, nếu ngữ nghĩa của nội tại của ontology đã không còn sự nhất quán hay tồn tại sự phi lý thì những thông tin được suy luận ra từ ontology cũng trở nên phi lí. Vì vậy quá trình suy luận (reasoning) sẽ không thực hiện được nếu ontology không có tính nhất quán. Trong nội dung chương này, chúng em xin được trình bày các nguyên nhân dễ bắt gặp làm cho ontology không nhất quán trong quá trình phát triển và sử dụng ontology trong các ứng dụng, và chúng em cũng nêu các giải pháp đã được nhiều nghiên cứu thực hiện nhằm tìm ra những lỗi, hay nguy cơ có thể làm cho ontology thiếu nhất quán.
+\chapter{Tính nhất quán trong Ontology}
+\paragraph{Giới thiệu} Khái niệm tính nhất quán (consistency) đã được nhắc đến nhiều lần trong các chương trước của báo cáo, tính nhất quán ở đây muốn nói đến sự thống nhất về ý nghĩa của những phát biểu trong ontology, tức là ý nghĩa của chúng không mâu thuẫn với nhau. Tính nhất quán cực kì quan trọng đối với bất kì một ontology nào, nếu ngữ nghĩa của nội tại của ontology đã không còn sự nhất quán hay tồn tại sự mâu thuẫn thì những thông tin được suy luận ra từ ontology cũng trở nên vô lý. Vì vậy quá trình suy luận (reasoning) sẽ không thực hiện được nếu ontology không có tính nhất quán. Trong nội dung chương này, chúng em xin được trình bày các nguyên nhân thường thấy làm cho ontology mất đi tính nhất quán trong quá trình phát triển và sử dụng ontology trong các ứng dụng, và chúng em cũng xin trình bày các giải pháp đã được nhiều nghiên cứu thực hiện nhằm tìm ra những lỗi, hay nguy cơ có thể làm cho ontology thiếu nhất quán.
 \clearpage
 \section{Các nguyên nhân dẫn đến tính thiếu nhất quán trong ontology}
 \subsection{Các định nghĩa cần lưu ý \cite{satisfy}}
-% Định nghĩa unsatisfiable class
+% Định nghĩa Unsatisfiable Class
 \paragraph{Unsatisfiable Class/Concept} dùng để chỉ một lớp hay một khái niệm trong một ontology mà ngữ nghĩa xung đột với ngữ nghĩa khác được nêu ra trong ontology hay có thể nói là các phát biểu về lớp hay khái niệm này mâu thuẫn với nhau hoặc mâu thuẫn với những phát biểu khác trong ontology.
 \begin{description}
 	\item[Ví dụ]
@@ -16,18 +16,18 @@ nhấ\chapter{Tính nhất quán trong Ontology}
 	Plant, Animal
 	\end{verbatim}
 	\item[Giải thích]
-	Trong ví dụ trên thì MadCow chính là một lớp không hợp lý do trong các phát biểu logic của nó mâu thuẫn với nhau Cow là lớp con của Vegeterian mà Vegeterian chỉ ăn Plant (nghĩa là ngoài Plant, Vegeterian không ăn thứ gi khác) trong khi đó khai báo của lớp MadCow là lớp con của Cow và ăn một số Sheep (Sheep là một lớp con của Animal).
+	Trong ví dụ trên thì MadCow chính là một lớp không hợp lý, vì trong các phát biểu logic của nó mâu thuẫn với nhau. Cow là lớp con của Vegeterian mà Vegeterian chỉ ăn Plant (nghĩa là ngoài Plant, Vegeterian không ăn thứ gi khác) trong khi đó khai báo của lớp MadCow là lớp con của Cow và ăn một số Sheep (Sheep là một lớp con của Animal).
 	\\
-	Từ đó việc lý luận có thể đưa ra giả định sai là Sheep cũng có khả năng là một phần của Plant . Điểm quan trọng là Plant và Animal là 2 DisjointClasses, nói cách khác không tồn tại một cá thể nào vừa thuộc lớp Plant và vừa thuộc lớp Animal. Như vậy trong tất cả các phát biểu logic ở ví dụ trên đã có 2 phát biểu gây mâu thuẫn chính là eats only Plant và eats some Sheep, và chúng làm cho lớp MadCow trở nên bất hợp lý (unsatisfiable).
+	Từ đó việc lý luận có thể đưa ra giả định sai là Sheep cũng có khả năng là một phần của Plant. Điểm quan trọng là Plant và Animal là 2 DisjointClasses, nói cách khác không tồn tại một cá thể nào vừa thuộc lớp Plant và vừa thuộc lớp Animal. Như vậy trong tất cả các phát biểu logic ở ví dụ trên đã có 2 phát biểu gây mâu thuẫn chính là eats only Plant và eats some Sheep, và chúng làm cho lớp MadCow trở nên bất hợp lý (unsatisfiable).
 \end{description}
-% Định nghĩa về incoherent ontology 
+% Định nghĩa về Incoherent Ontology 
 \paragraph{Incoherent Ontology} dùng để chỉ một \textit{ontology/model} có ý nghĩa không mạch lạc rõ ràng do nó có chứa ít nhất một \textit{Unsatisfiable Class/Concept} và với điều kiện là trong những \textit{Unsatisfiable Class} này không được chứa bất kì một cá thể (\textit{Individual}) nào.
 \\
-\hspace{0.05\textwidth} Giả sử ta có ontology A chứa các các phát biếu trong ví dụ trên ngoại trừ phát biểu cuối cùng \texttt{Individual: Dora type: MadCow} thì ta có thể nói ontology A không mạch lạc rõ ràng do nó chứa unsatisfiable class là MadCow. Chúng ta vẫn có sử dụng được ontology A vì nó vẫn còn tính nhất quán (\textit{Consistency})miễn là không có phần tử nào thuộc lớp MadCow.
-% Định nghĩa về inconsistent ontology
+\hspace{0.05\textwidth} Giả sử ta có ontology A chứa các phát biểu trong ví dụ trên ngoại trừ phát biểu cuối cùng \texttt{Individual: Dora type: MadCow} thì ta có thể nói ontology A không mạch lạc rõ ràng do nó chứa unsatisfiable class là MadCow. Chúng ta vẫn có sử dụng được ontology A vì nó vẫn còn tính nhất quán (\textit{Consistency})miễn là không có phần tử nào thuộc lớp MadCow.
+% Định nghĩa về Inconsistent Ontology
 \paragraph{Inconsistent Ontology} dùng để chỉ một ontology chứa ít nhất một \textit{Unsatisfiable Class} và có ít nhất một cá thể(\textit{Individual}) thuộc một trong những lớp \textit{unsatisfiable} này.
 \\
-\hspace{0.05\textwidth} Như đã thể hiện trong ví dụ đầu tiên thì cá thể Dora thuộc lớp MadCow (Một lớp unsatisfiable thì không nên phép có bất kì cá thể nào nếu như chúng ta muốn đảm bảo tính consistency cho ontology), như vậy bất kì ontology nào có những phát biểu trên đều được coi là không nhất quán (\textit{inconsistency}), đều này đồng nghĩa là ontology đó không thể sử dụng được nữa.
+\hspace{0.05\textwidth} Như đã thể hiện trong ví dụ đầu tiên thì cá thể Dora thuộc lớp MadCow (Một lớp unsatisfiable thì không nên phép có bất kì cá thể nào nếu như chúng ta muốn đảm bảo tính consistency cho ontology). Như vậy bất kì ontology nào có những phát biểu trên đều được coi là không nhất quán (\textit{inconsistency}), đều này đồng nghĩa là ontology đó không thể sử dụng được nữa.
 
 \subsection{Các nguyên nhân phổ biến dẫn đến tính thiếu nhất quán}
 Các nguyên nhân dẫn đến tính thiếu nhất quán trong ontology gây bởi các lỗi được phân loại thành lỗi gây ra bởi phát biểu ở mức độ lớp (Class level - TBox), các lỗi gây ra bởi phát biểu ở mức độ cá thể (Instance/Individual level - ABox)\cite{inconsitentReason} và lỗi gây ra bởi sự kết hợp của cả 2 nguyên nhân vừa nêu trên.
