@@ -1,5 +1,5 @@
 \chapter{Kết luận}
-Với sự phát triển ngày càng thành hình cũng công nghệ web 3.0 hay Semantic Web, trong tương lai gần các hệ thống dữ liệu sử dụng những nguyên lý của Semantic Web sẽ ngày càng tăng lên do những lợi ích mà nó mang lại so với cách tổ chức dữ liệu truyền thống (Open World vs. Closed World Assumption). Điều đó đồng nghĩa với việc nhu cầu về thiết kế các mô hình dữ liệu Ontology cũng sẽ tăng theo. Bên cạnh với những lý thuyết về việc sử dụng Ontology cho việc phân loại đã được thực nghiệm trong đề tài, chúng em tin rằng khả năng phát triển một hệ thống thực tế với một ontology với lượng phát biểu lớn về hàng hóa và thông tin của chúng là khả thi và có thể thực hiện bằng các công nghệ hiện tại.
+Với sự phát triển ngày càng nhanh chóng và mạnh mẽ của công nghệ Web 3.0 hay Semantic Web, trong tương lai các hệ thống dữ liệu sẽ sử dụng những nguyên lý của Semantic Web sẽ ngày càng tăng lên do những lợi ích mà nó mang lại so với cách tổ chức dữ liệu truyền thống (Open World vs. Closed World Assumption). Điều đó đồng nghĩa với việc nhu cầu về thiết kế các mô hình dữ liệu Ontology cũng sẽ tăng theo. Bên cạnh với những lý thuyết về việc sử dụng Ontology cho việc phân loại đã được thực nghiệm trong đề tài, chúng em tin rằng khả năng phát triển một hệ thống thực tế với một ontology với lượng phát biểu lớn về dữ liệu và thông tin của chúng là khả thi và có thể thực hiện bằng các công nghệ hiện tại.
 \section{Những việc đã làm được}
 \begin{itemize}
 \item Nắm được những kiến thức nền tảng nhất của ngôn ngữ OWL 2, SWRL.
@@ -9,18 +9,18 @@ Với sự phát triển ngày càng thành hình cũng công nghệ web 3.0 hay
 \end{itemize}
 \section{Những mặt hạn chế}
 \begin{itemize}
-\item Trình biên tập còn nhiều chỗ phản hồi chưa tốt do chúng em chưa chỉ tập trung vào tính năng chứ chưa tính đến việc phải chịu nhiều tải,
+\item Trình biên tập còn nhiều điểm phản hồi chưa tốt do chúng em chưa chỉ tập trung vào tính năng , vẫn chưa tính đến hiệu năng cũng như hiệu suất của ứng dụng , như việc phải chịu nhiều tải cùng lúc, khả năng lưu trữ, quản lý người dùng ...
 \item Trình biên tập chưa có cơ chế đăng nhập hoặc quản lý các tài liệu ontology.
-\item Ý tưởng về việc phân loại còn chỉ ở dạng mẫu, chưa có tính thực nghiệm cao.
+\item Ý tưởng về việc phân loại còn chỉ ở dạng mô hình, chưa có tính thực nghiệm cao.
 \end{itemize}
 \section{Hướng phát triển}
-Nhẳm khắc phục một số hạn chế kể trên chúng em cũng đã nghĩ đến các hướng phát triển sau
+Nhẳm khắc phục một số hạn chế kể trên chúng em cũng đã nghĩ đến các hướng phát triển sau :
 \begin{itemize}
-\item Để tăng tốc độ, chúng em sẽ sử dụng kết hơp Vaadin với Spring Boot, đồng thời tố ưu hóa các đoạn code.
-\item Trong giai đoạn phát triển cuối cùng, chúng em cũng tìm hiểu được là đã có những cơ sở dữ liệu hỗ trợ lưu tài liệu Ontology dưới dạng RDF Graph, tiêu biểu có Stardog - một cơ sở dữ liệu Semantic hỗ trợ OWL 2, SWRL, và đặc biệt tích hợp bản mới nhất của reasoner Pellet 3.0. Sẽ là một ý tưởng tuyệt vời nếu chúng em sử dụng Stardog là nơi lưu trữ những tài liệu ontology mà người dùng soạn thoả, và giảm tải khả năng suy luận cho cơ sở dữ liệu,
-\item Thiết kế một ontology với số lượng lớn các phát biểu phục vụ cho việc phân loại trên thực tế, lĩnh vực có thể rất nhiều như chúng em đã nghĩ đến một lĩnh vực đó là phân loại thông tin lưu lượng mạng nhằm phục vụ cho các tác vụ như xây dựng Firewall rule, IDS rule.
+\item Để tăng tốc độ xử lý, chúng em sẽ sử dụng kết hơp Vaadin với Spring Boot, đồng thời tố ưu hóa các đoạn code.
+\item Trong giai đoạn phát triển cuối cùng, chúng em đã tìm hiểu được là đã có những cơ sở dữ liệu hỗ trợ lưu tài liệu Ontology dưới dạng RDF Graph, tiêu biểu có Stardog - một cơ sở dữ liệu Semantic hỗ trợ OWL 2, SWRL, và đặc biệt tích hợp bản mới nhất của reasoner Pellet 3.0. Sẽ là một ý tưởng tuyệt vời nếu tích hợp sử dụng Stardog là nơi lưu trữ những tài liệu ontology mà người dùng soạn thảo, và giảm tải khả năng suy luận cho cơ sở dữ liệu,
+\item Thiết kế một ontology với số lượng lớn các phát biểu phục vụ cho việc phân loại trên thực tế, lĩnh vực là rất rộng lớn nhưng chúng em đã nghĩ đến một lĩnh vực thực tiễn và có thể sử dụng các kiến thức chuyên ngành mạng, đó là phân loại thông tin lưu lượng mạng nhằm phục vụ cho các tác vụ như xây dựng Firewall rule, IDS rule.
 \item Đưa ứng dụng thành một ứng dụng mã nguồn mở.
-\end{itemize}s
+\end{itemize}
 
 
 
