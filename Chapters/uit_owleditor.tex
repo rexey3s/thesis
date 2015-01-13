@@ -1,5 +1,5 @@
 \chapter{Xây dựng UIT-OWL Editor}
-\paragraph{Giới thiệu} Qua các chương trước, chúng em đã trình bày các cơ sở lý thuyết từ Semantic Web, Ontology Web Language và giới thiệu khái quát về OWL-API, Vaadin Framework- 2 công cụ chính xây dựng nên ứng dụng chỉnh sửa và phát triển Ontology trên Web mà chúng em tạm gọi là UIT-OWL Editor. Trong chương này, chúng em sẽ trình bày một cách chi tiết nhất có thể về quá trình xây dựng và phát triển nên ứng dụng này.
+\paragraph{Giới thiệu} Qua các chương trước, chúng em đã trình bày các cơ sở lý thuyết nghiên cứu được từ Semantic Web, Ontology Web Language và giới thiệu khái quát về OWL-API, Vaadin Framework - 2 công cụ nền tảng chính xây dựng nên ứng dụng chỉnh sửa và phát triển Ontology trên Web mà chúng em tạm đặt tên là UIT-OWL Editor. Trong chương này, chúng em sẽ trình bày một cách chi tiết nhất có thể về quá trình xây dựng và phát triển nên ứng dụng này.
 \section{UI của ứng dụng}
 %\begin{figure}[h!]
 %	\centering
@@ -19,17 +19,17 @@ Lớp \textit{OWLEditorUI} thừa kế từ lớp \textit{UI} của Vaadin chín
 \subsection{Các view chính}
 Ứng dụng UIT-OWLEditor chỉ gồm 2 View chính: 
 \begin{description}
-\item[Entry View] tương đương với lớp \textit{vn.edu.uit.owleditor.EntryView} trong mã nguồn, là nơi chúng tập nhập vào URL của file OWL2 Ontology hoặc tải file OWL2 Ontology với các định dạng được trình bày trong chương 2. Khi load được ontology \textit{EntryView} sẽ lưu đối tượng \textit{OWLEditorKit} lại trong \textit{HttpSession} phòng trường hợp người dùng mất kết nối với ứng dụng.
+\item[Entry View] tương đương với lớp \textit{vn.edu.uit.owleditor.EntryView} trong mã nguồn, là nơi nhận đầu vào URL của file OWL2 Ontology hoặc tải lên (upload) file OWL2 Ontology với các định dạng được trình bày trong chương 2. Khi load được ontology \textit{EntryView} sẽ lưu đối tượng \textit{OWLEditorKit} lại trong \textit{HttpSession} phòng trường hợp người dùng mất kết nối với ứng dụng.
 \begin{figure}[h!]
 	\centering
 	\frame{\includegraphics[width=100mm]{Figures/owleditor_entryview.png}}
 	\caption{EntryView của UIT-OWL Editor\label{overflow}}
 \end{figure}
-\item[Main View] tương đướng với lớp \textit{vn.edu.uit.owleditor.MainView} trong mã nguồn,là giao diện chính của ứng dụng UIT-OWL Editor.
+\item[Main View] tương đướng với lớp \textit{vn.edu.uit.owleditor.MainView} trong mã nguồn, là giao diện chính của ứng dụng UIT-OWL Editor.
 \end{description}
 %
 \subsection{Các tabsheet trong Main View}
-Trong \textbf{MainView} sử dụng Component TabSheet các chứa các Tab tương ứng với các thực thể trong OWL2 Ontology, duy chỉ có 2 Tab cuối dùng để dùng làm demo tính năng phân loại là Tab Demo và Tab cuối cùng là Diagram dùng để vẽ các diagram, đồ thị về phân cấp các đối tượng trong OWL 2 Ontology.
+Trong \textbf{MainView} sử dụng Component TabSheet các chứa các Tab tương ứng với các thực thể trong OWL2 Ontology, riêng 2 Tab cuối dùng cho việc demo tính năng phân loại là Tab Demo và Tab cuối cùng là Diagram dùng để vẽ các diagram, đồ thị phân cấp các đối tượng trong OWL 2 Ontology.
 
 % Class Tab
 \subsubsection{Tab Classes} 
@@ -38,9 +38,9 @@ Trong \textbf{MainView} sử dụng Component TabSheet các chứa các Tab tư�
 	\frame{\includegraphics[width=145mm]{Figures/owleditor_classSheet.png}}
 	\caption{Class Tab trong UIT-OWL Editor\label{overflow}}
 \end{figure}
-Tương ứng với lớp \verb|vn.edu.uit.owleditor.view.ClassesSheet| trong mã nguồn. Giao diện sử dụng HorizontalLayout của Vaadin gồm 
+Tương ứng với lớp \verb|vn.edu.uit.owleditor.view.ClassesSheet| trong mã nguồn. Giao diện sử dụng HorizontalLayout của Vaadin gồm :
 \begin{enumerate}
-\item Panel bên trái là ClassHierachicalPanel có một cấu trúc dạng cây với các node chính là các lớp nằm trong OWL2 Ontology, với các chức năng thêm/xóa Sub/Sibling Class 
+\item Panel bên trái là ClassHierachicalPanel có một cấu trúc dạng cây với các node chính là các lớp nằm trong OWL2 Ontology, với các chức năng thêm/xóa Sub/Sibling Class.
 \item Các panel nhỏ bên phải được chứa trong lớp ClassExpressionPanelContainer, mỗ panel thể hiện một mô tả tương ứng với tên của panel đó.
 \end{enumerate}	
 
@@ -51,7 +51,7 @@ Tương ứng với lớp \verb|vn.edu.uit.owleditor.view.ClassesSheet| trong m�
 	\frame{\includegraphics[width=145mm]{Figures/owleditor_opSheet.png}}
 	\caption{Object Properties Tab trong UIT-OWL Editor\label{overflow}}
 \end{figure}
-Tương ứng với lớp \verb|vn.edu.uit.owleditor.view.ObjectPropertiesSheet| trong mã nguồn. Giao diện sử dụng HorizontalLayout của Vaadin gồm 
+Tương ứng với lớp \verb|vn.edu.uit.owleditor.view.ObjectPropertiesSheet| trong mã nguồn. Giao diện sử dụng HorizontalLayout của Vaadin gồm :
 \begin{enumerate}
 \item Panel bên trái là ObjectPropertyHierachicalPanel có một cấu trúc dạng cây với các node đại diện cho các thuộc tính đối tượng trong OWL2 Ontology, với các chức năng thêm/xóa Sibling/Sub Object Property.
 \item Một dãy các \textit{CheckBox} dùng để thêm/xóa với các phát biểu trong mục 3.3.6.2 liên quan đến thuộc tính đối tượng được chọn bên trong cấu trúc cây ở bên phải.
@@ -67,8 +67,8 @@ Tương ứng với lớp \verb|vn.edu.uit.owleditor.view.ObjectPropertiesSheet|
 \end{figure}
 Tương ứng với lớp \verb|vn.edu.uit.owleditor.view.DataPropertiesSheet| trong mã nguồn. Các thành phần của tab này gồm:
 \begin{enumerate}
-\item Panel bên phải là DataPropertyHierachicalPanel có một cấu trúc dạng cây với các node đại diện cho các thuộc tính dữ liệu trong OWL2 Ontology, ngoài chức năng thêm/xóa Sibling/Sub DataProperty còn có tính năng thêm/xóa phát biểu FunctionalDataProperty (những thuộc tính nào có icon phía có nghĩa là có phát biểu FunctionalDataProperty về thuộc tính đó trong ontology.
-\item Các panel nhỏ bên phải được chứa trong lớp ObjectPropertyExpressionPanelContainer, mỗ panel thể hiện một mô tả tương ứng với tên của panel đó về thuộc tính dữ liệu đang được chọn bên cấu trúc cây.
+\item Panel bên phải là DataPropertyHierachicalPanel có một cấu trúc dạng cây với các node đại diện cho các thuộc tính dữ liệu trong OWL2 Ontology, ngoài chức năng thêm/xóa Sibling/Sub DataProperty còn có tính năng thêm/xóa phát biểu FunctionalDataProperty (những thuộc tính nào có icon phía có nghĩa là có phát biểu FunctionalDataProperty về thuộc tính đó trong ontology).
+\item Các panel nhỏ bên phải được chứa trong lớp ObjectPropertyExpressionPanelContainer, mỗi panel thể hiện một mô tả tương ứng với tên của panel đó về thuộc tính dữ liệu đang được chọn bên cấu trúc cây.
 \end{enumerate}	
 
 % Individual Tab
@@ -109,12 +109,12 @@ Diagram Tab gồm các đồ thị, sơ đồ về biểu diễn cấu trúc ph�
 	\frame{\includegraphics[width=145mm]{Figures/owleditor_demoSheet.png}}
 	\caption{Demo Tab trong UIT-OWL Editor\label{overflow}}
 \end{figure}
-Demo Tab không nằm trong thành phần tiêu chuẩn mà một Ontology Editor bắt buộc phải có như các Tab đã giới thiệu. Tuy nhiên, chúng em cài đặt Demo Tab ở đây với mục đích thử nghiệm tính năng hỗ trợ phân loại (sẽ được đề cập trong phần sau của chương này). Các thành phần của tab này gồm:
+Demo Tab không nằm trong thành phần tiêu chuẩn mà một Ontology Editor bắt buộc phải có như các Tab đã giới thiệu. Tuy nhiên, chúng em xây dựng Demo Tab trong ứng dụng này với mục đích thử nghiệm tính năng hỗ trợ phân loại (sẽ được đề cập trong phần sau của chương này). Các thành phần của tab này gồm:
 \begin{enumerate}
 \item Panel bên trái phía trên là ClassHierachicalPanel có một cấu trúc dạng cây với các node chính là các lớp nằm trong OWL2 Ontology, với các chức năng thêm/xóa Sub/Sibling Class. Khi chọn một lớp ở đây thì ListSelect ở bên dưới sẽ hiển thị một danh sách cá thể thuộc lớp này.
 \item Panel bên trái phía dưới là IndividualList hiển thị một danh sách gồm các cá thể thuộc lớp được chọn ở trên, có các tính năng thêm/xóa cá thể.
 \item Panel phía trên bên phải sẽ hiện thị một sơ đồ thể hiện gợi ý phân loại lớp mà cá thể được chọn đang là thành viên.
-\item Panel bên phải phía dưới dùng để điền thêm vào các phát biểu cho cá thể dự theo sơ đồ ở trên.
+\item Panel bên phải phía dưới dùng để điền thêm vào các phát biểu cho cá thể dựa theo sơ đồ ở trên.
 \end{enumerate}}
 % Demo Sheet
 
@@ -143,10 +143,10 @@ Declaration( Class( A ))
 SubClassOf(A B)
 EquivalentClasses(A C D)
 \end{verbatim}
-Giả sử chúng ta muốn xóa phát biểu \textit{Declaration( Class( A ))} thì \textbf{bắt buộc} chúng ta phải xóa luôn những phát biểu có liên quan đến A là \textit{SubClassOf và EquivalentClasses}  bởi vì không có phát biểu khẳng định sự tồn tại của A thì những phát biểu còn lại sẽ trở nên vô nghĩa. Tuy nhiên để thực hiện tác vụ này OWL-API cung cấp cho chúng ta một đối tượng là \textit{OWLEntityRemover} với tính năng duyệt qua mọi phát biểu có liên quan đến thực thể cần xóa, xóa tất cả các phát biểu đó trước khi xóa thực thể. Đối tượng này được sử dụng qua getter \textit{getEntityRemover}.
+Giả sử chúng ta muốn xóa phát biểu \textit{Declaration( Class( A ))} thì \textbf{bắt buộc} chúng ta phải xóa luôn những phát biểu có liên quan đến A là \textit{SubClassOf và EquivalentClasses} bởi vì nếu không có phát biểu khẳng định sự tồn tại của A thì những phát biểu còn lại sẽ trở nên vô nghĩa. Tuy nhiên để thực hiện tác vụ này OWL-API cung cấp cho chúng ta một đối tượng là \textit{OWLEntityRemover} với tính năng duyệt qua mọi phát biểu có liên quan đến thực thể cần xóa, xóa tất cả các phát biểu đó trước khi xóa thực thể. Đối tượng này được sử dụng qua getter \textit{getEntityRemover}.
 
 \subsubsection{Nhà máy sản xuất ra mọi loại đối tượng trong OWL 2 Ontology}
-Một chức năng thực sự hữu ích được khai thác từ đối tượng \textit{OWLDataFactory} của OWL-API, với số lượng đối tượng (thực thể, mô tả lớp, thuộc tính, phát biểu, ...) rất lớn để cập ở chương 2, rất khó để chúng ta có thể nhớ và sử dụng chúng dễ dàng. \textit{OWLDataFactory} cung cơ chế để tạo ra mọi loại phát biểu trong OWL 2 Ontology một cách tiện lợi ví dụ như:
+Một chức năng thực sự hữu ích được khai thác từ đối tượng \textit{OWLDataFactory} của OWL-API, với số lượng đối tượng (thực thể, mô tả lớp, thuộc tính, phát biểu, ...) rất lớn đã đề cập ở chương 2, rất khó để chúng ta có thể nhớ và sử dụng chúng dễ dàng. \textit{OWLDataFactory} cung cơ chế để tạo ra mọi loại phát biểu trong OWL 2 Ontology một cách tiện lợi. Ví dụ như:
 \begin{verbatim}
 // Declaration( Class(a:Person) )
 OWLClass person = factory.getOWLClass("a:Person");
@@ -165,7 +165,7 @@ OWLClassAssertionAxiom axiom1 =
 OWLLiteral age = factory.getOWLLiteral(22);
 
 // DataPropertyAssertion( a:HasAge a:Peter "22"^^xsd:integer); 
-OWLDataPropertyAssertionAxiom phatbieu = 
+OWLDataPropertyAssertionAxiom assertionAxiom = 
          factory.getOWLDataPropertyAssertionAxiom(hasAge, Peter, age);
 \end{verbatim}
 Trong \textit{OWLEditorKit}, \textit{OWLDataFactory} được truy xuất qua getter \textit{getOWLDataFactory()}.
@@ -189,7 +189,7 @@ OWLClass man = factory.getOWLClass("a:Man");
 OWLEditorEvent.ClassAxiomAdded event =
         owlEditorDataFactory.getSubClassOfAddEvent(man, person);
 \end{verbatim}
-Một cái nhìn chi tiết vào trong \textit{OWLEditorDataFactoryImpl} sẽ làm gì với dòng cuối cùng trong đoạn code ở 
+Một cái nhìn chi tiết vào trong \textit{OWLEditorDataFactoryImpl} sẽ làm gì với dòng cuối cùng trong đoạn code ở trên.
 \begin{verbatim}
 // Bên trong lớp OWLEditorDataFactoryImpl
 private final OWLEditorKit editorKit;
@@ -220,7 +220,7 @@ OWLClassExpression ce2 = eKit.parseClassExpression("Has some Kid");
 \end{verbatim}
 
 \subsubsection{Suy luận các phát biểu}
-Tính năng suy luận được đáp ứng bới Pellet Reasoner đề cập ở chương trước. Reasoner cũng đã được tạo sẵn trong \textit{OWLEditorKitImpl}, truy cập thông qua getter \textit{getReasoner()} và sử dụng như mô tả ở chương trước.
+Tính năng suy luận được đáp ứng bởi Pellet Reasoner đề cập ở chương trước. Reasoner cũng đã được tạo sẵn trong \textit{OWLEditorKitImpl}, truy cập thông qua getter \textit{getReasoner()} và sử dụng như mô tả ở chương trước.
 
 \subsubsection{Áp dụng các thay đổi về phát biểu cho ontology}
 Chức năng này được thực thi bởi đối tượng \textit{OWLOntologyManager} được khởi tạo cùng với lớp \textit{OWLEditorKitImpl}, sử dụng thông qua getter \textit{getModelManager()}.
@@ -253,7 +253,7 @@ class ClassExpressionPanelContainer extends AbstractPanelContainer {
     public ClassExpressionPanelContainer {
        subClsPanel = new ClassPanel("SubClass Of: ") {
           void initActionADD() { 
-          // Mở một cửa số nhỏ nhằm nhập mô tả lớp mới vào
+          // Mở một cửa số nhỏ để nhập mô tả lớp mới vào
           UI.getCurrent()
             .addWindow(new buildAddClassExpressionWindow(...));            
              ...
@@ -281,7 +281,7 @@ class buildAddClassExpressionWindow extends ... {
        return click -> {
           OWLClassExpression ce = editorKit
             .parseClassExpression("some value from Textfield");
-          // tương ướng bước 3 
+          // tương ứng bước 3 
           OWLEditorEventBus.post(ClassAxiomAdded(.., ce));
        }
     }
@@ -293,13 +293,13 @@ Hình sau miêu tả lại thao tác người dùng trên UI:
 	\includegraphics[width=145mm]{Figures/eventBusExplain.png}
 	\caption{Xử lý sự kiện trong UIT-OWL Editor\label{overflow}}
 \end{figure}
-Đầu tiên trước khai mọi sự kiện diễn ra một \textit{Subscriber} cần được đăng ký trong một Component nào đó bằng Annotation @Subscribe và method \textit{register} (đăng ký đây sẽ là listener/subscriber để theo dõi các sự kiện tương ứng). Khi người dùng, nhấn dấu cộng ở góc của Panel \textit{SubClassOf} sẽ mở ra một cửa sổ để nhập vào mô tả lớp, nút save được bấm thì cũng là lúc mà sự kiện được công bô (publish) lên \textit{EventBus} (qua phương thức \textit{post} ở bước 3), do đã đăng ký trước nên phương thức \textit{Subscribe} sẽ được EventBus truyền cho đúng kiểu event mà nó đang theo dõi. Lưu ý: là phương thức nào làm Subscriber thì bắt buộc phải có một tham số duy nhất là sự kiện với kiểu tương ứng với nơi mà sự kiện đó được công bố, đồng thời access-level của phương thức phải là public.
+Đầu tiên trước khai mọi sự kiện diễn ra một \textit{Subscriber} cần được đăng ký trong một Component nào đó bằng Annotation @Subscribe và method \textit{register} (đăng ký đây sẽ là listener/subscriber để theo dõi các sự kiện tương ứng). Khi người dùng, nhấn dấu cộng ở góc của Panel \textit{SubClassOf} sẽ mở ra một cửa sổ để nhập vào mô tả lớp, nút save được bấm thì cũng là lúc mà sự kiện được công bố (publish) lên \textit{EventBus} (qua phương thức \textit{post} ở bước 3), do đã đăng ký trước nên phương thức \textit{Subscribe} sẽ được EventBus truyền cho đúng kiểu event mà nó đang theo dõi. Lưu ý: phương thức nào làm Subscriber thì bắt buộc phải có một tham số duy nhất là sự kiện với kiểu tương ứng với nơi mà sự kiện đó được công bố, đồng thời access-level của phương thức phải là public.
 \\
-Như đã nếu, nguyên tắc của EventBus để phân biệt các sự kiện chỉ là kiểu của nó. Chính vì thế mà với mỗi loại hành động thêm/xóa/sửa trên loại thực thể, hoặc phát biểu của thực thể sẽ có một loại sự kiện tương ứng. Ví dụ: đối với các phát biểu liên quan tới lớp sẽ có 3 loại tương ứng là ClassAxiomAdded, ClassAxiomRemoved và ClassAxiomEdit. Tương tự cho các thực thể và phát biểu còn lại. Chi tiết hơn, thầy cô và bạn đọc có thể tham khảo thêm trong lớp \textit{vn.edu.uit.owleditor.event.OWLEdtiorEvent} trong mã nguồn của ứng dụng \cite{owleditorSrc}.
+Như đã trình bày, nguyên tắc của EventBus để phân biệt các sự kiện chỉ là kiểu của nó. Chính vì thế mà với mỗi loại hành động thêm/xóa/sửa trên loại thực thể, hoặc phát biểu của thực thể sẽ có một loại sự kiện tương ứng. Ví dụ: đối với các phát biểu liên quan tới lớp sẽ có 3 loại tương ứng là ClassAxiomAdded, ClassAxiomRemoved và ClassAxiomEdit. Tương tự cho các thực thể và phát biểu còn lại. Chi tiết hơn, thầy cô và bạn đọc có thể tham khảo thêm trong lớp \textit{vn.edu.uit.owleditor.event.OWLEdtiorEvent} trong mã nguồn của ứng dụng \cite{owleditorSrc}.
 
 
 \section{Tổ chức các đối tượng dữ liệu - Data Model}
-Đã được đề cập trong lúc giới thiệu về Vaadin, data model trong Vaadin được chia làm 3 cấp từ thấp đến cao Property, Item và Container. Trong ứng dụng, chúng em chỉ sử dụng 2 dạng data model là Property và Container. 
+Đã được đề cập trong lúc giới thiệu về Vaadin, Data Model trong Vaadin được chia làm 3 cấp từ thấp đến cao Property, Item và Container. Trong ứng dụng, chúng em chỉ sử dụng 2 dạng data model là Property và Container. 
 \subsection{HierarchicalContainer}
 %Vaadin cung cấp một lớp gọi là \textit{HierarchicalContainer} chuyên dùng để chứa dạng dữ liệu có cấu trúc phân cấp. Qua giới thiệu ở chương 2, chúng ta đã biết rằng các t đều là những đối tượng có quan hệ SubClassOf, SubObjectPropertyOf và SubDataPropertyOf hay có thể nói 3 thực thể kể trên có cấu trúc phân cấp.
 Để thể hiện tính chất phân cấp của các thực thể như lớp, thuộc tính đối tượng và dữ liệu trong OWL 2 Ontology, chúng ta có thể dùng Tree Component của Vaadin. Tuy nhiên, với việc UI Component Tree được sử dụng lặp lại nhiều lần trong ứng dụng, nên việc tách biệt các đối tượng dữ liệu với UI đã sẽ giúp chúng ta tiết kiệm được những khai báo lại không cần thiết, dữ liệu thay đổi trong DataModel cũng sẽ được cập nhật đến toàn bộ những UI Component mà nó được sử dụng (binding). Để hiểu rõ hơn về cách tổ chức của \textit{HierarchicalContainer} chúng em xin được lấy  \textit{AbstractOWLObjectHierarchicalContainer}, được thừa kế bởi \textit{HierarchicalContainer} của lớp, thuộc tính đối tượng và dữ liệu. Nó gồm những đặc điểm quan trọng sau:
@@ -383,7 +383,7 @@ Mục đích đưa các đối tượng thành Property của Vaadin cũng tươ
 	\caption{Các Property trong UIT-OWL Editor\label{overflow}}
 \end{table}
 \subsection{Converter}
-Trong ứng dụng chúng em có sử dụng một số Converter tự định nghĩa vốn được xây dựng từ interface Converter (phần giới thiệu Vaadin Framework) với mục đích chuyển đổi các thực thể gồm lớp, thuộc tính đối tượng, thuộc tính dữ liệu và cá thể có tên. Mục tiêu xây dựng các Converter này là sẽ giúp chuyển đối giữ chuỗi sang đối tượng tương ứng là OWLClass, OWLObjectProperty, OWLDataProperty và OWLNamedIndividual một cách nhanh chóng khi thêm các cá thể mới. Ví dụ:
+Trong ứng dụng chúng em có sử dụng một số Converter tự định nghĩa vốn được xây dựng từ interface Converter (đã trình bày trong phần giới thiệu Vaadin Framework) với mục đích chuyển đổi các thực thể gồm lớp, thuộc tính đối tượng, thuộc tính dữ liệu và cá thể có tên. Mục tiêu xây dựng các Converter này là sẽ giúp chuyển đối giữ chuỗi sang đối tượng tương ứng là OWLClass, OWLObjectProperty, OWLDataProperty và OWLNamedIndividual một cách nhanh chóng khi thêm các cá thể mới. Ví dụ:
 \begin{figure}[h!]
 	\centering
 	\frame{\includegraphics[width=140mm]{Figures/owleditor_converter.png}}
@@ -409,14 +409,14 @@ Các converter còn lại cũng có cơ chế tương tự trong ví dụ này, 
 Ngoài những tính năng đã trình bày sơ qua trong phần đầu UI, phần này chúng em xin dành để liệt kê ra một số tính năng nổi bật trong ứng dụng.
 
 \subsection{Trình biên tập các mô tả lớp}
-Trình biên tập cho phép nhập các chuỗi các khai báo về mô tả lớp (class expression) theo cú pháp Manchester, trình biên tập mô tả lớp cũng được tích hợp một danh sách autocomplete gồm các thực thể đã được khai báo trong ontology. Mỗi loại cá thể trong danh sách autocomplete sẽ được hiện thị theo một Icon khác nhau tương ứng với chữ cái đầu tiên của loại đó như \textbf{O} cho ObjectProperty, \textbf{C} cho Class, \textbf{D} cho DataProperty và \textbf{I} cho NamedIndividual. Khi nhấn nút save, ứng dụng sẽ tự động parse chuỗi thành Đối tượng OWLClassExpression bằng ManchesterSyntaxParser trong OWLEditorKit, sẽ có thông báo lỗi nếu cú pháp nhập sai.
+Trình biên tập cho phép nhập các chuỗi các khai báo về mô tả lớp (class expression) theo cú pháp Manchester, trình biên tập mô tả lớp cũng được tích hợp một danh sách autocomplete gồm các thực thể đã được khai báo trong ontology. Mỗi loại cá thể trong danh sách autocomplete sẽ được hiện thị theo một Icon khác nhau tương ứng với chữ cái đầu tiên của loại đó như \textbf{O} cho ObjectProperty, \textbf{C} cho Class, \textbf{D} cho DataProperty và \textbf{I} cho NamedIndividual. Khi nhấn nút save, ứng dụng sẽ tự động parse chuỗi thành Đối tượng OWLClassExpression bằng ManchesterSyntaxParser trong OWLEditorKit, sẽ có thông báo lỗi nếu nhập sai cú pháp.
 \begin{figure}[h!]
 	\centering
 	\frame{\includegraphics[width=145mm]{Figures/owleditor_ceeditor.png}}
 	\caption{Biên tập mô tả lớp trong UIT-OWL Editor\label{overflow}}
 \end{figure}
 \\
-Lý do chọn Manchester Syntax vì chúng em nhận thấy cú pháp của nó thân thiện, gần với ngôn ngữ con người hay sử dụng hàng ngày (thầy cô và bạn đọc có thể xem lại trong chương giới thiệu về OWL 2).
+Lý do chọn Manchester Syntax vì chúng em ưu tiên cú pháp thân thiện, gần với ngôn ngữ con người hay sử dụng hàng ngày (thầy cô và bạn đọc có thể xem lại trong chương giới thiệu về OWL 2).
 \subsection{Trình biên tập SWRL Rule}
 Trình biên tập cho phép biên tập SWRL Rule bằng cú pháp được giới thiệu trong chương \textit{Semantic Web Rule Language}, tổ chức các Rule theo tên, và thêm giải thích cho Rule.
 \begin{figure}[h!]
@@ -463,7 +463,7 @@ Dưới đây là hình ảnh mô tả sơ đồ biểu diễn của các rule t
 	\caption{Tính năng hỗ trợ phân loại trong UIT-OWL Editor (phần 1)\label{overflow}}
 \end{figure}
 \\
-trong hình chỉ miêu tả những rule nào có liên quan đến lớp \textit{OnRoadAndOffRoadVehicle} vốn là lớp chứa cá thể \textit{XeBus150} trong hình, làm vậy để hạn chế những thông tin không cần thiết đối với người dùng. Khi chọn \textit{Suggest Me} sẽ tạo ra một loại các UI component phục vụ để tạo ra các phát biểu về cá thế \textit{XeBus150}.
+Trong hình chỉ miêu tả những rule nào có liên quan đến lớp \textit{OnRoadAndOffRoadVehicle} vốn là lớp chứa cá thể \textit{XeBus150} trong hình, làm vậy để hạn chế những thông tin không cần thiết đối với người dùng. Khi chọn \textit{Suggest Me} sẽ tạo ra một loại các UI Component phục vụ để tạo ra các phát biểu về cá thể \textit{XeBus150}.
 \begin{figure}[h!]
 	\centering
 	\frame{\includegraphics[width=145mm]{Figures/owleditor_demo2.png}}
@@ -476,7 +476,7 @@ Trong hình trên mỗi bước sẽ tương ứng với những phát biểu c�
 	\frame{\includegraphics[width=145mm]{Figures/owleditor_demo3.png}}
 	\caption{Tính năng hỗ trợ phân loại trong UIT-OWL Editor (phần 3)\label{overflow}}
 \end{figure}
-\paragraph{Kết luận} Qua chương này, chúng em đã trình bày về các tính năng nổi bật mà một trình biên soạn Ontology phải có, đồng thời chúng em cũng đã trình bày về những khả năng phân loại mà ngôn ngữ OWL2, SWRL mang lại qua những tính năng suy luận, giải thích và hỗ trợ phân loại. Ở chương kế và cũng là cuối cùng, chúng em xin dành để tổng hợp lại những kết quả đã làm được, những mặt khó khăn, thuận lợi và những hạn chế còn tồn tại, qua quan trọng không kém chính là hướng phát triển tương lai của công nghệ dạng này.
+\paragraph{Kết luận} Qua chương này, chúng em đã trình bày về các tính năng nổi bật mà một trình biên soạn Ontology phải có, đồng thời chúng em cũng đã trình bày về những khả năng phân loại mà ngôn ngữ OWL2, SWRL mang lại qua những tính năng suy luận, giải thích và hỗ trợ phân loại. Ở chương kế và cũng là cuối cùng, chúng em xin dành để tổng hợp lại những kết quả đã làm được, những mặt khó khăn, thuận lợi và những hạn chế còn tồn tại, và hơn nữa là hướng phát triển tương lai của công nghệ này.
 
 
 
