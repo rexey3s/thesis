@@ -48,14 +48,14 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2.0ex plus0.5ex minus0.2ex}
 \usepackage{vmargin}
-\setmarginsrb           { 1.5in}  % left margin
-                        { 0.6in}  % top margin
-                        { 1.0in}  % right margin
-                        { 0.8in}  % bottom margin
-                        {  20pt}  % head height
-                        {0.25in}  % head sep
-                        {   9pt}  % foot height
-                        { 0.3in}  % foot sep
+\setmarginsrb           { 3.5cm}  % left margin
+                        { 2.0cm}  % top margin
+                        { 2.0cm}  % right margin
+                        { 3.0cm}  % bottom margin
+                        { 1.0cm}  % head height
+                        { 0.5cm}  % head sep
+                        { 1.5cm}  % foot height
+                        { 1.0cm}  % foot sep
 \raggedbottom
 \setlength{\topskip}{1\topskip \@plus 5\p@}
 \doublehyphendemerits=10000       % No consecutive line hyphens.
@@ -64,9 +64,12 @@
 \clubpenalty=9999                 % Almost no orphans at top of page.
 \interfootnotelinepenalty=9999    % Almost never break footnotes.
 \usepackage{fancyhdr}
-\lhead[\rm\thepage]{\fancyplain{}{\sl{\rightmark}}}
-\rhead[\fancyplain{}{\sl{\leftmark}}]{\rm\thepage}
-\chead{}\lfoot{}\rfoot{}\cfoot{}
+%\lhead[\rm\thepage]{\fancyplain{}{\sl{\rightmark}}}
+%\rhead[\fancyplain{}{\sl{\leftmark}}]{\rm\thepage}
+\chead{}
+\lfoot{}
+\rfoot{}
+\cfoot{}
 \pagestyle{fancy}
 \renewcommand{\chaptermark}[1]{\btypeout{\thechapter\space #1}\markboth{\@chapapp\ \thechapter\ #1}{\@chapapp\ \thechapter\ #1}}
 \renewcommand{\sectionmark}[1]{}
@@ -150,17 +153,17 @@
 \degree      {}
 \authors     {}
 \university  {\texorpdfstring{\href{University Web Site URL Here (include http://)}
-                {University of Information and Technology}}
-                {University of Information and Technology}}
+                {Trường Đại Học Công Nghệ Thông Tin}}
+                {Trường Đại Học Công Nghệ Thông Tin}}
 \UNIVERSITY  {\texorpdfstring{\href{University Web Site URL Here (include http://uit.edu.vn)}
-                {UNIVERSITY OF INFORMATION AND TECHNOLOGY}}
-                {UNIVERSITY OF INFORMATION AND TECHNOLOGY}}
+                {TRƯỜNG ĐẠI HỌC CÔNG NGHỆ THÔNG TIN}}
+                {TRƯỜNG ĐẠI HỌC CÔNG NGHỆ THÔNG TIN}}
 \department  {\texorpdfstring{\href{Department or School Web Site URL Here (include http://)}
                 {Khoa mạng máy tính và truyền thông}}
                 {Khoa mạng máy tính và truyền thông}}
 \DEPARTMENT  {\texorpdfstring{\href{Department or School Web Site URL Here (include http://)}
-                {DEPARTMENT OR SCHOOL NAME (IN BLOCK CAPITALS)}}
-                {DEPARTMENT OR SCHOOL NAME (IN BLOCK CAPITALS)}}
+                {KHOA MẠNG MÁY TÍNH VÀ TRUYỀN THÔNG}}
+                {KHOA MẠNG MÁY TÍNH VÀ TRUYỀN THÔNG}}
 \group       {\texorpdfstring{\href{Research Group Web Site URL Here (include http://)}
                 {Research Group Name}}
                 {Research Group Name}}
@@ -168,11 +171,11 @@
                 {RESEARCH GROUP NAME (IN BLOCK CAPITALS)}}
                 {RESEARCH GROUP NAME (IN BLOCK CAPITALS)}}
 \faculty     {\texorpdfstring{\href{Faculty Web Site URL Here (include http://)}
-                {Chuyên ngành phát triển ứng dụng Web và di động}}
-                {Chuyên ngành phát triển ứng dụng Web và di động}}
+                {Ngành phát triển ứng dụng Web và di động}}
+                {Ngành phát triển ứng dụng Web và di động}}
 \FACULTY     {\texorpdfstring{\href{Faculty Web Site URL Here (include http://)}
-                {FACULTY NAME (IN BLOCK CAPITALS)}}
-                {FACULTY NAME (IN BLOCK CAPITALS)}}
+                {NGÀNH PHÁT TRIỂN ỨNG DỤNG WEB VÀ DI ĐỘNG}}
+                {NGÀNH PHÁT TRIỂN ỨNG DỤNG WEB VÀ DI ĐỘNG}}
 \addresses   {}
 \subject     {}
 \keywords    {}
@@ -192,30 +195,33 @@
     \vskip 60\p@
     \begin{center}
       \setlength{\parskip}{0pt}
-      {\large\textbf{\UNIVNAME}\par}
+      {\Large\textbf{ĐẠI HỌC QUỐC GIA TP. HỒ CHÍ MINH}\par}
+      {\LARGE\textbf{\UNIVNAME}\par}
+      {\LARGE\textbf{\DEPTNAME}\par}
+      \bigskip
       \vfill
+      \bigskip
+      {\Large \authornames \par}
+
+	  \bigskip
+	  \bigskip
+	  \bigskip
+      {\LARGE\textbf{KHÓA LUẬN TỐT NGHIỆP}\par}
       {\huge \bf \@title \par}
+      \bigskip
       \vfill
-      {\large hoàn thành bởi \par}
-      \smallskip
-      {\LARGE \authornames \par}
-      \smallskip
-      {\large với sự hướng dẫn của \par}
-      \smallskip
-      {\LARGE TS. Nguyễn Anh Tuấn \par}
-      \vfill
-      {\large Đề tài khóa luận\par}
-      {\large tốt nghiệp - sinh viên khóa MMTT2010 \par}
+      \bigskip
+%      {\LARGE TS. Nguyễn Anh Tuấn \par}
+%      \vfill
+%      {\large Đề tài khóa luận\par}
+%      {\large tốt nghiệp - sinh viên khóa MMTT2010 \par}
+      {\Large \textbf{KỸ SƯ \FACNAME} \par}
+%      {\large \deptname \par}
+
       \bigskip
       \bigskip
-      {\large thuộc \par}
-      {\large \facname \par}
-      {\large \deptname \par}
-      \bigskip
-      \bigskip
-      \bigskip
-      {\Large \@date \par}
-      \bigskip
+      {\normalsize Tp. Hồ Chí Minh, \@date \par}
+%      \bigskip
     \end{center}
     \par
     \@thanks
@@ -233,6 +239,52 @@
   \global\let\date\relax
   \global\let\and\relax
   \cleardoublepage
+}
+
+\newcommand\makesubtitle{
+ \btypeout{Sub Title Page}
+ \thispagestyle{empty}
+ \begin{titlepage}
+ 	\let\footnotesize\small
+ 	\let\footnoterule\relax
+ 	\let \footnote \thanks
+ 	\setcounter{footnote}{0}
+ 	\null\vfil
+ 	\vskip 60\p@
+ 	\begin{center}
+ 		\setlength{\parskip}{0pt}
+ 		{\Large\textbf{ĐẠI HỌC QUỐC GIA TP. HỒ CHÍ MINH}\par}
+ 		{\LARGE\textbf{\UNIVNAME}\par}
+ 		{\LARGE\textbf{\DEPTNAME}\par}
+ 		\vfill
+ 		\bigskip
+ 		{\Large \authornames \par} 		
+ 		\bigskip
+ 		\bigskip
+ 		{\LARGE\textbf{KHÓA LUẬN TỐT NGHIỆP}\par}
+ 		{\huge \bf \textbf{ỨNG DỤNG PHÂN LOẠI TỰ ĐỘNG} \par}
+ 		\vfill
+ 		\bigskip
+ 		%      {\LARGE TS. Nguyễn Anh Tuấn \par}
+ 		%      \vfill
+ 		%      {\large Đề tài khóa luận\par}
+ 		%      {\large tốt nghiệp - sinh viên khóa MMTT2010 \par}
+ 		{\Large \textbf{KỸ SƯ \FACNAME} \par}
+ 		%      {\large \deptname \par}
+ 		\vfill
+ 		\smallskip
+ 		{\Large \textbf{GIÁNG VIÊN HƯỚNG DẪN} \par}
+ 	    {\Large \textbf{TS. NGUYỄN ANH TUẤN} \par}
+ 		\vfill
+ 		\bigskip
+ 		\bigskip
+ 		{\normalsize Tp. Hồ Chí Minh, \today \par}
+ 		%      \bigskip
+ 	\end{center}
+ 	\par
+ 	\@thanks
+ 	\vfil\null
+ \end{titlepage}
 }
 \newenvironment{abstract}
 {
@@ -359,13 +411,32 @@
 \begin{longtable}[c]{#1}#2\end{longtable}\par
     \cleardoublepage
 }
+\newcommand\dshoidong{
+	\btypeout{Danh sách đội đồng}
+	\addtotoc{Lời mở đầu}
+	\thispagestyle{plain}
+	\begin{center}
+		{\huge{\textbf{DANH SÁCH HỘI ĐỒNG BẢO VỆ KHÓA LUẬN}} \par}
+	\end{center}
+	{\normalsize 
+		Hội đồng chấm khóa luận tốt nghiệp, thành lập theo Quyết định số $...$ ngày $...$. của Hiệu trưởng Trường Đại học Công nghệ Thông tin gồm:
+		\begin{enumerate}
+		\item \dotfill - Chủ tịch.
+		\item \dotfill - Thư ký.
+		\item \dotfill - Ủy viên.
+		\item \dotfill - Ủy viên.
+		\end{enumerate}
+	}
+	\vfil\vfil\null
+	\clearpage
+}
 % Lời mở đầu
 \newcommand\openingwords[1]{
 	\btypeout{Lời mở đầu}
 	%\addtotoc{Acknowledgements}
-	\addtotoc{Lời mở đầu}
+%	\addtotoc{Lời mở đầu}
 	\thispagestyle{plain}
-	\begin{center}{\huge{\textit{
+	\begin{center}{\huge{\textbf{
 					Lời mở đầu
 				}} \par}\end{center}
 		{\normalsize #1}
@@ -376,35 +447,67 @@
 \newcommand\acknowledgements[1]{
 \btypeout{Acknowledgements}
 %\addtotoc{Acknowledgements}
-\addtotoc{Lời cảm ơn}
+%\addtotoc{Lời cảm ơn}
 \thispagestyle{plain}
-\begin{center}{\huge{\textit{
+\begin{center}{\huge{\textbf{
 				Lời cảm ơn %Acknowledgements
 				}} \par}\end{center}
 {\normalsize #1}
 \vfil\vfil\null
 }
+
+\usepackage{multicol}
+\usepackage{multirow}
 % Nhận xét của giáo viên hướng dẫn
 \newcommand\nhanxetcuagvhd[1]{
 	\btypeout{Nhận xét của giáo viên hướng dẫn}
-	\addtotoc{Nhận xét của giáo viên hướng dẫn}
+%	\addtotoc{Nhận xét của giáo viên hướng dẫn}
 	\thispagestyle{plain}
-	\begin{center}{\huge{\textit{
-					Nhận xét của giáo viên hướng dẫn 
-				}} \par}\end{center}
-		{\normalsize #1}
-		\vfil\vfil\null
+	\begin{tabular}{cc}
+		\textbf{ĐẠI HỌC QUỐC GIA TP.HỒ CHÍ MINH} & \textbf{CỘNG HÒA XÃ HỘI CHỦ NGHĨA}\\ \textbf{TRƯỜNG ĐẠI HỌC} & \textbf{VIỆT NAM}\\
+		\textbf{CÔNG NGHỆ THÔNG TIN} & \textbf{Độc lập - Tự do - Hạnh Phúc} \\ 
+		& Tp.HCM, \today \\ 
+	\end{tabular}
+	\begin{center}
+		{\Large{\textbf{NHẬN XÉT KHÓA LUẬN TỐT NGHIỆP}} \par}
+		{\large{(CỦA CÁN BỘ HƯỚNG DẪN)} \par}
+		\begin{tabular}{lll}
+			\textbf{Tên khóa luận} & \multicolumn{2}{c}{\textbf{ỨNG DỤNG PHÂN LOẠI TỰ ĐỘNG}} \\
+		 
+			\multicolumn{2}{l}{\textbf{Nhóm sinh viên thực hiện}} & \textbf{Cán bộ hướng dẫn} \\
+			Họ tên SV 1: Đặng Lê Bảo Chương & MSSV: 10520010 & TS. Nguyễn Anh Tuấn \\
+			Họ tên SV 1: Nguyễn Bảo Duy & MSSV: 10520011 &  \\
+			\multicolumn{3}{l}{\textbf{Đánh giá khóa luận}} \\
+		
+		\end{tabular}
+		\hspace*{1cm}
+		\begin{enumerate}
+			\item Về cuốn báo cáo:
+			\begin{center} 
+				\begin{tabular}{l p{3cm} l p{3cm}}
+					Số trang & \dotfill &  Số chương & \dotfill \\
+					Số bảng số liệu & \dotfill & Số hình vẽ & \dotfill \\
+					Số tài liệu tham khảo & \dotfill & Sản phẩm & \dotfill\\
+				\end{tabular}
+			\end{center}
+		\end{enumerate}
+	\end{center}
+	
+	{\normalsize #1}
+	\vfil\vfil\null
+	\clearpage
 }
 % Nhận xét của giáo viên phản biện
 \newcommand\nhanxetcuagvphanbien[1]{
 	\btypeout{Nhận xét của giáo viên phản biện}
-	\addtotoc{Nhận xét của giáo viên phản biện}
+%	\addtotoc{Nhận xét của giáo viên phản biện}
 	\thispagestyle{plain}
-	\begin{center}{\huge{\textit{
+	\begin{center}{\huge{\textbf{
 					Nhận xét của giáo viên phản biện 
 				}} \par}\end{center}
-		{\normalsize #1}
-		\vfil\vfil\null
+		{\normalsize 
+			#1}
+	\vfil\vfil\null
 }
 \newcommand\dedicatory[1]{
 \btypeout{Dedicatory}

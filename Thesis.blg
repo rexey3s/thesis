@@ -34,15 +34,15 @@ Warning--empty booktitle in mups
 Done.
 You've used 37 entries,
             4783 wiz_defined-function locations,
-            1072 strings with 11691 characters,
-and the built_in function-call counts, 15594 in all, are:
-= -- 1446
+            1073 strings with 11744 characters,
+and the built_in function-call counts, 15633 in all, are:
+= -- 1452
 > -- 127
 < -- 8
 + -- 124
 - -- 34
-* -- 771
-:= -- 2500
+* -- 776
+:= -- 2514
 add.period$ -- 69
 call.type$ -- 37
 change.case$ -- 69
@@ -51,20 +51,20 @@ cite$ -- 68
 duplicate$ -- 1244
 empty$ -- 1460
 format.name$ -- 52
-if$ -- 3306
+if$ -- 3312
 int.to.chr$ -- 10
 int.to.str$ -- 38
 missing$ -- 231
-newline$ -- 201
+newline$ -- 203
 num.names$ -- 30
-pop$ -- 913
+pop$ -- 917
 preamble$ -- 1
 purify$ -- 37
 quote$ -- 2
-skip$ -- 1109
+skip$ -- 1107
 stack$ -- 0
 substring$ -- 133
-swap$ -- 543
+swap$ -- 544
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 6
@@ -72,5 +72,5 @@ type$ -- 562
 warning$ -- 4
 while$ -- 20
 width$ -- 0
-write$ -- 411
+write$ -- 414
 (There were 4 error messages)

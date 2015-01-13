@@ -48,18 +48,6 @@ M.~K. Bergman, ``The open world assumption: Elephant in the room,'' December
   \url{http://www.mkbergman.com/852/the-open-world-assumption-elephant-in-the-room/}
 \BIBentrySTDinterwordspacing
 
-\bibitem[owl(2014)]{owlapi}
-\BIBentryALTinterwordspacing
-\emph{Programming with the OWL API}, 2014. [Online]. Available:
-  \url{https://github.com/owlcs/owlapi}
-\BIBentrySTDinterwordspacing
-
-\bibitem[swr(2014)]{swrlapi}
-\BIBentryALTinterwordspacing
-\emph{SWRL API}, 2014. [Online]. Available:
-  \url{https://github.com/protegeproject/swrlapi/wiki}
-\BIBentrySTDinterwordspacing
-
 \bibitem[sem({\natexlab{a}})]{semantic1}
 \BIBentryALTinterwordspacing
 ``Introducing linked data and the semantic web.'' [Online]. Available:
@@ -139,6 +127,12 @@ J.~Squeda, ``Introduction to: Open world assumption vs closed world
   \url{http://www.w3.org/TR/2012/NOTE-owl2-manchester-syntax-20121211/}
 \BIBentrySTDinterwordspacing
 
+\bibitem[owl(2014)]{owlapi}
+\BIBentryALTinterwordspacing
+\emph{Programming with the OWL API}, 2014. [Online]. Available:
+  \url{https://github.com/owlcs/owlapi}
+\BIBentrySTDinterwordspacing
+
 \bibitem[iri()]{iri}
 \BIBentryALTinterwordspacing
 ``Internationalized resource identifiers.'' [Online]. Available:
@@ -196,6 +190,12 @@ S.~Schlobach and R.~Cornet, ``Non-standard reasoning services for the debugging
 R.~Reiter, ``A theory of diagnosis from first principles,'' \emph{Artificial
   Intelligence 1987}, 1987.
 
+\bibitem[swr(2014)]{swrlapi}
+\BIBentryALTinterwordspacing
+\emph{SWRL API}, 2014. [Online]. Available:
+  \url{https://github.com/protegeproject/swrlapi/wiki}
+\BIBentrySTDinterwordspacing
+
 \bibitem[pel(2013)]{pellet}
 \BIBentryALTinterwordspacing
 \emph{Pellet - OWL 2 Reasoner for Java}, 2013. [Online]. Available:
@@ -231,7 +231,10 @@ R.~Reiter, ``A theory of diagnosis from first principles,'' \emph{Artificial
 \BIBentrySTDinterwordspacing
 
 \bibitem[owl({\natexlab{b}})]{owleditorSrc}
-``Uit-owl editor source code.''
+\BIBentryALTinterwordspacing
+``Uit-owl editor source code.'' [Online]. Available:
+  \url{https://bitbucket.org/rexey3s/spring-vaadin-owleditor}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Patel et~al.(2006)Patel, Schneider, and Horrocks]{ianhorrock1}
 \BIBentryALTinterwordspacing

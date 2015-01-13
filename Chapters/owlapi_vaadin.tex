@@ -2,54 +2,54 @@
 \paragraph{Giới thiệu} Trong chương này, chúng em xin giới thiệu khái quát qua các thư viện lập trình (API) và framework được sử dụng để xây dựng chương trình. Các thư viện sử dụng gồm có OWLAPI \cite{owlapi}, SWRLAPI \cite{swrlapi}, Pellet \cite{pellet}, Google Guava EventBus và thành phần giúp tạo nên giao diện người dùng của ứng dụng - Vaadin Framework. Đầu tiên xin được giới thư viện lập trình OWL-API.
 \section{Thư viện lập trình OWLAPI}
 Thư viện lập trình Ontology Web Language là một thư viện mã nguồn mở (phát hành dưới 2 giấy phép \textbf{LGPL} và \textbf{Apache}) \cite{owlapi} được viết bằng JAVA với mục đích hỗ trợ các lập trình viên phát triển các ứng dụng có liên quan đến OWL2 Ontology. Tính đến thời điểm hiện tại thư viện đã được phát triển đến phiên bản 4.0 - cũng là phiên bản được sử dụng trong ứng dụng của chúng em.
-Thư viện có các thành phần chính như sau: 
-\begin{itemize}
-\item API để tương tác với các thành phần của OWL 2 được đề cập trong chương 2.
-\item Renderer và Parser (dùng đọc và ghi OWL 2 Ontology) nhiều dạng cú pháp khác nhau đã đề cập ở chương 2 như \textit{RDF/XML}, \textit{OWL/XML}, \textit{OWL Functional Syntax}, \textit{Manchester OWL Syntax} và \textit{Turtle}.
-\item Reasoner Interfaces cho các reasoners khác nhau hỗ trợ cho việc suy luận.
-\end{itemize}
-Dưới đây là danh sách các Ontology Reasoner được hỗ trợ trong phiên bản 4.0:
-\begin{itemize}
-\item FaCT++ 
-\item Hermit
-\item Pellet \cite{pellet}
-\item JFact 
-\end{itemize}
-\begin{table}[h]
-	\centering
-	\begin{tabular}{|l|l|p{4cm}|}
-		\hline
-		Thành phần OWL 2 		& Đối tương trong OWL-API 		& Thừa kế từ đối tượng (OWL-API) \\
-		\hline
-		Ontology 				& OWLOntology 					& OWLObject, HasDirectImports,...  \\ 
-		\hline
-		Entity 					& OWLEntity 					& OWLObject,...  \\
-		\hline
-		Class 					& OWLClass 						& OWLClassExpression, OWLEntity, ...   \\		
-		\hline
-		ObjectProperty 			& OWLObjectProperty 			& OWLProperty, OWLEntity, ...   \\		
-		\hline
-		DataProperty 			& OWLDataProperty 				& OWLProperty, OWLEntity, ...   \\
-		\hline
-		NamedIndividual 		& OWLNamedIndividual			& OWLLogicalEntity, OWLEntity, ...  \\
-		\hline
-		Datatype 				& OWLDatatype 					& OWLDataRange, OWLPropertyRange, ...   \\
-		\hline
-		Property 				& OWLProperty 					& OWLLogicalEntity, OWLEntity   \\
-		\hline
-		ClassExpression			& OWLClassExpression			& OWLObject, OWLPropertyRange   \\
-		\hline
-		ObjectUnionOf			& OWLObjectUnionOf				& ClassExpression, ...\\
-		\hline
-		ObjectIntersectionOf	& OWLObjectIntersectionOf		& ClassExpression, ... \\
-		\hline
-		ObjectAllValuesFrom		& OWLObjectAllValueFrom		& ClassExpression, ... \\
-		\hline
-		ObjectSomeValuesFrom	& OWLObjectSomeValuesFrom		& ClassExpression, ... \\
-		\hline
-	\end{tabular}
-	\caption{Các đối tượng OWL2 trong OWL-API\label{overflow}}
-\end{table}
+%Thư viện có các thành phần chính như sau: 
+%\begin{itemize}
+%\item API để tương tác với các thành phần của OWL 2 được đề cập trong chương 2.
+%\item Renderer và Parser (dùng đọc và ghi OWL 2 Ontology) nhiều dạng cú pháp khác nhau đã đề cập ở chương 2 như \textit{RDF/XML}, \textit{OWL/XML}, \textit{OWL Functional Syntax}, \textit{Manchester OWL Syntax} và \textit{Turtle}.
+%\item Reasoner Interfaces cho các reasoners khác nhau hỗ trợ cho việc suy luận.
+%\end{itemize}
+%Dưới đây là danh sách các Ontology Reasoner được hỗ trợ trong phiên bản 4.0:
+%\begin{itemize}
+%\item FaCT++ 
+%\item Hermit
+%\item Pellet \cite{pellet}
+%\item JFact 
+%\end{itemize}
+%\begin{table}[h]
+%	\centering
+%	\begin{tabular}{|l|l|p{4cm}|}
+%		\hline
+%		Thành phần OWL 2 		& Đối tương trong OWL-API 		& Thừa kế từ đối tượng (OWL-API) \\
+%		\hline
+%		Ontology 				& OWLOntology 					& OWLObject, HasDirectImports,...  \\ 
+%		\hline
+%		Entity 					& OWLEntity 					& OWLObject,...  \\
+%		\hline
+%		Class 					& OWLClass 						& OWLClassExpression, OWLEntity, ...   \\		
+%		\hline
+%		ObjectProperty 			& OWLObjectProperty 			& OWLProperty, OWLEntity, ...   \\		
+%		\hline
+%		DataProperty 			& OWLDataProperty 				& OWLProperty, OWLEntity, ...   \\
+%		\hline
+%		NamedIndividual 		& OWLNamedIndividual			& OWLLogicalEntity, OWLEntity, ...  \\
+%		\hline
+%		Datatype 				& OWLDatatype 					& OWLDataRange, OWLPropertyRange, ...   \\
+%		\hline
+%		Property 				& OWLProperty 					& OWLLogicalEntity, OWLEntity   \\
+%		\hline
+%		ClassExpression			& OWLClassExpression			& OWLObject, OWLPropertyRange   \\
+%		\hline
+%		ObjectUnionOf			& OWLObjectUnionOf				& ClassExpression, ...\\
+%		\hline
+%		ObjectIntersectionOf	& OWLObjectIntersectionOf		& ClassExpression, ... \\
+%		\hline
+%		ObjectAllValuesFrom		& OWLObjectAllValueFrom		& ClassExpression, ... \\
+%		\hline
+%		ObjectSomeValuesFrom	& OWLObjectSomeValuesFrom		& ClassExpression, ... \\
+%		\hline
+%	\end{tabular}
+%	\caption{Các đối tượng OWL2 trong OWL-API\label{overflow}}
+%\end{table}
 Trong thư viện OWL-API, có nhiều đối tượng được xây dựng dựa trên cấu trúc phân lớp của một OWL2 Ontology, tương tự các thành phần đã được chúng em trình bày trong chương 2. Dưới đây là bảng liệt kê một số thành phần mà OWL-API đã xây dựng dựa trên mô tả trong chương 2 (chi tiết hơn ở trong \cite{owl2spec} và mã nguồn (source code) của OWL-API \cite{owlapi}). Trên đây chỉ là một vài thành phần, mọi thành phần OWL2 được trình bày trong chương 2 đều được OWL-API xây dựng thành các đối tượng class, interface trong JAVA để phục vụ cho việc lập trình. Tuy nhiên để tương tác với một kiến trúc đối tượng lớn và phức tạp như 1 ontology cần có cách thức chuyên dùng cho việc này là Visitor Pattern.
 \subsection{Visitor Pattern}
 \begin{figure}[h!]
@@ -221,7 +221,7 @@ System.out.println(ruleRenderer.render(apiRule));
 \end{verbatim}
 
 \section{Vaadin Framework }
-\paragraph{Giới thiệu} Vaadin Framework là nền tảng xây dựng một ứng dụng web trên Java được thiết kế giúp tạo ra một ứng dụng web chất lượng cao một cách dễ dàng nhất - tập trung chủ yếu vào one-page web application. Không giống như những framework web hiện nay đòi hỏi lập trình viên phải có kiến thức về HTML5, Javascript và ít nhất một ngôn ngữ back-end. Vaadin giúp chúng ta tạm quên việc đi việc phải viết các client Javascript hay từng dòng HTML để xây dựng giao diện người dùng - nói cách khác nó làm cho công việc phát triển front-end trở nên cực kì đơn giản, dễ hình dung nhất là việc phát triển một ứng dụng web trên Vaadin cũng tương tự khi chúng ta phát triển một ứng dụng desktop thông thường với các công cụ Java như AWT, Swing, hay SWT hoặc window form với C#(C-Sharp).  Với Vaadin, để phát triển được toàn bộ một ứng dụng, ngôn ngữ duy nhất chúng ta cần nắm đó là Java. Một ví dụ minh họa về tính đơn giản trong khi sử dụng Vaadin:
+\paragraph{Giới thiệu} Vaadin Framework là nền tảng xây dựng một ứng dụng web trên Java được thiết kế giúp tạo ra một ứng dụng web chất lượng cao một cách dễ dàng nhất - tập trung chủ yếu vào one-page web application. Không giống như những framework web hiện nay đòi hỏi lập trình viên phải có kiến thức về HTML5, Javascript và ít nhất một ngôn ngữ back-end. Vaadin giúp chúng ta tạm quên việc đi việc phải viết các client Javascript hay từng dòng HTML để xây dựng giao diện người dùng - nói cách khác nó làm cho công việc phát triển front-end trở nên cực kì đơn giản, dễ hình dung nhất là việc phát triển một ứng dụng web trên Vaadin cũng tương tự khi chúng ta phát triển một ứng dụng desktop thông thường với các công cụ Java như AWT, Swing, hay SWT hoặc window form với C\verb|#|(C-Sharp).  Với Vaadin, để phát triển được toàn bộ một ứng dụng, ngôn ngữ duy nhất chúng ta cần nắm đó là Java. Một ví dụ minh họa về tính đơn giản trong khi sử dụng Vaadin:
 \begin{verbatim}
  Button button = new Button("Demo");
  button.addClickListener( new ClickListener() {
