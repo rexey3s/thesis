@@ -3,7 +3,7 @@
 %% ---------------------------------------------------------------- 
 
 % Set up the document
-\documentclass[a4paper, 13pt, oneside]{Thesis}  % Use the "Thesis" style, based on the ECS Thesis style by Steve Gunn
+\documentclass[a4paper, 12pt, oneside]{Thesis}  % Use the "Thesis" style, based on the ECS Thesis style by Steve Gunn
 \graphicspath{Figures/}  % Location of the graphics files (set up for graphics to be in PDF format)
 
 % Include any extra LaTeX packages required
@@ -33,7 +33,6 @@
 \newlength\dottedlinefillheight
 \setlength\dottedlinefillheight{.25in}
 
-
 \newcommand\fillwithdottedlines[1]{%
 	\begingroup
 	\ifhmode
@@ -54,9 +53,9 @@
 %% ----------------------------------------------------------------
 \begin{document}
 \frontmatter      % Begin Roman style (i, ii, iii, iv...) page numbering
-
+\cfoot{}
 % Set up the Title Page
-\title{\textbf{ỨNG DỤNG PHÂN LOẠI TỰ ĐỘNG}}
+\title{\textbf{HỆ THỐNG PHÂN LOẠI TỰ ĐỘNG}}
 %\supervisor{\texorpdfstring{TS. Nguyễn Anh Tuấn{Supervisor Name}}}
 \examiner    {}
 \degree      {}
@@ -70,89 +69,49 @@
 \date       {\today}
 \subject    {}
 \keywords   {}
-
+%% ----------------------------------------------------------------
+% Bìa chính
+%% ----------------------------------------------------------------
 \maketitle
-
+%% ----------------------------------------------------------------
+% Bìa phụ
+%% ----------------------------------------------------------------
 \makesubtitle
+%% ----------------------------------------------------------------
+% Danh sách hội đồng phản biện
 %% ----------------------------------------------------------------
 \dshoidong
 %% ----------------------------------------------------------------
-\setstretch{1.3}  % It is better to have smaller font and larger line spacing than the other way round
-
-% Define the page headers using the FancyHdr package and set up for one-sided printing
-%\fancyhead{}  % Clears all page headers and footers
-%\rhead{}  % Sets the right side header to show the page number
-%\lhead{}  % Clears the left side page header
-%\cfoot{\thepage}
-%\pagestyle{fancy}  % Finally, use the "fancy" page style to implement the FancyHdr headers
-
+% Nhận xét của giáo viên hướng dẫn
 %% ----------------------------------------------------------------
-% Declaration Page required for the Thesis, your institution may give you a different text to place here
-%\Declaration{
-%
-%\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
-%
-%I, AUTHOR NAME, declare that this thesis titled, `THESIS TITLE' and the work presented in it are my own. I confirm that:
-%
-%\begin{itemize} 
-%\item[\tiny{$\blacksquare$}] This work was done wholly or mainly while in candidature for a research degree at this University.
-% 
-%\item[\tiny{$\blacksquare$}] Where any part of this thesis has previously been submitted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
-% 
-%\item[\tiny{$\blacksquare$}] Where I have consulted the published work of others, this is always clearly attributed.
-% 
-%\item[\tiny{$\blacksquare$}] Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
-% 
-%\item[\tiny{$\blacksquare$}] I have acknowledged all main sources of help.
-% 
-%\item[\tiny{$\blacksquare$}] Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.
-%\\
-%\end{itemize}
-% 
-% 
-%Signed:\\
-%\rule[1em]{25em}{0.5pt}  % This prints a line for the signature
-% 
-%Date:\\
-%\rule[1em]{25em}{0.5pt}  % This prints a line to write the date
-%}
-%\clearpage  % Declaration ended, now start a new page
-
+\nhanxet{Cán bộ hướng dẫn}{TS. Nguyễn Anh Tuấn}
 %% ----------------------------------------------------------------
-% The "Funny Quote Page"
-% \pagestyle{empty}  % No headers or footers for the following pages
-
-% \null\vfill
-% Now comes the "Funny Quote", written in italics
-% \textit{``Write a funny quote here.''}
-
-% \begin{flushright}
-% If the quote is taken from someone, their name goes here
-% \end{flushright}
-
-% \vfill\vfill\vfill\vfill\vfill\vfill\null
-% \clearpage  % Funny Quote page ended, start a new page
+% Nhận xét của giáo viên phản biện
 %% ----------------------------------------------------------------
+\nhanxet{Cán bộ phản biện}{}
+%% ----------------------------------------------------------------
+% Lời cảm ơn
+%% ----------------------------------------------------------------
+\acknowledgements{	
+\hspace*{0.05\textwidth}Đầu tiên, chúng em xin chân thành cám ơn Khoa Mạng máy tính và Truyền thông, trường Đại Học Công Nghệ Thông Tin, Đại Học Quốc Gia TP.HCM đã tạo điều kiện cho chúng em hoàn thành tốt khoá luận này.
+\\
+Chúng em xin chân thành cám ơn Thầy Nguyễn Anh Tuấn, đã tận tình hướng dẫn, dạy dỗ, chỉ bảo chúng em từ những ngày đầu định hình khoá luận cho đến khi hoàn thành. Nhờ sự tận tình của thầy, chúng em đã hoàn thành tốt khoá luận này, bên cạnh đó cũng học hỏi được nhiều kiến thức quý báu từ thầy.
+\\
+Chúng em xin chân thành cảm ơn quý Thầy Cô trong Khoa Mạng máy tính và truyền thông, trong những năm qua đã không quản ngại mệt mỏi, tận tình giảng dạy, trang bị cho chúng em những kiến thức cần thiết để hoàn thành khoá luận.
+\\
+Chúng em xin ghi nhớ công ơn sinh thành dưỡng dục của cha mẹ, sự giúp đỡ của các anh, chị, bạn bè trong những năm học, cũng như sự an ủi, động viên trong những lúc khó khăn, vất vả. Dù chúng em đã dùng tất cả nỗ lực của bản thân để hoàn thành tốt khoá luận này, tuy nhiên không thể tránh khỏi những sai sót, thiếu sót, kính mong quý Thầy Cô tận tình chỉ bảo. Một lần nữa, chúng em xin chân thành cảm ơn và mong nhận được nhiều tình cảm chân thành của tất cả mọi người.	
+}
+%% ----------------------------------------------------------------
+% Đề cương chi tiết
+%% ----------------------------------------------------------------
+\decuong
+%% ----------------------------------------------------------------
+\setstretch{1.5}  % It is better to have smaller font and larger line spacing than the other way round
 
-% The Abstract Page
-
-%\addtotoc{Lời mở đầu}  % Add the "Abstract" page entry to the Contents
-%\abstract{
-%\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
-%
-%\begin{center}{\huge{\textit{
-%				Lời mở đầu
-%			}} \par}\end{center}
-%
-%\ldots
-%}
-
-\clearpage  
-% Abstract ended, start a new page
 % -----------------------------------------------------------------
 % Opening words
 \openingwords{
-	\addtocontents{toc}{\vspace{1em}}
+%	\addtocontents{toc}{\vspace{1em}}
 Thế giới của chúng ta đang liên tục vận động theo chiều hướng tích cực. Đây là nguyên nhân chủ yếu cho sự phát triển và thay đổi hằng ngày của mọi lĩnh vực đời sống, đặc biệt là khoa học công nghệ nói chung, và ngành công nghệ thông tin nói riêng. Hiện nay, hầu hết mọi nơi trên thế giới đều đã biết đến sự có mặt của công nghệ thông tin, máy tính, và kể cả internet. Việc internet ra đời là một sự kiện đã làm thay đổi cả thế giới. Thay thế cho việc gọi điện thoại hằng ngày, chúng ta có thể liên lạc qua internet, với việc có thể thấy được hình ảnh của người đối diện chứ không chỉ riêng giọng nói. Thay thế cho những tờ báo bằng giấy, chúng ta đã có những trang web, với những thông tin đầy đủ hơn, hình ảnh sinh động hơn, và cả những đoạn video minh hoạ. Những thông tin trên internet được lan truyền với tốc độ chóng mặt, dẫn đến việc những tin tức nóng nhất được cập nhật liên tục trong từng phút từng giây. Cách tiếp cận thông tin của con người thay đổi, nên sự chuyển động của thông tin ngày càng nhanh hơn, và đến mức nào đó, thông tin sẽ không mang theo đủ những gì mà con người mong muốn truyền tải. Đó là lúc mà con người nghĩ đến việc thay đổi. Và đó cũng chính là lúc Semantic Web được ra đời.
 \\
 Semantic Web mang sứ mệnh lớn lao trong việc thay đổi công nghệ web. Trước đây, máy tính chỉ đóng vai trò là trung tâm “chứa đựng” và “duy trì” các trang web. Tuy nhiên, với Semantic Web, máy tính sẽ phải làm nhiều hơn thế, sẽ phải “suy nghĩ” và “sử dụng” trang web một phần nào đó thay thế cho con người. Để làm được điều này không phải dễ dàng, vì máy tính là vật vô tri vô giác. Do đó, một cách tiếp cận đơn giản để giải quyết vấn đề này, bằng cách thêm vào các trang web thông thường metadata, để các máy tính có thể “đọc” được, như một ngôn ngữđầuung của các máy tính. 
@@ -162,48 +121,9 @@ Nhận thấy được những tiềm năng và những lợi ích to lớn củ
 \clearpage
 % opening words ended, start a new page
 %% ----------------------------------------------------------------
-\setstretch{1.3}  % Reset the line-spacing to 1.3 for body text (if it has changed)
-
-% The Acknowledgements page, for thanking everyone
-\acknowledgements{
-\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
-
-Đầu tiên, chúng em xin chân thành cám ơn Khoa Mạng máy tính và Truyền thông, trường Đại Học Công Nghệ Thông Tin, Đại Học Quốc Gia TP.HCM đã tạo điều kiện cho chúng em hoàn thành tốt khoá luận này.
-\\
-Chúng em xin chân thành cám ơn Thầy Nguyễn Anh Tuấn, đã tận tình hướng dẫn, dạy dỗ, chỉ bảo chúng em từ những ngày đầu định hình khoá luận cho đến khi hoàn thành. Nhờ sự tận tình của thầy, chúng em đã hoàn thành tốt khoá luận này, bên cạnh đó cũng học hỏi được nhiều kiến thức quý báu từ thầy.
-\\
-Chúng em xin chân thành cảm ơn quý Thầy Cô trong Khoa Mạng máy tính và truyền thông, trong những năm qua đã không quản ngại mệt mỏi, tận tình giảng dạy, trang bị cho chúng em những kiến thức cần thiết để hoàn thành khoá luận.
-\\
-Chúng em xin ghi nhớ công ơn sinh thành dưỡng dục của cha mẹ, sự giúp đỡ của các anh, chị, bạn bè trong những năm học, cũng như sự an ủi, động viên trong những lúc khó khăn, vất vả. Dù chúng em đã dùng tất cả nỗ lực của bản thân để hoàn thành tốt khoá luận này, tuy nhiên không thể tránh khỏi những sai sót, thiếu sót, kính mong quý Thầy Cô tận tình chỉ bảo. Một lần nữa, chúng em xin chân thành cảm ơn và mong nhận được nhiều tình cảm chân thành của tất cả mọi người.
-\begin{flushright}
-Thành phố Hồ Chí Minh, ngày ... tháng ... năm 2015
-\\
-Sinh viên thực hiện khoá luận	
-\\
-Đặng Lê Bảo Chương và Nguyễn Bảo Duy
-\end{flushright}
-% your project advisor\ldots
-
-}
-\clearpage  % End of the Acknowledgements
-%% ----------------------------------------------------------------
-% Nhận xét của giáo viên hướng dẫn
-\nhanxetcuagvhd{
-	
-}
-\clearpage
-%\addtocontents{toc}{\vspace{1em}} 
+\setstretch{1.5}  % Reset the line-spacing to 1.3 for body text (if it has changed)
 
 
-
-%% ----------------------------------------------------------------
-% Nhận xét của giáo viên phản biện
-\nhanxetcuagvphanbien{
-%\addtocontents{toc}{\vspace{1em}} 
-\fillwithdottedlines{20cm}
-}
-\clearpage
-%% ----------------------------------------------------------------
 
 \pagestyle{fancy}  %The page style headers have been "empty" all this time, now use the "fancy" headers as defined before to bring them back
 %% ----------------------------------------------------------------
@@ -285,6 +205,15 @@ Sinh viên thực hiện khoá luận
 
 
 %% ----------------------------------------------------------------
+%% Quy ước của trường Đại học Công Nghệ Thông Tin
+\setmarginsrb           { 3.5cm}  % left margin
+						{ 2.0cm}  % top margin
+						{ 2.0cm}  % right margin
+						{ 2.5cm}  % bottom margin
+						{ 1.0cm}  % head height
+						{ 0.5cm}  % head sep
+						{ 1.0cm}  % foot height
+						{ .75cm}  % foot sep
 \mainmatter	  % Begin normal, numeric (1,2,3...) page numbering
 \pagestyle{fancy}  % Return the page headers back to the "fancy" style
 \lhead{}

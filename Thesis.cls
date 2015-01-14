@@ -20,6 +20,7 @@
   \if@tempswa \else \PassOptionsToClass{#1}{\baseclass}\fi
 }
 \@checkoptions{11pt}{{10pt}{11pt}{12pt}}
+
 \PassOptionsToClass{a4paper}{\baseclass}
 \ProcessOptions\relax
 \LoadClass{\baseclass}
@@ -48,14 +49,14 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2.0ex plus0.5ex minus0.2ex}
 \usepackage{vmargin}
-\setmarginsrb           { 3.5cm}  % left margin
+\setmarginsrb           { 3.0cm}  % left margin
                         { 2.0cm}  % top margin
                         { 2.0cm}  % right margin
-                        { 3.0cm}  % bottom margin
-                        { 1.0cm}  % head height
+                        { 3.5cm}  % bottom margin
+                        { 0.5cm}  % head height
                         { 0.5cm}  % head sep
-                        { 1.5cm}  % foot height
-                        { 1.0cm}  % foot sep
+                        { 0.0cm}  % foot height
+                        { 0.0cm}  % foot sep
 \raggedbottom
 \setlength{\topskip}{1\topskip \@plus 5\p@}
 \doublehyphendemerits=10000       % No consecutive line hyphens.
@@ -179,6 +180,7 @@
 \addresses   {}
 \subject     {}
 \keywords    {}
+% Bìa chính
 \renewcommand\maketitle{
   \btypeout{Title Page}
   \hypersetup{pdftitle={\@title}}
@@ -195,33 +197,25 @@
     \vskip 60\p@
     \begin{center}
       \setlength{\parskip}{0pt}
-      {\Large\textbf{ĐẠI HỌC QUỐC GIA TP. HỒ CHÍ MINH}\par}
-      {\LARGE\textbf{\UNIVNAME}\par}
-      {\LARGE\textbf{\DEPTNAME}\par}
+      {\large\textbf{ĐẠI HỌC QUỐC GIA TP. HỒ CHÍ MINH}\par}
+      {\Large\textbf{\UNIVNAME}\par}
+      {\Large\textbf{\DEPTNAME}\par}
       \bigskip
       \vfill
       \bigskip
-      {\Large \authornames \par}
-
+      {\large \authornames \par}
 	  \bigskip
 	  \bigskip
 	  \bigskip
-      {\LARGE\textbf{KHÓA LUẬN TỐT NGHIỆP}\par}
-      {\huge \bf \@title \par}
+      {\Large\textbf{KHÓA LUẬN TỐT NGHIỆP}\par}
+      {\LARGE \bf \@title \par}
       \bigskip
       \vfill
       \bigskip
-%      {\LARGE TS. Nguyễn Anh Tuấn \par}
-%      \vfill
-%      {\large Đề tài khóa luận\par}
-%      {\large tốt nghiệp - sinh viên khóa MMTT2010 \par}
-      {\Large \textbf{KỸ SƯ \FACNAME} \par}
-%      {\large \deptname \par}
-
+      {\large \textbf{KỸ SƯ \FACNAME} \par}
       \bigskip
       \bigskip
       {\normalsize Tp. Hồ Chí Minh, \@date \par}
-%      \bigskip
     \end{center}
     \par
     \@thanks
@@ -240,7 +234,7 @@
   \global\let\and\relax
   \cleardoublepage
 }
-
+% Bìa phụ
 \newcommand\makesubtitle{
  \btypeout{Sub Title Page}
  \thispagestyle{empty}
@@ -253,28 +247,28 @@
  	\vskip 60\p@
  	\begin{center}
  		\setlength{\parskip}{0pt}
- 		{\Large\textbf{ĐẠI HỌC QUỐC GIA TP. HỒ CHÍ MINH}\par}
- 		{\LARGE\textbf{\UNIVNAME}\par}
- 		{\LARGE\textbf{\DEPTNAME}\par}
+ 		{\large\textbf{ĐẠI HỌC QUỐC GIA TP. HỒ CHÍ MINH}\par}
+ 		{\Large\textbf{\UNIVNAME}\par}
+ 		{\Large\textbf{\DEPTNAME}\par}
  		\vfill
  		\bigskip
- 		{\Large \authornames \par} 		
+ 		{\large \authornames \par} 		
  		\bigskip
  		\bigskip
- 		{\LARGE\textbf{KHÓA LUẬN TỐT NGHIỆP}\par}
- 		{\huge \bf \textbf{ỨNG DỤNG PHÂN LOẠI TỰ ĐỘNG} \par}
+ 		{\Large\textbf{KHÓA LUẬN TỐT NGHIỆP}\par}
+ 		{\LARGE \bf \textbf{HỆ THỐNG PHÂN LOẠI TỰ ĐỘNG} \par}
  		\vfill
  		\bigskip
  		%      {\LARGE TS. Nguyễn Anh Tuấn \par}
  		%      \vfill
  		%      {\large Đề tài khóa luận\par}
  		%      {\large tốt nghiệp - sinh viên khóa MMTT2010 \par}
- 		{\Large \textbf{KỸ SƯ \FACNAME} \par}
+ 		{\large \textbf{KỸ SƯ \FACNAME} \par}
  		%      {\large \deptname \par}
  		\vfill
  		\smallskip
- 		{\Large \textbf{GIÁNG VIÊN HƯỚNG DẪN} \par}
- 	    {\Large \textbf{TS. NGUYỄN ANH TUẤN} \par}
+ 		{\large \textbf{GIẢNG VIÊN HƯỚNG DẪN} \par}
+ 	    {\large \textbf{TS. NGUYỄN ANH TUẤN} \par}
  		\vfill
  		\bigskip
  		\bigskip
@@ -372,9 +366,8 @@
     \cleardoublepage
 }\end{spacing}
 }
-\newcommand\listsymbolname{
-	Các từ viết tắt% Abbreviations
-	}
+
+\newcommand\listsymbolname{Các từ viết tắt}
 \usepackage{longtable}
 \newcommand\listofsymbols[2]{
 \btypeout{\listsymbolname}
@@ -397,9 +390,8 @@
 \begin{longtable}[c]{#1}#2\end{longtable}\par
     \cleardoublepage
 }
-\newcommand\listnomenclature{
-	Ký hiệu % Symbols
-	}
+
+\newcommand\listnomenclature{Ký hiệu}
 \usepackage{longtable}
 \newcommand\listofnomenclature[2]{
 \btypeout{\listnomenclature}
@@ -411,15 +403,16 @@
 \begin{longtable}[c]{#1}#2\end{longtable}\par
     \cleardoublepage
 }
+
 \newcommand\dshoidong{
 	\btypeout{Danh sách đội đồng}
 	\addtotoc{Lời mở đầu}
-	\thispagestyle{plain}
+	\thispagestyle{empty}
 	\begin{center}
-		{\huge{\textbf{DANH SÁCH HỘI ĐỒNG BẢO VỆ KHÓA LUẬN}} \par}
+		{\Large{\textbf{DANH SÁCH HỘI ĐỒNG BẢO VỆ KHÓA LUẬN}} \par}
 	\end{center}
 	{\normalsize 
-		Hội đồng chấm khóa luận tốt nghiệp, thành lập theo Quyết định số $...$ ngày $...$. của Hiệu trưởng Trường Đại học Công nghệ Thông tin gồm:
+		Hội đồng chấm khóa luận tốt nghiệp, thành lập theo Quyết định số $...$ ngày $...$. của Hiệu trưởng Trường Đại học Công nghệ Thông tin.
 		\begin{enumerate}
 		\item \dotfill - Chủ tịch.
 		\item \dotfill - Thư ký.
@@ -430,12 +423,13 @@
 	\vfil\vfil\null
 	\clearpage
 }
+
 % Lời mở đầu
 \newcommand\openingwords[1]{
 	\btypeout{Lời mở đầu}
 	%\addtotoc{Acknowledgements}
 %	\addtotoc{Lời mở đầu}
-	\thispagestyle{plain}
+	\thispagestyle{empty}
 	\begin{center}{\huge{\textbf{
 					Lời mở đầu
 				}} \par}\end{center}
@@ -443,72 +437,203 @@
 		\vfil\vfil\null
 		
 }
+
 % Lời cảm ơn
 \newcommand\acknowledgements[1]{
 \btypeout{Acknowledgements}
 %\addtotoc{Acknowledgements}
 %\addtotoc{Lời cảm ơn}
-\thispagestyle{plain}
-\begin{center}{\huge{\textbf{
+\thispagestyle{empty}
+\begin{center}{\LARGE{\textbf{
 				Lời cảm ơn %Acknowledgements
-				}} \par}\end{center}
-{\normalsize #1}
-\vfil\vfil\null
-}
+				}} \par}
+\end{center}
 
+{\normalsize #1} 
+
+
+\bigskip
+\doublesignature{}{Sinh viên thực hiện khóa luận \\
+	Đặng Lê Bảo Chương \& Nguyễn Bảo Duy\\
+	(Ký tên và ghi rõ họ tên)
+}
+\vfil\vfil\null
+\clearpage
+}
+%% ----------------------------------------------------------------
+
+\usepackage{datetime}
+
+\newdateformat{monthyeardate}{\monthname[\THEMONTH], \THEYEAR}
+%% Chữ ký
 \usepackage{multicol}
 \usepackage{multirow}
-% Nhận xét của giáo viên hướng dẫn
-\newcommand\nhanxetcuagvhd[1]{
-	\btypeout{Nhận xét của giáo viên hướng dẫn}
+\usepackage{vmargin}
+\newcommand{\doublesignature}[2]{
+	\parbox{\textwidth}{	 	
+	 	\parbox{7cm}{
+	 	\centering
+%	 		\rule{6cm}{1pt}\\
+			\bigskip\medskip
+		 	{\normalsize #1}
+	 	}
+	 	\hfill
+	 	\parbox{7cm}{
+	 	\centering
+%		    \rule{6cm}{1pt}\\
+			Tp.HCM,  \today \\
+		 	{\normalsize #2}	 	
+	 	}
+	}
+}
+
+% Nhận xét của cán bộ hướng dẫn/phản biện
+\newcommand\nhanxet[2]{
+	\btypeout{Nhận xét của giáo viên hướng dẫn/phản biện}
 %	\addtotoc{Nhận xét của giáo viên hướng dẫn}
-	\thispagestyle{plain}
+	\pagestyle{empty}
 	\begin{tabular}{cc}
-		\textbf{ĐẠI HỌC QUỐC GIA TP.HỒ CHÍ MINH} & \textbf{CỘNG HÒA XÃ HỘI CHỦ NGHĨA}\\ \textbf{TRƯỜNG ĐẠI HỌC} & \textbf{VIỆT NAM}\\
-		\textbf{CÔNG NGHỆ THÔNG TIN} & \textbf{Độc lập - Tự do - Hạnh Phúc} \\ 
-		& Tp.HCM, \today \\ 
+	\footnotesize{\textbf{ĐẠI HỌC QUỐC GIA TP.HỒ CHÍ MINH}} & \footnotesize{\textbf{CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM}}\\ 
+	\small{\textbf{TRƯỜNG ĐẠI HỌC}} & \small{\textbf{Độc lập - Tự do - Hạnh Phúc}} \\
+	\small{\textbf{CÔNG NGHỆ THÔNG TIN}} &  \footnotesize{Tp.HCM, \today} \\ 
 	\end{tabular}
 	\begin{center}
-		{\Large{\textbf{NHẬN XÉT KHÓA LUẬN TỐT NGHIỆP}} \par}
-		{\large{(CỦA CÁN BỘ HƯỚNG DẪN)} \par}
-		\begin{tabular}{lll}
-			\textbf{Tên khóa luận} & \multicolumn{2}{c}{\textbf{ỨNG DỤNG PHÂN LOẠI TỰ ĐỘNG}} \\
-		 
-			\multicolumn{2}{l}{\textbf{Nhóm sinh viên thực hiện}} & \textbf{Cán bộ hướng dẫn} \\
-			Họ tên SV 1: Đặng Lê Bảo Chương & MSSV: 10520010 & TS. Nguyễn Anh Tuấn \\
-			Họ tên SV 1: Nguyễn Bảo Duy & MSSV: 10520011 &  \\
-			\multicolumn{3}{l}{\textbf{Đánh giá khóa luận}} \\
-		
-		\end{tabular}
-		\hspace*{1cm}
+		{\large{\textbf{NHẬN XÉT KHÓA LUẬN TỐT NGHIỆP}} \par}
+		{(CỦA \MakeUppercase{{\normalsize #1}}) \par}
+	\end{center}
+	\begin{tabular}{p{6cm} p{4cm} p{4cm}}
+			\textbf{Tên khóa luận} & \multicolumn{2}{l}{\small{\textbf{HỆ THỐNG PHÂN LOẠI TỰ ĐỘNG}}} \\
+		 	&& \\
+			\multicolumn{2}{l}{\textbf{Nhóm sinh viên thực hiện}} & \textbf{{\normalsize #1}} \\
+			\small{Họ tên SV 1: Đặng Lê Bảo Chương} & \small{MSSV: 10520010} & {\small #2} \\
+			\small{Họ tên SV 2: Nguyễn Bảo Duy} & \small{MSSV: 10520011} &  \\		
+	\end{tabular}
+	\begin{flushleft}
+		\hspace*{.25cm}\textbf{Đánh giá khóa luận} 
+		\hspace*{.75cm}
 		\begin{enumerate}
 			\item Về cuốn báo cáo:
-			\begin{center} 
-				\begin{tabular}{l p{3cm} l p{3cm}}
-					Số trang & \dotfill &  Số chương & \dotfill \\
-					Số bảng số liệu & \dotfill & Số hình vẽ & \dotfill \\
-					Số tài liệu tham khảo & \dotfill & Sản phẩm & \dotfill\\
-				\end{tabular}
-			\end{center}
+			
+			\begin{tabular}{l p{3.5cm} l p{3.5cm}}
+				Số trang & \dotfill &  Số chương & \dotfill \\
+				Số bảng số liệu & \dotfill & Số hình vẽ & \dotfill \\
+				Số tài liệu tham khảo & \dotfill & Sản phẩm & \dotfill\\
+			\end{tabular}			
+			
+			Một số nhận xét về hình thức cuốn báo cáo: \dotfill \\
+			\dotfill\\\dotfill\\\dotfill\\
+			\item Về nội dung nghiên cứu:\dotfill\\
+			\dotfill\\\dotfill\\\dotfill\\
+			\item Về chương trình ứng dụng:\dotfill\\
+			\dotfill\\\dotfill\\\dotfill\\
+			\item Về thái độ làm việc của sinh viên: \dotfill\\
+			\dotfill\\\dotfill\\\dotfill\\	
 		\end{enumerate}
+		\hspace*{.25cm}\textbf{Đánh giá chung}: \dotfill\\
+		\hspace*{.25cm}\dotfill\\
+		\hspace*{.25cm}\textbf{Điểm từng sinh viên:}
+		\hspace*{.25cm}
+		\begin{enumerate}
+			\item Đặng Lê Bảo Chương:
+			\item Nguyễn Bảo Duy:
+		\end{enumerate}	
+	\end{flushleft}
+
+
+
+
+
+	\doublesignature{}{
+		Người nhận xét \\
+		(Ký tên và ghi rõ họ tên) }
+	
+	\vfil\vfil\null
+ 	\cleardoublepage
+}
+% Đề cương 
+\newcommand\decuong{
+	\btypeout{ĐỀ CƯƠNG ĐỀ TÀI LUẬN VĂN KỸ SƯ}
+	\pagestyle{empty}
+	\begin{tabular}{cc}
+		\footnotesize{\textbf{ĐẠI HỌC QUỐC GIA TP.HỒ CHÍ MINH}} & \footnotesize{\textbf{CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM}}\\ 
+		\small{\textbf{TRƯỜNG ĐẠI HỌC}} & \small{\textbf{Độc lập - Tự do - Hạnh Phúc}} \\
+		\small{\textbf{CÔNG NGHỆ THÔNG TIN}} &  \footnotesize{Tp.HCM, \today} \\ 
+		 
+	\end{tabular}
+	\begin{center}
+		{\large{\textbf{ĐỀ CƯƠNG ĐỀ TÀI LUẬN VĂN KỸ SƯ}} \par}
+	\end{center}
+	\begin{center}
+	\begin{enumerate}
+	\item 
+	\textbf{Tên đề tài:} HỆ THỐNG PHÂN LOẠI TỰ ĐỘNG.
+	\item
+	\textbf{Ngành và mã ngành đào tạo:} Ngành phát triển ứng dụng Web và di động.
+	\item
+	\textbf{Họ tên học viên thực hiện đề tài:} 	Sinh viên khóa 5 (MMTT2010)
+	\begin{flushleft}
+	\begin{tabular}{ll}
+		Họ tên SV 1: Đặng Lê Bảo Chương & MSSV: 10520010 \\
+		Họ tên SV 2: Nguyễn Bảo Duy & MSSV : 10520011
+	\end{tabular}
+	\begin{description}
+		\item[Người hướng dẫn:] TS. Nguyễn Anh Tuấn
+		\item[Địa chỉ email, điện thoại liên lạc của giảng viên hướng dẫn:] tuanna@uit.edu.vn
+	\end{description}
+	\end{flushleft}
+	\item
+	\textbf{Tổng quan tình hình nghiên cứu:} Trong nước và ngoài nước: mỗi nội dung đề cập cần có trích dẫn tài liệu, công trình; cần phân tích, đánh giá những kết quả NC mới có liên quan đến đề tài hoặc hướng NC; cần chỉ ra những gì còn tồn tại; \dotfill
+	Những NC có trước của học viên liên quan đến đề tài luận văn:\dotfill \\
+	\dotfill \\
+	\dotfill \\
+	\dotfill đến đề tài nghiên cứu.
+	
+	\item
+	\textbf{Tính khoa học và tính mới của đề tài:} Những hạn chế hiện thời, những vấn đề khoa học cần NC giải quyết và tính cấp thiết của nó, hướng giải quyết có gì mới, lợi ích khoa học và thực tiễn khi vấn đề được giải quyết: \dotfill \\
+	\dotfill \\
+	% more text here
+	
+	\item
+	\textbf{Mục tiêu, đối tượng và phạm vi nghiên cứu:} Đề tài cần hướng tới và khả năng giải quyết: Nêu cụ thể, súc tích theo từng mục; không viết chung chung, lý giải dài dòng
+	\dotfill \\
+	% more text here
+	
+	\item
+	\textbf{Nội dung, phương pháp dự định nghiên cứu:} Trình bày theo từng bước, mỗi bước cần có: mục tiêu dự kiến kết quả+, phương pháp, bố trí NC cụ thể (case-study), phương án phối hợp với các đơn vị, phòng thí nghiệm,... .Kết quả dự kiến đạt được và sẽ công bố: \dotfill \\
+	\dotfill \\
+	% more text here
+	
+	\item
+	\textbf{Kết hoạch bố trí thời gian nghiên cứu:}  Phải kết hợp nhiệm vụ NC với học tập; làm xêmina, kế hoạch làm việc với người hướng dẫn, kế hoạch viết bản thảo luận văn,... :\dotfill \\
+	\dotfill \\
+	% more text here
+	
+	\item
+	\textbf{Tài liệu tham khảo} Gồm những tài liệu có liên quan nhất với đề tài NC; ngoài những tài liệu kinh điển phải có những tài liệu cận đại (năm năm trở lại) liên quan đến đề tài.Viết theo mẫu+, và thuyết minh đề tài phải tham chiếu đến các tài liệu tham khảo này. 
+	
+	\end{enumerate}
 	\end{center}
 	
-	{\normalsize #1}
+	% more text here
+	{\let\thefootnote\relax\footnotetext{
+		\textit{\textbf{Một số lưu ý:}	Văn phong nên diễn đạt cô đọng, hình ảnh, sơ đồ, biểu bảng,.. rõ ràng; phân tích ý nghĩa nghiên cứu đề tài và về kết quả dự kiến một cách thuyết phục. Dự kiến kết quả, có thể là: Đề xuất quan điểm; Đưa ra báo cáo hiện trạng; Đề xuất các biện pháp về tổ chức, quản lý; Tạo lập được mô hình, sản phẩm, công nghệ mẫu,v.v.. Tài liệu tham khảo: viết theo dạng mẫu, là sách hay bài báo. \\
+		\begin{itemize}
+		\item Với sách tham khảo: \\
+			$[1]$ . Nguyen P. K. (2005), Flood Simulation in the Vietnam Mekong  Delta. Proceedings of the $3^{rd}$ International Symposium on Flood Defense. Taylor \& Francis Publ. ,   pp.611-616. Netherlands.
+		\item Với bài báo khoa học:\\
+			$[2]$. Hai Bang T., Ngoc Thanh N., Phi Khu N. (2011), "Fuzzy Ontology Building and Integration for Fuzzy Inference Systems in Weather Forecast Domain". LNAI 6592, the 3rd Intl Conference, ACIIDS 2011, Korea. Springer, ISSN 0302-9743, ISBN 978-3-642-20042-7.
+		\end{itemize}
+		}}				
+	}
+	\doublesignature{\textbf{NGƯỜI HƯỚNG DẪN}  \\
+							(Họ tên và chữ ký) 
+		}{			\textbf{SINH VIÊN KÝ TÊN } \\
+							(Họ tên và chữ ký)}
+	
 	\vfil\vfil\null
-	\clearpage
+	\cleardoublepage
 }
-% Nhận xét của giáo viên phản biện
-\newcommand\nhanxetcuagvphanbien[1]{
-	\btypeout{Nhận xét của giáo viên phản biện}
-%	\addtotoc{Nhận xét của giáo viên phản biện}
-	\thispagestyle{plain}
-	\begin{center}{\huge{\textbf{
-					Nhận xét của giáo viên phản biện 
-				}} \par}\end{center}
-		{\normalsize 
-			#1}
-	\vfil\vfil\null
-}
+
 \newcommand\dedicatory[1]{
 \btypeout{Dedicatory}
 \thispagestyle{plain}
