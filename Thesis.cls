@@ -396,7 +396,7 @@
 \newcommand\listofnomenclature[2]{
 \btypeout{\listnomenclature}
 %\addtotoc{\listnomenclature}
-\addtotoc{Ký hiệu} % Tiếng Việt
+\addtotoc{Ký hiệu} 
     \chapter*{\listnomenclature
       \@mkboth{
           \MakeUppercase\listnomenclature}{\MakeUppercase\listnomenclature}}
@@ -406,7 +406,6 @@
 
 \newcommand\dshoidong{
 	\btypeout{Danh sách đội đồng}
-	\addtotoc{Lời mở đầu}
 	\thispagestyle{empty}
 	\begin{center}
 		{\Large{\textbf{DANH SÁCH HỘI ĐỒNG BẢO VỆ KHÓA LUẬN}} \par}
@@ -425,18 +424,18 @@
 }
 
 % Lời mở đầu
-\newcommand\openingwords[1]{
-	\btypeout{Lời mở đầu}
-	%\addtotoc{Acknowledgements}
-%	\addtotoc{Lời mở đầu}
-	\thispagestyle{empty}
-	\begin{center}{\huge{\textbf{
-					Lời mở đầu
-				}} \par}\end{center}
-		{\normalsize #1}
-		\vfil\vfil\null
-		
-}
+%\newcommand\openingwords[1]{
+%	\btypeout{Lời mở đầu}
+%	%\addtotoc{Acknowledgements}
+%%	\addtotoc{Lời mở đầu}
+%	\thispagestyle{empty}
+%	\begin{center}{\huge{\textbf{
+%					Lời mở đầu
+%				}} \par}\end{center}
+%		{\normalsize #1}
+%		\vfil\vfil\null
+%		
+%}
 
 % Lời cảm ơn
 \newcommand\acknowledgements[1]{
