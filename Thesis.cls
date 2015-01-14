@@ -503,8 +503,8 @@
 			\textbf{Tên khóa luận} & \multicolumn{2}{l}{\small{\textbf{HỆ THỐNG PHÂN LOẠI TỰ ĐỘNG}}} \\
 		 	&& \\
 			\multicolumn{2}{l}{\textbf{Nhóm sinh viên thực hiện :}} & \textbf{{\normalsize #1 :}} \\
-			\small{Đặng Lê Bảo Chương} & \small{MSSV: 10520010} & {\small #2} \\
-			\small{Nguyễn Bảo Duy} & \small{MSSV: 10520011} &  \\		
+			\small{Đặng Lê Bảo Chương} & \small{MSSV:10520010} & {\small #2} \\
+			\small{Nguyễn Bảo Duy} & \small{MSSV:10520011} &  \\		
 	\end{tabular}
 	\begin{flushleft}
 		\hspace*{.25cm}\textbf{Đánh giá khóa luận :} 
@@ -533,7 +533,7 @@
 		\hspace*{.25cm}
 		\begin{itemize}
 			\item Đặng Lê Bảo Chương: 
-			\item Nguyễn Bảo Duy: enumerate
+			\item Nguyễn Bảo Duy: 
 		\end{itemize}	
 	\end{flushleft}
 
@@ -544,8 +544,8 @@
 	\vfil\vfil\null
  	\cleardoublepage
 }
-% Đề cương 
-\newcommand\decuong{
+% Đề cương mẫu 2
+\newcommand\decuongB{
 	\btypeout{ĐỀ CƯƠNG ĐỀ TÀI LUẬN VĂN KỸ SƯ}
 	\pagestyle{empty}
 	\begin{tabular}{cc}
@@ -555,7 +555,7 @@
 		 
 	\end{tabular}
 	\begin{center}
-		{\large{\textbf{ĐỀ CƯƠNG CHI TIẾT}} \par}
+-		{\large{\textbf{ĐỀ CƯƠNG ĐỀ TÀI LUẬN VĂN KỸ SƯ}} \par}
 	\end{center}
 	\begin{center}
 	\begin{enumerate}
@@ -570,7 +570,7 @@
 	\begin{flushleft}
 	\begin{tabular}{ll}
 		Đặng Lê Bảo Chương & MSSV: 10520010 \\
-		Nguyễn Bảo Duy & MSSV : 10520011
+		Nguyễn Bảo Duy & MSSV: 10520011
 	\end{tabular}
 	\end{flushleft}
 	\item
@@ -590,14 +590,95 @@
 	
 	\doublesignature{\textbf{Xác nhận của CBHD}  \\
 							(Ký tên và ghi rõ họ tên) 
-		}{			TP.HCM,  \today \\
-					\textbf{Sinh viên } \\
-							(Ký tên và ghi rõ họ tên)}
+		}{\textbf{Sinh viên } \\
+		(Ký tên và ghi rõ họ tên)}
 	
 	\vfil\vfil\null
 	\cleardoublepage
 }
-
+% Đề cương A
+\newcommand\decuongA{
+	\btypeout{ĐỀ CƯƠNG ĐỀ TÀI LUẬN VĂN KỸ SƯ}
+	\pagestyle{empty}
+	\begin{tabular}{cc}
+		\footnotesize{\textbf{ĐẠI HỌC QUỐC GIA TP.HỒ CHÍ MINH}} & \footnotesize{\textbf{CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM}}\\ 
+		\small{\textbf{TRƯỜNG ĐẠI HỌC}} & \small{\textbf{Độc lập - Tự do - Hạnh Phúc}} \\
+		\small{\textbf{CÔNG NGHỆ THÔNG TIN}} &  \footnotesize{Tp.HCM, \today} \\ 
+		
+	\end{tabular}
+	\begin{center}
+		{\large{\textbf{ĐỀ CƯƠNG ĐỀ TÀI LUẬN VĂN KỸ SƯ}} \par}
+	\end{center}
+	\begin{center}
+		\begin{enumerate}
+			\item 
+			\textbf{Tên đề tài:} HỆ THỐNG PHÂN LOẠI TỰ ĐỘNG.
+			\item
+			\textbf{Ngành và mã ngành đào tạo:} Ngành phát triển ứng dụng Web và di động.
+			\item
+			\textbf{Họ tên học viên thực hiện đề tài:} 	Sinh viên khóa 5 (MMTT2010)
+			\begin{flushleft}
+				\begin{tabular}{ll}
+					Họ tên SV 1: Đặng Lê Bảo Chương & MSSV: 10520010 \\
+					Họ tên SV 2: Nguyễn Bảo Duy & MSSV : 10520011
+				\end{tabular}
+				\begin{description}
+					\item[Người hướng dẫn:] TS. Nguyễn Anh Tuấn
+					\item[Địa chỉ email, điện thoại liên lạc của giảng viên hướng dẫn:] tuanna@uit.edu.vn
+				\end{description}
+			\end{flushleft}
+			\item
+			\textbf{Tổng quan tình hình nghiên cứu:} Trong nước và ngoài nước: mỗi nội dung đề cập cần có trích dẫn tài liệu, công trình; cần phân tích, đánh giá những kết quả NC mới có liên quan đến đề tài hoặc hướng NC; cần chỉ ra những gì còn tồn tại; \dotfill
+			Những NC có trước của học viên liên quan đến đề tài luận văn:\dotfill \\
+			\dotfill \\
+			\dotfill \\
+			\dotfill đến đề tài nghiên cứu.
+			
+			\item
+			\textbf{Tính khoa học và tính mới của đề tài:} Những hạn chế hiện thời, những vấn đề khoa học cần NC giải quyết và tính cấp thiết của nó, hướng giải quyết có gì mới, lợi ích khoa học và thực tiễn khi vấn đề được giải quyết: \dotfill \\
+			\dotfill \\
+			% more text here
+			
+			\item
+			\textbf{Mục tiêu, đối tượng và phạm vi nghiên cứu:} Đề tài cần hướng tới và khả năng giải quyết: Nêu cụ thể, súc tích theo từng mục; không viết chung chung, lý giải dài dòng
+			\dotfill \\
+			% more text here
+			
+			\item
+			\textbf{Nội dung, phương pháp dự định nghiên cứu:} Trình bày theo từng bước, mỗi bước cần có: mục tiêu dự kiến kết quả+, phương pháp, bố trí NC cụ thể (case-study), phương án phối hợp với các đơn vị, phòng thí nghiệm,... .Kết quả dự kiến đạt được và sẽ công bố: \dotfill \\
+			\dotfill \\
+			% more text here
+			
+			\item
+			\textbf{Kết hoạch bố trí thời gian nghiên cứu:}  Phải kết hợp nhiệm vụ NC với học tập; làm xêmina, kế hoạch làm việc với người hướng dẫn, kế hoạch viết bản thảo luận văn,... :\dotfill \\
+			\dotfill \\
+			% more text here
+			
+			\item
+			\textbf{Tài liệu tham khảo} Gồm những tài liệu có liên quan nhất với đề tài NC; ngoài những tài liệu kinh điển phải có những tài liệu cận đại (năm năm trở lại) liên quan đến đề tài.Viết theo mẫu+, và thuyết minh đề tài phải tham chiếu đến các tài liệu tham khảo này. 
+			
+		\end{enumerate}
+	\end{center}
+	
+	% more text here
+	{\let\thefootnote\relax\footnotetext{
+			\textit{\textbf{Một số lưu ý:}	Văn phong nên diễn đạt cô đọng, hình ảnh, sơ đồ, biểu bảng,.. rõ ràng; phân tích ý nghĩa nghiên cứu đề tài và về kết quả dự kiến một cách thuyết phục. Dự kiến kết quả, có thể là: Đề xuất quan điểm; Đưa ra báo cáo hiện trạng; Đề xuất các biện pháp về tổ chức, quản lý; Tạo lập được mô hình, sản phẩm, công nghệ mẫu,v.v.. Tài liệu tham khảo: viết theo dạng mẫu, là sách hay bài báo. \\
+				\begin{itemize}
+					\item Với sách tham khảo: \\
+					$[1]$ . Nguyen P. K. (2005), Flood Simulation in the Vietnam Mekong  Delta. Proceedings of the $3^{rd}$ International Symposium on Flood Defense. Taylor \& Francis Publ. ,   pp.611-616. Netherlands.
+					\item Với bài báo khoa học:\\
+					$[2]$. Hai Bang T., Ngoc Thanh N., Phi Khu N. (2011), "Fuzzy Ontology Building and Integration for Fuzzy Inference Systems in Weather Forecast Domain". LNAI 6592, the 3rd Intl Conference, ACIIDS 2011, Korea. Springer, ISSN 0302-9743, ISBN 978-3-642-20042-7.
+				\end{itemize}
+			}}				
+		}
+		\doublesignature{\textbf{NGƯỜI HƯỚNG DẪN}  \\
+			(Họ tên và chữ ký) 
+		}{			\textbf{SINH VIÊN KÝ TÊN } \\
+		(Họ tên và chữ ký)}
+	
+	\vfil\vfil\null
+	\cleardoublepage
+}
 \newcommand\dedicatory[1]{
 \btypeout{Dedicatory}
 \thispagestyle{plain}
