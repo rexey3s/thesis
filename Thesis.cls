@@ -532,19 +532,19 @@
 		\hspace*{.25cm}\dotfill\\
 		\hspace*{.25cm}\textbf{Điểm từng sinh viên:}
 		\hspace*{.25cm}
-		\begin{enumerate}
-			\item Đặng Lê Bảo Chương:
-			\item Nguyễn Bảo Duy:
-		\end{enumerate}	
+		\begin{flushleft}
+		\begin{tabular}{lll}
+			Đặng Lê Bảo Chương & \dotfill & /10 \\
+			Nguyễn Bảo Duy & \dotfill & /10 \\
+		\end{tabular}
+		\end{flushleft}
+		
 	\end{flushleft}
-
-
-
-
-
-	\doublesignature{}{
-		Người nhận xét \\
-		(Ký tên và ghi rõ họ tên) }
+	\doublesignature{}{	
+		\textbf{Người nhận xét}   \\
+		(Ký tên và ghi rõ họ tên) \\
+		\dotfill \\
+		#2 \\  }
 	
 	\vfil\vfil\null
  	\cleardoublepage

@@ -53,8 +53,8 @@
 %% ----------------------------------------------------------------
 \begin{document}
 \frontmatter      % Begin Roman style (i, ii, iii, iv...) page numbering
-\cfoot{}
-% Set up the Title Page
+\cfoot{} 
+% Set up Bìa chính
 \title{\textbf{HỆ THỐNG PHÂN LOẠI TỰ ĐỘNG}}
 %\supervisor{\texorpdfstring{TS. Nguyễn Anh Tuấn{Supervisor Name}}}
 \examiner    {}
@@ -88,7 +88,7 @@
 %% ----------------------------------------------------------------
 % Nhận xét của giáo viên phản biện
 %% ----------------------------------------------------------------
-\nhanxet{Cán bộ phản biện}{}
+\nhanxet{Cán bộ phản biện}{\dotfill}
 %% ----------------------------------------------------------------
 % Lời cảm ơn
 %% ----------------------------------------------------------------
@@ -184,19 +184,29 @@ Chúng em xin ghi nhớ công ơn sinh thành dưỡng dục của cha mẹ, s�
 %% ----------------------------------------------------------------
 \input{Chapters/intro}
 
-\input{Chapters/semanticweb_intro}
+\input{Chapters/cosolythuyet}
 
-\input{Chapters/owl2spec}
+\input{Chapters/congnghesudung}
 
-\input{Chapters/swrl_reasoning}
-
-\input{Chapters/ontology_consistency}
+\input{Chapters/xaydunghethong}
 
 \input{Chapters/owlapi_vaadin}
 
 \input{Chapters/uit_owleditor}
 
 \input{Chapters/conclusion}
+
+%\input{Chapters/semanticweb_intro}
+
+%\input{Chapters/owl2spec}
+
+%\input{Chapters/swrl_reasoning}
+
+%\input{Chapters/ontology_consistency}
+
+
+
+
 %% end chapters
 \clearpage
 %% ----------------------------------------------------------------
@@ -205,7 +215,7 @@ Chúng em xin ghi nhớ công ơn sinh thành dưỡng dục của cha mẹ, s�
 % Now begin the Appendices, including them as separate files
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 \appendix % Cue to tell LaTeX that the following 'chapters' are Appendices
-\input{Appendices/open_world_assumption}
+%\input{Appendices/open_world_assumption}
 %\input{Appendices/semanticweb_appeddix}
 \addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
 \backmatter

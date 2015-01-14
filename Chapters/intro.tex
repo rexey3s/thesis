@@ -1,17 +1,14 @@
+\chapter{Tổng quan đề tài}
+\section{Lý do chọn đề tài}
 
-\chapter {Giới thiệu đề tài}
-\section{Tên đề tài}
-Ứng dụng phân loại hàng hóa tự động
-\section{Nội dung và giới hạn đề tài}
-\subsection{Nội dung đề tài}
-Không giống với những ứng dụng phân loại đã có, trong nội dung khóa luận này chúng em đã chọn ngôn ngữ Ontology Web Languge (OWL 2) và Semantic Web Rule Languge là những công nghệ nền tảng xây dựng tính năng phân loại không chỉ hàng hóa mà bất cứ đối tượng nào có thể định nghĩa bằng các ngôn ngữ trên. Chi tiết hơn về các công nghệ trên sẽ nằm trong nội dung báo cáo này. 
+\section{Khái quát nội dung đề tài}
+\subsection{Ontology là gì ?}
+Từ \textit{Ontology} được sử dụng trong ngành khoa học thông tin và ngành khoa học máy tính dùng để chỉ một mô hình hay hệ thống có khả năng biểu diễn hay thể hiện các đối tượng trong một lĩnh vực nào đó thông qua các định nghĩa về loại (phân lớp), thuộc tính và mối quan hệ giữa các đối tượng đó với nhau. Các mô hình ontologies thường được phát triển và sử dụng trong các lĩnh vực như trí tuệ nhân tạo, Web Ngữ nghĩa, phát triển phần mềm, công nghệ thông tin - sinh học, ... nhằm giảm sự phức tạp và tổ chức một khối lượng thông tin lớn và có nhiều ngữ nghĩa. Ngoài ra ontology còn có khả năng ứng dụng vào việc giải quyết vấn đề (problem solving).
+\subsection{Ứng dụng vào đề tài}
+Không giống với những ứng dụng phân loại đã có, trong nội dung khóa luận này chúng em đã chọn ngôn ngữ Ontology Web Languge và Semantic Web Rule Languge là những công nghệ nền tảng xây dựng tính năng phân loại không chỉ hàng hóa mà bất cứ đối tượng nào có thể định nghĩa bằng các ngôn ngữ trên. Chi tiết hơn về các công nghệ trên sẽ nằm trong nội dung báo cáo này. 
 Trong quá trình nghiên cứu và tìm hiểu về các ngôn ngữ Ontology Web Language 2 (OWL 2), Semantic Web Rule Language (SWRL) vốn là nền tảng lý thuyết để xây dựng ứng dụng phân loại tự động, chúng em nhận thấy rằng để phát triển một mô hình Ontology dựa trên các loại ngôn ngữ nêu đòi hỏi phải xây dựng một trình biên tập các dữ liệu OWL 2, SWRL (chúng em sẽ trình bày rõ hơn trong nội dung của báo cáo). Trên thực tế, cũng đã có sẵn một số trình biên tập OWL 2 trên môi trường desktop như Protege, Swoop, hoặc trên môi trường web có WebProtege, tuy nhiên những trình biên tập này đã xuất hiện khá lâu, và một vài chương trình trong số đó đã ngừng phát triển hoặc không còn được cập nhật những thư viện mới nhất. Với những nguyên nhân kể trên, chúng em quyết định không sử dụng lại những trình biên tập đã cũ, mà sẽ tự xây dựng một ứng dụng biên tập và phát triển các OWL 2 Ontology, sau đó sử dụng các ontology này để trình bày quá trình phân loại tự động.
-%OWL ( Web Ontology Language ) là một dạng ngôn ngữ biểu diễn tri thức. Ngôn ngữ này thường được sử dụng phổ biến trong Semantic Web, và được trình bày dưới dạng RDF-XML. Ngày 27 tháng 10 năm 2009, tổ chức W3C (World Wide Web Consortium) cho công bố OWL 2, với trình biên tập Protégé và các bộ reasoner như Pellet, HermiT, v.v .
-%\\
-%OWL và Semantic Web hiện đang được nghiên cứu và phát triển, nhằm nhanh chóng đưa vào sử dụng, vì những lợi ích rất đáng kể của nó, được ví như là công nghệ web phiên bản 3.0. Do đó, nhóm quyết định nghiên cứu về OWL, về phương thức hoạt động của các bộ reasoner, và đặc biệt là thiết kế một trình chỉnh sửa OWL trên web với giao diện thân thiện và dễ sử dụng, với các tính năng gần như đầy đủ so với chương trình Protégé. 
-%\\
-%Chắc chắn trong vài năm sắp tới, Semantic Web sẽ phát triển ngày càng lớn mạnh hơn, dần dần thay đổi phương thức tiếp cận và lưu trữ dữ liệu trên web. Vậy nên, việc tìm hiểu và nghiên cứu về ngôn ngữ OWL - một trong những thành phần quan trọng của Semantic Web, có thể coi như một bước “đón đầu công nghệ”, nhằm mục đích sẵn sàng thích nghi với sự chuyển biến không ngừng của thế giới công nghệ thông tin.
-\\
+\section{Đối tượng và phạm vi nghiên cứu của đề tài}
+Trong phạm vi của đề tài, chúng em chỉ xây dựng một ứng dụng biên tập ontology trong môi trường web và trình bày tính năng phân loại của ngôn ngữ OWL2, SWRL. Tính năng phân loại chỉ mang tính chất là một bản mẫu thực nghiệm, chứng minh các lý thuyết mà các công nghệ mới như OWL2 Ontology mang lại, chúng không có mục đích thay thế các hệ thống phân loại đang hoạt động và sử dụng rộng rãi.
 Đề tài khóa luận đã làm những việc sau:
 \begin{itemize}
 \item Tìm hiểu về Semantic Web .
@@ -21,17 +18,13 @@ Trong quá trình nghiên cứu và tìm hiểu về các ngôn ngữ Ontology W
 \item Tìm hiểu về Vaadin Framework.
 \item Xây dựng thành công một trình biên tập OWL2 Ontology online với các tính năng biên tập ontology, suy luận reasoning, và hỗ trợ phân loại.
 \end{itemize}
-\subsection{Giới hạn của đề tài}
-Trong phạm vi của đề tài, chúng em chỉ xây dựng một ứng dụng biên tập ontology trong môi trường web và trình bày tính năng phân loại của ngôn ngữ OWL2, SWRL. Tính năng phân loại chỉ mang tính chất là một bản mẫu thực nghiệm, chứng minh các lý thuyết mà các công nghệ mới như OWL2 Ontology mang lại, chúng không có mục đích thay thế các hệ thống phân loại đang hoạt động và sử dụng rộng rãi.
-\subsection{Cấu trúc luận văn}
-Luận văn được chia thành các chương sau:
+
+\subsection{Cấu trúc của khóa luận}
+Khóa luận được chia thành các chương với nội dung như sau
 \begin{enumerate}
-\item Giới thiệu đề tài
-\item Web ngữ nghĩa - Semantic Web: Giới thiệu về Semantic Web
-\item Ontology Web Language: những kiến thức nên tảng về Ontology Web Language, đây là cơ sở lý thuyết để chúng em xây dựng ứng dụng
-\item Semantic Web Rule Language: những kiến thức cơ bản về Semantic Web Rule Language.
-\item Tính nhất quán trong Ontology: kiến thức về tính nhất quán, một tính chất bắt buộc để thực hiện suy luận.
-\item Các thư viện lập trình OWLAPI, Pellet Reasoner, SWRLAPI và Vaadin framework sử dụng trong ứng dụng.
-\item Xây dựng UIT-OWL Editor: Xây dựng trình biên tập ontology
+\item Tổng quan đề tài
+\item Cơ sở lý thuyết
+\item Các công nghệ sử dụng
+\item Xay dựng hệ thống phân loại
 \item Kết luận 
 \end{enumerate}
