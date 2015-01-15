@@ -367,7 +367,7 @@
 }\end{spacing}
 }
 
-\newcommand\listsymbolname{Các từ viết tắt}
+\newcommand\listsymbolname{Danh sách các từ viết tắt}
 \usepackage{longtable}
 \newcommand\listofsymbols[2]{
 \btypeout{\listsymbolname}
@@ -391,7 +391,7 @@
     \cleardoublepage
 }
 
-\newcommand\listnomenclature{Ký hiệu}
+\newcommand\listnomenclature{Danh sách ký hiệu}
 \usepackage{longtable}
 \newcommand\listofnomenclature[2]{
 \btypeout{\listnomenclature}
@@ -528,11 +528,13 @@
 		\end{enumerate}
 		\hspace*{.25cm}\textbf{Đánh giá chung}: \dotfill\\
 		\hspace*{.25cm}\dotfill\\
+		\hspace*{.25cm}\dotfill\\
+		\hspace*{.25cm}\dotfill\\
 		\hspace*{.25cm}\textbf{Điểm từng sinh viên:}
 		\hspace*{.25cm}
 		\begin{itemize}
-			\item Đặng Lê Bảo Chương: 
-			\item Nguyễn Bảo Duy: 
+			\item Đặng Lê Bảo Chương: $.......$/10
+			\item Nguyễn Bảo Duy: 	$.......$/10
 		\end{itemize}	
 	\end{flushleft}
 
@@ -563,7 +565,7 @@
 	\item
 	\textbf{Cán bộ hướng dẫn:} TS. NGUYỄN ANH TUẤN.
 	\item
-	\textbf{Thời gian thực hiện:} Từ ngày \dotfill đến ngày \dotfill
+	\textbf{Thời gian thực hiện:} Từ ngày 5/9/2014 đến ngày 19/1/2015
 	\item
 	\textbf{Sinh viên thực hiện:}
 	\begin{flushleft}
@@ -573,16 +575,26 @@
 	\end{tabular}
 	\end{flushleft}
 	\item
-	\textbf{Nội dung đề tài:} \dotfill \\
-	\dotfill \\
-	\dotfill \\
-	\dotfill 
+	\textbf{Nội dung đề tài:} Xây dựng chương trình chỉnh sửa ontology với các tính năng gần như tương tự với chương trình Protege, qua đó giúp người dùng thiết kế được một ontology. Hơn nữa, chương trình cung cấp một cơ chế phân loại tự động, đưa ra các câu hỏi gợi ý cho người dùng trả lời, sau đó tổng hợp kết quả để đánh giá cá thể đó.
 	
 	\item
-	\textbf{Kế hoạch thực hiện:}  \dotfill \\
-	\dotfill \\
-	\dotfill \\
-	\dotfill 
+	\textbf{Kế hoạch thực hiện:} 
+	\begin{itemize}
+	\item
+	Tìm hiểu và nghiên cứu về Semantic Web, chi tiết ngôn ngữ OWL.
+	\item
+	Tìm hiểu chương trình Protege, sau đó xây dựng một ontology mẫu sử dụng Protege.
+	\item
+	Tìm hiểu và nghiên cứu ngôn ngữ SWRL Rule, và cơ chế hoạt động của Reasoner, từ đó xây dựng nên cách thức phân loại tự động.
+	\item
+	Tìm hiểu và nghiên cứu tính nhất quán của ontology, và tổng hợp các cơ chế khắc phục từ các bài báo khoa học.
+	\item
+	Tìm hiểu về Vaadin Framework, sử dụng làm nền tảng để xây dựng ứng dụng UIT-OWL Editor.
+	\item
+	Thiết kế và hiện thực ứng dụng UIT-OWL Editor.
+	\item
+	Viết báo cáo và hoàn thành đề tài khoá luận.
+	\end{itemize}
 	
 	\end{enumerate}
 	\end{center}
