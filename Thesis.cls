@@ -424,18 +424,18 @@
 }
 
 % Lời mở đầu
-%\newcommand\openingwords[1]{
-%	\btypeout{Lời mở đầu}
-%	%\addtotoc{Acknowledgements}
-%%	\addtotoc{Lời mở đầu}
-%	\thispagestyle{empty}
-%	\begin{center}{\huge{\textbf{
-%					Lời mở đầu
-%				}} \par}\end{center}
-%		{\normalsize #1}
-%		\vfil\vfil\null
-%		
-%}
+\newcommand\openingwords[1]{
+	\btypeout{Lời mở đầu}
+	%\addtotoc{Acknowledgements}
+%	\addtotoc{Lời mở đầu}
+	\thispagestyle{empty}
+	\begin{center}{\LARGE{\textbf{
+					Lời mở đầu
+				}} \par}\end{center}
+		{\normalsize #1}
+		\vfil\vfil\null
+	\clearpage
+}
 
 % Lời cảm ơn
 \newcommand\acknowledgements[1]{
@@ -448,13 +448,12 @@
 				}} \par}
 \end{center}
 
-{\normalsize #1} 
-
-
+{\normalsize #1}
 \bigskip
-\doublesignature{}{Sinh viên thực hiện khóa luận \\
-	Đặng Lê Bảo Chương \& Nguyễn Bảo Duy\\
-}
+	\doublesignature{}
+		{Sinh viên thực hiện khóa luận \\
+		Đặng Lê Bảo Chương \& Nguyễn Bảo Duy\\
+	}
 \vfil\vfil\null
 \clearpage
 }
