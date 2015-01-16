@@ -193,13 +193,13 @@ R.~Reiter, ``A theory of diagnosis from first principles,'' \emph{Artificial
 
 \bibitem[pro()]{protege}
 \BIBentryALTinterwordspacing
-``Protege destop.'' [Online]. Available:
+``Protege desktop.'' [Online]. Available:
   \url{https://github.com/protegeproject/protege/}
 \BIBentrySTDinterwordspacing
 
 \bibitem[vaa({\natexlab{a}})]{vaadindirectory}
 \BIBentryALTinterwordspacing
-``Vaadin book.'' [Online]. Available: \url{https://vaadin.com/directory}
+``Vaadin directory.'' [Online]. Available: \url{https://vaadin.com/directory}
 \BIBentrySTDinterwordspacing
 
 \bibitem[vaa({\natexlab{b}})]{vaadinarchitecture}
