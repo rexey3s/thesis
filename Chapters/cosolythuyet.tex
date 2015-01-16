@@ -5,14 +5,15 @@
 % 	Semantic Web
 %% ----------------------------------------------------------------
 \section{Semantic Web}
-Như chúng ta đã biết hệ thống Web hiện tại mà chúng ta được sử dụng được gọi là Web 2.0 thì Semantic Web hay còn gọi là Web ngữ nghĩa được các nhà nghiên cứu kỳ vọng sẽ trở thành Web 3.0 trong tương lai gần với đặc trưng riêng biệt là phương thức liên kết dữ liệu (linked data) giữa các hệ thống hoặc các thực thể cho phép thể hiện được nhiều hơn, và rõ ràng hơn mối liên kết giữa các dữ liệu trên mạng lưới web toàn cầu. Cụ thể hơn, Semantic Web có khả năng chuyển đổi văn bản HTML của con người (human readable HTML documents) sang ngôn ngữ máy tính (machine readable documents), giúp cho máy tính làm được nhiều công việc suy nghĩ hơn cho con người \cite{semantic1}. 
-\\
-Ngày nay, đa phần dữ liệu trên web được cung cấp dưới dạng trang web (web pages) - văn bản HTML được liên kết với nhau bằng các liên kết (hyperlinks). Cả người và máy tính đều có thể dễ dàng đọc hiểu những văn bản đó, tuy nhiên thay vì dễ dàng tìm kiếm những từ khoá trong trang web, máy tính lại gặp trở ngại khi chọn lọc những ý nghĩa trong các văn bản đó. Một trang web chứa rất nhiều thông tin, nhưng những thông tin đó không phải là những thông tin thô - mà chỉ là những văn bản HTML được xây dựng từ cơ sở dữ liệu. Vậy nên Semantic Web đã thay đổi hướng nhìn và đưa ra giải pháp cho vấn đề ở trên theo nhiều cách khác nhau :
-\begin{itemize}
-	\item Chuyển những trang web dữ liệu thành những tiến trình xử lý thông minh nhân tạo (giúp trang web phải “suy nghĩ” để xử lý giúp con người).
-	\item Khuyến khích các công ty, các doanh nghiệp và các cá nhân trình bày dữ liệu tự do hơn, theo một quy chuẩn mở.
-	\item Khuyến khích các doanh nghiệp sử dụng dữ liệu đã có sẵn trên web.
-\end{itemize}
+Như chúng ta đã biết hệ thống Web hiện tại mà chúng ta được sử dụng được gọi là Web 2.0 thì Semantic Web hay còn gọi là Web ngữ nghĩa được các nhà nghiên cứu từ tổ chức World Wide Web Consortium (W3C) kỳ vọng sẽ trở thành Web 3.0 trong tương lai gần. Semantic Web khuyến khích tích hợp đặc tính ngữ nghĩa vào các tài nguyên Web hiện có bằng việc đặt ra mục tiêu chuyển đổi hệ thống Web hiện tai - vốn được hình thành từ những dữ liệu không được tổ chức hoặc chỉ được tổ chức một phần - thành một tập hợp dữ liệu, tài nguyên thống nhất (A Web of Data). Để làm được việc đó, tổ chức W3C đó đề ra những quy ước chung cho các thành phần của Semantic Web. Mục tiêu cuối cùng mà Semantic Web như trong phát biểu của ngài Tim Berners-Lee - người phát minh ra WWW: "Semantic Web cung cấp một bộ công cụ thống nhất (framework) để dữ liệu có thể được chia sẻ, tái sử dụng giữa các ứng dụng với nhau, giữa các doanh nghiệp, tổ chức hay trong cộng đồng người dùng web với nhau" \cite{semantic3}. Sau đây, chúng em xin giới nguyên lý và các thành phần của Semantic Web.
+%. với đặc trưng riêng biệt là phương thức liên kết dữ liệu (linked data) giữa các hệ thống hoặc các thực thể cho phép thể hiện được nhiều hơn, và rõ ràng hơn mối liên kết giữa các dữ liệu trên mạng lưới web toàn cầu. Cụ thể hơn, Semantic Web có khả năng chuyển đổi văn bản HTML của con người (human readable HTML documents) sang ngôn ngữ máy tính (machine readable documents), giúp cho máy tính làm được nhiều công việc suy nghĩ hơn cho con người \cite{semantic1}. 
+%\\
+%Ngày nay, đa phần dữ liệu trên web được cung cấp dưới dạng trang web (web pages) - văn bản HTML được liên kết với nhau bằng các liên kết (hyperlinks). Cả người và máy tính đều có thể dễ dàng đọc hiểu những văn bản đó, tuy nhiên thay vì dễ dàng tìm kiếm những từ khoá trong trang web, máy tính lại gặp trở ngại khi chọn lọc những ý nghĩa trong các văn bản đó. Một trang web chứa rất nhiều thông tin, nhưng những thông tin đó không phải là những thông tin thô - mà chỉ là những văn bản HTML được xây dựng từ cơ sở dữ liệu. Vậy nên Semantic Web đã thay đổi hướng nhìn và đưa ra giải pháp cho vấn đề ở trên theo nhiều cách khác nhau :
+%\begin{itemize}
+%	\item Chuyển những trang web dữ liệu thành những tiến trình xử lý thông minh nhân tạo (giúp trang web phải “suy nghĩ” để xử lý giúp con người).
+%	\item Khuyến khích các công ty, các doanh nghiệp và các cá nhân trình bày dữ liệu tự do hơn, theo một quy chuẩn mở.
+%	\item Khuyến khích các doanh nghiệp sử dụng dữ liệu đã có sẵn trên web.
+%\end{itemize}
  
 \subsection{Semantic Web dựa trên giả định thế giới mở (Open World Assumption)} 
 Với đặc điểm của thông tin trên Web là những thông tin luôn luôn cần được thêm vào hay chỉnh sửa (thông tin trên web cũng giống như kiến thức vì thế nó sẽ không bao giờ bị giới hạn) nên thay vì chọn tuân theo giả định thế giới đóng (Closed World Assumption - CWA), vốn đã tồn tại rất lâu trong các cơ sở dữ liệu quan hệ (SQL), các nhà nghiên cứu đã chọn giả định thế giới mở làm nguyên lý cho mọi lý thuyết và định nghĩa của Semantic Web. Một so sánh ngắn gọn giữa giả định Thế Giới Mở (Open World Assumption - OWA)\cite{OWA_0} được Semantic Web chấp nhận và giả định Thế Giới Đóng (CWA).
@@ -45,14 +46,13 @@ Khái niệm "Semantic Web" thường được sử dụng cụ thể hơn nhằ
 %\end{itemize}
 
 Hình Semantic Web Stack \cite{semantic3} miêu tả kiến trúc của Semantic Web:
-
 \begin{enumerate}
-	\item XML cung cấp một cú pháp cơ bản nhất cho nội dung bên trong tài liệu, và không có liên quan gì đến mặt ngữ nghĩa mà nội dụng nó chứa. XML không phải là một thành phần cần thiết trong các công nghệ Semantic Web trong hầu hết các trường hợp, tồn tại cú pháp thay thế khác như Turle \textsuperscript{*}. 
-	\item XML Schema là một ngôn ngữ dùng để cung cấp và hạn chế cấu trúc nội dung của các thành phần nằm trong tài liệu XML, nói cách khác nó giúp chúng ta đáng giá nội dung mà tài liệu đó chứa là gì. Ví dụ: OWL/XML vs. RDF/XML
-	\item RDF \cite{rdf} là một ngôn ngữ đơn giản dùng để diễn tả các mô hình dữ liệu (ở đây muốn chỉ đến các nguồn dữ liệu web) và mối quan hệ của chúng. Một mô hình dựa theo RDF có thể được biểu diễn bằng nhiều cú pháp khác nhau, vd: RDF/XML, N3, Turtle và RDFa. Có thể nói RDF chính là thành phần cơ bản và quan trọng nhất của Semantic Web.
-	\item RDF Schema \cite{rdfs} mở rộng RDF và là từ vựng để đặc tả các thuộc tính và lớp trong các tài nguyên dựa trên RDF, với ngữ nghĩa dựa trên các việc tạo ra nhiều phân cấp lớp và thuộc tính.
-	\item OWL thêm nhiều từ vựng hơn để diễn các thuộc tính và lớp, và điểm quan trọng của nó là thêm các từ vựng để đặc tả mối quan hệ giữa các lớp với nhau. Ví dụ: ranh giới riêng biệt giữa các lớp với nhau (disjointness), các quy định với số lượng (cardinality), cung cấp nhiều loại dữ liệu cho các thuộc tính, và các đặc tính của các thuộc tính (đối xứng/ bất đối xứng, và các lớp liệt kê, ...).
-	\item SPARQL là một giao thức và ngôn ngữ truy vấn dữ liệu dành cho tài nguyên của Semantic Web.
+	\item \textbf{XML} là định dạng tài liệu chính để lưu trữ các mô hình dữ liệu, thông tin mà Semantic Web diễn đạt. Ngoài XML cũng tồn tại các định dạng thay thế khác như Turle \textsuperscript{*}. 
+	\item \textbf{XML Schema} quy định tiêu chuẩn cho các tài liệu Semantic Web, có thể ví nó như phần mở rộng trong tên tập tin, giúp phân biệt các tiêu chuẩn, các loại tài liệu Semantic khác nhau như OWL/XML, RDF/XML.
+	\item \textbf{Resource Description Framework} (RDF) \cite{rdf} là ngôn ngữ đầu tiên được quy định bởi W3C để diễn tả các mô hình dữ liệu và mối quan hệ của chúng. RDF có thể được lưu trữ dưới nhiều dạng định dạng khác nhau  ví dụ như: RDF/XML, N3, Turtle và RDFa. Có thể nói RDF chính là thành phần cơ bản và quan trọng nhất của Semantic Web.
+	\item \textbf{RDF Schema} (RDFS) \cite{rdfs} mở rộng RDF bằng những vốn từ vựng mới dùng miêu tả các thuộc tính và phân lớp trong các tài nguyên web hay mô hình dữ liệu được biểu diễn bằng RDF.
+	\item \textbf{Ontology Web Language} (OWL) là ngôn ngữ với cú pháp hoàn toàn mới dùng với mục tiêu tương tự RDFS, tuy nhiên ngoài việc biểu diễn được lớp, thuộc tính như RDFS, OWL còn có khả năng các mối quan hệ giữa các đối tượng trong mô hình dữ liệu chi tiết hơn nhiều. Ví dụ: quy định các lớp không được phép có chung cá thể nào (disjointness), các phát biểu ràng buộc số lượng (cardinality), cung cấp nhiều loại dữ liệu cho các thuộc tính, và mô tả được thuộc tính bằng các tính chất (đối xứng/ bất đối xứng, và các lớp liệt kê, ...).
+	\item SPARQL là một giao thức và ngôn ngữ truy vấn dữ liệu dành cho tài nguyên của Semantic Web (RDF, RDFS, OWL).
 	\item RIF (W3C Rule Interchange Format) là một ngôn ngữ XML để biểu diễn điều luật web mà máy tính có thể thực thi.
 \end{enumerate}
 {\let\thefootnote\relax\footnotetext{*\textit{
@@ -64,18 +64,16 @@ Hình Semantic Web Stack \cite{semantic3} miêu tả kiến trúc của Semantic
 % 	Ontology Web Language 
 %% ----------------------------------------------------------------
 \section{Ontology Web Language 2}
-Được giới thiệu trong các thành phần của Web Ngữ nghĩa, nhiệm vụ của Ontology Web Language (OWL) là đem lại đặc tính ngữ nghĩa cho Semantic Web. OWL được tổ chức W3C khuyến khích sử dụng vì những thành phần từ vựng mới của nó giúp đặc tả các thực thể trong một lĩnh vực nào đó hiệu quá hơn so với RDFS hay RDF. Phiên bản OWL hiện thời là phiên bản 2 \cite{owl2}. Về mặt lý thuyết, OWL là một ngôn ngữ ontology tuân theo Description Logic (DL) $SROIQ_{(D)}$ \cite{DL}, với ưu điểm là ngoài  khả năng đặc tả vừa nêu, nó còn biểu diễn được những suy luận được suy ra từ những đặc tả được khai báo.
+Là một thành phần chính của Semantic Web, nhiệm vụ của Ontology Web Language (OWL) chính là một Semantic Web. OWL được tổ chức W3C khuyến khích sử dụng vì những thành phần từ vựng mới của nó giúp đặc tả các thực thể trong một lĩnh vực nào đó hiệu quá hơn so với RDFS hay RDF. Phiên bản OWL hiện thời là phiên bản 2 \cite{owl2}. Về mặt lý thuyết, OWL là một ngôn ngữ ontology tuân theo Description Logic (DL) $SROIQ_{(D)}$ \cite{DL}, với ưu điểm là ngoài  khả năng đặc tả vừa nêu, nó còn biểu diễn được những suy luận được suy ra từ những đặc tả được khai báo. Khả năng suy luận của OWL chính là điểm quyết định cho tính khả thi của hệ thống phân loại tự động.
 \subsection{Đặc điểm tổng quan}
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=120mm]{Figures/owl2structure.png}
+	\includegraphics[width=130mm]{Figures/owl2structure.png}
 	\caption{Cấu trúc của OWL 2\label{overflow}}
 \end{figure}
-Hình trên cho chúng ta cái nhìn tổng quan về các định dạng file, các loại cú pháp và các khả năng serialization thành RDF Graph của Ontology. Chúng ta thấy trong hình, hình eclipse ở giữa thể hiện khái niệm trừu tượng của một ontology, có thể hiểu là một cấu trúc trừu tượng hay một đồ thi RDF. Chúng ta có thể dùng nhiều cú pháp để biểu diễn ontology và định dạng chúng dưới dạng file khác nhau (Syntex layer trong hình), các định dạng và cú pháp này hoàn toàn có thể chuyển đổi qua lại với nhau. Lớp ngữ nghĩa trong hình (semantic layer) cho thấy ngữ nghĩa được quy định theo 2 tiêu chuẩn kỹ thuật khác nhau là Direct Semantics và RDF-Based Semantics.
-\subsubsection{Ontologies}
-Bất kì ontology OWL2 nào đều có thể được định dạng như một đồ thị RDF (RDF Graph). Mối quan hệ giữa 2 cách này được quy định bởi các tài liệu Mapping to RDF Graphs document [\href{http://www.w3.org/TR/owl2-overview/#ref-owl-2-rdf-mapping}{OWL 2 RDF Mapping}] \cite{mapping_rdf_graph}, trong tài liệu này định nghĩa rất rõ ràng một bảng map từ định dạng cấu trúc của ontology qua đồ thị RDF, và ngược lại. 
-\subsubsection{Cú pháp}
-Trong thực tế, một cú pháp cụ thể rất cần thiết để lưu trữ các OWL2 Ontologies và để trao đổi chúng giữa các công cụ và ứng dụng khác nhau. Cú pháp đầu tiên có khả năng hoán đổi là RDF/XML [\href{http://www.w3.org/TR/owl2-overview/#ref-rdf-syntax}{RDF Syntax}] \cite{rdfxml}. Ngoài RDF/XML có khả năng cung cấp khả năng tương tác giữa nhiều ứng dụng OWl2 khác nhau, các loại cú pháp khác đều có thể được sử dụng. 
+Hình trên cho chúng ta cái nhìn tổng quan về các định dạng tài liệu, các loại cú pháp và các khả năng chuyển đổi thành RDF Graph của Ontology. Trong hình, hình ê-líp ở giữa thể hiện các khái niệm mà một ontology muốn thể hiện, các thông tin này có khả năng chuyển đổi qua lại thành định dạng đồ thị RDF \cite{mapping_rdf_graph} (RDF Graph - là định dạng chính trong các cơ sở dữ liệu đồ thị ngữ nghĩa). Ontology có thể được biểu diễn dưới nhiều dạng cú pháp và lưu trữ dưới nhiều dạng tài liệu khác nhau (Syntax Layer trong hình), các định dạng và cú pháp này hoàn toàn có thể chuyển đổi qua lại với nhau. Lớp ngữ nghĩa trong hình (Semantic Layer) cho thấy ngữ nghĩa được quy định theo 2 tiêu chuẩn kỹ thuật khác nhau là Direct Semantics và RDF-Based Semantics.
+\subsubsection{Cú pháp và định dạng}
+Cú pháp cần thiết cho việc biểu diễn hay xây dựng ontology, định dạng cần cho việc lưu trữ và trao đổi giữa các ứng dụng với nhau.Trong OWL, mỗi định dạng tài liệu sẽ gắn liền với một loại tài liệu. Định dạng/cú pháp chính của OWL là RDF/XML [\href{http://www.w3.org/TR/owl2-overview/#ref-rdf-syntax}{RDF Syntax}] \cite{rdfxml}. Ngoài ra, còn có các định dạng/cú pháp khác cũng nằm trong quy định của tổ chức W3C.
 %Dưới đây là bảng so sánh và liệt kê các cú pháp.
 %\begin{table}[H]
 %	\begin{tabular}{ |p{3cm}|p{4cm}|p{2cm}|p{4cm}|}
@@ -100,7 +98,7 @@ Trong thực tế, một cú pháp cụ thể rất cần thiết để lưu tr�
 %	\end{tabular}
 %	\caption{Bảng so sánh các cú pháp của OWL2\label{overflow}}
 %\end{table}
-\subsection{Một số ví dụ của các syntax}
+\subsection{Một số ví dụ của các định dạng/cú pháp khác nhau}
 
 \textbf{Functional Syntax}
 \begin{verbatim}
@@ -143,23 +141,24 @@ Class: Cow  # Khái báo lơp chung với lớp con
 
 \subsubsection{Ontology IRI và Version IRI}
 Mỗi ontology đều có thể gồm \textit{một ontology IRI} \cite{iri} \textsuperscript{*} (Internationalized Resource Identifier), dùng để định danh cho ontology. Nếu một ontology có một ontology IRI, thì ontology này có thể có thêm một version IRI, dùng để xác định phiên bản cho ontology này. Version IRI có thể trùng hoặc không nhất thiết phải trùng với ontology IRI. Một ontology không có ontology IRI thì không có version IRI.
-Dưới đây là những quy ước chọn ontology IRIs và version IRIs trong OWL2. Những đặc điểm kỹ thuật này không cung cấp cơ chế nào để làm chúng phải được tuân theo trên toàn hệ thống web. Tuy nghiên, những công cụ hay ứng dụng OWl2 \textit{nên} sử dụng những quy ước này để dễ dàng tìm ra lỗi trong những ontology mà chúng xử lý.
+%Dưới đây là những quy ước chọn ontology IRIs và version IRIs trong OWL2. Những đặc điểm kỹ thuật này không cung cấp cơ chế nào để làm chúng phải được tuân theo trên toàn hệ thống web. Tuy nghiên, những công cụ hay ứng dụng OWl2 \textit{nên} sử dụng những quy ước này để dễ dàng tìm ra lỗi trong những ontology mà chúng xử lý.
 {\let\thefootnote\relax\footnotetext{*\textit{
 			Internationalized Resource Identifier: giao thức bổ sung cho Uniform Resource Universal Character Set (Unicode/ISO 10646).}}
 }
-\begin{itemize}
-	\item Nếu một ontology có một ontology IRI nhưng không có version IRI, thì \textit{không nên tồn tại} một ontology với trùng ontology IRI vừa đặt.
-	\item Nếu một ontology có một ontology IRI và một version IRI, thì \textit{không nên tồn tai} một ontology khác với trùng ontology IRI và version IRI vừa đặt.
-	\item Tất cả các cách kết hợp khác của ontology IRI và version IRI không cần đòi hỏi tính duy nhất (unique). Như vậy 2 ontologies khác nhau có thể không có ontology IRI và version IRI; tương tự, một ontology chưa một ontology IRI có thể cùng tồn tại cùng với một ontology khác có cùng ontology IRI vừa đặt \textbf{và} các version IRI của các ontologies này \textbf{phải} khác nhau.
-\end{itemize}
-Ontology IRI và các version IRI kết hợp với nhau giúp định danh một phiên bản cụ thể của của ontology từ một bộ chứa tất cả các phiên bản của một ontology cụ thể nào đó được định danh chung bằng ontology IRI. Trong mỗi bộ ontology như vậy, sẽ có chính xác một ontology được dùng như một ontology hiện hành - khi dùng ontology IRI để truy vấn ontology mà không đề cập đến version IRI, mặc định ontology có verison IRI hiện hành sẽ được trả về.
+%\begin{itemize}
+%	\item Nếu một ontology có một ontology IRI nhưng không có version IRI, thì \textit{không nên tồn tại} một ontology với trùng ontology IRI vừa đặt.
+%	\item Nếu một ontology có một ontology IRI và một version IRI, thì \textit{không nên tồn tai} một ontology khác với trùng ontology IRI và version IRI vừa đặt.
+%	\item Tất cả các cách kết hợp khác của ontology IRI và version IRI không cần đòi hỏi tính duy nhất (unique). Như vậy 2 ontologies khác nhau có thể không có ontology IRI và version IRI; tương tự, một ontology chưa một ontology IRI có thể cùng tồn tại cùng với một ontology khác có cùng ontology IRI vừa đặt \textbf{và} các version IRI của các ontologies này \textbf{phải} khác nhau.
+%\end{itemize}
+\\
+Ontology IRI và các version IRI kết hợp với nhau giúp định danh một phiên bản cụ thể của của ontology từ một bộ chứa tất cả các phiên bản của một ontology cụ thể nào đó được định danh chung bằng ontology IRI. Trong mỗi bộ ontology như vậy, sẽ có chính xác một ontology được xác định như một ontology hiện hành - khi dùng ontology IRI để truy vấn ontology mà không đề cập đến version IRI, mặc định ontology có verison IRI hiện hành sẽ được trả về.
 
 
 \subsubsection{Thực thể, trực nghĩa và cá thể ẩn danh - Entities, Literals and Anonymous Individuals}
 Các thực thể (entities) là thành phần cơ bản nhất của OWL2 Ontology, chúng định nghĩa các từ vựng - cụ thể là những đặt tên ra các khái niệm (named term) - của một ontology. Bên cạnh các thực thể, OWL 2 ontologies thường có thêm các trực nghĩa (literals), như strings hay integers.
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=150mm, height=80mm]{Figures/entities.png}
+	\includegraphics[width=155mm, height=80mm]{Figures/entities.png}
 	\caption{Entities, Literals, Anonymous Individuals trong OWL2 \label{overflow}}
 \end{figure}
 \\
@@ -974,7 +973,7 @@ Chúng ta có diễn giải sau đây \textit{MyFavouriteCat} tương đương \
 %\textbf{Giải thích} \texttt{Vegetarian} hoặc không phải \texttt{Vegetarian} - bất kỳ phát biểu nào dạng này, "cá thể thuộc hoặc không thuộc một lớp" chỉ tất cả cá thể tồn tại trong ontology. Dòng thứ hai yêu cầu cá thể vừa là Cow vừa không phải là Cow, phát biểu này rơi vào một trong các nguyên nhân vừa nêu ở trên. Tổng hợp lại chúng yêu cầu tất cả cá thể vừa là Cow vừa không phải Cow, điều này gây ra mâu thuẫn trên toàn ontology do phát biểu đầu tiên chỉ tới tất cả các cá thể.
 
 \paragraph{Kết luận}
-Trên đây chúng em đã liệt kê những nguyên nhân phổ biến dẫn đến thiếu nhất quán qua những ví dụ đã được đơn giản hoá để dễ dàng nắm bắt được đâu là căn nguyên gây ra sự mâu thuẫn về logic. Trên thực tế với những ontology có số lượng phát biểu lớn và phức tạp rất khó để người dùng có thể nhận diện được đâu là các phát biểu mâu thuẫn trước khi nó gây ra sự thiếu nhất quán. Chúng ta thường sử dụng các công cụ phổ biến để tìm các lớp không hợp lý là debugger (được hỗ trợ trong các thư viện OWL-API, Pellet, Jena) và trên hết là sự cẩn thận của người phát triển ontology để hạn chế việc gây ra tính thiếu nhất quán trong ontology. Trong quá trình tìm hiểu chúng em cũng có đọc được các bài báo hay trong đó đề ra các giải pháp để sửa chữa các lớp bất hợp lý và tìm giải thích cho chúng, tuy nhiên do trong phạm vi khóa luận chúng em cũng không thể giới thiệu được, thầy cô và các bạn có thể tham khảo thêm ở \cite{repair}, \cite{axiomPinpoint} và \cite{matt_horridge}.
+Trên đây chúng em đã liệt kê những nguyên nhân phổ biến dẫn đến thiếu nhất quán qua những ví dụ đã được đơn giản hoá để dễ dàng nắm bắt được đâu là căn nguyên gây ra sự mâu thuẫn về logic. Trên thực tế với những ontology có số lượng phát biểu lớn và phức tạp rất khó để người dùng có thể nhận diện được đâu là các phát biểu mâu thuẫn trước khi nó gây ra sự thiếu nhất quán. Chúng ta thường sử dụng các công cụ phổ biến để tìm các lớp không hợp lý là debugger (được hỗ trợ trong các thư viện OWL-API, Pellet, Jena) và trên hết là sự cẩn thận của người phát triển ontology để hạn chế việc gây ra tính thiếu nhất quán trong ontology. Trong quá trình tìm hiểu chúng em cũng có đọc được các bài báo hay trong đó đề ra các giải pháp để sửa chữa các lớp bất hợp lý và tìm giải thích cho chúng, tuy nhiên do trong phạm vi khóa luận chúng em cũng không thể giới thiệu được, thầy cô và các bạn có thể tham khảo thêm ở \cite{repair}, \cite{axiomPinpoint} và \cite{matt_horridge}. Trên đây là toàn bộ những kiến thức đã tìm hiểu được mà chúng em tin rằng chúng nếu không nắm được chúng thì việc phát triển ontology và thao tác với thư viện lặp trình liên quan đến ngôn ngữ OWL sẽ gặp rất nhiều khó khắn.
 
 %% ----------------------------------------------------------------
 % Kết thúc  Ontology Consistency 
@@ -1111,3 +1110,90 @@ Trên đây chúng em đã liệt kê những nguyên nhân phổ biến dẫn �
 %\paragraph{Justification Reuse} - Cách quan trọng thứ hai để tối ưu là sử dụng lại các kiểm chứng. Trong phiên bản không tối ưu sử dụng ở ví dụ ontology $\beta$ ở trên, kiểm chứng được tìm ra nhờ các giải thuật Blackbox hay Glassbox cho từng node $v$ được thêm vào cây. Kiểm chứng hay tập các phát biểu được sử dụng để dán nhãn $v$, được tính toán dựa trên $O \backslash S$, với $S$ là tập các nhãn trên đường đi từ $v$ về root node. Thay vì dùng Glassbox hay Blackbox để tính $J$ trong $O \backslash S$, chúng ta có thể làm theo cách sau: nếu HST chứa vài node khác $v^{'}$ mà được dán nhãn với kiểm chứng $J$, và $S$ không giao (có phần tử chung) với $J$ thì $J$ có thể được sử dụng làm nhãn cho $v$. Lý do là vì khi $J\subseteq$ $O$ và $S\cap J = \emptyset$ thì sẽ tồn tại trường hợp $J\subseteq O \backslash S$, từ đó $J$ được tính như một kiểm chứng cho để có thể dán nhãn $v$. Sử dụng lại các phát biểu chứng minh (hay kiểm chứng) sẽ giúp tiết kiệm nhiều lời gọi hàm không cần thiết tới Blackbox hoặc Glassbox từ đó tăng được hiệu năng.
 %\\
 %\paragraph{Kết luận} Tính năng vừa trình bày \textit{Tìm tất cả các giải thích cho kết quả suy luận}, kĩ thuật \textit{Axiom Pinpoint} và \textit{BlackBox} được đã được được các tác giả của bài báo \cite{matt_horridge} và \cite{axiomPinpoint}, đưa vào thư viện lập trình cho OWL-API sẽ được giới thiệu trong chương sau. Trên đây là toàn bộ những kiến thức đã tìm hiểu được mà chúng em tin rằng chúng nếu không nắm được chúng thì việc phát triển ontology và thao tác với thư viện lặp trình liên quan đến ngôn ngữ OWL sẽ gặp rất nhiều khó khắn.
+%% ----------------------------------------------------------------
+% Nền tảng và các thư viện lập trình sử dụng
+%% ----------------------------------------------------------------
+\section{Nền tảng và các thư viện lập trình sử dụng}
+\textbf{Giới thiệu} Trong phần này, chúng em xin giới thiệu khái quát qua nền tảng và các thư viện lập trình (API) được sử dụng để xây dựng hệ thống. Các thư viện sử dụng gồm có OWLAPI \cite{owlapi}, SWRL-API \cite{swrlapi}, Pellet \cite{pellet} và nền tảng web sử dụng - Vaadin Framework.
+\subsection{Vaadin Framework }
+\paragraph{Giới thiệu} Vaadin Framework là nền tảng xây dựng một ứng dụng web trên Java được thiết kế giúp tạo ra một ứng dụng web chất lượng cao một cách dễ dàng nhất - tập trung chủ yếu vào one-page web application. Không giống như những framework web hiện nay đòi hỏi lập trình viên phải có kiến thức về HTML5, Javascript và ít nhất một ngôn ngữ back-end. Vaadin giúp chúng ta tạm quên việc đi việc phải viết các client Javascript hay từng dòng HTML để xây dựng giao diện người dùng - nói cách khác nó làm cho công việc phát triển front-end trở nên cực kì đơn giản, dễ hình dung nhất là việc phát triển một ứng dụng web trên Vaadin cũng tương tự khi chúng ta phát triển một ứng dụng desktop thông thường với các công cụ Java như AWT, Swing, hay SWT hoặc window form với C\verb|#|(C-Sharp).  Với Vaadin, để phát triển được toàn bộ một ứng dụng, ngôn ngữ duy nhất chúng ta cần nắm đó là Java. Một ví dụ minh họa về tính đơn giản trong khi sử dụng Vaadin:
+\begin{verbatim}
+Button button = new Button("Demo");
+button.addClickListener( new ClickListener() {
+layout.addComponent(new Label("The button was clicked"));
+}
+\end{verbatim}
+Đây là kết quả:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=80mm]{Figures/vaadin_democlick.png}
+	\caption{Vaadin Demo Click\label{overflow}}
+\end{figure}
+Thử nhìn lại nếu chúng ta xây dựng cùng chức năng trên dù là thủ công hay sử dụng các framework Web thông thường thì đều cần phải có một client script đảm nhận việc bắt sự kiện click của người dùng ở browser (front-end) và truyền nó lên server, ngay khi server nhận được (phải có đoạn code ở server "back-end" để xử lý thông tin click truyền lên từ browser), server sẽ trả về thông báo "The button was clicked", rồi front-end javascript phải thêm hay chèn một đoạn text "The button was clicked" vào HTML. Với Vaadin tác vụ vừa mô tả được thực hiện bằng đoạn code trên một cách đơn giản và dễ hiểu hơn rất nhiều.
+\subsubsection{Kiến trúc}
+Vaadin hỗ trợ 2 mô hình lập trình: client và server. Mô hình lập trình phía server mạnh mẽ hơn. Mô hình lập trình phía server đảm nhận phần giao diện trên trình duyệt và giao tiếp AJAX giữa trình duyệt và server - hay nói cách khác các giao tiếp giữa server-client nhằm hỗ trợ những thao tác của người dùng đã được xử lý bởi framework và được cài đặt vào bên trong các \textit{Component} của Vaadin. Trong phạm vi ứng dụng mà chúng em xây dựng chỉ sử dụng những thành phần server - chỉ sử dụng các \textit{Component} mà Vaadin cung cấp, cộng với một vài plugin (được viết sẵn cho Vaadin) từ Vaadin Directory \cite{vaadindirectory} để giúp việc phát triển nhanh chóng hơn. 
+%\\
+%Hình sau mô tả kiến trúc cơ bản của một ứng dụng web trên Vaadin Framework. Kiến trúc ứng dụng phía server bao gồm nền tảng server (Server-side framework) và hệ thống phía client (Client-side engine). 
+%\begin{figure}[ht!]
+%	\centering
+%	\includegraphics[width=80mm]{Figures/vaadin_architecture0.png}
+%	\caption{Kiến trúc của Vaadin\label{overflow}}
+%\end{figure}
+
+\paragraph{Web Server} gồm các thành phần:
+\begin{description}
+	\item[Components] Các \textit{Built-in Components}, \textit{Add-on Components} đều là những thành phần được xây dựng sẵn bởi Vaadin hoặc được cung cấp dưới dạng các add-on từ Vaadin Directory \cite{vaadindirectory} nhằm giúp việc phát triển UI nhanh chóng hơn. Chúng đảm nhiệm back-end code để giao tiếp với các \textit{Built-in Widgets}, \textit{Add-on Widgets} ở phía browser (client side).
+	\item[UI Logic, Service và Custom Components] là những phần mà lập trình viên phải tự viết code để cài đặt các tác vụ tương tác mà họ mong muốn, tuy nhiên Vaadin cũng cung cấp các abstract class, interface để hỗ trợ việc này. 
+	\item[Back-end] Trong một ứng dụng thông thường thì đây chính là nơi để xử lý giao tiếp với các đối tượng trong cơ sở dữ liệu - nơi thực hiện các thao tác Create Read Update Delete (CRUD).
+\end{description}
+\paragraph{Client-Side Engine} gồm các thành phần:
+\begin{description}
+	\item[Built-in Widgets] Đây chính là thành phần Client-side của \textit{Built-in Components} đảm nhiệm bắt các sự kiện của người dùng với browser và giao tiếp với các \textit{Built-in Components} ở server.
+	\item[Add-on Widgets] là client-side của \textit{Add-on Components}.
+	\item[Custom-Widgets] là client-side của \textit{Custom Components}.
+\end{description}
+%Toàn bộ các thành phần ở Client-side Engine đều được xây dựng bằng JavaScript. Đây là một ưu thế so với các nền tảng trên Flash, Java Applets hay các plugins khác. Vaadin dựa trên sự hỗ trợ của Google Web Toolkit cho nhiều trình duyệt khác nhau, nên lập trình viên không cần lo lắng về sự tương thích của các trình duyệt cho ứng dụng của mình.
+%\\
+%Như đã nói ở trên, không giống với các framework web khác là tách biệt front-end và back-end thành 2 phần riêng biệt, Vaadin làm điều ngược lại đó là đem cả hai thành phần đó tích hợp vào \textit{Vaadin Components}, ở hình trên chúng ta sẽ thấy một \textit{Vaadin Component} sẽ gồm một \textit{Widget} ở client-side  và một \textit{Component} tương ứng ở server side. Phân tích ví dụ Demo Click ở bên trên :
+%\begin{itemize}
+%	\item \textbf{Vaadin Component} chính là một Vaadin Component.
+%	\item \textbf{UILogic} chính là \textit{layout.addComponent(new Label("The button was clicked"));}
+%\end{itemize}
+
+Tóm lại, Vaadin cung cấp sẵn gần như đầy đủ mọi thành phần UI chúng ta cần để phát triển một ứng dụng web tương tác tốt với người dùng một cách nhanh chóng và tiện lợi. Chúng ta sẽ giảm bớt được công việc khi phải viết Javascript, HTML cho cliend-side khi sử dụng các Vaadin UI Components.
+\\
+Tuy là tích hợp mọi thứ vào UI components của mình, Vaadin tách biệt UI Logic với các thiết kế giao diện. Điều này đồng nghĩa bên cạnh một giao diện mặc định rất tốt của Vaadin chúng ta có thể thiết kế giao diện một cách dễ dàng thông qua các file CSS hoặc cũng có thể tự định nghĩa HTML Template cho riêng mình \textsuperscript{*}. 
+{\let\thefootnote\relax\footnotetext{*\textit{
+			Vaadin Theme: https://vaadin.com/book/-/page/themes.html}}
+}
+%%
+\subsection{Thư viện lập trình OWLAPI}
+Thư viện lập trình Ontology Web Language là một thư viện mã nguồn mở (phát hành dưới 2 giấy phép \textbf{LGPL} và \textbf{Apache}) \cite{owlapi} được viết bằng Java với mục đích hỗ trợ các lập trình viên phát triển các ứng dụng có liên quan đến OWL 2 Ontology. Tính đến thời điểm hiện tại thư viện đã được phát triển đến phiên bản 4.0 - cũng là phiên bản được sử dụng trong ứng dụng của chúng em.
+Thư viện có các thành phần chính như sau: 
+\begin{itemize}
+	\item API để tương tác với các thành phần của OWL 2 được đề cập trong chương 2.
+	\item Renderer và Parser (dùng đọc và ghi OWL 2 Ontology) nhiều dạng cú pháp khác nhau đã đề cập ở chương 2 như \textit{RDF/XML}, \textit{OWL/XML}, \textit{OWL Functional Syntax}, \textit{Manchester OWL Syntax} và \textit{Turtle}.
+	\item Reasoner Interfaces hỗ trợ các loại reasoners khác nhau nhằm phục vụ cho việc suy luận.
+\end{itemize}
+Danh sách các Ontology Reasoner được hỗ trợ trong phiên bản 4.0: FaCT++, Hermit, Pellet \cite{pellet}, JFact.
+Các đối thành phần (thực thể, mô tả lớp/thuộc tính,...) được giải thích trong lúc giới thiệu OWL 2 đều đươc OWL-API mô hình hóa thành các đối trượng trong Java, với tiếp đầu ngữ \textit{OWL} + tên thành phần. Ví dụ:
+\begin{verbatim}
+Class              -> OWLClass  #Lớp
+ObjectProperty     -> OWLObjectProperty # thuộc tính đối tượng
+OWLClassExpression -> OWLClassExpression # Mô tả lớp
+\end{verbatim} 
+Tương tự cho các thành phần OWL 2 khác.
+\subsection{Pellet Reasoner}
+Như đã đươc nhắc đến nhiều lần trong báo cáo, suy luận được xem là một điểm đáng giá nhất của ngôn ngữ OWL2. Tuy nhiên, việc suy luận ra các phát biểu hàm ý rõ ràng không phải là một việc dễ dàng nếu chúng ta thực hiện thủ công bằng cách đọc và hiểu các phát biểu như đã làm trong chương 2. Sử dụng Reasoner sẽ làm cho công việc suy ra các mảnh thông tin ẩn chứa bên trong Ontology trở nên dễ dàng hơn rất nhiều, có rất nhiều reasoner được phát triển để thực hiện tác vụ này. Trong số đó Pellet \cite{pellet} là một thư viện tối ưu nhất và một ưu điểm đặc biệt là khả năng suy luận từ những SWRL Rule. Pellet có thể được sử dụng với OWL-API thông qua reasoner Interface của OWL-API.
+\begin{verbatim}
+OWLReasonerFactory rf; // OWLReasoner là inteface reasoner của OWL-API
+OWLReasonerFactory rf = PelletReasonerFactory.getInstance();
+OWLReasoner rs = rf.createReasoner(ontology, new SimpleConfiguration());
+\end{verbatim}
+\subsection{SWRL API}
+SWRL API được xây dựng bởi nhóm phát triển dự án Protege \cite{protege} với mục tiêu tổ chức các SWRL Rule theo tên nhằm dễ dàng quản lý, đồng thời họ cũng giới thiệu SQWRL \cite{swrlapi} một ngôn ngữ truy vấn dành cho Ontology. Trong nội dung báo cáo, chúng em chỉ sử dụng tính năng SWRL Rule của SWRLAPI các tính năng còn lại có thể được tham khảo tại \cite{swrlapi}. Các tính năng mà chúng em sử dụng gồm render, parse SWRL Rule và thêm/xóa SWRL Rule theo tên của chúng. Một ví dụ nhanh về cách sử dụng API này với OWL-API:
+\begin{verbatim}
+OWLOntology ont = // load ontology ../
+// Convert OWLOntology -> SWRLAPIOWLOntology
+SWRLAPIOWLOntology SWRLOnt =  SWRLAPIFactory.createOntology(ont);
+\end{verbatim}
