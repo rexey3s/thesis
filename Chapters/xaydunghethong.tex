@@ -360,7 +360,6 @@ Trong hình trên mỗi bước sẽ tương ứng với những phát biểu c�
 Ontology được xây dựng phục vụ nhu cầu demo hệ thống phân loại tự động, nên có một vài điểm không bám sát theo đúng với thực tế.
 \subsection{Các lớp trong transport.owl (không bao gồm OWL Thing)}
 \begin{itemize}
-\item Lớp HoverCraft
 \item Lớp Cargo : hàng hoá
 \item Lớp Vehicle: phương tiện
 		\begin{itemize}
@@ -368,6 +367,7 @@ Ontology được xây dựng phục vụ nhu cầu demo hệ thống phân lo�
 			\begin{itemize}
 			\item Lớp Boat : thuyền
 			\item Lớp Vessel
+			\item Lớp Cruiser
 			\end{itemize}
 		\item Lớp Aircraft : phương tiện đường hàng không
 			\begin{itemize}
@@ -383,9 +383,13 @@ Ontology được xây dựng phục vụ nhu cầu demo hệ thống phân lo�
 				\item Lớp Bike : xe đạp
 				\item Lớp Car : xe hơi
 				\item Lớp Motorcycle : xe máy
-				\item ớp Bus : xe bus
+				\item Lớp Bus : xe bus
 			\end{itemize}	
 		\item Lớp RailwayTransport : phương tiện đường sắt
+			\begin{itemize}
+				\item Lớp ExpressTrain
+				\item Lớp Metro
+			\end{itemize}
 		\end{itemize}
 \item Lớp People : con người
 	\begin{itemize}
@@ -395,12 +399,17 @@ Ontology được xây dựng phục vụ nhu cầu demo hệ thống phân lo�
 	\end{itemize}
 \item Lớp Vehicle Component : bộ phận của phương tiện
 	\begin{itemize}
+	\item Lớp Axile
+	\item Lớp Body
 	\item Lớp Wing : cánh
 	\item Lớp Wheel : bánh xe
 	\item Lớp RotorSystem : hệ thống rô-tơ
 	\item Lớp Engine : động cơ
 	\item Lớp Weapon : vũ khí
 	\item Lớp Rotor : rô-tơ
+	\item Lớp RotorSystem : hệ thống rô-tơ
+	\item Lớp Wagon : hàng hoá
+	\item Lớp Sprocket
 	\end{itemize}
 \end{itemize}
 \subsection{Các thuộc tính đối tượng trong transport.owl (không bao gồm OWL TopObjectProperty)}
@@ -434,11 +443,3 @@ Ontology được xây dựng phục vụ nhu cầu demo hệ thống phân lo�
 \end{itemize}
 
 \paragraph{Kết luận} Qua chương này, chúng em đã trình bày về các tính năng nổi bật mà một trình biên soạn Ontology phải có, đồng thời chúng em cũng đã trình bày về những khả năng phân loại mà ngôn ngữ OWL2, SWRL mang lại qua những tính năng suy luận, giải thích và hỗ trợ phân loại. Ở chương kế và cũng là cuối cùng, chúng em xin dành để tổng hợp lại những kết quả đã làm được, những mặt khó khăn, thuận lợi và những hạn chế còn tồn tại, và hơn nữa là hướng phát triển tương lai của công nghệ này.
-
-
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=130mm]{Figures/uml_statechart_eventbus_nobackground.png}
-	\caption{Tính năng hỗ trợ phân loại trong UIT-OWL Editor (phần 3)\label{overflow}}
-\end{figure}
