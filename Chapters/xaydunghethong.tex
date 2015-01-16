@@ -13,7 +13,7 @@ Lớp \textit{OWLEditorUI} thừa kế từ lớp \textit{UI} của Vaadin chín
 \end{enumerate}
 %
 \subsection{Các view chính}
-Ứng dụng UIT-OWLEditor chỉ gồm 2 View chính: 
+Ứng dụng UIT-OWL Editor chỉ gồm 2 View chính: 
 \begin{description}
 \item[Entry View] tương đương với lớp \textit{vn.edu.uit.owleditor.EntryView} trong mã nguồn, là nơi nhận đầu vào URL của file OWL2 Ontology hoặc tải lên (upload) file OWL2 Ontology với các định dạng được trình bày trong chương 2. Khi load được ontology \textit{EntryView} sẽ lưu đối tượng \textit{OWLEditorKit} lại trong \textit{HttpSession} phòng trường hợp người dùng mất kết nối với ứng dụng.
 \begin{figure}[h!]
@@ -353,7 +353,7 @@ Trong hình chỉ miêu tả những rule nào có liên quan đến lớp \text
 	\frame{\includegraphics[width=145mm]{Figures/owleditor_demo3.png}}
 	\caption{Tính năng hỗ trợ phân loại trong UIT-OWL Editor (phần 3)\label{overflow}}
 \end{figure}
-Trong hình trên mỗi bước sẽ tương ứng với những phát biểu có liên quan đến \textit{OnRoadAndOffRoadVehicle} như trong sơ đồ. Miền dữ liệu (Range) của thuộc tính dữ liệu và thuộc tính đối tượng cũng sẽ được áp dụng nhằm giảm bớt những thông tin không cần thiết, thuộc tính \textit{hasNumberOfSeats} có DataPropertyRange( xsd:int) nên ở cột bên phải chúng ta chỉ thấy kiểu dữ liệu này thay vì là một loạt kiểu dữ liệu như xsd:string, xsd:byte, v.v... . Khi đến bước cuối cùng, reasoner sẽ đánh giá lại các thông tin mà chúng ta vừa nhập vào ở các bước trước để đưa kết quả phân loại phù hợp như đã được biểu diễn trong sơ đồ.
+Trong hình trên mỗi bước tương ứng với những phát biểu có liên quan đến \textit{OnRoadAndOffRoadVehicle} như trong sơ đồ. Miền dữ liệu (Range) của thuộc tính dữ liệu và thuộc tính đối tượng cũng sẽ được áp dụng nhằm giảm bớt những thông tin không cần thiết, thuộc tính \textit{hasNumberOfSeats} có DataPropertyRange( xsd:int) nên ở cột bên phải chúng ta chỉ thấy kiểu dữ liệu này thay vì là một loạt kiểu dữ liệu như xsd:string, xsd:byte, v.v... . Khi đến bước cuối cùng, reasoner sẽ đánh giá lại các thông tin mà chúng ta vừa nhập vào ở các bước trước để đưa kết quả phân loại phù hợp như đã được biểu diễn trong sơ đồ.
 
 \section{Xây dựng một ontology để trình bày quá trình phân loại}
 \textbf{Giới thiệu} Transport.owl là một ontology do nhóm tự xây dựng nên, đối tượng chủ yếu là các phương tiện giao thông đường bộ, đường thuỷ, đường hàng không, bên cạnh đó là các bộ phận của phương tiện như động cơ, hệ thống rô-tơ,... các đối tượng liên quan như hàng hoá, hành khách, bộ phận của phương tiện, ... .
