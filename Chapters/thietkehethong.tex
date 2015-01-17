@@ -3,20 +3,20 @@
 \section{Giải thích về việc lựa chọn nền tảng sử dụng}
 Như đã được trình bày ở mục trên, Vaadin Framework là một nền tảng xây dựng Web dựa trên ngôn ngữ Java, nhưng không giống với phần lớn các framework Web khác vốn hoạt động theo mô hình Model-View-Controller (MVC). Vaadin chỉ cung cấp một bộ gồm rất nhiều UI Component có sẵn (đã được giải thích ở mục trước) làm cho việc xây dựng giao diện được đơn giản hóa một cách tối đa. Vì thế, lập trình viên sẽ không cần phải quan tâm nhiều đến HTML, JavaScript và ít phải quan tâm đến CSS, điều này giúp tập trung vào việc xây dựng logic của hệ thống tốt hơn. Việc thiết kế cho hệ thống này trên nền web sẽ tương tự như khi thiết kế một ứng dụng GUI trên nên Desktop nhờ có Vaadin.
 \section{Thiết kế Use Case của hệ thống}
-Trước tiên, chúng em giới thiệu một cách tổng quan về cách hệ thống hoạt động.
+Trước tiên, chúng em xin giới thiệu một cách tổng quan về hoạt động của hệ thống.
  \begin{figure}[ht!]
  	\centering
  	\includegraphics[width=155mm,height=170mm]{Figures/usecase.png}
  	\caption{Sơ đồ Use Case của hệ thống \label{overflow}}
  \end{figure}
 \section{Thiết kế giao diện phác thảo}
-Hệ thống hay ứng dụng sẽ gồm 2 view chính: view đầu tiên tạm gọi là EntryView dùng để nạp/tạo mới các tài liệu OWL 2. View thứ hai chính là view chính của ứng dụng gọi làm MainView cho phép thực hiện việc chỉnh sửa ontology, thực hiện suy luận (phục vụ cho tính năng phân loại). 
+Hệ thống hay ứng dụng sẽ gồm 2 view chính: view đầu tiên tạm gọi là EntryView dùng để nạp/tạo mới các tài liệu OWL 2. View thứ hai là view chính của ứng dụng, gọi là MainView cho phép thực hiện việc chỉnh sửa ontology, thực hiện suy luận (phục vụ cho tính năng phân loại tự động). 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=150mm,height=95mm]{Figures/ui_entryview.png}
 	\caption{Phác thảo Entry View \label{overflow}}
 \end{figure}
-MainView sẽ gồm nhiều tab, mỗi loại thực thể (gồm lớp, thuộc tính đối tượng, thuộc tính dữ liệu, cá thể) và SWRL Rule sẽ được tổ chức thành từng tab với tên tương ứng. 
+MainView sẽ gồm nhiều tab, mỗi loại thực thể (gồm lớp, thuộc tính đối tượng, thuộc tính dữ liệu, cá thể) và SWRL Rule sẽ được tổ chức thành từng tab với tên tương ứng. Ngoài ra, còn có thêm 2 tab khác là tab Demo (demo tính năng phân loại tự động) và tab Diagram (sơ đồ phân cấp các thực thể của Ontology).
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=150mm,height=95mm]{Figures/ui_mainview.png}
