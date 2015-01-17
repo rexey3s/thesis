@@ -118,7 +118,7 @@ Trong Vaadin Framework, dữ liệu trong lúc một ứng dụng đang ở tron
 
 \section{Thiết kế cách xử lý sự kiện}
 \subsection{Sử dụng Guava EventBus}
-Do hệ thống có nhiều tab cộng với các cửa sổ nhỏ (mô tả trong mục phác thảo giao diện), nên chúng em sẽ không áp dụng cách xử lý sự kiện truyền thống trong Java cho toàn hệ thống, một giải pháp thay thế mà chúng em sử dụng là thư viện Guava EventBus một nhánh nhỏ của thư viện Guava phát triển bởi Google \cite{guava}. Với Guava EventBus, mọi thành phần giao diện sẽ đăng ký các phương thức Subscriber - mỗi subscriber sẽ xử lý cho một loại sự kiện cụ thể -  với EventBus trong lúc khởi tạo hoặc hậu khởi tạo, sau đó EventBus lắng nghe mọi sự kiện được công bố lên eventBus bằng phương thức \textit{post}, cuối cùng EventBus bắt sự kiện và truyền sự kiện này đến đúng cho Subscriber nào đã đăng ký xử lý loại sự kiện này lúc đầu (Hình 3.14).
+Do hệ thống gồm nhiều tab và các cửa sổ nhỏ (mô tả trong mục phác thảo giao diện), nên chúng em sẽ không áp dụng cách xử lý sự kiện truyền thống trong Java cho toàn hệ thống. Thay vào đó chúng em sử dụng một giải pháp thay thế là thư viện Guava EventBus - một nhánh nhỏ của thư viện Guava phát triển bởi Google \cite{guava}. Với Guava EventBus, mọi thành phần giao diện sẽ đăng ký các phương thức Subscriber - mỗi subscriber sẽ xử lý cho một loại sự kiện cụ thể -  với EventBus trong lúc khởi tạo hoặc hậu khởi tạo, sau đó EventBus lắng nghe mọi sự kiện được công bố lên eventBus bằng phương thức \textit{post}, cuối cùng EventBus bắt sự kiện và truyền sự kiện này đến đúng cho Subscriber nào đã đăng ký xử lý loại sự kiện này lúc đầu (Hình 3.14).
 \begin{figure}[h!]
 	\centering
 	\includegraphics[height=115mm]{Figures/uml_eventbus_sequence.png}
@@ -140,7 +140,7 @@ EventBus có thể được sử dụng qua một lớp static với các phươ
 \item Không có kiểu trả về (return void).
 \end{itemize}
 \subsection{Các loại sự kiện trong hệ thống}
-Do EventBus sẽ dự vào loại Event để truyền đến đúng Subscriber cụ thể. Vì thế các loại sự kiện trong hệ thống sẽ được chúng em phân thành 3 loại dạng là thêm (add/create), xóa(remove), sửa (edit/modify) và phân thành 2 loại lớn là các sự kiện liên quan tới các thực thể và các sự kiện liên quan đến các phát biểu.
+Do EventBus sẽ dựa vào loại Event để truyền đến đúng Subscriber cụ thể. Vì thế các loại sự kiện trong hệ thống sẽ được chúng em phân thành 3 loại dạng là thêm (add/create), xóa(remove), sửa (edit/modify) và phân thành 2 loại lớn là các sự kiện liên quan tới các thực thể và các sự kiện liên quan đến các phát biểu.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=150mm]{Figures/uml_entity_event.png}
