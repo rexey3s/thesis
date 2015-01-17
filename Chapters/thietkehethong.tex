@@ -113,4 +113,41 @@ Trong Vaadin Framework, dữ liệu trong lúc một ứng dụng đang ở tron
 	\caption{Tổ chức các lớp, thuộc tính thành HierarchicalContainer \label{overflow}}
 \end{figure}
 \textbf{Container} là cấu trúc \textit{Data Model} phức tạp và cao nhất, chúng được chia thành các loại khác nhau tương ứng với tính chất của cấu trúc dữ liệu như \textit{HierarchicalContainer} dùng cho các cấu trúc dữ liệu phân cấp được hỗ trợ trong các thành phần giao diện (UI Component) như \textit{Table}, \textit{Tree}, \textit{ComboBox} và \textit{ListSelect}, đơn giản hơn có \textit{IndexedContainer} dùng cho cấu trúc dữ liệu dạng danh sách được hỗ trợ bởi \textit{ComboBox} và \textit{ListSelect} và \textit{JPAContainer} dùng cho các dữ liệu dạng SQL Table - hỗ trợ bở \textit{Table}, \textit{TreeTable}. Trong ứng dụng, chúng em chỉ sử dụng \textit{HierarchicalContainer} để tổ chức các lớp, thuộc tính đối tượng hay dữ liệu vì chúng cũng có tính chất phân cấp (SubClassOf, SubPropertyOf). Ở đây chúng em cũng xây dựng một AbstractClass rồi mở rộng ra với từng loại OWLEntity tương ứng là OWLClass, OWLObjectProperty và OWLDataProperty (Hình 3.13).
+
 \section{Thiết kế cách xử lý sự kiện}
+\subsection{Sử dụng Guava EventBus}
+Do hệ thống có nhiều tab cộng với các cửa sổ nhỏ (mô tả trong mục phác thảo giao diện), nên chúng em sẽ không áp dụng cách xử lý sự kiện truyền thống trong Java cho toàn hệ thống, một giải pháp thay thế mà chúng em sử dụng là thư viện Guava EventBus một nhánh nhỏ của thư viện Guava phát triển bởi Google \cite{guava}. Với Guava EventBus, mọi thành phần giao diện sẽ đăng ký các phương thức Subscriber - mỗi subscriber sẽ xử lý cho một loại sự kiện cụ thể -  với EventBus trong lúc khởi tạo hoặc hậu khởi tạo, sau đó EventBus lắng nghe mọi sự kiện được công bố lên eventBus bằng phương thức \textit{post}, cuối cùng EventBus bắt sự kiện và truyền sự kiện này đến đúng cho Subscriber nào đã đăng ký xử lý loại sự kiện này lúc đầu (Hình 3.14).
+\begin{figure}[h!]
+	\centering
+	\includegraphics[height=115mm]{Figures/uml_eventbus_sequence.png}
+	\caption{EventBus Sequence Diagram \label{overflow}}
+\end{figure}
+\\
+UIComponent có thể được khai báo subscriber bằng Annotation @Subscriber cung cấp bởi thư viện Guava như sau:
+\begin{verbatim}
+public class SubscriberComponent {
+  public SubscriberComponent { EventBus.register(this); }
+  @Subscriber public void eventHandler(SpecificEventType event) { 
+  	// các thay đổi được áp dụng ở đây  }
+}
+\end{verbatim}
+EventBus có thể được sử dụng qua một lớp static với các phương thức register, post, unregister. Phương thức được chọn làm subscriber phải đáp ứng các yêu cầu sau đây:
+\begin{itemize}
+\item Khai báo public
+\item Có duy nhất một tham số là sự kiện (event).
+\item Không có kiểu trả về (return void).
+\end{itemize}
+\subsection{Các loại sự kiện trong hệ thống}
+Do EventBus sẽ dự vào loại Event để truyền đến đúng Subscriber cụ thể. Vì thế các loại sự kiện trong hệ thống sẽ được chúng em phân thành 3 loại dạng là thêm (add/create), xóa(remove), sửa (edit/modify) và phân thành 2 loại lớn là các sự kiện liên quan tới các thực thể và các sự kiện liên quan đến các phát biểu.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=150mm]{Figures/uml_entity_event.png}
+	\caption{Các sự kiện của các cá thể\label{overflow}}
+\end{figure}
+Tên của các sự kiện cho cá thể gồm phần đầu là tên loại thực thể (Class, ObjectProperty, ...) và phần sau là động từ nói lên đó là sự kiện thêm, xóa hay sửa (Hình 3.15).
+\begin{figure}[h!]
+	\centering
+	\includegraphics[height=97mm]{Figures/uml_axiom_event.png}
+	\caption{Sự kiện cho các loại phát biểu \label{overflow}}
+\end{figure}
+Đối với sự kiện dành cho các phát biểu, tên của chúng gồm phần đầu nói lên loại phát biểu mà sự kiện đó đang xử lý và phần sau là động từ nói lên hành động thêm, xóa hay sửa (Hình 3.16).
