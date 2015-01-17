@@ -257,4 +257,109 @@ Tóm lại, mọi thao tác lên ontology đều từ bất kì thành phần gi
 \section{Xây dựng một ontology để trình bày quá trình phân loại}
 \textbf{Giới thiệu} Transport.owl \cite{owleditorSrc} là một ontology do nhóm tự xây dựng nên, đối tượng chủ yếu là các phương tiện giao thông đường bộ, đường thuỷ, đường hàng không, bên cạnh đó là các bộ phận của phương tiện như động cơ, rô-tơ,... các đối tượng liên quan như hàng hoá, hành khách, bộ phận của phương tiện, ... .Ontology được thiết kế nhằm biểu diễn đặc tính phân loại của OWL 2 và SWRL, nên có một vài điểm không bám sát theo đúng với thực tế. Sau đây chúng em xin được miêu tả ontology này.
 \subsection{Cấu trúc phân lớp của ontology}
+\subsubsection{Lớp}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=155mm,height=105mm]{Figures/transport_cls.png}
+	\caption{Các lớp trong ontology transport.owl\label{overflow}}
+\end{figure}
+Các lớp mở rộng ra là lớp con của lớp (node trong hình) trước nó.
+\subsubsection{Thuộc tính đối tượng}
+\begin{table}[ht!]
+	\centering
+\begin{tabular}{|p{3cm}|l|p{3cm}|p{3cm}|p{3cm}|}
+\hline
+ObjectProperty & Transitive & Domain & Range & Inverse \\ \hline
+canCarry & & Vehicle & Cargo or People & canBeCarriedBy \\ \hline
+isPartOf & x & Vehicle or VehicleComponent & Vehicle or VehicleComponent & hasParts \\ \hline
+canBeCarriedBy & & Cargo or People & Vehicle & canCarry \\ \hline
+control &  & People & Vehicle & isControlledBy \\ \hline
+hasParts & x & Vehicle or VehicleComponent & Vehicle or VehicleComponent & isPartOf \\ \hline
+ hasWing & & WingAircraft & Wing & \\ \hline
+ hasEngine & & Vehicle & VehicleComponent & \\ \hline
+ hasRotor & & Helicopter & Rotor & \\ \hline
+ isControlledBy & & Vehicle & People & control \\
+\hline
+\end{tabular}
+\caption{Bảng các thuộc tính đối tượng trong ontology transport \label{overflow}}  
+\end{table}
+Trong bảng 3.1 thì \textit{hasWing}, \textit{hasEngine} và \textit{hasRotor} là thuộc tính con của \textit{hasParts}.
+\subsubsection{Thuộc tính dữ liệu}
+\begin{table}[ht!]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+DataProperty & Functional & Domain & Range \\ \hline
+canCarryNumberOfPassenger & x & Vehicle & positiveInteger \\ \hline
+canCarryTheAmountOfCargo & x & Vehicle & positiveInteger  \\ \hline
+hasNumberOfSeats & x & Vehicle & positiveInteger \\ \hline
+hasNumberOfWheels & x & RoadVehicle & positiveInteger  \\ \hline
+canMoveOnOrIn & x & Vehicle & \{"Road" , "Sky" , "Water"\}  \\ \hline
+\end{tabular}
+\caption{Bảng các thuộc tính dữ liệu trong ontology transport \label{overflow}}  
+\end{table}
+\subsubsection{SWRL Rule}
+Các rule trong ontology này gồm:
+\begin{verbatim}
+// Tàu chở hàng hóa trên 100 (đơn vị) là tàu chở hàng Vessel
+Ship(?x) ^ swrlb:greaterThan(?y, 100) 
+         ^ canCarryTheAmountOfCargo(?x, ?y)  -> Vessel(?x)
+// Xe cộ có số chỗ ngồi lớn hơn 20 là xe bus
+RoadVehicle(?x) ^ hasNumberOfSeats(?x, ?s)
+                ^ swrlb:greaterThan(?s, 20) -> Bus(?x)
+// Máy bay mang vũ khí là máy bay chiến đấu
+Aircraft(?x) ^ canCarry(?x, ?y) ^ Weapon(?y) -> FighterAircraft(?x)
+// Xe cộ có số chỗ ngồi >= 4 và <=7 là xe hơi
+RoadVehicle(?x) ^ swrlb:lessThanOrEqual(?s, 7) 
+^ swrlb:greaterThanOrEqual(?s, 4) ^ hasNumberOfSeats(?x, ?s) -> Car(?x)
+\end{verbatim}
+\subsubsection{Cá thể}
+Lưu ý: các cá thể này đều là các cá thể có tên (NamedIndividual)
+\begin{table}[ht!]
+\centering
+\begin{tabular}{|p{2cm}|l|p{5cm}|p{5cm}|}
+\hline
+Named Individual & Types & Object propety assertions & Data property assertions \\ \hline
+A1 & Vehicle & \textit{canCarry} Charlie & \textit{isControlledBy} Anh \\ \hline
+A2 & Vehicle & \textit{hasWing} XWing &  \\ \hline
+\multirow{2}{*}{A3} & Vehicle & \textit{isControlledBy} Nguyen &  \\ 
+& &\textit{hasParts} Rotor1 & \\ \hline
+\multirow{2}{*}{A4} & Vehicle & \textit{isControlledBy} Nguyen &  \\ 
+& &\textit{canCarry} Missile & \\ \hline
+  
+S1 & Vehicle &  & \textit{canMoveOnOrIn} "Water" \\ \hline
+S2 & Ship &  & \textit{canCarryTheAmountOfCargo} 102 \\ \hline 
+V1 & Vehicle & \textit{canCarry} Peter & \textit{canMoveOnOrIn} "Road" \\ \hline
+V1 & Vehicle & \textit{canCarry} Container & \textit{canMoveOnOrIn} "Road" \\ \hline
+\multirow{2}{*}{V3} & Vehicle & & \textit{hasNumberOfSeats} 6  \\
+& & &  \textit{canMoveOnOrIn} "Road" \\ \hline
+V4 & RoadVehicle &  & \textit{hasNumberOfSeats} 21 \\ \hline 
+\end{tabular}
+\caption{Bảng các cá thể trong ontology transport \label{overflow}}  
+\end{table}
+Ngoài ra còn có các cá thể thuộc các lớp như sau:
+\begin{itemize}
+\item \textbf{Passenger:} Steve, Charlie, Peter, Anh, Nguyen
+\item \textbf{Pilot:} Anh, Nguyen 
+\item \textbf{Weapon:} Missile, MachineGun 
+\item \textbf{Wing:} XWing, YWing
+\item \textbf{Cargo:} Container, SmallCargo
+\end{itemize}
+Trên đây, chúng em đã liệt kê ra các thực thể được chúng em tạo ra trong transport.owl và đặc điểm của chúng. Trong chương sau, chúng em sẽ trình bày tính năng phân loại dựa trên thiết kế ontology này.
+\paragraph{Tổng kết} Chương này em đã trình bày qua chi tiết từng thiết kế từ giao diện phác thảo, cách tổ chức dữ liệu và xử lý sự kiện cho hệ thống và cuối cùng là thiết kế một ontology nhằm phục vụ cho quá trình phân loại khi hệ thống đã được xây dựng.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

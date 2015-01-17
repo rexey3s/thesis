@@ -12,7 +12,6 @@ Database file #1: Bibliography.bib
  :  Year
  :      {2012}
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "owowlapi"
 -- IEEEtranN.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
@@ -22,53 +21,53 @@ Reallocated global_strs (elt_size=20001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Name 1 in "A. Kalyanpur, B. Parsia, B. Cuenca-Grau, and E. Sirin" has a comma at the end for entry repair
 while executing---line 2696 of file IEEEtranN.bst
-Warning--empty year in matt_horridge
 Name 1 in "A. Kalyanpur, B. Parsia, B. Cuenca-Grau, and E. Sirin" has a comma at the end for entry repair
 while executing---line 2710 of file IEEEtranN.bst
 Name 1 in "A. Kalyanpur, B. Parsia, B. Cuenca-Grau, and E. Sirin" has a comma at the end for entry repair
 while executing---line 2710 of file IEEEtranN.bst
 Warning--empty journal in repair
+Warning--empty year in matt_horridge
 
 Done.
-You've used 34 entries,
+You've used 27 entries,
             4783 wiz_defined-function locations,
-            1057 strings with 11268 characters,
-and the built_in function-call counts, 13961 in all, are:
-= -- 1299
-> -- 81
-< -- 6
-+ -- 103
-- -- 22
-* -- 685
-:= -- 2221
-add.period$ -- 63
-call.type$ -- 34
-change.case$ -- 63
-chr.to.int$ -- 25
-cite$ -- 63
-duplicate$ -- 1118
-empty$ -- 1320
-format.name$ -- 33
-if$ -- 2958
-int.to.chr$ -- 10
-int.to.str$ -- 35
-missing$ -- 212
-newline$ -- 190
-num.names$ -- 21
-pop$ -- 855
+            1033 strings with 10651 characters,
+and the built_in function-call counts, 11213 in all, are:
+= -- 1042
+> -- 74
+< -- 5
++ -- 84
+- -- 20
+* -- 553
+:= -- 1796
+add.period$ -- 50
+call.type$ -- 27
+change.case$ -- 50
+chr.to.int$ -- 21
+cite$ -- 50
+duplicate$ -- 889
+empty$ -- 1047
+format.name$ -- 30
+if$ -- 2368
+int.to.chr$ -- 7
+int.to.str$ -- 28
+missing$ -- 171
+newline$ -- 157
+num.names$ -- 18
+pop$ -- 684
 preamble$ -- 1
-purify$ -- 34
+purify$ -- 27
 quote$ -- 2
-skip$ -- 985
+skip$ -- 791
 stack$ -- 0
-substring$ -- 124
-swap$ -- 482
+substring$ -- 98
+swap$ -- 386
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 6
-type$ -- 514
+type$ -- 408
 warning$ -- 2
-while$ -- 14
+while$ -- 12
 width$ -- 0
-write$ -- 380
+write$ -- 309
 (There were 4 error messages)
