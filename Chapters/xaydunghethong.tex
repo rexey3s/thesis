@@ -1,0 +1,23 @@
+\chapter{Xây dựng hệ thống phân loại tự động}
+\paragraph{Giới thiệu} Qua các chương trước, chúng em đã trình bày các cơ sở lý thuyết gồm OWL 2, SWRL, đề ra các thiết kế cho hệ thống và thiết kế một ontology sử dụng cho việc phân loại. Trong chương này, chúng em sẽ trình bày lại quá trình xây dựng hệ thống phân loại dựa trên các thiết kế ở chương trước.
+\section{UI của ứng dụng}
+\subsection{OWLEditorUI}
+Lớp này được mở rộng từ lớp \textbf{UI} của Vaadin, công việc chính của một lớp \textbf{UI} khởi tạo các  giao diện, từ đây lớp UI sẽ đảm nhiệm các công việc như nạp tất cả UI Components được khai báo bên trong, cài đặt các event listener để tiếp nhận thao tác từ người dùng. Cuối cùng UI được load lên trình duyệt bằng URL, hoặc được nhúng vào bất kì trang HTML nào \cite{vaadinarchitecture}. OWLEditorUI mở rộng các chức năng trên như sau:
+\begin{itemize}
+\item Chứa EntryView, MainView.
+\item Cập nhật và cài đặt MainView khi ontology được nạp vào EntryView.
+\item Cập nhật trạng thái khi người dùng refresh trang.
+\item Khởi tạo OWLEditorKit và cung cấp nó dưới dụng phương thức tĩnh
+\begin{verbatim}
+@Autowired OWLEditorKit eKit;
+public static OWLEditorKit getOWLEditorKit() {
+  ((OWLEditorUI) UI.getCurrent()).eKit; }
+\end{verbatim}
+\item EventBus cũng được cung cấp tương tự 
+\begin{verbatim}
+@Autowired OWLEditorEventBus eventBus;
+public static OWLEditorEventBus getEventBus() {
+  ((OWLEditorUI) UI.getCurrent()).eventBus; }	
+}
+\end{verbatim}
+\end{itemize}
