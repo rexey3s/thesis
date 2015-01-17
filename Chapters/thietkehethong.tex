@@ -168,8 +168,7 @@ OWLEditor kit = new OWLEditorKitImpl();
 kit.loadOntologyFromOntologyDocument(IRI.create("some url"));
 \end{verbatim}
 \subsubsection{Giải thích các phát biểu trong OWL2 Ontology}
-Việc này được thực hiện thông qua phương thức \textit{explain(OWLAxiom axiom)} của OWLEditorKit. Kết quả trả về là một đối tượng \textit{ExplanationTree}trong đó gồm các OWLAxiom (là các phát biểu giải thích). Cách sử dụng
-chi tiết hơn trong chương sau.
+Việc này được thực hiện thông qua phương thức \textit{explain(OWLAxiom axiom)} của OWLEditorKit. Kết quả trả về là một đối tượng \textit{ExplanationTree}trong đó gồm các OWLAxiom (là các phát biểu giải thích). Cách sử dụng chi tiết hơn trong chương sau.
 
 \subsubsection{Xóa các thực thể trong OWL2 Ontology}
 Xóa các phát biểu trong OWL 2 Ontology không phải là một tác vụ dễ dàng vì một phát biểu có thể được sử dụng để xây dựng nên phát biểu khác. Ví dụ:
@@ -227,9 +226,9 @@ OWLClass driver = ...;
 // Tìm lớp con 
 editorKit.getResoner().getSubClasses(driver,true).getFlattened();
 \end{verbatim}
-True nghĩ là chỉ tìm lớp gần nhất giải sử cá thể Peter thuộc các lớp driver mà Driver là lớp con của Person. Nếu để \textit{true} thì kết quả chỉ có Driver và ngược lại thì kết quả gồm Driver và Person. Tương tự cho SubClass, SubProperty, ... .
+True nghĩa là chỉ tìm lớp gần nhất cho việc giải thích. Giả sử cá thể Peter thuộc các lớp driver mà Driver là lớp con của Person. Nếu để \textit{true} thì kết quả chỉ có Driver và ngược lại thì kết quả gồm Driver và Person. Tương tự cho SubClass, SubProperty, ... .
 \subsubsection{Quản lý các Ontologies được nạp và áp dụng các thay đổi}
-Việc nạp ontology, thực sự diễn bên trong lớp OWLEditorKitImpl và được thực hiện bởi \textit{OWLOntologyManager} - api của OWL-API.  Ontology nạp vào sẽ được quản lý theo OntologyIRI và VersionIRI (xem ở chương 2).
+Việc nạp ontology, thực sự diễn ra bên trong lớp OWLEditorKitImpl và được thực hiện bởi \textit{OWLOntologyManager} - api của OWL-API.  Ontology nạp vào sẽ được quản lý theo OntologyIRI và VersionIRI (xem ở chương 2).
 \begin{verbatim}
 OWLEditorKitImpl implements OWLEditorKit { ...
   OWLOntologyManager manager = new OWLManager.getOWLOntologyManager();
@@ -252,7 +251,10 @@ Trong cài đặt của OWLEditorKit, cũng bao gồm SWRLAPIOntology (từ SWRL
 SWRLAPIOntology ruleOntology = editorKit.getSWRLActiveOntology();
 Set<SWRLAPIRule> allRules = ruleOntology.getSWRLAPIRules();
 \end{verbatim}
+Tóm lại, mọi thao tác lên ontology từ bất kì thành phần giao diện nào đều phải thông qua sử dụng các phương thức mà OWLEditorKit cung cấp.
+
 Tóm lại, mọi thao tác lên ontology đều từ bất kì thành phần giao diện nào đều phải các phương thức mà OWLEditorKit cung cấp.
 \section{Xây dựng một ontology để trình bày quá trình phân loại}
 \textbf{Giới thiệu} Transport.owl \cite{owleditorSrc} là một ontology do nhóm tự xây dựng nên, đối tượng chủ yếu là các phương tiện giao thông đường bộ, đường thuỷ, đường hàng không, bên cạnh đó là các bộ phận của phương tiện như động cơ, rô-tơ,... các đối tượng liên quan như hàng hoá, hành khách, bộ phận của phương tiện, ... .Ontology được thiết kế nhằm biểu diễn đặc tính phân loại của OWL 2 và SWRL, nên có một vài điểm không bám sát theo đúng với thực tế. Sau đây chúng em xin được miêu tả ontology này.
 \subsection{Cấu trúc phân lớp của ontology}
+
