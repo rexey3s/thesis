@@ -71,3 +71,28 @@ public static HttpSession getHttpSession() {
 Mỗi lần chúng ta vào trang url của ứng dụng hay refresh thì vòng đời của các View sẽ diễn ra như trong hình 4.1. Việc kiểm tra các điều kiện đều nằm trong phương thức \textbf{updateContent} của OWLEditorUI.
 \textbf{Tóm lại} OWLEditorUI là nơi sẽ cung cấp các thành phần lõi của hệ thống như OWLEditorKit, EventBus và HttpSession. Tiếp theo, chúng em sẽ trình bày cách xây dựng các View và thành phần của chúng.
 \section{Xây dựng EntryView}
+\begin{figure}[h!]
+	\centering
+	\frame{\includegraphics[width=145mm]{Figures/owleditor_entryview.png}}
+	\caption{EntryView đã xây dựng\label{overflow}}
+\end{figure}
+Như được thiết kế thì giao diện của EntryView tương đối đơn giản, chỉ có 1 panel chứa các input để nạp ontology theo 3 tùy chọn:
+\begin{enumerate}
+\item Nạp ontology qua URL. URL này bắt buộc phải là một tài liệu được định dạng theo tiêu chuẩn OWL 2 (RDF/XML, OWL/XML, FunctionalSyntax/XML,...).
+\item Upload một tập tin chứa tài liệu Ontology và nạp tài liệu ontology này vào.
+\item Tạo mới một tài liệu ontology.
+\end{enumerate}
+Việc xây dựng các input trên cũng khá đơn giản, đối với việc nạp từ URL chỉ cần một thành phần \textit{TextField}, một \textit{Button} được Vaadin cung cấp sẵn để xây dựng. Sau khi click "Open", nếu URL chứa tài liệu hợp lệ thì nó sẽ được nạp vào trong OWLEditorKit, nếu đây là lần đầu OWLEditorKit được sử dụng và chưa được lưu trong HttpSession thì lưu nó vào Session và cuối cùng là chuyển giao diện qua \textit{MainView} (Hình 4.1). Quá trình tương tự cũng xảy ra khi nạp tài liệu từ tập tin upload và tạo mới tài liệu, riêng việc tạo tài liệu thì chúng ta có thể tùy chọn đặt 1 IRI cho nó trong TextField ở dòng cuối. Upload file cũng là một plugin được cung cấp qua \cite{vaadindirectory} việc sử dụng cũng khá dễ.
+\begin{verbatim}
+UploadField uf = new UploadField();
+// code bên trong "Open" Button ClickListener
+File file = (File) uf.getValue();
+OWLEditorUI.getEditorKit() // Nạp ontology vào trong OWLEditorKit
+           .loadOntologyFromOntologyDocument(IRI.create(file));
+OWLEditorUI.getHttpSession() // lưu OWLEditorKit trong Session
+           .setAttribute("OWLEditorKit", OWLEditorUI.getEditorKit());
+// Đặt giao diện là MainView 
+UI.getCurrent().setContent(new MainView());                    
+\end{verbatim}
+\section{Xây dựng MainView}
+
