@@ -17,8 +17,14 @@ Tóm lại, đề tài "Nghiên cứu và phát triển hệ thống phân loạ
 \section{Hướng phát triển}
 Nhẳm khắc phục một số hạn chế kể trên chúng em cũng đã nghĩ đến các hướng phát triển sau :
 \begin{itemize}
-\item Để tăng tốc độ xử lý, chúng em sẽ sử dụng kết hơp Vaadin với Spring Boot, đồng thời tố ưu hóa các đoạn code.
+\item Để tăng tốc độ xử lý, chúng em sẽ sử dụng kết hơp Vaadin với Spring Boot (đã thực hiện được một phần), đồng thời tố ưu hóa các đoạn code.
 \item Trong giai đoạn phát triển cuối cùng, chúng em đã tìm hiểu được là đã có những cơ sở dữ liệu hỗ trợ lưu tài liệu Ontology dưới dạng RDF Graph, tiêu biểu có Stardog - một cơ sở dữ liệu Semantic hỗ trợ OWL 2, SWRL, và đặc biệt tích hợp bản mới nhất của reasoner Pellet 3.0. Sẽ là một ý tưởng tuyệt vời nếu tích hợp sử dụng Stardog là nơi lưu trữ những tài liệu ontology mà người dùng soạn thảo, và giảm tải khả năng suy luận cho cơ sở dữ liệu,
 \item Thiết kế một ontology với số lượng lớn các phát biểu phục vụ cho việc phân loại trên thực tế, lĩnh vực là rất rộng lớn nhưng chúng em đã nghĩ đến một lĩnh vực thực tiễn và có thể sử dụng các kiến thức chuyên ngành mạng, đó là phân loại thông tin lưu lượng mạng nhằm phục vụ cho các tác vụ như xây dựng Firewall rule, IDS rule.
 \item Đưa ứng dụng thành một ứng dụng mã nguồn mở.
+\end{itemize}
+
+Đề tài mà chúng em đã thực hiện, với tính năng phân loại tự động đắt giá, có thể được áp dụng vào nhiều lĩnh vực thực tế khác nhau. Dưới đây là một số ứng dụng có tính khả thi cao :
+\begin{itemize}
+\item Phân loại các hàng hoá dựa theo các đặc điểm, tính năng đặc trưng của nó
+\item Phân loại thông tin lưu lượng mạng nhằm phục vụ cho việc phân tích, ngăn chặn các cuộc tấn công an ninh mạng
 \end{itemize}
