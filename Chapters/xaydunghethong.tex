@@ -7,12 +7,12 @@ Lớp này được mở rộng từ lớp \textbf{UI} của Vaadin - chức nă
 \item Chứa EntryView, MainView (các View này chứa tất cả thành phần giao diện của hệ thống)
 \item Cập nhật và cài đặt MainView khi ontology được nạp vào EntryView.
 \item Cập nhật trạng thái khi người dùng refresh trang.
-\item Khởi tạo OWLEditorKit một lần và cung cấp nó qua phương thức tĩnh \textit{getOWLEditorKit()} 
-\item Khới tạo EventBus một lần và cung cấp qua các phương thức tĩnh sau \textit{getGuavaEventBus()}
-\item Chứa HttpSession và cung cấp qua phương thức tĩnh \textit{getHttpSession()} 
+\item Nạp (inject) OWLEditorKit và cung cấp nó qua phương thức tĩnh (static).
+\item Nạp EventBus và cung cấp qua các phương thức tĩnh.
+\item Nạp HttpSession và cung cấp qua phương thức tĩnh .
 \end{itemize}
 \subsection{Chi tiết các chức năng của OWLEditorUI}
-Trước khi đi vào chi tiết các chức năng trên, chúng em muốn giới thiệu sơ quan về việc cách Spring Boot \cite{springboot} hoạt động, các Annotation cần được sử dụng trong việc xây dựng hệ thống.
+Trước khi đi vào chi tiết các chức năng trên, chúng em muốn giới thiệu sơ quan về việc cách Spring Boot \cite{springboot} hoạt động, các Annotation đáng chú ý được sử dụng trong việc xây dựng hệ thống.
 \\
 \textbf{Spring Boot} Khi chương trình khởi động - ở đây không nói đến khi chúng ta nhập URL vào webpage mà chúng em đang muốn nói đến khi chương trình được nạp vào một hệ thống Servlet như Tomcat, Jetty thì điểm đầu tiên của nó xuất phát sẽ từ đối tượng sau:
 \begin{verbatim}

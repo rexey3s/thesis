@@ -253,18 +253,17 @@ Set<SWRLAPIRule> allRules = ruleOntology.getSWRLAPIRules();
 \end{verbatim}
 Tóm lại, mọi thao tác lên ontology từ bất kì thành phần giao diện nào đều phải thông qua sử dụng các phương thức mà OWLEditorKit cung cấp.
 
-Tóm lại, mọi thao tác lên ontology đều từ bất kì thành phần giao diện nào đều phải các phương thức mà OWLEditorKit cung cấp.
 \section{Xây dựng một ontology để trình bày quá trình phân loại}
 \textbf{Giới thiệu} Transport.owl \cite{owleditorSrc} là một ontology do nhóm tự xây dựng nên, đối tượng chủ yếu là các phương tiện giao thông đường bộ, đường thuỷ, đường hàng không, bên cạnh đó là các bộ phận của phương tiện như động cơ, rô-tơ,... các đối tượng liên quan như hàng hoá, hành khách, bộ phận của phương tiện, ... .Ontology được thiết kế nhằm biểu diễn đặc tính phân loại của OWL 2 và SWRL, nên có một vài điểm không bám sát theo đúng với thực tế. Sau đây chúng em xin được miêu tả ontology này.
-\subsection{Cấu trúc phân lớp của ontology}
-\subsubsection{Lớp}
+Ontology được chia theo cấu trúc phân lớp, và bao gồm các phân lớp sau :
+\subsection{Lớp}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=155mm,height=105mm]{Figures/transport_cls.png}
 	\caption{Các lớp trong ontology transport.owl\label{overflow}}
 \end{figure}
 Các lớp mở rộng ra là lớp con của lớp (node trong hình) trước nó.
-\subsubsection{Thuộc tính đối tượng}
+\subsection{Thuộc tính đối tượng}
 \begin{table}[ht!]
 	\centering
 \begin{tabular}{|p{3cm}|l|p{3cm}|p{3cm}|p{3cm}|}
@@ -284,7 +283,7 @@ hasParts & x & Vehicle or VehicleComponent & Vehicle or VehicleComponent & isPar
 \caption{Bảng các thuộc tính đối tượng trong ontology transport \label{overflow}}  
 \end{table}
 Trong bảng 3.1 thì \textit{hasWing}, \textit{hasEngine} và \textit{hasRotor} là thuộc tính con của \textit{hasParts}.
-\subsubsection{Thuộc tính dữ liệu}
+\subsection{Thuộc tính dữ liệu}
 \begin{table}[ht!]
 \centering
 \begin{tabular}{|l|l|l|l|}
@@ -298,7 +297,7 @@ canMoveOnOrIn & x & Vehicle & \{"Road" , "Sky" , "Water"\}  \\ \hline
 \end{tabular}
 \caption{Bảng các thuộc tính dữ liệu trong ontology transport \label{overflow}}  
 \end{table}
-\subsubsection{SWRL Rule}
+\subsection{SWRL Rule}
 Các rule trong ontology này gồm:
 \begin{verbatim}
 // Tàu chở hàng hóa trên 100 (đơn vị) là tàu chở hàng Vessel
@@ -313,7 +312,7 @@ Aircraft(?x) ^ canCarry(?x, ?y) ^ Weapon(?y) -> FighterAircraft(?x)
 RoadVehicle(?x) ^ swrlb:lessThanOrEqual(?s, 7) 
 ^ swrlb:greaterThanOrEqual(?s, 4) ^ hasNumberOfSeats(?x, ?s) -> Car(?x)
 \end{verbatim}
-\subsubsection{Cá thể}
+\subsection{Cá thể}
 Lưu ý: các cá thể này đều là các cá thể có tên (NamedIndividual)
 \begin{table}[ht!]
 \centering
