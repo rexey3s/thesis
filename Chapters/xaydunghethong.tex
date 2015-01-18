@@ -130,6 +130,7 @@ Do bố cục phần lần các thành phần trong các Tab này cũng tương 
 {\let\thefootnote\relax\footnotetext{
 		Lưu ý:  \textit{ClassHierarchicalPanel}, \textit{ObjectPropertyHierachicalPanel} và \textit{DataPropertyHierarchicalPanel} đều kế thừa từ \textit{AbstractHierarchyPanel}.
 }}
+ClassSheet cũng là một Layout gồm 2 thành phần con là ClassHierarchicalPanel và ClassExpressionPanelsContainer, đây là nơi bắt sự kiện lựa chọn lớp trên cấu trúc cây của ClassHierarchicalPanel để gán lớp này vào làm dữ liệu cho các panel con bên phải (Hình 4.3).
 \paragraph{ClassHierarchicalPanel}
 Ở bên trái là một Panel gọi là \textit{ClassHierarchicalPanel} mở rộng từ \textit{AbstractHierarchyPanel} \textsuperscript{*} được chúng em xây dựng với mục tiêu là biểu diễn các lớp trong OWL 2 Ontology, và cho phép thực hiện các thao tác thêm lớp con, lớp cùng họ (sibling) và xóa lớp bằng cách click phải vào bất kì node nào trên cây. Ở góc phải bên trên của panel này, với kí hiệu bánh răng với chức năng thêm xóa tương tự, ngoài ra còn có tính năng bật reasoner cho hệ thống. Kế bên kí hiệu bánh răng, là một kí hiệu tải xuống, khi click sẽ lưu lại trạng thái ontology hiện hành và tải xuống dưới định dạng OWL/XML.
 \\
@@ -159,7 +160,20 @@ Window w = new AbstractAddOWLObjectWindo<OWLDataProperty>(
  true);// True là tạo thực thể con
 \end{verbatim}
 Ngoài ra chúng ta còn tận dụng được một đặc điểm mới của ngôn ngữ Java 8 là Lambda Expression (obj -> function). Rất nhiều Interface dạng này được tạo ra nhằm giảm thiểu việc phải code lại nhiều lần với cùng một mục đích là tạo ra các sự kiện. Đây cũng chính là lý do vì sao các sự kiện lại được thiết kế để khai thác tính đa hình của hướng đối tượng.
+
 \paragraph{ClassExpressionPanelsContainer}
+Nằm ở bên phải của Tab ClassSheet là một container chứa nhiều panel nhỏ khác (Hình 4.3), mỗi panel nhỏ này đóng vai trò là nơi tương tác với từng loai phát biểu liên quan đến lớp đang được chọn trên cấu trúc cây. Khi một lớp được chọn, trong ClassSheet sẽ gọi đến phương thức sau đây của \textit{ClassExpressionPanelsContainer}.
+\begin{verbatim}
+setPropertyDataSource(Property newDataSource) {
+  equivPanel.setPropertyDataSource(newDataSource);
+  subClsOfPanel..setPropertyDataSource(newDataSource);
+  ...}
+\end{verbatim} 
+Phương thức này sẽ gọi một phương thức tương tự trong các panel nhỏ bên trong đặt \textit{Property} cho chúng - Property này chỉnh là Data Model dạng Property đã thiết kế trong chương 3. Các panel này tuy nhiều nhưng thật ra chúng em xây dựng chúng đều trên một lớp Abstract gọi là \textit{AbstractExpressionPanel}.
+
+
+
+
 
 
 
