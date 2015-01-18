@@ -160,7 +160,19 @@ Window w = new AbstractAddOWLObjectWindo<OWLDataProperty>(
  true);// True là tạo thực thể con
 \end{verbatim}
 Ngoài ra chúng ta còn tận dụng được một đặc điểm mới của ngôn ngữ Java 8 là Lambda Expression (obj -> function). Rất nhiều Interface dạng này được tạo ra nhằm giảm thiểu việc phải code lại nhiều lần với cùng một mục đích là tạo ra các sự kiện. Đây cũng chính là lý do vì sao các sự kiện lại được thiết kế để khai thác tính đa hình của hướng đối tượng.
-
+\\
+Như đã trình bày trong chương 3, các thành phần mở rộng từ \textit{Tree} của Vaadin có khả năng liên kết với các dữ liệu dạng phân cấp hay cụ thể chúng em sử dụng OWLClassHierachicalContainer cho OWLClassTree trong trường hợp này. Ngoài ra, OWLClassHierachicalContainer còn được sử dụng để lắng nghe mọi thay đổi bên trong ontology qua:
+\begin{verbatim}
+public OWLClassTree() {
+  editorKit.getModelManager().addOntologyChangeListener(
+  changes -> {
+   for (OWLOntologyChange chg : changes) {
+    chg.accept(
+    owlclassHiercachicalContainer.getOWLOntologyChangeListener());
+  }
+});       
+\end{verbatim}
+Nhờ vậy, khi dữ liệu bên trong Container thay đổi, nó sẽ thông báo đến các thành phần giao diện mà nó liên kết để cập nhật thay đổi.
 \paragraph{ClassExpressionPanelsContainer}
 Nằm ở bên phải của Tab ClassSheet là một container chứa nhiều panel nhỏ khác (Hình 4.3), mỗi panel nhỏ này đóng vai trò là nơi tương tác với từng loai phát biểu liên quan đến lớp đang được chọn trên cấu trúc cây. Khi một lớp được chọn, trong ClassSheet sẽ gọi đến phương thức sau đây của \textit{ClassExpressionPanelsContainer}.
 \begin{verbatim}
@@ -173,7 +185,7 @@ Phương thức này sẽ gọi một phương thức tương tự trong các pa
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=155mm]{Figures/uml_owleditor_abstractpanel_nobackground.png}
-	\caption{Class Diagram của  AbstractAddOWLObjectWindow\label{overflow}}
+	\caption{Class Diagram của  AbstractExpressionPanel\label{overflow}}
 \end{figure}
 
 
