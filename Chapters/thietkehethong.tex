@@ -125,11 +125,11 @@ Do hệ thống gồm nhiều tab và các cửa sổ nhỏ (mô tả trong mụ
 	\caption{EventBus Sequence Diagram \label{overflow}}
 \end{figure}
 \\
-UIComponent có thể được khai báo subscriber bằng Annotation @Subscriber cung cấp bởi thư viện Guava như sau:
+UIComponent có thể được khai báo subscriber bằng Annotation @Subscribe cung cấp bởi thư viện Guava như sau:
 \begin{verbatim}
 public class SubscriberComponent {
   public SubscriberComponent { EventBus.register(this); }
-  @Subscriber public void eventHandler(SpecificEventType event) { 
+  @Subscribe public void eventHandler(SpecificEventType event) { 
   	// các thay đổi được áp dụng ở đây  }
 }
 \end{verbatim}
