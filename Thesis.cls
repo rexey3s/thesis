@@ -575,7 +575,7 @@
 	\end{tabular}
 	\end{flushleft}
 	\item
-	\textbf{Nội dung đề tài:} Xây dựng chương trình chỉnh sửa ontology với các tính năng gần như tương tự với chương trình Protege, qua đó giúp người dùng thiết kế được một ontology. Hơn nữa, chương trình cung cấp một cơ chế phân loại tự động, đưa ra các câu hỏi gợi ý cho người dùng trả lời, sau đó tổng hợp kết quả để đánh giá cá thể đó.
+	\textbf{Nội dung đề tài:} Xây dựng ứng dụng dùng để thiết kế và chỉnh sửa ontology với các tính năng gần như tương tự với chương trình Protege - tuy nhiên chúng em chọn xây dựng ứng dụng trên nền web, qua đó giúp người dùng chỉnh sửa và phát triển các tài liệu OWL 2 ontology từ khắp mọi nơi. Đồng thời ứng dụng cũng gồm có cơ chể suy luận các phát biểu từ OWL 2 Ontology (dùng để thực hiện phân loại tự động), tính năng giải thích và hỗ trợ phân loại.
 	
 	\item
 	\textbf{Kế hoạch thực hiện:} 
@@ -583,15 +583,14 @@
 	\item
 	Tìm hiểu và nghiên cứu về Semantic Web, chi tiết ngôn ngữ OWL.
 	\item
-	Tìm hiểu chương trình Protege, sau đó xây dựng một ontology mẫu sử dụng Protege.
+	Tìm hiểu và nghiên cứu ngôn ngữ SWRL Rule, cách suy luận của OWL 2 và SWRL, từ đó xây dựng nên cách thức phân loại tự động.
 	\item
-	Tìm hiểu và nghiên cứu ngôn ngữ SWRL Rule, và cơ chế hoạt động của Reasoner, từ đó xây dựng nên cách thức phân loại tự động.
+	Tìm hiểu và nghiên cứu tính nhất quán của ontology, các nguyên nhân gây mất tính nhất quán.
+%	, và tổng hợp các cơ chế khắc phục từ các bài báo khoa học.
 	\item
-	Tìm hiểu và nghiên cứu tính nhất quán của ontology, và tổng hợp các cơ chế khắc phục từ các bài báo khoa học.
+	Tìm hiểu về Vaadin Framework, sử dụng làm nền tảng để xây dựng ứng dụng OWL Editor dùng phục vụ cho việc phát triển ontology phân loại và thực hiện phân loại.
 	\item
-	Tìm hiểu về Vaadin Framework, sử dụng làm nền tảng để xây dựng ứng dụng UIT-OWL Editor.
-	\item
-	Thiết kế và hiện thực ứng dụng UIT-OWL Editor.
+	Thiết kế và xây dựng hệ thống phân loại OWL Editor, thiết kết một ontology đề trình bày khả năng phân loại.
 	\item
 	Viết báo cáo và hoàn thành đề tài khoá luận.
 	\end{itemize}
