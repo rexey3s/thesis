@@ -130,12 +130,36 @@ Do bố cục phần lần các thành phần trong các Tab này cũng tương 
 {\let\thefootnote\relax\footnotetext{
 		Lưu ý:  \textit{ClassHierarchicalPanel}, \textit{ObjectPropertyHierachicalPanel} và \textit{DataPropertyHierarchicalPanel} đều kế thừa từ \textit{AbstractHierarchyPanel}.
 }}
+\paragraph{ClassHierarchicalPanel}
 Ở bên trái là một Panel gọi là \textit{ClassHierarchicalPanel} mở rộng từ \textit{AbstractHierarchyPanel} \textsuperscript{*} được chúng em xây dựng với mục tiêu là biểu diễn các lớp trong OWL 2 Ontology, và cho phép thực hiện các thao tác thêm lớp con, lớp cùng họ (sibling) và xóa lớp bằng cách click phải vào bất kì node nào trên cây. Ở góc phải bên trên của panel này, với kí hiệu bánh răng với chức năng thêm xóa tương tự, ngoài ra còn có tính năng bật reasoner cho hệ thống. Kế bên kí hiệu bánh răng, là một kí hiệu tải xuống, khi click sẽ lưu lại trạng thái ontology hiện hành và tải xuống dưới định dạng OWL/XML.
 \\
-Bên trong \textit{ClassHierarchicalPanel} có thành phần \textit{Tree} đây chính là thành phần sẽ liên kết với dữ liệu từ các \textit{HiearchicalContainer} được giới thiệu trong mục tổ chức dữ liệu ở chương trước, ở đây cụ thể nó sẽ liên kết với các \textit{ClassHierarchicalContainer} - chứa các lớp trong ontology với cấu trúc phân cấp. Nếu đúng như trong thiết kế thì chúng em sẽ sử dụng EventBus để xử lý các sự kiện thêm/xóa lớp ở đây, tuy nhiên sau khi xây dựng xong chúng em gặp phải vấn đề về con-current event - nghĩa là khi thực hiện thao tác thêm/xóa sẽ có 2 event giống nhau được tạo ra và truyền lên EventBus. Do vẫn chưa tìm được nguyên nhân chính xác, nên chúng em đã quay về với thiết kế truyền thống của Java là tạo một interface \textit{OWLEntityActionHandler} vào áp dụng nó vào thành phần \textit{Tree}. Thiết kế này yêu cầu các đối tượng giao tiếp các sự kiện với nhau phải biết nhau.
+Bên trong \textit{ClassHierarchicalPanel} có thành phần \textit{Tree} đây chính là thành phần sẽ liên kết với dữ liệu từ các \textit{HiearchicalContainer} được giới thiệu trong mục tổ chức dữ liệu ở chương trước, ở đây cụ thể nó sẽ liên kết với các \textit{ClassHierarchicalContainer} - chứa các lớp trong ontology với cấu trúc phân cấp. Nếu đúng như trong thiết kế thì chúng em sẽ sử dụng EventBus để xử lý các sự kiện thêm/xóa lớp ở đây, tuy nhiên sau khi xây dựng xong chúng em gặp phải vấn đề về con-current event - nghĩa là khi thực hiện thao tác thêm/xóa sẽ có 2 event giống nhau được tạo ra và truyền lên EventBus. Do vẫn chưa tìm được nguyên nhân chính xác, nên chúng em đã quay về với thiết kế truyền thống của Java là tạo một interface \textit{OWLEntityActionHandler} vào áp dụng nó vào thành phần \textit{Tree} (Hình 4.4).
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=155mm]{Figures/uml_owlclasstree.png}
-	\caption{Cây OWLClassTree hiển thi các lớp trong Ontology trong ClassSheet \label{overflow}}
+	\caption{Class Diagram của OWLClassTree các interface của nó \label{overflow}}
 \end{figure}
+\begin{figure}[h!]
+	\centering
+	\frame{\includegraphics[width=80mm]{Figures/owleditor_addentitywd.png}}
+	\caption{Cửa sổ thêm thực thể \textit{lớp} trong ClassSheet \label{overflow}}
+\end{figure}
+Thao tác thêm mới cửa sổ dùng để nhập tên lớp mới (Hình 4.5), cửa sổ này là lớp \textit{buildAddOWLClassWindow} mở rộng từ \textit{AbstractAddOWLObjectWindow} (Hình 4.6). Đối tượng này phải biết OWLEntityActionHandler (là OWLClassTree hình 4.4) để khi chọn save nó sẽ sử dụng action handler này để áp dụng các thay đổi lên ontology và lên giao diện cây là nó sẽ thêm node con, hay node cùng họ (Sibling) - tương ứng với tùy chọn Sub cp Class hay Sibling Class. Chính vì thế nên hàm khởi tạo của lớp này sẽ buộc phải có tham số \textit{OWLEntityActionHandler}, để sử dụng khi click save (phần note Hình 4.6).
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=155mm]{Figures/uml_addowlobjectwindow.png}
+	\caption{Class Diagram của  AbstractAddOWLObjectWindow\label{overflow}}
+\end{figure}
+Ngoài interface \textit{OWLEntityActionHandler}, thì trong hình chúng ta còn thấy một đối tượng là \textit{OWLEntityAddHandler} (hàm khởi tạo và phần note hình 4.6). Đây là một Interface hỗ trợ cho việc tạo ra các sự kiện liên quan thêm các thực thể \textit{OWLEntityCreatedEvent} (giới thiệu trong chương trước). Vì trong lớp Abstract, chúng ta chưa biết phải trả về loại sự kiện tạo lớp hay thuộc tính hay cá thể, nên Interface này sẽ giúp chúng ta nạp vào loại sự kiện phù hợp. Ví dụ chúng ta muốn tạo một cửa sổ con để khai báo mới một thuộc tính dữ liệu con:
+\begin{verbatim}
+Window w = new AbstractAddOWLObjectWindo<OWLDataProperty>(
+ actionHandler,
+ newDataPropery -> new SiblingClassCreated(newDataPropery, 
+                   owlClassTree.getSelectedProperty),
+ true);// True là tạo thực thể con
+\end{verbatim}
+Ngoài ra chúng ta còn tận dụng được một đặc điểm mới của ngôn ngữ Java 8 là Lambda Expression (obj -> function). Rất nhiều Interface dạng này được tạo ra nhằm giảm thiểu việc phải code lại nhiều lần với cùng một mục đích là tạo ra các sự kiện. Đây cũng chính là lý do vì sao các sự kiện lại được thiết kế để khai thác tính đa hình của hướng đối tượng.
+\paragraph{ClassExpressionPanelsContainer}
+
+
 

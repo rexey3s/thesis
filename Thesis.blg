@@ -8,10 +8,6 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: Bibliography.bib
-"{" immediately follows a field name---line 43 of file Bibliography.bib
- :  Year
- :      {2012}
-I'm skipping whatever remains of this entry
 -- IEEEtranN.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
@@ -19,55 +15,49 @@ I'm skipping whatever remains of this entry
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=20001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
-Name 1 in "A. Kalyanpur, B. Parsia, B. Cuenca-Grau, and E. Sirin" has a comma at the end for entry repair
-while executing---line 2696 of file IEEEtranN.bst
-Name 1 in "A. Kalyanpur, B. Parsia, B. Cuenca-Grau, and E. Sirin" has a comma at the end for entry repair
-while executing---line 2710 of file IEEEtranN.bst
-Name 1 in "A. Kalyanpur, B. Parsia, B. Cuenca-Grau, and E. Sirin" has a comma at the end for entry repair
-while executing---line 2710 of file IEEEtranN.bst
+Warning--empty journal in owl2spec
 Warning--empty journal in repair
-Warning--empty year in matt_horridge
 
 Done.
 You've used 30 entries,
             4783 wiz_defined-function locations,
-            1042 strings with 10935 characters,
-and the built_in function-call counts, 12322 in all, are:
-= -- 1143
-> -- 74
-< -- 5
-+ -- 92
-- -- 20
-* -- 611
-:= -- 1960
+            1042 strings with 10954 characters,
+and the built_in function-call counts, 12608 in all, are:
+= -- 1163
+> -- 111
+< -- 4
++ -- 105
+- -- 30
+* -- 634
+:= -- 2021
 add.period$ -- 55
 call.type$ -- 30
 change.case$ -- 55
-chr.to.int$ -- 22
-cite$ -- 56
-duplicate$ -- 982
-empty$ -- 1159
-format.name$ -- 30
-if$ -- 2605
-int.to.chr$ -- 9
+chr.to.int$ -- 23
+cite$ -- 55
+duplicate$ -- 995
+empty$ -- 1163
+format.name$ -- 40
+if$ -- 2662
+int.to.chr$ -- 8
 int.to.str$ -- 31
-missing$ -- 189
+missing$ -- 192
 newline$ -- 172
-num.names$ -- 18
-pop$ -- 759
+num.names$ -- 21
+pop$ -- 760
 preamble$ -- 1
 purify$ -- 30
 quote$ -- 2
-skip$ -- 865
+skip$ -- 884
 stack$ -- 0
-substring$ -- 109
-swap$ -- 426
+substring$ -- 108
+swap$ -- 436
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 6
-type$ -- 453
+type$ -- 454
 warning$ -- 2
-while$ -- 12
+while$ -- 14
 width$ -- 0
-write$ -- 339
-(There were 4 error messages)
+write$ -- 341
+(There were 2 warnings)

@@ -901,8 +901,8 @@ swrlb:greaterThan(?x, 30) -> Bus(?v)
 %% ----------------------------------------------------------------
 \section{Tính nhất quán của một ontology}
 Khái niệm tính nhất quán (consistency) đã được nhắc đến nhiều lần trong những phần trước. Vậy tính nhất quán là gì và nó có ảnh hưởng như thế nào đến một mô hình ontology . \textbf{Trả lời:} Tính nhất quán chỉ sự thống nhất về ý nghĩa của những phát biểu trong ontology hay ý nghĩa của những phát biểu này không mâu thuẫn với nhau. Tính nhất quán cực kì quan trọng đối với bất kì một ontology nào, nếu ngữ nghĩa của của những phát biểu trong ontology đã tồn tại sự mâu thuẫn thì những thông tin được suy luận ra từ những phát biểu này cũng trở nên vô lý. Chính vì thế, quá trình suy luận (reasoning) sẽ không thực hiện được nếu ontology không có tính nhất quán. Trong phần này, chúng em xin được dành ra các nguyên nhân thường phổ biến làm cho các phát biểu khai báo mâu thuẫn với nhau, qua đó sẽ giúp chúng ta tránh phải những lỗi này khai phát triển ontology.
-\section{Các nguyên nhân dẫn đến tính thiếu nhất quán trong ontology}
-\subsubsection{Các định nghĩa cần lưu ý \cite{satisfy}}
+
+\subsection{Các định nghĩa cần lưu ý \cite{satisfy}}
 % Định nghĩa Unsatisfiable Class
 \paragraph{Lớp không hợp lý - Unsatisfiable Class} Dùng để chỉ một lớp mà các phát biểu mô tả, khai báo về nó có ý nghĩa mâu thuẫn với nhau.
 \subparagraph{Ví dụ}
@@ -921,7 +921,7 @@ Khái niệm tính nhất quán (consistency) đã được nhắc đến nhiề
 % Định nghĩa về Inconsistent Ontology
 \paragraph{Ontology không có tính nhất quán - Inconsistent Ontology} Một ontology không nhất quán khi đạt đủ 2 điều kiện: có ít nhất một lớp không hợp lý và có ít nhất một cá thể là thành viên của một trong những lớp không hợp lý này. Như đã thể hiện trong ví dụ đầu tiên thì cá thể \textit{Dora} thuộc lớp \textit{MadCow} (Một lớp không hợp lý thì không nên tồn tại bất kì cá thể nào nếu như chúng ta muốn đảm bảo tính nhất quán cho ontology). Lưu ý: một ontology không nhất quán thì không được dùng để suy luận vì những suy luận từ đây có khả năng đều bất hợp lý.
 
-\subsubsection{Các nguyên nhân phổ biến dẫn đến tính thiếu nhất quán}
+\subsection{Các nguyên nhân phổ biến dẫn đến tính thiếu nhất quán}
 Các nguyên nhân dẫn đến tính thiếu nhất quán trong ontology gây bởi các lỗi được phân loại thành lỗi gây ra bởi phát biểu ở mức độ lớp (Class level - TBox), các lỗi gây ra bởi phát biểu ở mức độ cá thể (Instance/Individual level - ABox)\cite{inconsitentReason} và lỗi gây ra bởi sự kết hợp của cả 2 nguyên nhân vừa nêu trên.
 {
 	\let\thefootnote\relax\footnotetext{

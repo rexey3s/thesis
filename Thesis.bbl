@@ -24,7 +24,7 @@
 
 \bibitem[swr({\natexlab{a}})]{swrlfaq}
 \BIBentryALTinterwordspacing
-``Swrl wiki - faq.'' [Online]. Available:
+``Swrl wiki faq.'' [Online]. Available:
   \url{https://github.com/protegeproject/swrlapi/wiki/SWRLLanguageFAQ}
 \BIBentrySTDinterwordspacing
 
@@ -36,7 +36,7 @@ R.~Stevens, ``(i can’t get no) satisfiability.'' [Online]. Available:
 
 \bibitem[sem({\natexlab{a}})]{semantic3}
 \BIBentryALTinterwordspacing
-``Semantic web.'' [Online]. Available:
+``Semantic web introduction.'' [Online]. Available:
   \url{http://en.wikipedia.org/wiki/Semantic_Web}
 \BIBentrySTDinterwordspacing
 
@@ -65,7 +65,7 @@ J.~Squeda, ``Introduction to: Open world assumption vs closed world
   \url{http://www.w3.org/TR/2014/REC-rdf-schema-20140225/}
 \BIBentrySTDinterwordspacing
 
-\bibitem[owl(2012{\natexlab{a}})]{owl2}
+\bibitem[owl(2012)]{owl2}
 \BIBentryALTinterwordspacing
 ``Ontology web language 2 overview,'' 2012. [Online]. Available:
   \url{http://www.w3.org/TR/owl2-overview/}
@@ -101,10 +101,11 @@ J.~Squeda, ``Introduction to: Open world assumption vs closed world
   \url{http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/}
 \BIBentrySTDinterwordspacing
 
-\bibitem[owl(2012{\natexlab{b}})]{owl2spec}
+\bibitem[Motik et~al.(2012)Motik, Patel-Schneider, and Parsia]{owl2spec}
 \BIBentryALTinterwordspacing
-``Owl 2 web ontology language structural specification,'' 2012. [Online].
-  Available: \url{http://www.w3.org/TR/owl2-syntax/}
+B.~Motik, P.~F. Patel-Schneider, and B.~Parsia, ``Owl 2 web ontology language
+  structural specification,'' 2012. [Online]. Available:
+  \url{http://www.w3.org/TR/owl2-syntax/}
 \BIBentrySTDinterwordspacing
 
 \bibitem[swr({\natexlab{b}})]{swrlbuiltin}
@@ -125,23 +126,23 @@ S.~Bail, ``Common reasons for ontology inconsistency".'' [Online]. Available:
   \url{http://ontogenesis.knowledgeblog.org/1343}
 \BIBentrySTDinterwordspacing
 
-\bibitem[A.~Kalyanpur and Sirin(2007)]{repair}
+\bibitem[Kalyanpur et~al.(2007)Kalyanpur, Parsia, Cuenca-Grau, and
+  Sirin]{repair}
 \BIBentryALTinterwordspacing
-B.~C.-G. A.~Kalyanpur, B.~Parsia and E.~Sirin, ``Repairing unsatisfiable
-  concepts in owl ontologies,'' 2007. [Online]. Available:
+A.~Kalyanpur, B.~Parsia, B.~Cuenca-Grau, and E.~Sirin, ``Repairing
+  unsatisfiable concepts in owl ontologies,'' 2007. [Online]. Available:
   \url{http://www.cs.ox.ac.uk/people/bernardo.cuencagrau/publications/repair.pdf}
 \BIBentrySTDinterwordspacing
 
 \bibitem[Kalyanpur et~al.(2006)Kalyanpur, Parsia, Cuenca-Grau, and
   Sirin]{axiomPinpoint}
-A.~Kalyanpur, B.~Parsia, B.~Cuenca-Grau, and E.~Sirin, ``Axiom pinpointing:
-  Finding (precise) justifications for arbitrary entailments in shoin
-  (owl-dl),'' UMIACS 2006, Tech. Rep., 2006.
+------, ``Axiom pinpointing: Finding (precise) justifications for arbitrary
+  entailments in shoin (owl-dl),'' UMIACS 2006, Tech. Rep., 2006.
 
-\bibitem[Horridge()]{matt_horridge}
+\bibitem[Horridge(2012)]{matt_horridge}
 \BIBentryALTinterwordspacing
 M.~Horridge, ``Justification based explanation in ontologies,'' Ph.D.
-  dissertation, The University of Manchester. [Online]. Available:
+  dissertation, The University of Manchester, 2012. [Online]. Available:
   \url{http://www.bcs.org/upload/pdf/dd-matthew-horridge.pdf}
 \BIBentrySTDinterwordspacing
 
@@ -200,7 +201,7 @@ M.~Horridge, ``Justification based explanation in ontologies,'' Ph.D.
 
 \bibitem[owl()]{owleditorSrc}
 \BIBentryALTinterwordspacing
-``Uit-owl editor source code.'' [Online]. Available:
+``Source code của ứng dụng.'' [Online]. Available:
   \url{https://bitbucket.org/rexey3s/spring-vaadin-owleditor}
 \BIBentrySTDinterwordspacing
 
