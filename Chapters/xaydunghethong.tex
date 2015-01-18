@@ -108,4 +108,34 @@ UI.getCurrent().setContent(new MainView());
 \end{verbatim}
 
 \section{Xây dựng MainView}
-Trong thiết kế \textit{Main}
+Trong thiết kế \textit{MainView} sẽ là nơi chứa tất cả các Tab của ứng dụng, các tab này được xây dựng dựa trên thành phần \textit{TabSheet} của Vaadin, mỗi tab đều có thể là bất cứ thành phần giao diện nào của Vaadin (UIComponent và Layout của Vaadin đều có chung Interface \textit{Component}). Do vậy, nội dung của MainView khá đơn giản:
+\begin{verbatim}
+public class MainView extends HorizontalLayout {
+  final TabSheet root = new TabSheet();
+  public MainView() {
+    root.addTab(new ClassesSheet(), "Classes");
+    addComponent(root); // Thêm TabSheet vào layout của MainView;
+    ...}
+} 
+\end{verbatim}
+\subsection{Xây dựng Tab dùng mô tả lớp, thuộc tính đối tượng/dữ liệu và cá thể}
+Do bố cục phần lần các thành phần trong các Tab này cũng tương đối giống nhau, nên chúng em chỉ xin lấy Tab Class (lớp) ra trình bày chi tiết, còn những tab còn lại chúng em chỉ xin trình bày những thành phần khác của chúng so với Tab Class.
+\subsubsection{ClassSheet}
+Đây là lớp chúng em dùng để tổ chức các thành phần giao diện dành để tương tác với các lớp trong OWL 2 Ontology.
+\begin{figure}[h!]
+	\centering
+	\frame{\includegraphics[width=155mm]{Figures/owleditor_mainview.png}}
+	\caption{ClassSheet(Tab dành cho lớp) đã xây dựng\label{overflow}}
+\end{figure}
+{\let\thefootnote\relax\footnotetext{
+		Lưu ý:  \textit{ClassHierarchicalPanel}, \textit{ObjectPropertyHierachicalPanel} và \textit{DataPropertyHierarchicalPanel} đều kế thừa từ \textit{AbstractHierarchyPanel}.
+}}
+Ở bên trái là một Panel gọi là \textit{ClassHierarchicalPanel} mở rộng từ \textit{AbstractHierarchyPanel} \textsuperscript{*} được chúng em xây dựng với mục tiêu là biểu diễn các lớp trong OWL 2 Ontology, và cho phép thực hiện các thao tác thêm lớp con, lớp cùng họ (sibling) và xóa lớp bằng cách click phải vào bất kì node nào trên cây. Ở góc phải bên trên của panel này, với kí hiệu bánh răng với chức năng thêm xóa tương tự, ngoài ra còn có tính năng bật reasoner cho hệ thống. Kế bên kí hiệu bánh răng, là một kí hiệu tải xuống, khi click sẽ lưu lại trạng thái ontology hiện hành và tải xuống dưới định dạng OWL/XML.
+\\
+Bên trong \textit{ClassHierarchicalPanel} có thành phần \textit{Tree} đây chính là thành phần sẽ liên kết với dữ liệu từ các \textit{HiearchicalContainer} được giới thiệu trong mục tổ chức dữ liệu ở chương trước, ở đây cụ thể nó sẽ liên kết với các \textit{ClassHierarchicalContainer} - chứa các lớp trong ontology với cấu trúc phân cấp. Nếu đúng như trong thiết kế thì chúng em sẽ sử dụng EventBus để xử lý các sự kiện thêm/xóa lớp ở đây, tuy nhiên sau khi xây dựng xong chúng em gặp phải vấn đề về con-current event - nghĩa khi thực hiện thao tác thêm/xóa sẽ có 2 event giống nhau được tạo ra và truyền lên EventBus. Do vẫn chưa tìm được nguyên nhân chính xác, nên chúng em đã qua về với thiết kế truyền thống của Java là tạo một interface \textit{OWLEntityActionHandler} vào áp dụng nó vào thành phần \textit{Tree}. Thiết kế này yêu cầu các đối tượng giao tiếp các sự kiện với nhau phải biết nhau.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=155mm]{Figures/uml_owlclasstree.png}
+	\caption{Cây OWLClassTree hiển thi các lớp trong Ontology trong ClassSheet \label{overflow}}
+\end{figure}
+
