@@ -1145,7 +1145,7 @@ Vaadin hỗ trợ 2 mô hình lập trình: client và server. Mô hình lập t
 \begin{description}
 	\item[Components] Các \textit{Built-in Components}, \textit{Add-on Components} đều là những thành phần được xây dựng sẵn bởi Vaadin hoặc được cung cấp dưới dạng các add-on từ Vaadin Directory \cite{vaadindirectory} nhằm giúp việc phát triển UI nhanh chóng hơn. Chúng đảm nhiệm back-end code để giao tiếp với các \textit{Built-in Widgets}, \textit{Add-on Widgets} ở phía browser (client side).
 	\item[UI Logic, Service và Custom Components] là những phần mà lập trình viên phải tự viết code để cài đặt các tác vụ tương tác mà họ mong muốn, tuy nhiên Vaadin cũng cung cấp các abstract class, interface để hỗ trợ việc này. 
-	\item[Back-end] Trong một ứng dụng thông thường thì đây chính là nơi để xử lý giao tiếp với các đối tượng trong cơ sở dữ liệu - nơi thực hiện các thao tác Create Read Update Delete (CRUD).
+	\item[Back-end] Trong một ứng dụng thông thường thì đây chính là nơi để xử lý giao tiếp với các đối tượng trong cơ sở dữ liệu - nơi thực hiện các thao tác Create Read Update Delete (CRUD) \cite{vaadinarchitecture}.
 \end{description}
 \paragraph{Client-Side Engine} gồm các thành phần:
 \begin{description}
@@ -1167,6 +1167,10 @@ Tuy là tích hợp mọi thứ vào UI components của mình, Vaadin tách bi�
 {\let\thefootnote\relax\footnotetext{*\textit{
 			Vaadin Theme: https://vaadin.com/book/-/page/themes.html}}
 }
+\subsection{Spring Boot}
+Spring Boot \cite{springboot} là một dự án nằm trong bộ \textit{Spring Application Framework} với mục đích giúp người mới sử dụng \textit{Spring} có thể dễ dàng phát triển một ứng dụng một cách nhanh nhất có thể mà không cần phải mất thời gian cấu hình trong các tập tin xml truyền thống.
+\subsection{Spring 4 Vaadin}
+Đây là một dự án mã nguồn mở \cite{spring4vaadin} vừa được khởi động sử dụng với nền tảng là \textit{Spring Boot} và \textit{Vaadin}, mục tiêu của dự án này là đem các thư viện mạnh mẽ của Spring Framework như Spring Data, Spring Security và đặc biệt là khả năng dependency injection vào Vaadin. Chúng em chủ yếu sử dụng các dự án này vào việc khởi tạo ứng dụng, khởi tạo các Bean Component một lần vào đưa nó (inject) vào lớp \textbf{UI} của hệ thống.
 %%
 \subsection{Thư viện lập trình OWLAPI}
 Thư viện lập trình Ontology Web Language là một thư viện mã nguồn mở (phát hành dưới 2 giấy phép \textbf{LGPL} và \textbf{Apache}) \cite{owlapi} được viết bằng Java với mục đích hỗ trợ các lập trình viên phát triển các ứng dụng có liên quan đến OWL 2 Ontology. Tính đến thời điểm hiện tại thư viện đã được phát triển đến phiên bản 4.0 - cũng là phiên bản được sử dụng trong ứng dụng của chúng em.

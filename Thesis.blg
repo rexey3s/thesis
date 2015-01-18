@@ -29,45 +29,45 @@ Warning--empty journal in repair
 Warning--empty year in matt_horridge
 
 Done.
-You've used 28 entries,
+You've used 30 entries,
             4783 wiz_defined-function locations,
-            1036 strings with 10758 characters,
-and the built_in function-call counts, 11595 in all, are:
-= -- 1076
+            1042 strings with 10935 characters,
+and the built_in function-call counts, 12322 in all, are:
+= -- 1143
 > -- 74
 < -- 5
-+ -- 87
++ -- 92
 - -- 20
-* -- 574
-:= -- 1851
-add.period$ -- 52
-call.type$ -- 28
-change.case$ -- 52
-chr.to.int$ -- 21
-cite$ -- 52
-duplicate$ -- 921
-empty$ -- 1087
+* -- 611
+:= -- 1960
+add.period$ -- 55
+call.type$ -- 30
+change.case$ -- 55
+chr.to.int$ -- 22
+cite$ -- 56
+duplicate$ -- 982
+empty$ -- 1159
 format.name$ -- 30
-if$ -- 2450
-int.to.chr$ -- 8
-int.to.str$ -- 29
-missing$ -- 177
-newline$ -- 162
+if$ -- 2605
+int.to.chr$ -- 9
+int.to.str$ -- 31
+missing$ -- 189
+newline$ -- 172
 num.names$ -- 18
-pop$ -- 712
+pop$ -- 759
 preamble$ -- 1
-purify$ -- 28
+purify$ -- 30
 quote$ -- 2
-skip$ -- 814
+skip$ -- 865
 stack$ -- 0
-substring$ -- 102
-swap$ -- 400
+substring$ -- 109
+swap$ -- 426
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 6
-type$ -- 423
+type$ -- 453
 warning$ -- 2
 while$ -- 12
 width$ -- 0
-write$ -- 319
+write$ -- 339
 (There were 4 error messages)

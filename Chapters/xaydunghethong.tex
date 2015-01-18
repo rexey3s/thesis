@@ -1,23 +1,73 @@
 \chapter{Xây dựng hệ thống phân loại tự động}
 \paragraph{Giới thiệu} Qua các chương trước, chúng em đã trình bày các cơ sở lý thuyết gồm OWL 2, SWRL, đề ra các thiết kế cho hệ thống và thiết kế một ontology sử dụng cho việc phân loại. Trong chương này, chúng em sẽ trình bày lại quá trình xây dựng hệ thống phân loại dựa trên các thiết kế ở chương trước.
-\section{UI của ứng dụng}
-\subsection{OWLEditorUI}
-Lớp này được mở rộng từ lớp \textbf{UI} của Vaadin, công việc chính của một lớp \textbf{UI} khởi tạo các  giao diện, từ đây lớp UI sẽ đảm nhiệm các công việc như nạp tất cả UI Components được khai báo bên trong, cài đặt các event listener để tiếp nhận thao tác từ người dùng. Cuối cùng UI được load lên trình duyệt bằng URL, hoặc được nhúng vào bất kì trang HTML nào \cite{vaadinarchitecture}. OWLEditorUI mở rộng các chức năng trên như sau:
+\section{UI của ứng dụng - OWLEditorUI}
+\subsection{Giới thiệu OWLEditorUI}
+Lớp này được mở rộng từ lớp \textbf{UI} của Vaadin - chức năng cơ bản của \textbf{UI} là nơi khởi tạo mọi thành phần giao diện và trình bày nó dưới dạng HTML trên web page, OWLEditorUI mở rộng các chức năng trên như sau:
 \begin{itemize}
-\item Chứa EntryView, MainView.
+\item Chứa EntryView, MainView (các View này chứa tất cả thành phần giao diện của hệ thống)
 \item Cập nhật và cài đặt MainView khi ontology được nạp vào EntryView.
 \item Cập nhật trạng thái khi người dùng refresh trang.
-\item Khởi tạo OWLEditorKit và cung cấp nó dưới dụng phương thức tĩnh
-\begin{verbatim}
-@Autowired OWLEditorKit eKit;
-public static OWLEditorKit getOWLEditorKit() {
-  ((OWLEditorUI) UI.getCurrent()).eKit; }
-\end{verbatim}
-\item EventBus cũng được cung cấp tương tự 
-\begin{verbatim}
-@Autowired OWLEditorEventBus eventBus;
-public static OWLEditorEventBus getEventBus() {
-  ((OWLEditorUI) UI.getCurrent()).eventBus; }	
-}
-\end{verbatim}
+\item Khởi tạo OWLEditorKit một lần và cung cấp nó qua phương thức tĩnh \textit{getOWLEditorKit()} 
+\item Khới tạo EventBus một lần và cung cấp qua các phương thức tĩnh sau \textit{getGuavaEventBus()}
+\item Chứa HttpSession và cung cấp qua phương thức tĩnh \textit{getHttpSession()} 
 \end{itemize}
+\subsection{Chi tiết các chức năng của OWLEditorUI}
+Trước khi đi vào chi tiết các chức năng trên, chúng em muốn giới thiệu sơ quan về việc cách Spring Boot \cite{springboot} hoạt động, các Annotation cần được sử dụng trong việc xây dựng hệ thống.
+\\
+\textbf{Spring Boot} Khi chương trình khởi động - ở đây không nói đến khi chúng ta nhập URL vào webpage mà chúng em đang muốn nói đến khi chương trình được nạp vào một hệ thống Servlet như Tomcat, Jetty thì điểm đầu tiên của nó xuất phát sẽ từ đối tượng sau:
+\begin{verbatim}
+@SpringBootApplication public class OWLEditorApplication {
+    public static void main(String[] args) {
+       SpringApplication.run(OWLEditorApplication.class, args); }
+}
+\end{verbatim} 
+@SpringBootApplication là một tên thay thế cho 3 annotation gồm \textbf{@Configuration}, \textbf{@EnableAutoConfiguration} và \textbf{@ComponentScan} (sẽ được giới thiệu ở dưới), mục tiêu của đối tượng này là khởi động ứng dụng, quét hết trong package hiện hành tới package con để tìm các Component Bean cần thiết để khởi tạo và thực thi các Bean đó. Cụ thể ở đây, nó sẽ quét vào tìm thấy \textbf{OWLEditorUI} được đánh dấu bằng \textbf{@VaadinUI} và chạy theo cấu hình có săn được định nghĩa trong theo dự án Spring 4 Vaadin \cite{spring4vaadin}. Từ đây mọi thứ sẽ diễn ra trong \textbf{OWLEditorUI}. Ý nghĩa của các Annotation:
+\begin{itemize}	
+\item \textbf{@VaadinUI} Là annotation của dự án Spring 4 Vaadin \cite{spring4vaadin} khai báo một lớp là một Bean và là một Vaadin \textbf{UI} cho hệ thống Spring Boot.
+\item \textbf{@VaadinComponent} Là annotation của dự án Spring 4 Vaadin, tương tự annotation @Component của Spring Framework: khai báo đây là một Bean cơ bản nhất cho hệ thống Spring Boot.
+\item \textbf{@Repository} Là annotation của Spring Framework, khai báo một đối tượng là một Bean với tính chất là một nơi để lấy và khai thác dữ liệu, OWLEditorKit được khai báo bằng annotation này.
+\item \textbf{@Autowired} Là annotaion của Spring Framework, dùng nạp tự động các Bean đã được khai báo (bằng các annotatio như @VaadinComponent, @Component, @Repository, ...) vào hệ thống, cụ thể chúng em dùng chúng để nạp OWLEditorKit, HttpSession và OWLEditorEventBus vào OWLEditorUI.
+\item \textbf{@Theme} Là annotation của Vaadin dùng để nạp thành phần tùy chỉnh CSS cho toàn bộ giao diện của hệ thống.
+\item \textbf{@EnableAutoConfiguration} Là annotation của Spring Boot, bật tính năng cấu hình tự động (mọi cấu hình về DataBase, Base Url,... sẽ ở trạng thái mặc định).
+\item \textbf{@ComponentScan} Là annotation của Spring, tự động quét và tìm các Bean từ package hiện hành và khởi tạo chúng.
+\item \textbf{@Nonnull} Là annotation từ JSR-305, đảm bảo tham số nhập vào không được null, nếu null tự động throw NullPointerException.
+\end{itemize}
+\subsubsection{Sử dụng OWLEditorKit trong OWLEditorUI}
+Như đã nói sơ qua, thì \textbf{OWLEditorKit} được định nghĩa là một Bean của hệ thống nên khi khởi động nó sẽ được tạo ra nhờ tính năng quét Bean vừa giới thiệu. Trong OWLEditorUI, chúng ta sẽ nạp (inject) nó vào OWLEditorUI và tạo một phương thức tĩnh để có thể sử dụng từ các thành phần giao diện như sau:
+\begin{verbatim}
+@Autowired OWLEditorKit eKit; 
+public static OWLEditorKit getOWLEditorKit() {
+  ((OWLEditorKit) UI.getCurrent()).eKit; }
+\end{verbatim}
+Lưu ý: \textit{UI.getCurrent()} là một hàm tiện ích của Vaadin nhằm trả về UI đang chạy hiện hành, trong hệ thống mà chúng em xây dựng chỉ có duy nhất một UI là OWLEditorUI nên sẽ ép kiểu trực tiếp, trong trường hợp có nhiều UI cần lưu ý vấn đề kiểm tra loại UI.Trong source code \cite{owleditorSrc}, chúng em chỉ khai báo Annotation @Repository cho lớp \textit{OWLEditorKitImpl} vậy tại sao @Autowired lại biết mà khởi tạo được ? Câu trả lời là hệ thống sẽ quét và tìm đến các lớp áp dụng interface OWLEditorKit mà có Annotation khai báo để khởi tạo. Để đơn giản ở đây chúng em sẽ dùng hàm khởi tạo mặc định trong OWLEditorKitImpl, ngoài ra còn rất nhiều cách thức @Autowired (hoặc inject) khác có thể tham khảo ở \cite{springboot}.
+\subsubsection{Sử dụng OWLEditorEventBus trong OWLEditorUI}
+Trong thiết kế chúng em sẽ sử dụng \textit{một} EventBus để xử lý sự kiện cho hệ thống, vì vậy sẽ dễ dàng hơn nếu nó được khởi tạo một lần trong OWLEditorUI và cung cấp dưới dạng phương thức tĩnh. Đầu tiên là cấu trúc của một lớp dùng chứa EventBus thật sự và cách tạo ra các hàm tĩnh.
+\begin{verbatim}
+@VaadinComponent public class OWLEditorEventBus {
+  private final EventBus realEventBus = new EventBus(this); //từ Guava API
+  public static void post(@Nonnull final Object event) {
+    OWLEditorUI.getGuavaEventBus().realEventBus.post(event);  }
+  public static void register(@Nonnull final Object obj) { ... } ...
+}
+// Trong OWLEditorUI
+@Autowired OWLEditorEventBus eventBus;
+public static OWLEditorEventBus getGuavaEventBus() {
+  ((OWLEditorKit) UI.getCurrent()).eventBus; }
+\end{verbatim}
+Vậy để sử dụng Guava EventBus trong OWLEditorUI, chỉ cần gọi \textit{OWLEditorUI. getGuavaEventBus} hoặc đơn giản hơn \textit{OWLEditorEventBus. <tên phương thức>}.
+\subsubsection{Sử dụng HttpSession trong OWLEditorUI}
+Tương tự 2 thành phần trên, HttpSession cũng là một Bean có sẵn của Spring nên chúng ta có thể nạp vào OWLEditorUI và sử dụng như sau:
+\begin{verbatim}
+@Autowired HttpSession httpSession;
+public static HttpSession getHttpSession() {
+ return ((OWLEditorUI) getCurrent()).httpSession; }
+\end{verbatim}
+\subsubsection{Cập nhật trạng thái giữa EntryView và MainView}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=150mm]{Figures/owleditorui_flowchart.png}
+	\caption{Vòng đời của các view trong OWLEditorUI \label{overflow}}
+\end{figure}
+Mỗi lần chúng ta vào trang url của ứng dụng hay refresh thì vòng đời của các View sẽ diễn ra như trong hình 4.1. Việc kiểm tra các điều kiện đều nằm trong phương thức \textbf{updateContent} của OWLEditorUI.
+\textbf{Tóm lại} OWLEditorUI là nơi sẽ cung cấp các thành phần lõi của hệ thống như OWLEditorKit, EventBus và HttpSession. Tiếp theo, chúng em sẽ trình bày cách xây dựng các View và thành phần của chúng.
+\section{Xây dựng EntryView}
