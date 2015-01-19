@@ -450,8 +450,9 @@
 
 {\normalsize #1}
 \bigskip
-	\doublesignature{}
-		{Sinh viên thực hiện khóa luận \\
+	\doublesignature{}		
+		{		
+		Sinh viên thực hiện khóa luận \\
 		Đặng Lê Bảo Chương \& Nguyễn Bảo Duy\\
 	}
 \vfil\vfil\null
@@ -547,7 +548,7 @@
 }
 % Đề cương mẫu 2
 \newcommand\decuongB{
-	\btypeout{ĐỀ CƯƠNG ĐỀ TÀI LUẬN VĂN KỸ SƯ}
+	\btypeout{ĐỀ CƯƠNG CHI TIẾT}
 	\pagestyle{empty}
 	\begin{tabular}{cc}
 		\footnotesize{\textbf{ĐẠI HỌC QUỐC GIA TP.HỒ CHÍ MINH}} & \footnotesize{\textbf{CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM}}\\ 
@@ -556,7 +557,7 @@
 		 
 	\end{tabular}
 	\begin{center}
--		{\large{\textbf{ĐỀ CƯƠNG ĐỀ TÀI LUẬN VĂN KỸ SƯ}} \par}
+		{\large{\textbf{ĐỀ CƯƠNG CHI TIẾT}} \par}
 	\end{center}
 	\begin{center}
 	\begin{enumerate}
