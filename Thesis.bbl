@@ -65,9 +65,11 @@ J.~Squeda, ``Introduction to: Open world assumption vs closed world
   \url{http://www.w3.org/TR/2014/REC-rdf-schema-20140225/}
 \BIBentrySTDinterwordspacing
 
-\bibitem[owl(2012)]{owl2}
+\bibitem[Motik et~al.(2012{\natexlab{a}})Motik, Patel-Schneider, and
+  Parsia]{owl2}
 \BIBentryALTinterwordspacing
-``Ontology web language 2 overview,'' 2012. [Online]. Available:
+B.~Motik, P.~F. Patel-Schneider, and B.~Parsia, ``Ontology web language 2
+  overview,'' \emph{W3C Recommendation}, December 2012. [Online]. Available:
   \url{http://www.w3.org/TR/owl2-overview/}
 \BIBentrySTDinterwordspacing
 
@@ -77,9 +79,11 @@ J.~Squeda, ``Introduction to: Open world assumption vs closed world
   \url{http://en.wikipedia.org/wiki/Description_logic}
 \BIBentrySTDinterwordspacing
 
-\bibitem[map()]{mapping_rdf_graph}
+\bibitem[Motik et~al.(2012{\natexlab{b}})Motik, Patel-Schneider, and
+  Parsia]{mapping_rdf_graph}
 \BIBentryALTinterwordspacing
-``Mapping to rdf graph.'' [Online]. Available:
+B.~Motik, P.~F. Patel-Schneider, and B.~Parsia, ``Mapping to rdf graph,''
+  \emph{W3C Recommendation}, December 2012. [Online]. Available:
   \url{http://www.w3.org/TR/2012/REC-owl2-mapping-to-rdf-20121211/}
 \BIBentrySTDinterwordspacing
 
@@ -101,11 +105,12 @@ J.~Squeda, ``Introduction to: Open world assumption vs closed world
   \url{http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/}
 \BIBentrySTDinterwordspacing
 
-\bibitem[Motik et~al.(2012)Motik, Patel-Schneider, and Parsia]{owl2spec}
+\bibitem[Motik et~al.(2012{\natexlab{c}})Motik, Patel-Schneider, and
+  Parsia]{owl2spec}
 \BIBentryALTinterwordspacing
 B.~Motik, P.~F. Patel-Schneider, and B.~Parsia, ``Owl 2 web ontology language
-  structural specification,'' 2012. [Online]. Available:
-  \url{http://www.w3.org/TR/owl2-syntax/}
+  structural specification,'' \emph{W3C Recommendation}, December 2012.
+  [Online]. Available: \url{http://www.w3.org/TR/owl2-syntax/}
 \BIBentrySTDinterwordspacing
 
 \bibitem[swr({\natexlab{b}})]{swrlbuiltin}
@@ -134,10 +139,10 @@ A.~Kalyanpur, B.~Parsia, B.~Cuenca-Grau, and E.~Sirin, ``Repairing
   \url{http://www.cs.ox.ac.uk/people/bernardo.cuencagrau/publications/repair.pdf}
 \BIBentrySTDinterwordspacing
 
-\bibitem[Kalyanpur et~al.(2006)Kalyanpur, Parsia, Cuenca-Grau, and
-  Sirin]{axiomPinpoint}
-------, ``Axiom pinpointing: Finding (precise) justifications for arbitrary
-  entailments in shoin (owl-dl),'' UMIACS 2006, Tech. Rep., 2006.
+\bibitem[Kalyanpur et~al.(2006)Kalyanpur, Parsia, and Sirin]{axiomPinpoint}
+A.~Kalyanpur, B.~Parsia, and E.~Sirin, ``Axiom pinpointing: Finding (precise)
+  justifications for arbitrary entailments in shoin (owl-dl),'' UMIACS 2006,
+  Tech. Rep., 2006.
 
 \bibitem[Horridge(2012)]{matt_horridge}
 \BIBentryALTinterwordspacing

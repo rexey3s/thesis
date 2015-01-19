@@ -15,49 +15,48 @@ Database file #1: Bibliography.bib
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=20001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
-Warning--empty journal in owl2spec
 Warning--empty journal in repair
 
 Done.
 You've used 30 entries,
             4783 wiz_defined-function locations,
-            1042 strings with 10954 characters,
-and the built_in function-call counts, 12608 in all, are:
-= -- 1163
-> -- 111
+            1045 strings with 11019 characters,
+and the built_in function-call counts, 13076 in all, are:
+= -- 1212
+> -- 150
 < -- 4
-+ -- 105
-- -- 30
-* -- 634
-:= -- 2021
++ -- 120
+- -- 40
+* -- 680
+:= -- 2133
 add.period$ -- 55
 call.type$ -- 30
 change.case$ -- 55
-chr.to.int$ -- 23
-cite$ -- 55
-duplicate$ -- 995
-empty$ -- 1163
-format.name$ -- 40
-if$ -- 2662
-int.to.chr$ -- 8
+chr.to.int$ -- 21
+cite$ -- 52
+duplicate$ -- 1022
+empty$ -- 1175
+format.name$ -- 54
+if$ -- 2753
+int.to.chr$ -- 10
 int.to.str$ -- 31
-missing$ -- 192
+missing$ -- 193
 newline$ -- 172
-num.names$ -- 21
-pop$ -- 760
+num.names$ -- 27
+pop$ -- 741
 preamble$ -- 1
 purify$ -- 30
 quote$ -- 2
-skip$ -- 884
+skip$ -- 910
 stack$ -- 0
-substring$ -- 108
-swap$ -- 436
+substring$ -- 106
+swap$ -- 469
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 6
-type$ -- 454
-warning$ -- 2
-while$ -- 14
+type$ -- 456
+warning$ -- 1
+while$ -- 18
 width$ -- 0
-write$ -- 341
-(There were 2 warnings)
+write$ -- 347
+(There was 1 warning)
