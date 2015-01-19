@@ -60,7 +60,7 @@ Trong OWL-API cung cấp sẵn một số các Interface Visitor cho từng lo�
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=145mm]{Figures/uml_classdiagram_classexpressionvistior_nobackground.png}
-	\caption{OWLClassExpressionVisitor trong OWL-API \label{overflow}}
+	\caption{Class Diagram của OWLClassExpressionVisitor \label{overflow}}
 \end{figure}
 {\let\thefootnote\relax\footnotetext{*\textit{
 		OWLDataFactory: nằm trong OWL-API với chức năng dùng như một nhà máy tạo ra mọi loại đối tượng từ lớp, thuộc tính tới các phát biểu.
@@ -82,13 +82,13 @@ Visitor lớn nhất trong OWL-API là \textit{OWLObjectVisitor} có khả năng
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=145mm]{Figures/uml_classdiagram_owlobjectvisitor_nobackground.png}
-	\caption{OWLObjectVisitor trong OWL-API \label{overflow}}
+	\caption{Class Diagram của OWLObjectVisitor \label{overflow}}
 \end{figure}
 Nhờ tận dụng tính đa hình trong lập trình hướng đối tượng nên các loại đối tượng thừa kế/mở rộng từ OWLObject đều có khả năng chấp nhận truy vấn lên chính nó (visitor.visit(this)) từ \textit{OWLObjectVisitor} (Hình 3.11).
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=145mm]{Figures/uml_classdiagram_owlobject_forvisitor_nobackground.png}
-	\caption{OWLObject và OWLObjectVisitor trong OWL-API \label{overflow}}
+	\caption{Class Diagram của OWLObject và OWLObjectVisitor \label{overflow}}
 \end{figure}
 Để sử dụng các visitor, chúng em chỉ cần tạo các class áp dụng các interface tương ứng nhằm truy vấn dạng thành phần cụ thế như ví dụ OWLClassExpressionVisitor ở trên. Tuy nhiên, mỗi lần sử dụng là mỗi lần phải viết lại nội dung các phương thức trong Interface Visitor, để hạn chế sự lặp lại này OWL-API cũng cung cấp sẵn hoặc chúng ta cũng có thể tạo các class VisitorAdapter với nội dung mỗi phương thức được cài đặt tính năng mặc định. Ví dụ:
 \begin{verbatim}
@@ -105,14 +105,14 @@ Trong Vaadin Framework, dữ liệu trong lúc một ứng dụng đang ở tron
 \begin{figure}[h!]
  	\centering
  	\includegraphics[width=150mm]{Figures/uml_owleditor_owlobjectsource.png}
- 	\caption{Tổ chức dữ liệu dưới dạng Property \label{overflow}}
+ 	\caption{Class Diagram của Property<T>\label{overflow}}
 \end{figure}
 \textbf{Property} là \textit{Data Model} đơn giản nhất, được Vaadin cung cấp dưới dạng Interface \textit{Property<T>} với $T$ kiểu dữ liệu được chúng ta định nghĩa, các thành phần giao diện như \textit{TextField}, \textit{Label}, \textit{TextArea} sử dụng \textit{Property} để liên kết dữ liệu với các đối tượng dữ liệu được định nghĩa qua $T$. Công việc phải làm là định nghĩa các \textit{Property} chứa các đối tượng OWL-API này. Do tính chất của OWL 2, ta có thế nói OWLClass (lớp) là một OWLEntity (thực thể), OWLEntity là một OWLObject (thành phần của OWL 2). Theo đó mà chúng em cũng sẽ tạo ra các Property tương ứng OWLObjectSource > OWLEntitySource > OWLClassSource. Việc tận dụng tính đa hình của đối tượng rất có ích khi xây dựng các UI Component chung cho các loại đối tượng giống nhau như OWLClass, OWLObjectProprerty, OWLDataProperty (cả đều mở rộng từ OWLEntity). 
 \subsection{Tổ chức các thực thể OWLClass, OWLObjectProperty và OWLDataProperty thành các Container}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=150mm]{Figures/uml_owleditor_abstractcontainer_nobackground.png}
-	\caption{Tổ chức các lớp, thuộc tính thành HierarchicalContainer \label{overflow}}
+	\caption{Class Diagram của HierarchicalContainer \label{overflow}}
 \end{figure}
 \textbf{Container} là cấu trúc \textit{Data Model} phức tạp và cao nhất, chúng được chia thành các loại khác nhau tương ứng với tính chất của cấu trúc dữ liệu như \textit{HierarchicalContainer} dùng cho các cấu trúc dữ liệu phân cấp được hỗ trợ trong các thành phần giao diện (UI Component) như \textit{Table}, \textit{Tree}, \textit{ComboBox} và \textit{ListSelect}, đơn giản hơn có \textit{IndexedContainer} dùng cho cấu trúc dữ liệu dạng danh sách được hỗ trợ bởi \textit{ComboBox} và \textit{ListSelect} và \textit{JPAContainer} dùng cho các dữ liệu dạng SQL Table - hỗ trợ bở \textit{Table}, \textit{TreeTable}. Trong ứng dụng, chúng em chỉ sử dụng \textit{HierarchicalContainer} để tổ chức các lớp, thuộc tính đối tượng hay dữ liệu vì chúng cũng có tính chất phân cấp (SubClassOf, SubPropertyOf). Ở đây chúng em cũng xây dựng một AbstractClass rồi mở rộng ra với từng loại OWLEntity tương ứng là OWLClass, OWLObjectProperty và OWLDataProperty (Hình 3.13).
 
@@ -122,7 +122,7 @@ Do hệ thống gồm nhiều tab và các cửa sổ nhỏ (mô tả trong mụ
 \begin{figure}[h!]
 	\centering
 	\includegraphics[height=115mm]{Figures/uml_eventbus_sequence.png}
-	\caption{EventBus Sequence Diagram \label{overflow}}
+	\caption{Sequence Diagram của EventBus \label{overflow}}
 \end{figure}
 \\
 UIComponent có thể được khai báo subscriber bằng Annotation @Subscribe cung cấp bởi thư viện Guava như sau:
@@ -144,12 +144,12 @@ Do EventBus sẽ dựa vào loại Event để truyền đến đúng Subscriber
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=150mm]{Figures/uml_entity_event.png}
-	\caption{Các sự kiện của các cá thể\label{overflow}}
+	\caption{Class Diagram của các sự kiện liên quan đến thực thể\label{overflow}}
 \end{figure}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[height=97mm]{Figures/uml_axiom_event.png}
-	\caption{Sự kiện cho các loại phát biểu \label{overflow}}
+	\caption{Class Diagram của các sự kiện liên quan đến các phát biểu \label{overflow}}
 \end{figure}
 Tên của các sự kiện cho cá thể gồm phần đầu là tên loại thực thể (Class, ObjectProperty, ...) và phần sau là động từ nói lên đó là sự kiện thêm, xóa hay sửa (Hình 3.15). Đối với sự kiện dành cho các phát biểu, tên của chúng gồm phần đầu nói lên loại phát biểu mà sự kiện đó đang xử lý và phần sau là động từ nói lên hành động thêm, xóa hay sửa (Hình 3.16).
 \\

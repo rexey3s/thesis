@@ -314,3 +314,35 @@ V4 Type RoadVehicle
 	\caption{Phân loại dựa trên Domain của thuộc tính đối tượnglabel{overflow}}
 \end{figure}
 Trên đây, là 3 ví dụ khá đơn giản về cách sử dụng các phát biểu của riêng OWL 2 hay sử dụng chúng kết hợp chúng với SWRL Rule để phân loại. Trên thực tế sẽ có những trườgn hợp phức tạp hơn, ví dụ của chúng em chỉ muốn kiểm chứng tính khả thi và khả năng của OWL 2 và SWRL.
+\section{Tính năng hỗ trợ phân loại - Demo Tab}
+\begin{figure}[ht!]
+	\centering
+	\frame{\includegraphics[width=145mm]{Figures/owleditor_demo1.png}}
+	\caption{Tính năng hỗ trợ phân loại Demo Tab (phần 1)\label{overflow}}
+\end{figure}
+Việc sử dụng SWRL Rule hay đơn giản hơn là đọc và hiểu ý nghĩa có nó thường rất khó đối với người dùng thông thường, chưa kể đến việc chưa có cơ chế tổ chức các SWRL rule một cách khoa học, sẽ có những trường hợp chúng ta vô tình tạo ra những điều kiện trùng nhau dẫn đến 2 kết quả khác nhau hoặc ngược lại. Hiểu được nhược điểm này của SWRL Rule, chúng em đã thiết kế thêm tính năng hỗ trợ phân loại với giao diện là Tab Demo trong ứng dụng, với khả năng vẽ ra một sơ đồ dựa theo chuỗi các điều kiện - kết quả có liên quan đến lớp đang chứa cá thể được chọn để phân loại. Để minh họa cho tính năng này ,chúng em xin trích một đoạn chứa các SWRLRule trong ontology \textit{Transport.owl} \cite{owleditorSrc} (được chúng em xây dựng để làm demo cho tính năng phân loại). Hình trên mô tả lại các rule sau:
+\begin{verbatim}
+# Phương tiện đường bộ có thể chở hàng hóa (Cargo) là xe tải (Truck)
+OnRoadAndOffRoadVehicle(?x) ^ canCarry(?x, ?y) ^ Cargo(?y)  -> Truck(?x)
+# Phương tiện đường bộ có khả năng chở hàng là xe tải (Truck)
+OnRoadAndOffRoadVehicle(?x) ^ canCarryCargo(?x, true) -> Truck(?x)
+# Phương tiện đường bộ có số 4 <= chỗ ngồi <= 7 là xe hơi (Car)
+OnRoadAndOffRoadVehicle(?x) ^ hasNumberOfSeats(?x, ?s)
+^ swrlb:greaterThanOrEqual(?s, 4) 
+^ swrlb:lessThanOrEqual(?s, 7)  -> Car(?x)
+# Phương tiện đường bộ có số chỗ ngồi >= 20 là xe Bus 
+OnRoadAndOffRoadVehicle(?x) ^ hasNumberOfSeats(?x, ?s) 
+^ swrlb:greaterThan(?s,20) -> Bus(?x)                               
+\end{verbatim}
+Trong hình chỉ miêu tả những rule nào có liên quan đến lớp \textit{OnRoadAndOffRoadVehicle} vốn là lớp chứa cá thể \textit{XeBus150} trong hình, làm vậy để hạn chế những thông tin không cần thiết đối với người dùng. Khi chọn \textit{Suggest Me} sẽ tạo ra một loại các UI Component phục vụ để tạo ra các phát biểu về cá thể \textit{XeBus150}.
+\begin{figure}[h!]
+	\centering
+	\frame{\includegraphics[width=145mm]{Figures/owleditor_demo2.png}}
+	\caption{Tính năng hỗ trợ phân loại Demo Tab (phần 2)\label{overflow}}
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\frame{\includegraphics[width=145mm]{Figures/owleditor_demo3.png}}
+	\caption{Tính năng hỗ trợ phân loại Demo Tab (phần 3)\label{overflow}}
+\end{figure}
+Trong hình trên mỗi bước tương ứng với những phát biểu có liên quan đến \textit{OnRoadAndOffRoadVehicle} như trong sơ đồ. Miền dữ liệu (Range) của thuộc tính dữ liệu và thuộc tính đối tượng cũng sẽ được áp dụng nhằm giảm bớt những thông tin không cần thiết, thuộc tính \textit{hasNumberOfSeats} có DataPropertyRange( xsd:int) nên ở cột bên phải chúng ta chỉ thấy kiểu dữ liệu này thay vì là một loạt kiểu dữ liệu như xsd:string, xsd:byte, v.v... . Khi đến bước cuối cùng, reasoner sẽ đánh giá lại các thông tin mà chúng ta vừa nhập vào ở các bước trước để đưa kết quả phân loại phù hợp như đã được biểu diễn trong sơ đồ.

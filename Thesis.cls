@@ -590,7 +590,7 @@
 	\item
 	Tìm hiểu về Vaadin Framework, sử dụng làm nền tảng để xây dựng ứng dụng OWL Editor dùng phục vụ cho việc phát triển ontology phân loại và thực hiện phân loại.
 	\item
-	Thiết kế và xây dựng hệ thống phân loại OWL Editor, thiết kết một ontology đề trình bày khả năng phân loại.
+	Thiết kế một ontology đề trình bày khả năng phân loại tự động.
 	\item
 	Viết báo cáo và hoàn thành đề tài khoá luận.
 	\end{itemize}
