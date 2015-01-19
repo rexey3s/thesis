@@ -145,7 +145,7 @@ Bên trong \textit{ClassHierarchicalPanel} có thành phần \textit{Tree} đây
 	\frame{\includegraphics[width=80mm]{Figures/owleditor_addentitywd.png}}
 	\caption{Cửa sổ thêm thực thể \textit{lớp} trong ClassSheet \label{overflow}}
 \end{figure}
-Thao tác thêm mới cửa sổ dùng để nhập tên lớp mới (Hình 4.5), cửa sổ này là lớp \textit{buildAddOWLClassWindow} mở rộng từ \textit{AbstractAddOWLObjectWindow} (Hình 4.6). Đối tượng này phải biết OWLEntityActionHandler (là OWLClassTree hình 4.4) để khi chọn save nó sẽ sử dụng action handler này để áp dụng các thay đổi lên ontology và lên giao diện cây là nó sẽ thêm node con, hay node cùng họ (Sibling) - tương ứng với tùy chọn Sub cp Class hay Sibling Class. Chính vì thế nên hàm khởi tạo của lớp này sẽ buộc phải có tham số \textit{OWLEntityActionHandler}, để sử dụng khi click save (phần note Hình 4.6).
+Thao tác thêm mới cửa sổ dùng để nhập tên lớp mới (Hình 4.5), cửa sổ này là lớp \textit{buildAddOWLClassWindow} mở rộng từ \textit{AbstractAddOWLObjectWindow} (Hình 4.6). Đối tượng này phải biết OWLEntityActionHandler (là OWLClassTree hình 4.4) để khi chọn save nó sẽ sử dụng action handler này để áp dụng các thay đổi lên ontology và lên giao diện cây sẽ tự động thêm node con, hay node cùng họ (Sibling) - tương ứng với tùy chọn Sub Class hay Sibling Class. Chính vì thế nên hàm khởi tạo của lớp này sẽ buộc phải có tham số \textit{OWLEntityActionHandler}, để sử dụng khi click save (phần note Hình 4.6).
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=155mm]{Figures/uml_addowlobjectwindow.png}
@@ -235,7 +235,7 @@ Biến \textit{modifyExpression} là một interface \textit{OWLExpressionUpdate
 newClsEx -> eKit.getDataFactory()
          .getSubClassOfModEvent(currentCls, newClsEx, currentClsEx))
 \end{verbatim}
-Bởi vì chỉ khi tạo một panel cụ thể cho một phát biểu chú ta mới biết đó là loại sự kiện gì cho nhóm phát biểu nào (lớp, thuộc hay cá thể). Như đã nói việc xây dựng những interface tiện ích như trên giúp chúng em tiết kiệm rất nhiều công sức bỏ vào code. Trở lại với cửa sổ của biên tập mô tả lớp vừa rồi, khi nhấn "Save" sự kiện sẽ được công bố lên EventBus. Vậy đâu mới là đối tượng tiếp nhận sự kiện vừa rồi. Đó là thành phần sẽ được giới thiệu ngay sau đây.
+Bởi vì chỉ khi tạo một panel cụ thể cho một phát biểu chúng ta mới biết đó là loại sự kiện gì cho nhóm phát biểu nào (lớp, thuộc hay cá thể). Như đã nói việc xây dựng những interface tiện ích như trên giúp chúng em tiết kiệm rất nhiều công sức khi thực hiện. Trở lại với cửa sổ của biên tập mô tả lớp vừa rồi, khi nhấn "Save" sự kiện sẽ được công bố lên EventBus. Vậy đâu mới là đối tượng tiếp nhận sự kiện vừa rồi. Đó là thành phần sẽ được giới thiệu ngay sau đây.
 \subsubsection{AbstractPanelContainer}
 Xem lại hình 4.3, đây là thành phần chứa tất cả các \textit{AbstractExpressionPanel} và đặc biệt đây là thành phần chứa 3 loại Subscriber tương ứng với 3 loại sự kiện là thêm, xóa và sửa. Lấy ClassExpressionPanelContainer (lớp kế thừa từ lớp abstract này) làm ví dụ, nó sẽ có 3 subscriber như sau:
 \begin{verbatim}
@@ -254,7 +254,7 @@ Các thay đổi sẽ được áp dụng trực tiếp vào ontology thông qua
 \end{verbatim}
 Sau khi các thay đổi được áp dụng thành công, chúng sẽ được cập nhật lên ontology bằng addHelper/removeHelper, cả hai đối tượng này đêu là \textit{OWLAxiomVisitor} được cài đặt thông qua \textit{OWLAxiomVisitorAdapter} để truy vấn đến những thay đổi có liên quan đến phát biểu có trong sự kiện. Ví dụ: nếu các phát biểu đó liên quan đến lớp thì chúng ta chỉ định nghĩa lại giải thuật cho các phương thức visit(OWLClassAssertionAxiom/ OWLDisjointClassesAxiom/ OWLEquivalentClassesAxiom/ OWLSubClassOfAxiom ) trong adapter.
 \subsubsection{SWRL Rule Tab}
-Tab này  Tab có đặt thù hơi khác sao với các tab còn lại, chỉ gồm một thành phần chính là một Table chứa các SWRL trong tài liệu OWL 2 Ontology. Khi right-click sẽ có các chức năng thêm/xóa/sửa rule được chọn.
+Tab này có đặt điểm khác sao với các tab còn lại, chỉ gồm một thành phần chính là một Table chứa các SWRL trong tài liệu OWL 2 Ontology. Khi right-click sẽ có các chức năng thêm/xóa/sửa rule được chọn.
 \begin{figure}[h!]
 	\centering
 	\frame{\includegraphics[width=155mm]{Figures/owleditor_swrlSheet.png}}
@@ -301,7 +301,7 @@ A2 hasWing XWing
 \end{verbatim}
 Giải thích chỉ có những cá thể thuộc lớp \textit{WingAircraft} mới có thuộc tính đối tượng \textit{hasWing}, mà A2 \textit{hasWing} XWing (không cần biết XWing thuộc lớp nào) nên A2 cũng thuộc \textit{WingAircraft}.
 \subsection{Phân loại theo SWRL Rule và thuộc tính dữ liệu} 
-Cá thể V4 đã thuộc lớp \textit{RoadVehicle} trước, khi phân loại chúng ta thấy nó sẽ thuộc vào lớp \textit{Bus}, đây là lý \begin{verbatim}
+Cá thể V4 đã thuộc lớp \textit{RoadVehicle} trước, khi phân loại chúng ta thấy nó sẽ thuộc vào lớp \textit{Bus}, đây là lý do \begin{verbatim}
 RoadVehicle(?x) ^ hasNumberOfSeats(?x, ?s) 
                ^ swrlb:greaterThan(?s, 20) -> Bus(?x)
 V4 hasNumberOfSeats 21
