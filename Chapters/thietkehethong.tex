@@ -32,7 +32,7 @@ MainView sẽ gồm nhiều tab, mỗi loại thực thể (gồm lớp, thuộc
 	\includegraphics[width=150mm,height=95mm]{Figures/ui_mainview_swrltab.png}
 	\caption{Phác thảo Main View - Tab "SWRL Rules" \label{overflow}}
 \end{figure}
-Các tab về lớp (Class), thuộc tính đối tượng (Object Propery) và thuộc tính dữ liệu (Data Propery) sẽ có bố cục giống nhau (Hình 3.3). Bên trái là một cây biểu diễn cấu trúc phân cấp của các loại thực thể này và bên phải là các panel nhỏ. Từng panel sẽ tương ứng với từng loại phát biểu có liên quan đến thực thể được chọn bên trái. Riêng tab về các cá thể sẽ có bố cục hơi khác so với các thực thể còn lại, nó sẽ có thêm một danh sách (sẽ nằm bên dưới cấu trúc cây chứa các lớp - Hình 3.4). Bên trong tab SWRL Rules sẽ là một bảng gồm chứa các rule, chia thành 3 cột gồm tên, nội dung và lời chú thích cho rule (Hình 3.5).
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=150mm,height=100mm]{Figures/ui_classexpressioneditor.png}
@@ -43,6 +43,8 @@ Các tab về lớp (Class), thuộc tính đối tượng (Object Propery) và 
 	\includegraphics[width=155mm,height=95mm]{Figures/ui_mainview_ruleeditor.png}
 	\caption{Phác thảo cửa sổ biên tập rule \label{overflow}}
 \end{figure}
+Các tab về lớp (Class), thuộc tính đối tượng (Object Propery) và thuộc tính dữ liệu (Data Propery) sẽ có bố cục giống nhau (Hình 3.3). Bên trái là một cây biểu diễn cấu trúc phân cấp của các loại thực thể này và bên phải là các panel nhỏ. Từng panel sẽ tương ứng với từng loại phát biểu có liên quan đến thực thể được chọn bên trái. Riêng tab về các cá thể sẽ có bố cục hơi khác so với các thực thể còn lại, nó sẽ có thêm một danh sách (sẽ nằm bên dưới cấu trúc cây chứa các lớp - Hình 3.4). Bên trong tab SWRL Rules sẽ là một bảng gồm chứa các rule, chia thành 3 cột gồm tên, nội dung và lời chú thích cho rule (Hình 3.5).
+
 Ngoài các view và tab đã kể ở trên, thì ứng dụng buộc phải có thêm các thành phần giao diện hỗ trợ viêc biên tập mô tả lớp, thuộc tính, cá thể (class/property expression, individual assertion axiom) và việc biên tập SWRL Rule. Các hình 3.6, 3.7  thể hiện phác thảo về các giao diện đảm nhiệm những tính năng vừa nêu.
 \section{Truy xuất đến các thành phần của Ontology trong OWL-API bằng cách áp dụng Visitor Pattern}
 Trong OWL-API, các đối tượng dữ liệu có cấu trúc tương tự với các thành phần trong OWL 2 Ontology (được trình bày trong mục 2.2.3) - tên của các đối tượng dữ liệu sẽ có thêm tiếp đầu ngữ \textit{"OWL"} cộng với tên của thành phần trong OWL 2 như \textit{Ontology} thì đối tượng trong OWL-API sẽ là \textit{OWLOntology}, \textit{ClassExpression} (mô tả lớp) thì đối tượng tương ứng là \textit{OWLClassExpression}, tương tự cho các thành phần khác. Việc tương tác và thay đổi sẽ diễn ra trong đối tượng \textit{OWLOntology} - đối tượng Java biểu diễn một OWL 2 ontology. 
@@ -264,7 +266,7 @@ Ontology được chia theo cấu trúc phân lớp, và bao gồm các phân l�
 \end{figure}
 Các lớp mở rộng ra là lớp con của lớp (node trong hình) trước nó.
 \subsection{Thuộc tính đối tượng}
-\begin{table}[ht!]
+\begin{table}[h!]
 	\centering
 \begin{tabular}{|p{3cm}|l|p{3cm}|p{3cm}|p{3cm}|}
 \hline
@@ -284,7 +286,7 @@ hasParts & x & Vehicle or VehicleComponent & Vehicle or VehicleComponent & isPar
 \end{table}
 Trong bảng 3.1 thì \textit{hasWing}, \textit{hasEngine} và \textit{hasRotor} là thuộc tính con của \textit{hasParts}.
 \subsection{Thuộc tính dữ liệu}
-\begin{table}[ht!]
+\begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|l|}
 \hline
