@@ -90,7 +90,7 @@ Nhờ tận dụng tính đa hình trong lập trình hướng đối tượng n
 	\includegraphics[width=145mm]{Figures/uml_classdiagram_owlobject_forvisitor_nobackground.png}
 	\caption{Class Diagram của OWLObject và OWLObjectVisitor \label{overflow}}
 \end{figure}
-Để sử dụng các visitor, chúng em chỉ cần tạo các class áp dụng các interface tương ứng nhằm truy vấn dạng thành phần cụ thế như ví dụ OWLClassExpressionVisitor ở trên. Tuy nhiên, mỗi lần sử dụng là mỗi lần phải viết lại nội dung các phương thức trong Interface Visitor, để hạn chế sự lặp lại này OWL-API cũng cung cấp sẵn hoặc chúng ta cũng có thể tạo các class VisitorAdapter với nội dung mỗi phương thức được cài đặt tính năng mặc định. Ví dụ:
+Để sử dụng các visitor, chúng em chỉ cần tạo các class áp dụng các interface tương ứng nhằm truy vấn dạng thành phần cụ thể như ví dụ OWLClassExpressionVisitor ở trên. Tuy nhiên, mỗi lần sử dụng là mỗi lần phải viết lại nội dung các phương thức trong Interface Visitor, để hạn chế sự lặp lại này OWL-API cũng cung cấp sẵn hoặc chúng ta cũng có thể tạo các class VisitorAdapter với nội dung mỗi phương thức được cài đặt tính năng mặc định. Ví dụ:
 \begin{verbatim}
 ClassExpressionVisitorAdapter implements OWLClassExpressionVistor {
   private void doNothing(OWLClassExpression ce) {};
@@ -99,7 +99,7 @@ ClassExpressionVisitorAdapter implements OWLClassExpressionVistor {
 \end{verbatim}
 Mỗi khi muốn thay đổi nội dung phương thức nào chỉ cần \textit{Override} lại phương thức đó trong VisitorAdapter là được.
 \section{Các tổ chức dữ liệu (data model) cho hệ thống}
-Trong Vaadin Framework, dữ liệu trong lúc một ứng dụng đang ở trong tiến trình hoạt động được tổ chức thành các mô hình gọi là Data Model, với 3 cấp khác nhau gồm:Property, Item và Container. Có thể xem các \textit{Data Model} này như một đối tượng bao bọc (encapsulation) lại dữ liệu kiểu dữ liệu mà chúng ta muốn định nghĩa. Nếu câu hỏi là tại sao phải tốn công đưa các dữ liệu vào trong các đối tượng chứa như vậy, thì câu trả lời là vì Vaadin Framework cung cấp một cơ chế mà khi chúng ta tương tác với dữ liệu trong các \textit{Data Model} này thì đồng thời những thành phần giao diện (UI Components) cũng sẽ cập nhật các thay đổi đó. Lý do là vì hầu hết các thành phần giao diện đều được thiết kế độc lập với dữ liệu, dữ liệu được liên kết với các giao diện thông qua các \textit{Data Model} này. Sau đây chúng em xin trình bày cách tổ chức các đối tượng từ OWL-API vào trong các \textit{Data Model} là Property và Container (Item không được sử dụng vì không phù hợp với cấu trúc dữ liệu mà chúng em muốn tổ chức).
+Trong Vaadin Framework, dữ liệu trong một ứng dụng đang ở trong tiến trình hoạt động được tổ chức thành các mô hình gọi là Data Model, với 3 cấp khác nhau gồm:Property, Item và Container. Có thể xem các \textit{Data Model} này như một đối tượng bao bọc (encapsulation) lại dữ liệu, kiểu dữ liệu mà chúng ta muốn định nghĩa. Nếu câu hỏi là tại sao phải tốn công đưa các dữ liệu vào trong các đối tượng chứa như vậy, thì câu trả lời là vì Vaadin Framework cung cấp một cơ chế mà khi chúng ta tương tác với dữ liệu trong các \textit{Data Model} này thì đồng thời những thành phần giao diện (UI Components) cũng sẽ cập nhật các thay đổi đó. Lý do là vì hầu hết các thành phần giao diện đều được thiết kế độc lập với dữ liệu, dữ liệu được liên kết với các giao diện thông qua các \textit{Data Model} này. Sau đây chúng em xin trình bày cách tổ chức các đối tượng từ OWL-API vào trong các \textit{Data Model} là Property và Container (Item không được sử dụng vì không phù hợp với cấu trúc dữ liệu mà chúng em muốn tổ chức).
 
 \subsection{Tổ chức các đối tượng OWL-API vào trong Property của Vaadin}
 \begin{figure}[h!]
@@ -168,7 +168,7 @@ OWLEditor kit = new OWLEditorKitImpl();
 kit.loadOntologyFromOntologyDocument(IRI.create("some url"));
 \end{verbatim}
 \subsubsection{Giải thích các phát biểu trong OWL2 Ontology}
-Việc này được thực hiện thông qua phương thức \textit{explain(OWLAxiom axiom)} của OWLEditorKit. Kết quả trả về là một đối tượng \textit{ExplanationTree}trong đó gồm các OWLAxiom (là các phát biểu giải thích). Cách sử dụng chi tiết hơn trong chương sau.
+Việc này được thực hiện thông qua phương thức \textit{explain(OWLAxiom axiom)} của OWLEditorKit. Kết quả trả về là một đối tượng \textit{ExplanationTree} trong đó gồm các OWLAxiom (là các phát biểu giải thích). Cách sử dụng chi tiết hơn được trình bày trong chương sau.
 
 \subsubsection{Xóa các thực thể trong OWL2 Ontology}
 Xóa các phát biểu trong OWL 2 Ontology không phải là một tác vụ dễ dàng vì một phát biểu có thể được sử dụng để xây dựng nên phát biểu khác. Ví dụ:
