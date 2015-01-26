@@ -52,8 +52,8 @@ Hình Semantic Web Stack \cite{semantic3} miêu tả kiến trúc của Semantic
 	\item \textbf{Resource Description Framework} (RDF) \cite{rdf} là ngôn ngữ đầu tiên được quy định bởi W3C để diễn tả các mô hình dữ liệu và mối quan hệ của chúng. RDF có thể được lưu trữ dưới nhiều dạng định dạng khác nhau  ví dụ như: RDF/XML, N3, Turtle và RDFa. Có thể nói RDF chính là thành phần cơ bản và quan trọng nhất của Semantic Web.
 	\item \textbf{RDF Schema} (RDFS) \cite{rdfs} mở rộng RDF bằng những vốn từ vựng mới dùng miêu tả các thuộc tính và phân lớp trong các tài nguyên web hay mô hình dữ liệu được biểu diễn bằng RDF.
 	\item \textbf{Ontology Web Language} (OWL) là ngôn ngữ với cú pháp hoàn toàn mới dùng với mục tiêu tương tự RDFS, tuy nhiên ngoài việc biểu diễn được lớp, thuộc tính như RDFS, OWL còn có khả năng các mối quan hệ giữa các đối tượng trong mô hình dữ liệu chi tiết hơn nhiều. Ví dụ: quy định các lớp không được phép có chung cá thể nào (disjointness), các phát biểu ràng buộc số lượng (cardinality), cung cấp nhiều loại dữ liệu cho các thuộc tính, và mô tả được thuộc tính bằng các tính chất (đối xứng/ bất đối xứng, và các lớp liệt kê, ...).
-	\item SPARQL là một giao thức và ngôn ngữ truy vấn dữ liệu dành cho tài nguyên của Semantic Web (RDF, RDFS, OWL).
-	\item RIF (W3C Rule Interchange Format) là một ngôn ngữ XML để biểu diễn điều luật web mà máy tính có thể thực thi.
+	\item \textbf{SPARQL} là một giao thức và ngôn ngữ truy vấn dữ liệu dành cho tài nguyên của Semantic Web (RDF, RDFS, OWL).
+	\item \textbf{RIF} (W3C Rule Interchange Format) là một ngôn ngữ XML để biểu diễn điều luật web mà máy tính có thể thực thi.
 \end{enumerate}
 {\let\thefootnote\relax\footnotetext{*\textit{
 			Turtle: http://en.wikipedia.org/wiki/Turtle\_(syntax)}}
@@ -64,7 +64,7 @@ Hình Semantic Web Stack \cite{semantic3} miêu tả kiến trúc của Semantic
 % 	Ontology Web Language 
 %% ----------------------------------------------------------------
 \section{Ontology Web Language 2}
-Là một thành phần chính của Semantic Web, nhiệm vụ của Ontology Web Language (OWL) chính là một Semantic Web. OWL được tổ chức W3C khuyến khích sử dụng vì những thành phần từ vựng mới của nó giúp đặc tả các thực thể trong một lĩnh vực nào đó hiệu quá hơn so với RDFS hay RDF. Phiên bản OWL hiện thời là phiên bản 2 \cite{owl2}. Về mặt lý thuyết, OWL là một ngôn ngữ ontology tuân theo Description Logic (DL) $SROIQ_{(D)}$ \cite{DL}, với ưu điểm là ngoài  khả năng đặc tả vừa nêu, nó còn biểu diễn được những suy luận được suy ra từ những đặc tả được khai báo. Khả năng suy luận của OWL chính là điểm quyết định cho tính khả thi của hệ thống phân loại tự động.
+Là một thành phần chính của Semantic Web, nhiệm vụ của Ontology Web Language (OWL) chính là một Semantic Web. OWL được tổ chức W3C khuyến khích sử dụng vì những thành phần từ vựng mới của nó giúp đặc tả các thực thể trong một lĩnh vực nào đó hiệu quả hơn so với RDFS hay RDF. Phiên bản OWL hiện thời là phiên bản 2 \cite{owl2}. Về mặt lý thuyết, OWL là một ngôn ngữ ontology tuân theo Description Logic (DL) $SROIQ_{(D)}$ \cite{DL}, với ưu điểm là ngoài  khả năng đặc tả vừa nêu, nó còn biểu diễn được những suy luận được suy ra từ những đặc tả được khai báo. Khả năng suy luận của OWL chính là điểm quyết định cho tính khả thi của hệ thống phân loại tự động.
 \subsection{Đặc điểm tổng quan}
 \begin{figure}[h!]
 	\centering
@@ -170,7 +170,7 @@ Cấu trúc của các thực thể và trực nghĩa trong OWL 2 được thể
 	\item Thuộc tính chú thích (annotation) được dùng để đưa thêm những thông tin không có tính ngữ nghĩa (non-logical) như các chú thích, giải nghĩa, ngôn ngữ gắn với ontologies, các phát biểu/tiên đề (axioms) và các thực thể.
 	\item  Các cá thể có tên có thể được dùng để biểu diễn một đối tượng cụ thể từ một lớp nào đó.
 \end{itemize}
-Bên cạnh các cá thể có tên, OWL2 còn cung cấp một khái niệm gọi là các cá thể ẩn danh (anonymous individuals) - là cá thể tương tự với các node trống (blank nodes) trong RDF Concept \cite{rdf_concept} và được truy xuất ngay bên trong ontology mà chúng được sử dụng. Cuối cùng, OWL 2 cung cấp thêm cho cac trực nghĩa (literals), một dạng dữ liệu string gọi là định dạng nghĩa bằng từ ngữ (lexical form) và một dạng dữ liệu để chỉ dẫn cách ontology có thể hiểu chuỗi này.
+Bên cạnh các cá thể có tên, OWL2 còn cung cấp một khái niệm gọi là các cá thể ẩn danh (anonymous individuals) - là cá thể tương tự với các node trống (blank nodes) trong RDF Concept \cite{rdf_concept} và được truy xuất ngay bên trong ontology mà chúng được sử dụng. Cuối cùng, OWL 2 cung cấp thêm cho các trực nghĩa (literals), một dạng dữ liệu string gọi là định dạng nghĩa bằng từ ngữ (lexical form) và một dạng dữ liệu để chỉ dẫn cách ontology có thể hiểu chuỗi này.
 % Classes 
 \paragraph{Lớp (Classes)}
 Lớp được hiểu như tập hợp các cá thể. Hai lớp với IRIs \textit{owl:Nothing} và \textit{owl:Thing} là các lớp được định nghĩa sẵn trong OWL2 với ý nghĩa như sau:
@@ -243,7 +243,7 @@ ObjectPropertyAssertion( a:district _:a1 a:ThuDuc)
 
 % Literals
 \paragraph{Trực nghĩa (Literals)}
-Trực nghĩa biểu diễn các giá trị dữ liệu như chuỗi và số nguyên. Mỗi trực nghĩa gồm một chuỗi định dạng được định nghĩa bới người dùng (lexical form), và một kiểu dữ liệu được hỗ trợ bởi OWL2 \cite{owl2spec}. Một trực nghĩa gồm một chuỗi định dạng \textit{"abc"} và một kiểu dữ liệu (Datatype) định danh bởi IRI \textit{datatypeIRI} được định nghĩa như sau \verb|"abc"^^datatypeIRI|. Thêm nữa, các trực nghĩa mà kiểu dữ liệu của chúng là \textit{rdf:PlainLiteral} có thể được viết tắt trong functional-syntax của OWL2 ghi lại trong tài liệu thành dạng trực nghĩa rỗng RDF \cite{rdf_concept}. Cú pháp viết tắt này chỉ đơn giản là một định dạng ngắn gọn hơn, chúng không có ảnh hưởng đến ý nghĩa của khai báo trực nghĩa. Viết tắt chủ yếu là để phục vụ cho việc parsing:
+Trực nghĩa biểu diễn các giá trị dữ liệu như chuỗi và số nguyên. Mỗi trực nghĩa gồm một chuỗi định dạng được định nghĩa bởi người dùng (lexical form), và một kiểu dữ liệu được hỗ trợ bởi OWL2 \cite{owl2spec}. Một trực nghĩa gồm một chuỗi định dạng \textit{"abc"} và một kiểu dữ liệu (Datatype) định danh bởi IRI \textit{datatypeIRI} được định nghĩa như sau \verb|"abc"^^datatypeIRI|. Thêm nữa, các trực nghĩa mà kiểu dữ liệu của chúng là \textit{rdf:PlainLiteral} có thể được viết tắt trong functional-syntax của OWL2 ghi lại trong tài liệu thành dạng trực nghĩa rỗng RDF \cite{rdf_concept}. Cú pháp viết tắt này chỉ đơn giản là một định dạng ngắn gọn hơn, chúng không có ảnh hưởng đến ý nghĩa của khai báo trực nghĩa. Viết tắt chủ yếu là để phục vụ cho việc parsing:
 \begin{itemize}
 	\item Trực nghĩa dạng \verb|"abc@"^^rdf:PlainLiteral| được viết tắt thành \verb|"abc"|.
 	\item Trực nghĩa dạng \verb|"abc@langTag"^^rdf:PlainLiteral| trong đó \textit{"langTag"} không rỗng được viết tắt thành \verb|"abc"@langTag|.
@@ -299,7 +299,7 @@ Tương đương với biểu hiện thuộc tính đối tượng, trong tài l
 
 %Data ranges
 \subsubsection{Miền dữ liệu (Data Range)}
-Kiểu dữ liệu như\textit{xsd:string} hoặc \textit{xsd:integer} và trực nghĩa \verb|"1"^^xsd:integer| được dùng để biểu diễn miền dữ liệu - tập hợp danh sách có thứ tự (tuples) của các trực nghĩa, mà mỗi phần tử trong danh sách này chỉ chứa một trực nghĩa duy nhất để định nghĩa chính nó. Miền dữ liệu được dùng để tạo ra ràng buộc (hay những dữ liệu hợp lệ) cho thuộc tính dữ liệu. Cấu trúc của miền dữ liệu trong OWL 2 được mô tả trong hình. Thành phần đơn giản của miền dữ liệu chính là kiểu dữ liệu : một kiểu dữ liệu (Datatype) cũng chính là một miền dữ liệu (Data Range).
+Kiểu dữ liệu như \textit{xsd:string} hoặc \textit{xsd:integer} và trực nghĩa \verb|"1"^^xsd:integer| được dùng để biểu diễn miền dữ liệu - tập hợp danh sách có thứ tự (tuples) của các trực nghĩa, mà mỗi phần tử trong danh sách này chỉ chứa một trực nghĩa duy nhất để định nghĩa chính nó. Miền dữ liệu được dùng để tạo ra ràng buộc (hay những dữ liệu hợp lệ) cho thuộc tính dữ liệu. Cấu trúc của miền dữ liệu trong OWL 2 được mô tả trong hình. Thành phần đơn giản của miền dữ liệu chính là kiểu dữ liệu : một kiểu dữ liệu (Datatype) cũng chính là một miền dữ liệu (Data Range).
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=150mm, height=80mm]{Figures/datarange.png}
@@ -330,7 +330,7 @@ DataComplementOf( xsd:positiveInteger )
 
 % DataOneOf
 \paragraph{Liệt kê trực nghĩa (Enumeration Of Literals)}
-Một danh sách liệt kê các trực nghĩa (literals) với cú pháp \textit{DataOneOf(} $lt_{1} ... lt_{n}$ \textit{)},  $lt_{i}$ với $1 <= i <= n$.  Miễn dữ liệu chỉ áp dụng lên một trực nghĩa nằm trong danh sách (\textit{"oneOf"}). Ví dụ khai báo miền dữ liệu cho thuộc tính dữ liệu \textit{canMoveOnOrIn} chỉ có thể là một trong 4 giá trị chuỗi \textit{"OnRoadOrOffRoad"}, \textit{"Rail"}, \textit{"Sky"} và \textit{"Water"}.
+Một danh sách liệt kê các trực nghĩa (literals) với cú pháp \textit{DataOneOf(} $lt_{1} ... lt_{n}$ \textit{)},  $lt_{i}$ với $1 <= i <= n$.  Miền dữ liệu chỉ áp dụng lên một trực nghĩa nằm trong danh sách (\textit{"oneOf"}). Ví dụ khai báo miền dữ liệu cho thuộc tính dữ liệu \textit{canMoveOnOrIn} chỉ có thể là một trong 4 giá trị chuỗi \textit{"OnRoadOrOffRoad"}, \textit{"Rail"}, \textit{"Sky"} và \textit{"Water"}.
 \begin{verbatim}
 DataPropertyRange(:canMoveOnOrIn 
 DataOneOf("OnRoadOrOffRoad" "Rail" "Sky" "Water"))
@@ -355,7 +355,7 @@ biểu diễn tập hợp các cá thể bằng cách chính thức đặt ra c�
 	\includegraphics[width=150mm]{Figures/ce_0.png}
 	\caption{Mô tả lớp trong OWL 2\label{overflow}}
 \end{figure}
-OWL2 cho phép liệt kê các cá thể của một lớp, khai báo các mệnh đề logic như trong hình sau. Các khai báo \textit{ObjectIntersectionOf}, \textit{ObjectUnionOf}, và \textit{ObjectComplementOf} cho phép thực hiện các phép toán luân lý (and ,or, not) trên những mô tả lớp. \textit{ObjectOneOf} quy định chính xác những cá thể cho mô tả lớp đang khai báo.
+OWL2 cho phép liệt kê các cá thể của một lớp, khai báo các mệnh đề logic như trong hình sau. Các khai báo \textit{ObjectIntersectionOf}, \textit{ObjectUnionOf}, và \textit{ObjectComplementOf} cho phép thực hiện các phép toán luận lý (and ,or, not) trên những mô tả lớp. \textit{ObjectOneOf} quy định chính xác những cá thể cho mô tả lớp đang khai báo.
 
 %% Intersection of Class Expressions\subparagraph{Intersection of Class Expressions} Tập giao của các mô tả lớp \textit{ObjectIntersectionOf(} $CE_{1}$ ... $CE_{n}$ \textit{)} gồm tất cả các cá thể là thành viên của tất cả các mô tả lớp $CE_{i}$ với $1<=i<=n$. Ví dụ: 
 \begin{verbatim}
@@ -380,7 +380,7 @@ DisjointClasses( a:Man a:Woman)
 ClassAssertion( a:Woman a:Lois) 
 // Lois là nữ
 \end{verbatim}
-\textbf{Giải thích:} Vì \textit{Lois} là nữa và không có cá thể nào vừa là nam vừa là nữ nên \textit{Lois} thuộc lớp \textit{không phải nam} tương đương với phát biểu \textit{ObjectComplementOf( a:Man )}.
+\textbf{Giải thích:} Vì \textit{Lois} là nữ và không có cá thể nào vừa là nam vừa là nữ nên \textit{Lois} thuộc lớp \textit{không phải nam} tương đương với phát biểu \textit{ObjectComplementOf( a:Man )}.
 
 \subparagraph{Enumeration of Individuals} Liệt kê các cá thể \textit{ObjectOneOf(} $a_{1}$ ... $a_{n}$ \textit{)} chứa duy nhất một cá thể $a_{i}$ với $1<=i<=n$. 
 
@@ -422,7 +422,7 @@ ObjectPropertyAssertion( a:fatherOf a:Peter a:Steve)
 \subparagraph{Self-Restriction} Mô tả \textit{ObjectHasSelf( OPE )} thể hiện mối quan hệ giữa tất cả các cá thể được kết nối bởi mô tả thuộc tính đối tượng \textit{OPE} với chính chúng. Ví dụ:
 \begin{verbatim}
 ObjectPropertyAssertion( a:quayQuanhTruc a:TraiDat a:TraiDat )	
-// Trái đất quay quan trục của trái đất.
+// Trái đất quay quanh trục của trái đất.
 \end{verbatim}
 \textbf{Giải thích:} với khai báo như trên, \textit{a:TraiDat thuộc mô tả lớp sau} mà không cần khai báo là \textit{ObjectHasSelf( a:quayQuanhTruc )}.
 
@@ -567,7 +567,7 @@ FunctionalDataProperty( a:hasID ) // Mỗi người chỉ có duy nhất một s
 	EquivalentClasses( a:Bike  a:Bicycle )
 	\end{verbatim}
 	
-	\subparagraph{Disjoint Classes} - một phát biểu \textit{DisjointClasses( $CE_{1}$ ... $CE_{n}$ )}nói rằng không cá thể nào của $CE_{i}$ thuộc $CE_{j}$ và ngược lại với $i \neq j$, $1<=i,j<=n$. Ví dụ:
+	\subparagraph{Disjoint Classes} - một phát biểu \textit{DisjointClasses( $CE_{1}$ ... $CE_{n}$ )} nói rằng không cá thể nào của $CE_{i}$ thuộc $CE_{j}$ và ngược lại với $i \neq j$, $1<=i,j<=n$. Ví dụ:
 	\begin{verbatim}
 	DisjointClasses( a:Man a:Woman )	
 	ClassAssertion( a:Man a:Steve )
@@ -587,7 +587,7 @@ FunctionalDataProperty( a:hasID ) // Mỗi người chỉ có duy nhất một s
 	SubObjectPropertyOf( a:hasCat a:hasPet )     
 	ObjectPropertyAssertion( a:hasCat a:Peter a:Tom) // Peter có con mèo là Tom
 	\end{verbatim}
-	\textbf{Giải thích:} Ai có mèo thì cũng có thể hiểu là người đó có vật nuôi theo phát biểu đầu tiên, dựa theo phát biểu thứ hai chúng ta có ngầm hiểu là \textit{Peter có vật nuôi là Tom} - \textit{ObjectPropertyAssertion( a:hasPet a:Peter a:Brian )}.
+	\textbf{Giải thích:} Ai có mèo thì cũng có thể hiểu là người đó có vật nuôi theo phát biểu đầu tiên, dựa theo phát biểu thứ hai chúng ta có ngầm hiểu là \textit{Peter có vật nuôi là Tom} - \textit{ObjectPropertyAssertion( a:hasPet a:Peter a:Tom )}.
 	
 	\subparagraph{Thuộc tính đối tượng tương đương (Equivalent Object Properties)} - một phát biểu \textit{EquivalentObjectProperties( $OPE_{1}$ ... $OPE_{n}$ )} nói rằng mỗi mô tả thuộc tính $OPE_{i}$, $1<=i<=n$ đều đồng nghĩa với các tất cả các mô tả thuộc tính còn lại trong phát biểu này phát biểu \textit{EquivalentObjectProperties( $OPE_{2}$ $OPE_{1}$ )} tương đương \textit{EquivalentObjectProperties( $OPE_{1}$ $OPE_{2}$ )}. Ví dụ:
 	\begin{verbatim}
@@ -678,7 +678,7 @@ FunctionalDataProperty( a:hasID ) // Mỗi người chỉ có duy nhất một s
 	\end{verbatim}
 	\textbf{Giải thích:} Vì "có họ" \textbf{(hasLastName)} là thuộc tính con của "có tên" \textit{(hasName)} nên chúng ta ngầm hiểu phát biểu sau mà không cần khai báo tên của Peter là "Smith", tương đương \textit{DataPropertyAssertion(a:hasName a:Peter "Griffin")}
 	
-	\subparagraph{Phát biểu thuộc tính dữ liệu tương đương (Equivalent Data Properties)} Một phát biểu \textit{EquivalentDataProperties( $DPE_{1}$ ... $DPE_{n}$)} nói rằng mỗi mô tả thuộc tính $DPE_{i}$, $1<=i<=n$ đều đồng nghĩa với các tất cả các mô tả thuộc tính còn lại trong phát biểu này phát biểu \textit{EquivalentDataProperties( $DPE_{2}$ $DPE_{1}$ )} cũng tương đương EquivalentDataProperties( $DPE_{1}$ $DPE_{2}$ ). Ví dụ:
+	\subparagraph{Phát biểu thuộc tính dữ liệu tương đương (Equivalent Data Properties)} Một phát biểu \textit{EquivalentDataProperties( $DPE_{1}$ ... $DPE_{n}$)} nói rằng mỗi mô tả thuộc tính $DPE_{i}$, $1<=i<=n$ đều đồng nghĩa với các tất cả các mô tả thuộc tính còn lại trong phát biểu này phát biểu \textit{EquivalentDataProperties( $DPE_{2}$ $DPE_{1}$ )} cũng tương đương \textit{EquivalentDataProperties( $DPE_{1}$ $DPE_{2}$ )}. Ví dụ:
 	\begin{verbatim}
 	EquivalentDataProperties( a:hasName a:HoTen ) 
 	// a:hasName tương đượng với a:HoTen trong Tiếng Việt
@@ -748,7 +748,7 @@ FunctionalDataProperty( a:hasID ) // Mỗi người chỉ có duy nhất một s
 		
 		\item[ObjectPropertyAssertion] - khẳng định mối quan hệ từ một cá thể tới một cá thể nào đó bởi một mô tả thuộc tính đối tượng.
 		
-		\item[NegativeObjectPropertyAssertion] - phủ định mối quan hệ từ một cá thể tới một cá thể khác bởi một mô tả thuộc tinh đối tượng.
+		\item[NegativeObjectPropertyAssertion] - phủ định mối quan hệ từ một cá thể tới một cá thể khác bởi một mô tả thuộc tính đối tượng.
 		
 		\item[DataPropertyAssertion] - khẳng định mối quan hệ từ một cá thể tới một trực nghĩa bởi một mô tả thuộc tính dữ liệu.
 		
