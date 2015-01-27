@@ -21,7 +21,7 @@ Trước khi đi vào chi tiết các chức năng trên, chúng em muốn giớ
        SpringApplication.run(OWLEditorApplication.class, args); }
 }
 \end{verbatim} 
-@SpringBootApplication là một tên thay thế cho 3 annotation gồm \textbf{@Configuration}, \textbf{@EnableAutoConfiguration} và \textbf{@ComponentScan} (sẽ được giới thiệu ở dưới), mục tiêu của đối tượng này là khởi động ứng dụng, duyệt hết trong package hiện hành tới package con để tìm các Component Bean cần thiết để khởi tạo và thực thi các Bean đó. Cụ thể ở đây, nó sẽ quét vào tìm thấy \textbf{OWLEditorUI} được đánh dấu bằng \textbf{@VaadinUI} và chạy theo cấu hình có săn được định nghĩa trong Spring 4 Vaadin \cite{spring4vaadin}. Từ đây mọi thứ sẽ diễn ra trong \textbf{OWLEditorUI}. Ý nghĩa của các Annotation:
+@SpringBootApplication là một tên thay thế cho 3 annotation gồm \textbf{@Configuration}, \textbf{@EnableAutoConfiguration} và \textbf{@ComponentScan} (sẽ được giới thiệu ở dưới), mục tiêu của đối tượng này là khởi động ứng dụng, duyệt hết trong package hiện hành tới package con để tìm các Component Bean cần thiết để khởi tạo và thực thi các Bean đó. Cụ thể ở đây, nó sẽ quét vào tam thấy \textbf{OWLEditorUI} được đánh dấu bằng \textbf{@VaadinUI} và chạy theo cấu hình có sẵn được định nghĩa trong Spring 4 Vaadin \cite{spring4vaadin}. Từ đây mọi thứ sẽ diễn ra trong \textbf{OWLEditorUI}. Ý nghĩa của các Annotation:
 \begin{itemize}	
 \item \textbf{@VaadinUI} Là annotation của Spring 4 Vaadin \cite{spring4vaadin} khai báo một lớp là một Bean và là một Vaadin \textbf{UI} cho hệ thống Spring Boot.
 \item \textbf{@VaadinComponent} Là annotation của Spring 4 Vaadin, tương tự annotation @Component của Spring Framework: khai báo đây là một Bean cơ bản nhất cho hệ thống Spring Boot.
@@ -153,7 +153,7 @@ Thao tác thêm mới cửa sổ dùng để nhập tên lớp mới (Hình 4.5)
 \end{figure}
 Ngoài interface \textit{OWLEntityActionHandler}, thì trong hình chúng ta còn thấy một đối tượng là \textit{OWLEntityAddHandler} (hàm khởi tạo và phần note hình 4.6). Đây là một Interface hỗ trợ cho việc tạo ra các sự kiện liên quan thêm các thực thể \textit{OWLEntityCreatedEvent} (giới thiệu trong chương trước). Vì trong lớp Abstract, chúng ta chưa biết phải trả về loại sự kiện tạo lớp hay thuộc tính hay cá thể, nên Interface này sẽ giúp chúng ta nạp vào loại sự kiện phù hợp. Ví dụ chúng ta muốn tạo một cửa sổ con để khai báo mới một thuộc tính dữ liệu con:
 \begin{verbatim}
-Window w = new AbstractAddOWLObjectWindo<OWLDataProperty>(
+Window w = new AbstractAddOWLObjectWindow<OWLDataProperty>(
  actionHandler,
  newDataPropery -> new SiblingClassCreated(newDataPropery, 
                    owlClassTree.getSelectedProperty),
@@ -184,7 +184,7 @@ Phương thức này sẽ gọi một phương thức tương tự trong các pa
 	\includegraphics[width=155mm]{Figures/uml_owleditor_abstractpanel_nobackground.png}
 	\caption{Class Diagram của AbstractExpressionPanel\label{overflow}}
 \end{figure}
-Như chúng ta sẽ thấy trong sơ đồ ở hình 4.7 thì tất cả các panel mô tả các phát biểu đều được kế thừa từ đây. Các phương thức in nghiêng trong lớp abstract này chính là các phương thức abstract sẽ được xây dựng cụ thể ở những lớp con của chúng để phù hợp với phát biểu mà chúng muốn diễn tả. Ví dụ chúng em, muốn diễn ta một phát biểu về về lớp con (SubClassOf), thì sẽ khai báo một Anonymous Class từ ClassPanel như sau:
+Như chúng ta sẽ thấy trong sơ đồ ở hình 4.7 thì tất cả các panel mô tả các phát biểu đều được kế thừa từ đây. Các phương thức in nghiêng trong lớp abstract này chính là các phương thức abstract sẽ được xây dựng cụ thể ở những lớp con của chúng để phù hợp với phát biểu mà chúng muốn diễn tả. Ví dụ, chúng em muốn diễn tả một phát biểu về lớp con (SubClassOf), thì sẽ khai báo một Anonymous Class từ ClassPanel như sau:
 \begin{itemize}
 \item initActionADD
 \begin{verbatim}
@@ -254,7 +254,7 @@ Các thay đổi sẽ được áp dụng trực tiếp vào ontology thông qua
 \end{verbatim}
 Sau khi các thay đổi được áp dụng thành công, chúng sẽ được cập nhật lên ontology bằng addHelper/removeHelper, cả hai đối tượng này đêu là \textit{OWLAxiomVisitor} được cài đặt thông qua \textit{OWLAxiomVisitorAdapter} để truy vấn đến những thay đổi có liên quan đến phát biểu có trong sự kiện. Ví dụ: nếu các phát biểu đó liên quan đến lớp thì chúng ta chỉ định nghĩa lại giải thuật cho các phương thức visit(OWLClassAssertionAxiom/ OWLDisjointClassesAxiom/ OWLEquivalentClassesAxiom/ OWLSubClassOfAxiom ) trong adapter.
 \subsubsection{SWRL Rule Tab}
-Tab này có đặt điểm khác sao với các tab còn lại, chỉ gồm một thành phần chính là một Table chứa các SWRL trong tài liệu OWL 2 Ontology. Khi right-click sẽ có các chức năng thêm/xóa/sửa rule được chọn.
+Tab này có đặc điểm khác so với các tab còn lại, chỉ gồm một thành phần chính là một Table chứa các SWRL trong tài liệu OWL 2 Ontology. Khi right-click sẽ có các chức năng thêm/xóa/sửa rule được chọn.
 \begin{figure}[h!]
 	\centering
 	\frame{\includegraphics[width=155mm]{Figures/owleditor_swrlSheet.png}}
@@ -313,14 +313,14 @@ V4 Type RoadVehicle
 	\frame{\includegraphics[width=145mm]{Figures/classify2.png}}
 	\caption{Phân loại dựa trên Domain của thuộc tính đối tượnglabel{overflow}}
 \end{figure}
-Trên đây, là 3 ví dụ khá đơn giản về cách sử dụng các phát biểu của riêng OWL 2 hay sử dụng chúng kết hợp chúng với SWRL Rule để phân loại. Trên thực tế sẽ có những trườgn hợp phức tạp hơn, ví dụ của chúng em chỉ muốn kiểm chứng tính khả thi và khả năng của OWL 2 và SWRL.
+Trên đây, là 3 ví dụ khá đơn giản về cách sử dụng các phát biểu của riêng OWL 2 hay sử dụng chúng kết hợp chúng với SWRL Rule để phân loại. Trên thực tế sẽ có những trường hợp phức tạp hơn, ví dụ của chúng em chỉ muốn kiểm chứng tính khả thi và khả năng của OWL 2 và SWRL.
 \section{Tính năng hỗ trợ phân loại - Demo Tab}
 \begin{figure}[ht!]
 	\centering
 	\frame{\includegraphics[width=145mm]{Figures/owleditor_demo1.png}}
 	\caption{Tính năng hỗ trợ phân loại Demo Tab (phần 1)\label{overflow}}
 \end{figure}
-Việc sử dụng SWRL Rule hay đơn giản hơn là đọc và hiểu ý nghĩa có nó thường rất khó đối với người dùng thông thường, chưa kể đến việc chưa có cơ chế tổ chức các SWRL rule một cách khoa học, sẽ có những trường hợp chúng ta vô tình tạo ra những điều kiện trùng nhau dẫn đến 2 kết quả khác nhau hoặc ngược lại. Hiểu được nhược điểm này của SWRL Rule, chúng em đã thiết kế thêm tính năng hỗ trợ phân loại với giao diện là Tab Demo trong ứng dụng, với khả năng vẽ ra một sơ đồ dựa theo chuỗi các điều kiện - kết quả có liên quan đến lớp đang chứa cá thể được chọn để phân loại. Để minh họa cho tính năng này ,chúng em xin trích một đoạn chứa các SWRLRule trong ontology \textit{Transport.owl} \cite{owleditorSrc} (được chúng em xây dựng để làm demo cho tính năng phân loại). Hình trên mô tả lại các rule sau:
+Việc sử dụng SWRL Rule hay đơn giản hơn là đọc và hiểu ý nghĩa có nó thường rất khó đối với người dùng thông thường, chưa kể đến việc chưa có cơ chế tổ chức các SWRL rule một cách khoa học, sẽ có những trường hợp chúng ta vô tình tạo ra những điều kiện trùng nhau dẫn đến 2 kết quả khác nhau hoặc ngược lại. Hiểu được nhược điểm này của SWRL Rule, chúng em đã thiết kế thêm tính năng hỗ trợ phân loại với giao diện là Tab Demo trong ứng dụng, với khả năng vẽ ra một sơ đồ dựa theo chuỗi các điều kiện - kết quả có liên quan đến lớp đang chứa cá thể được chọn để phân loại. Để minh họa cho tính năng này, chúng em xin trích một đoạn chứa các SWRLRule trong ontology \textit{Transport.owl} \cite{owleditorSrc} (được chúng em xây dựng để làm demo cho tính năng phân loại). Hình trên mô tả lại các rule sau:
 \begin{verbatim}
 # Phương tiện đường bộ có thể chở hàng hóa (Cargo) là xe tải (Truck)
 OnRoadAndOffRoadVehicle(?x) ^ canCarry(?x, ?y) ^ Cargo(?y)  -> Truck(?x)
