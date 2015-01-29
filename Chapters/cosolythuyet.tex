@@ -286,7 +286,7 @@ Như được thể hiện trong hình, OWL 2 hỗ trợ 2 loại mô tả thu�
 ObjectPropertyAssertion( a:fatherOf a:Peter a:Steve) 
 // Peter là ba của Steve
 \end{verbatim}}
-Với phát biểu trên, ontology sẽ hiểu \textit{a:Steve} liên kết với \textit{a:Peter} qua một thuộc tính nghịch đảo của \textit{a:fatherOf} là \textit{ObjectInverseOf( a:fatherOf)}. Chúng ta cũng có thể khai báo tường minh nghịch đảo của \textit{a:fatherOf} là \textit{a:childOf} bằng phát biểu  \textit{InverseObjectProperties( a:fatherO a:childOf )}.
+Với phát biểu trên, ontology sẽ hiểu \textit{a:Steve} liên kết với \textit{a:Peter} qua một thuộc tính nghịch đảo của \textit{a:fatherOf} là \textit{ObjectInverseOf( a:fatherOf)}. Chúng ta cũng có thể khai báo tường minh nghịch đảo của \textit{a:fatherOf} là \textit{a:childOf} bằng phát biểu  \textit{InverseObjectProperties( a:fatherOf a:childOf )}.
 
 % Data Property Expression
 \paragraph{Mô tả thuộc tính dữ liệu (Data Property Expression)}
@@ -546,7 +546,7 @@ FunctionalDataProperty( a:hasID ) // Mỗi người chỉ có duy nhất một s
 		\caption{Các dạng phát biểu của OWL 2\label{overflow}}
 	\end{figure}
 	
-	\paragraph{Những phát biểu về mô tả lớp - Class Expression Axioms}
+	\paragraph{Phát biểu về mô tả lớp - Class Expression Axioms}
 	Những phát biểu này cho phép biểu diễn các loại quan hệ giữa những mô tả lớp (Class Expressions) với nhau. Có 4 phát biểu được mở rộng ra từ phát biểu này như trong hình.
 	\begin{figure}[!h]
 		\centering
@@ -661,7 +661,7 @@ FunctionalDataProperty( a:hasID ) // Mỗi người chỉ có duy nhất một s
 	Giải thích nếu khoa mạng thuộc UIT, UIT thuộc đại học Quốc Gia (VNU), nhờ phát biểu đầu tiên chúng ta $partOf$ có tính chất bắc cầu nên suy ra được khoa mạng thuộc đại học Quốc Gia - \textit{ObjectPropertyAssertion( a:partOf a:KhoaMMT a:VNU)}
 	
 	% Data Property Axioms
-	\paragraph{Các phát biểu về thuộc tính dữ liệu}
+	\paragraph{Phát biểu về thuộc tính dữ liệu (Data Property Axiom)}
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=150mm]{Figures/datapropertyAxiom.png}

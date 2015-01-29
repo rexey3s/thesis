@@ -579,7 +579,7 @@
 	\item
 	\textbf{Nội dung đề tài:} 
 	\\
-	Xây dựng ứng dụng dùng để thiết kế và chỉnh sửa ontology với các tính năng gần như tương tự với chương trình Protege - tuy nhiên chúng em chọn xây dựng ứng dụng trên nền web, qua đó giúp người dùng chỉnh sửa và phát triển các tài liệu OWL 2 ontology từ khắp mọi nơi. Đồng thời ứng dụng này cũng gồm có cơ chể suy luận các phát biểu từ OWL 2 Ontology (dùng để thực hiện phân loại tự động), tính năng giải thích và hỗ trợ phân loại. Cuối cùng là thiết kế một ontology để trình bày tính năng phân loại tự động.
+	Xây dựng ứng dụng dùng để thiết kế và chỉnh sửa ontology với các tính năng gần như tương tự với chương trình Protege - tuy nhiên chúng em chọn xây dựng ứng dụng trên nền web, qua đó giúp người dùng chỉnh sửa và phát triển các tài liệu OWL 2 ontology từ khắp mọi nơi. Đồng thời ứng dụng này cũng gồm có cơ chế suy luận các phát biểu từ OWL 2 Ontology (dùng để thực hiện phân loại tự động), tính năng giải thích và hỗ trợ phân loại. Cuối cùng là thiết kế một ontology để trình bày tính năng phân loại tự động.
 	\item
 	\textbf{Kế hoạch thực hiện:} 
 	\begin{itemize}
