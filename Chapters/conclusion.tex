@@ -14,9 +14,28 @@ Tóm lại, đề tài nghiên cứu và "xây dựng ontology phục vụ cho v
 \item Trình biên tập chưa có cơ chế đăng nhập hoặc quản lý các tài liệu ontology.
 \item Ý tưởng về việc phân loại còn chỉ ở dạng mô hình, chưa có tính thực nghiệm cao.
 \end{itemize}
-Sau đây là bảng so sánh những tính năng giữa ứng dụng phát triển OWL-Editor của chúng em và Protege, Web Protege - hai ứng dụng tương đương cũng dùng để phát triển ontology được xây dựng bởi nhóm tác giả của Đại Học Stanford, Hoa Kỳ.
+Sau đây là bảng so sánh những tính năng giữa ứng dụng phát triển OWL-Editor của chúng em và Protege - ứng dụng tương tự cũng dùng để phát triển và xây dựng ontology được phát triển bởi nhóm tác giả của Đại Học Stanford và đã được cộng đồng người dùng ontology sử dụng rất phổ biến.
 
-
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|p{4cm}|p{5cm}|p{5cm}|}
+		\hline
+						& OWL-Editor & Protege Desktop \\\hline
+		Môi trường		& Web (không cần cài đặt) & Desktop (Yêu cầu cài đặt) \\\hline	
+		Nền tảng		& Spring Boot và Vaadin Framework & Java Swing, OSGi Framework \\\hline
+		Phiên bản OWL-API & 4.0.0 &  3.5.1 \\\hline
+		Reasoner hỗ trợ & Tích hợp Pellet Reasoner & Pellet, HermitT, Fact++ (Phải cài thêm plugin)\\\hline
+		Hỗ trợ import ontology khác vào ontology hiện hành & Chưa có & Đã hỗ trợ \\\hline
+		Hỗ trợ plugins & Chưa có & Plugin phong phú do cộng đồng phát triển \\\hline
+		Hỗ trợ biên tập SWRL Rule & Sử dụng SWRL-API với đầy đủ các built-in & Bản 4.3 sử dụng chuẩn SWRL cũ nên không khai thác được nhiều built-in, bản 5.0-beta có hỗ trợ nhưng đòi hỏi thao tác cài đặt khả rườm rà \\\hline
+		Hỗ trợ biên tập Class Expression & Tính năng autocomplete còn đơn giản & Tính autocomplete có khả năng dự đoán được các từ vựng kế tiếp \\\hline
+		Miêu tả các SWRL Rule qua biểu đồ& Vẽ biểu đồ giúp miêu tả các điều kiện-kết quả của tậo những rule có cùng một lớp trong điều kiện & Không có tính năng này \\\hline
+		Tính năng gợi ý & Đưa ra các câu hỏi gợi ý về nhằm giúp người phát triển đơn giản hóa việc thêm các thuộc tính cho cá thể & Không có tính năng này \\\hline
+		Vẽ biểu đồ lớp và cá thể & Vễ một sơ đồ phân lớp và cá thể & Yêu cầu phải cài thêm plugin \\\hline
+		\hline
+	\end{tabular}
+	\caption{Bảng so sánh tính năng của OWL-Editor và Protege \label{overflow}}  
+\end{table}
 
 \section{Hướng phát triển}
 Nhẳm khắc phục một số hạn chế kể trên chúng em cũng đã nghĩ đến các hướng phát triển sau :
