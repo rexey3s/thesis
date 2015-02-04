@@ -272,7 +272,7 @@
  		\vfill
  		\bigskip
  		\bigskip
- 		{\normalsize Tp. Hồ Chí Minh, \the\year \par}
+ 		{\normalsize Tp. Hồ Chí Minh - \the\year \par}
  		%      \bigskip
  	\end{center}
  	\par
