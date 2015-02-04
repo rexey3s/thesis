@@ -175,8 +175,8 @@
                 {Ngành phát triển ứng dụng Web và di động}}
                 {Ngành phát triển ứng dụng Web và di động}}
 \FACULTY     {\texorpdfstring{\href{Faculty Web Site URL Here (include http://)}
-                {MẠNG MÁY TÍNH VÀ TRUYỀN THÔNG}}
-                {MẠNG MÁY TÍNH VÀ TRUYỀN THÔNG}}
+                {TRUYỀN THÔNG VÀ MẠNG MÁY TÍNH}}
+                {TRUYỀN THÔNG VÀ MẠNG MÁY TÍNH}}
 \addresses   {}
 \subject     {}
 \keywords    {}
@@ -215,7 +215,7 @@
       {\large \textbf{KỸ SƯ \FACNAME} \par}
       \bigskip
       \bigskip
-      {\normalsize Tp. Hồ Chí Minh, \the\year \par}
+      {\normalsize Tp. Hồ Chí Minh - \the\year \par}
     \end{center}
     \par
     \@thanks
