@@ -255,98 +255,130 @@ Set<SWRLAPIRule> allRules = ruleOntology.getSWRLAPIRules();
 \end{verbatim}
 Tóm lại, mọi thao tác lên ontology từ bất kì thành phần giao diện nào đều phải thông qua sử dụng các phương thức mà OWLEditorKit cung cấp.
 
-\section{Xây dựng một ontology để trình bày quá trình phân loại}
-\textbf{Giới thiệu} Transport.owl \cite{owleditorSrc} là một ontology do nhóm tự xây dựng nên, đối tượng chủ yếu là các phương tiện giao thông đường bộ, đường thuỷ, đường hàng không, bên cạnh đó là các bộ phận của phương tiện như động cơ, rô-tơ,... các đối tượng liên quan như hàng hoá, hành khách, bộ phận của phương tiện, ... .Ontology được thiết kế nhằm biểu diễn đặc tính phân loại của OWL 2 và SWRL, nên có một vài điểm không bám sát theo đúng với thực tế. Sau đây chúng em xin được miêu tả ontology này.
-Ontology được chia theo cấu trúc phân lớp, và bao gồm các phân lớp sau :
+\section{Xây dựng ontology để trình bày quá trình phân loại}
+\textbf{Giới thiệu} device.owl \cite{owleditorSrc} là một ontology do nhóm tự xây dựng nên, đối tượng là các mặt hàng điện thoại thông minh, máy tính bảng, phalet và các thông số kỹ thuật, giá thành của chúng. Ontology được thiết kế nhằm biểu diễn khả năng phân loại mà SWRL đem lại, nên có một vài điểm không bám sát theo đúng với thực tế. Sau đây chúng em xin được miêu tả ontology này.
+Các lớp trong ontology theo quan hệ subClassOf
 \subsection{Lớp}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=155mm,height=105mm]{Figures/transport_cls.png}
-	\caption{Các lớp trong ontology transport.owl\label{overflow}}
+	\caption{Các lớp trong ontology device.owl\label{overflow}}
 \end{figure}
-Các lớp mở rộng ra là lớp con của lớp (node trong hình) trước nó.
+
+
 \subsection{Thuộc tính đối tượng}
 \begin{table}[h!]
 	\centering
-\begin{tabular}{|p{3cm}|l|p{3cm}|p{3cm}|p{3cm}|}
+\begin{tabular}{|p{4cm}|l|p{4cm}|p{4cm}|}
 \hline
-ObjectProperty & Transitive & Domain & Range & Inverse \\ \hline
-canCarry & & Vehicle & Cargo or People & canBeCarriedBy \\ \hline
-isPartOf & x & Vehicle or VehicleComponent & Vehicle or VehicleComponent & hasParts \\ \hline
-canBeCarriedBy & & Cargo or People & Vehicle & canCarry \\ \hline
-control &  & People & Vehicle & isControlledBy \\ \hline
-hasParts & x & Vehicle or VehicleComponent & Vehicle or VehicleComponent & isPartOf \\ \hline
- hasWing & & WingAircraft & Wing & \\ \hline
- hasEngine & & Vehicle & VehicleComponent & \\ \hline
- hasRotor & & Helicopter & Rotor & \\ \hline
- isControlledBy & & Vehicle & People & control \\
+ObjectProperty & Transitive & Domain & Range \\\hline
+có\_các\_thành\_phần & & Thiết\_bị\_thông\_minh & Thông\_số\_kĩ\_thuật \\\hline
+có\_camera\_chính & & Thiết\_bị\_thông\_minh & Camera \\\hline
+sử\_dụng\_chip &  & Thiết\_bị\_thông\_minh & Chipset \\\hline
+sử\_dụng\_GPU & x & Thiết\_bị\_thông\_minh & Chipset \\\hline
+sử\_dụng\_CPU & x & Thiết\_bị\_thông\_minh & Chipset \\\hline
+sử\_dụng\_nền\_tảng & & Thiết\_bị\_thông\_minh & Nền\_tảng \\
 \hline
 \end{tabular}
-\caption{Bảng các thuộc tính đối tượng trong ontology transport \label{overflow}}  
+\caption{Bảng các thuộc tính đối tượng trong ontology phân loại thiết bị thông minh \label{overflow}}  
 \end{table}
-Trong bảng 3.1 thì \textit{hasWing}, \textit{hasEngine} và \textit{hasRotor} là thuộc tính con của \textit{hasParts}.
+Trong bảng 3.1 thì \textit{sử\_dụng\_GPU}, \textit{sử\_dụng\_CPU} là thuộc tính con của \textit{sử\_dụng\_chip} và \textit{có\_camera\_chính} là thuộc tính con của \textit{có\_các\_thành\_phần}.
 \subsection{Thuộc tính dữ liệu}
 \begin{table}[H]
 \centering
-\begin{tabular}{|l|l|l|l|}
+\begin{tabular}{|l|l|p{4cm}|l|}
 \hline
 DataProperty & Functional & Domain & Range \\ \hline
-canCarryNumberOfPassenger & x & Vehicle & positiveInteger \\ \hline
-canCarryTheAmountOfCargo & x & Vehicle & positiveInteger  \\ \hline
-hasNumberOfSeats & x & Vehicle & positiveInteger \\ \hline
-hasNumberOfWheels & x & RoadVehicle & positiveInteger  \\ \hline
-canMoveOnOrIn & x & Vehicle & \{"Road" , "Sky" , "Water"\}  \\ \hline
+bộ\_nhớ\_ngoài\_GB & & Thiết\_bị\_thông\_minh & positiveInteger \\\hline
+bộ\_nhớ\_trong\_GB & & Thiết\_bị\_thông\_minh & positiveInteger \\\hline
+có\_giá\_x1000VND & x & Thiết\_bị\_thông\_minh & positiveInteger \\\hline
+có\_tính\_năng\_gọi & x & Thiết\_bị\_thông\_minh & boolean \\\hline
+dung\_lượng\_pin\_mAh & x & Thiết\_bị\_thông\_minh & positiveInteger \\\hline
+kích\_cỡ\_màn\_hình\_Inch & x & Thiết\_bị\_thông\_minh & float \\\hline
+RAM & x & Thiết\_bị\_thông\_minh or Thông\_số\_kĩ\_thuật & positiveInteger \\\hline
+số\_nhân & & Chipset & positiveInteger \\\hline
+tốc\_độ\_xử\_lý\_GHz & & Chipset & float \\\hline
 \end{tabular}
-\caption{Bảng các thuộc tính dữ liệu trong ontology transport \label{overflow}}  
+\caption{Bảng các thuộc tính dữ liệu trong ontology phân loại thiết bị thông minh \label{overflow}}  
 \end{table}
 \subsection{SWRL Rule}
-Các rule trong ontology này gồm:
+Sau đây, chúng em xin liệt kê một số rule trong ontology, những rule còn lại sẽ có sử dụng những ý nghĩa tương đương những rule được liệt kê sau:
 \begin{verbatim}
-// Tàu chở hàng hóa trên 100 (đơn vị) là tàu chở hàng Vessel
-Ship(?x) ^ swrlb:greaterThan(?y, 100) 
-         ^ canCarryTheAmountOfCargo(?x, ?y)  -> Vessel(?x)
-// Xe cộ có số chỗ ngồi lớn hơn 20 là xe bus
-RoadVehicle(?x) ^ hasNumberOfSeats(?x, ?s)
-                ^ swrlb:greaterThan(?s, 20) -> Bus(?x)
-// Máy bay mang vũ khí là máy bay chiến đấu
-Aircraft(?x) ^ canCarry(?x, ?y) ^ Weapon(?y) -> FighterAircraft(?x)
-// Xe cộ có số chỗ ngồi >= 4 và <=7 là xe hơi
-RoadVehicle(?x) ^ swrlb:lessThanOrEqual(?s, 7) 
-^ swrlb:greaterThanOrEqual(?s, 4) ^ hasNumberOfSeats(?x, ?s) -> Car(?x)
+Thiết_bị_thông_minh(?x) ^ có_giá_x1000VND(?x, ?y) 
+						^ greaterThan(?y, "3000"^^int) 
+						^ lessThanOrEqual(?y, "10000"^^int) -> Trung_cấp(?x)
 \end{verbatim}
-\subsection{Cá thể}
-Lưu ý: các cá thể này đều là các cá thể có tên (NamedIndividual)
-\begin{table}[ht!]
-\centering
-\begin{tabular}{|p{2cm}|l|p{5cm}|p{5cm}|}
-\hline
-Named Individual & Types & Object propety assertions & Data property assertions \\ \hline
-A1 & Vehicle & \textit{canCarry} Charlie & \textit{isControlledBy} Anh \\ \hline
-A2 & Vehicle & \textit{hasWing} XWing &  \\ \hline
-\multirow{2}{*}{A3} & Vehicle & \textit{isControlledBy} Nguyen &  \\ 
-& &\textit{hasParts} Rotor1 & \\ \hline
-\multirow{2}{*}{A4} & Vehicle & \textit{isControlledBy} Nguyen &  \\ 
-& &\textit{canCarry} Missile & \\ \hline
-  
-S1 & Vehicle &  & \textit{canMoveOnOrIn} "Water" \\ \hline
-S2 & Ship &  & \textit{canCarryTheAmountOfCargo} 102 \\ \hline 
-V1 & Vehicle & \textit{canCarry} Peter & \textit{canMoveOnOrIn} "Road" \\ \hline
-V1 & Vehicle & \textit{canCarry} Container & \textit{canMoveOnOrIn} "Road" \\ \hline
-\multirow{2}{*}{V3} & Vehicle & & \textit{hasNumberOfSeats} 6  \\
-& & &  \textit{canMoveOnOrIn} "Road" \\ \hline
-V4 & RoadVehicle &  & \textit{hasNumberOfSeats} 21 \\ \hline 
-\end{tabular}
-\caption{Bảng các cá thể trong ontology transport \label{overflow}}  
-\end{table}
-Ngoài ra còn có các cá thể thuộc các lớp như sau:
-\begin{itemize}
-\item \textbf{Passenger:} Steve, Charlie, Peter, Anh, Nguyen
-\item \textbf{Pilot:} Anh, Nguyen 
-\item \textbf{Weapon:} Missile, MachineGun 
-\item \textbf{Wing:} XWing, YWing
-\item \textbf{Cargo:} Container, SmallCargo
-\end{itemize}
-Trên đây, chúng em đã liệt kê ra các thực thể được chúng em tạo ra trong transport.owl và đặc điểm của chúng. Trong chương sau, chúng em sẽ trình bày tính năng phân loại dựa trên thiết kế ontology này.
+\textbf{Giải thích:} Những thiết bị có giá lớn hơn 3 triệu đồng và nhỏ hơn hoặc bằng 10 triệu đồng thuộc phân khúc Trung cấp. Tương tự sẽ có 2 rule lớn hơn 10 triệu là phân khúc cao cấp và bé hơn hoặc bằng 3 triệu là phân khúc phổ thông.
+\begin{verbatim}
+Thiết_bị_thông_minh(?x) ^ kích_cỡ_màn_hình_Inch(?x, ?y) 
+						^ swrlb:greaterThanOrEqual(?y, 7.1) -> Máy_tính_bảng(?x)
+\end{verbatim}
+\textbf{Giải thích:} Những thiết bị có kích cỡ màn hình lớn hơn 7.1 inches là máy tính bảng tương đương có 2 rule sau.
+\begin{verbatim}
+Thiết_bị_thông_minh(?x) ^ kích_cỡ_màn_hình_Inch(?x, ?y) 
+					^ swrlb:lessThan(?y, 5.5) ^ có_tính_năng_gọi(?x, true) -> Smartphone(?x)
+\end{verbatim}
+\textbf{Giải thích:} Những thiết bị có kích cỡ màn hình bé hơn 5.5 inches và có chức năng gọi là Smartphone.
+\begin{verbatim}
+Thiết_bị_thông_minh(?x) ^ kích_cỡ_màn_hình_Inch(?x, ?y) 
+						^ swrlb:greaterThanOrEqual(?y, 5.5) ^ swrlb:lessThan(?y, 7.1) 
+						^ có_tính_năng_gọi(?x, true) -> Phalet(?x)
+\end{verbatim}
+\textbf{Giải thích:} Những thiết bị có kích cỡ màn hình lớn hơn hoặc bằng 5.5 inches và có chức năng gọi là Phalet.
+\begin{verbatim}
+Thiết_bị_thông_minh(?x) ^ sử_dụng_CPU(?x, ?y) ^ tốc_độ_xử_lý_GHz(?y, ?z) 
+						^ swrlb:greaterThanOrEqual(?z, 2) ^ số_nhân(?y, ?w) 
+						^ swrlb:greaterThanOrEqual(?w, 3) -> Cao(?x)
+\end{verbatim}
+\textbf{Giải thích:} Những thiết bị sử dụng CPU có tốc độ lớn hơn hoặc bằng 2.0 GHz và có nhiều hơn hoặc bằng 3 nhân là thiết bị có cấu hình cao. Tương ứng chúng ta có rule sau:
+\begin{verbatim}
+Thiết_bị_thông_minh(?x) ^ sử_dụng_CPU(?x, ?y) ^ tốc_độ_xử_lý_GHz(?y, ?z) 
+						^ swrlb:lessThan(?z, 2) ^ số_nhân(?y, ?w) 
+						^ swrlb:lessThan(?w, 3) -> Trung_bình(?x)
+\end{verbatim}
+\textbf{Giải thích:} Những thiết bị sử dụng CPU có tốc độ bé hơn 2.0 GHz và ít hơn 3 nhân là thiết bị có cấu hình trung bình. Ngoài ra còn một số rule đặc biệt sau:
+\begin{verbatim}
+Thiết_bị_thông_minh(?x) ^ iOS(?y) ^ sử_dụng_nền_tảng(?x, ?y) 
+						^ có_tính_năng_gọi(?x, true) -> iPhone(?x)
+\end{verbatim}
+\textbf{Giải thích:} Những thiết bị sử dụng nền tảng iOS và có tính năng gọi là iPhone (vì nền tảng iOS là độc quyền cho iPhone và iPad nên chúng ta sẽ dễ dàng phân loại chúng dựa trên Rule trên và rule sau:
+\begin{verbatim}
+Thiết_bị_thông_minh(?x) ^ iOS(?y) ^ sử_dụng_nền_tảng(?x, ?y) 
+						^ có_tính_năng_gọi(?x, false) -> iPad(?x)
+\end{verbatim}
+\textbf{Giải thích:} Những thiết bị sử dụng nền tảng iOS và không có tính năng gọi là iPad.
+\subsection{Phân loại}
+Chúng em khai báo cá thể ipad\_m\_16g như sau:
+\begin{verbatim}
+ipad_m_16g thuộc lớp Thiết_bị_thông_minh
+ipad_m_16g có thuộc tính đối tượng: sử_dụng_CPU A6
+ipad_m_16g có thuộc tính đối tượng: sử_dụng_nền_tảng iOS_7
+ipad_m_16g có thuộc tính dữ liệu: kích_cỡ_màn_hình_Inch 7.1f
+ipad_m_16g có thuộc tính dữ liệu: có_tính_năng_gọi false
+với iOS_7 là một cá thuộc lớp iOS lớp con của Nền_tảng 
+\end{verbatim}
+\begin{figure}[h!]
+	\centering
+	\frame{\includegraphics[width=155mm,height=105mm]{Figures/classify4.png}}
+	\caption{Phân loại cá thể mẫu ipad\_m\_16g trong ontology device.owl\label{overflow}}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\frame{\includegraphics[width=155mm,height=105mm]{Figures/classify5.png}}
+	\caption{Phân loại cá thể mẫu SamsungNoteEdge trong ontology device.owl\label{overflow}}
+\end{figure}
+Kết quả là cá thể này sẽ được các rule những thiết bị sử dụng nền tảng iOS và không có tính năng gọi phân loại là \textit{iPad} và rule về kích thước màn hình phân loại thành \textit{Máy\_tính\_bảng} (Hình 3.18). Khai báo thêm một cá thể như sau SamsungNoteEdge như sau:
+\begin{verbatim}
+SamsungNoteEdge thuộc lớp Thiết_bị_thông_minh
+SamsungNoteEdge có thuộc tính đối tượng sử_dụng_nền_tảng KitKat_4.4
+SamsungNoteEdge có thuộc tính đối tượng sử_dụng_CPU Snapdragon_805
+SamsungNoteEdge có thuộc tính dữ liệu kích_cỡ_màn_hình_Inch 6.0f
+SamsungNoteEdge có thuộc tính dữ liệu có_tính_năng_gọi true
+trong đó KitKat_4.4 là cá thể thuộc lớp Android lớp con của Nền_tảng
+trong đó Snapdragon_805 là cá thể thuộc lớp CPU có tốc_độ_xử_lý_GHz 2.7
+và có số_nhân "4"^^positiveInteger
+\end{verbatim}
+Kết quả là cá thể này sẽ được các rule sử dụng CPU có tốc độ xử lý 2.7 GHz và có 4 nhân nên được xếp vào loại có cấu hình cao, ngoài ra còn chịu ảnh hưởng từ rule có kích thước màn hình lớn hơn 5.5 inches là Phalet (Hình 3.19).
 \paragraph{Tổng kết} Chương này em đã trình bày qua chi tiết từng thiết kế từ giao diện phác thảo, cách tổ chức dữ liệu và xử lý sự kiện cho hệ thống và cuối cùng là thiết kế một ontology nhằm phục vụ cho quá trình phân loại khi hệ thống đã được xây dựng.
 
 

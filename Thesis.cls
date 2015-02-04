@@ -175,8 +175,8 @@
                 {Ngành phát triển ứng dụng Web và di động}}
                 {Ngành phát triển ứng dụng Web và di động}}
 \FACULTY     {\texorpdfstring{\href{Faculty Web Site URL Here (include http://)}
-                {NGÀNH PHÁT TRIỂN ỨNG DỤNG WEB VÀ DI ĐỘNG}}
-                {NGÀNH PHÁT TRIỂN ỨNG DỤNG WEB VÀ DI ĐỘNG}}
+                {MẠNG MÁY TÍNH VÀ TRUYỀN THÔNG}}
+                {MẠNG MÁY TÍNH VÀ TRUYỀN THÔNG}}
 \addresses   {}
 \subject     {}
 \keywords    {}

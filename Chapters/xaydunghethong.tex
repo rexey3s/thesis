@@ -267,54 +267,55 @@ Khi chọn thêm hay sửa rule, sẽ hiện ra một cửa sổ để thêm ho�
 	\caption{Cửa sổ biên tập SWRL Rule\label{overflow}}
 \end{figure}
 \paragraph{Kết luận} Tất cả các thành phần vừa được chúng em vừa giới thiệu, đều được sử dụng để mở rộng thành những thành phần giao diện cụ thể trong ứng dụng. Với số 4 loại thực thể (lớp, thuộc tính đối tượng/dữ liệu và cá thể) và rất nhiều dạng phát biểu (Axiom), chúng em nghĩ việc xây dựng các thành phần giao diện thành các lớp Abstract, sử dụng interface để làm các action handler hoặc xây dựng dữ liệu theo tính đa hình đã phát huy hiệu quả rất lớn là chúng em đã tách biệt thành phần giao diện và dữ liệu (thực thể, phát biểu) với nhau, nhằm tránh việc xây dựng lại từng giao diện cho từng phát biểu, thực thể.
-\section{Hiện thực khả năng phân loại tự động của ontology đã thiết kế}
-Đây chính là mục tiêu cuối cùng mà cả hệt thông muốn hướng tới, chứng minh tính khả thi trong việc sử dụng ontology để phân loại. Ontology transport \cite{owleditorSrc} được xây dựng giống như thiết kế ở chương 3. Chúng em sẽ thực nghiệm việc suy luận (reasoning) qua đó phân loại các cá thể thuộc lớp \textit{Vehicle} vào trong các lớp con của nó.
-\begin{figure}[h!]
-	\centering
-	\frame{\includegraphics[width=155mm]{Figures/classify1.png}}
-	\caption{Phân loại dựa vào các phát biểu tương đương\label{overflow}}
-\end{figure}
-\subsection{Phân loại dựa vào các phát biểu tương đương} 
-Cá thể A1 thuộc các lớp Aircraft (Hình 4.13), chọn dấu chấm ? trên phát biểu chúng ta sẽ nhận được giải thích sau:
-\begin{verbatim}
-Aircraft EquivalentTo Vehicle and (isControlledBy some Pilot)
-Anh Type Pilot
-A1 isControlledBy Anh
-A1 Type Vehicle
-\end{verbatim}
-Trong mọi loại phát biểu thì phát biểu tương đương Equivalent là loại phát biểu có ràng buộc lớn nhất giữa các lớp với nhau, nghĩa là một cá thể hội đủ điều kiện của \textit{Vehicle} \textbf{và} \textit{(isControlledBy some Pilot)} sẽ thuộc loại \textit{Aircraft}. Do A1 đã thuộc \textit{Aircraft} do các phát biểu trên nên nó cũng thuộc \textit{PassengerAircraft} dựa theo các phát biểu sau
- \begin{verbatim}
-PassengerAircraft EquivalentTo Aircraft and (canCarry some Passenger)
-Charlie Type Passenger
-A1 canCarry Charlie
-\end{verbatim}
-\begin{figure}[h!]
-	\centering
-	\frame{\includegraphics[width=145mm]{Figures/classify2.png}}
-	\caption{Phân loại dựa trên Domain của thuộc tính đối tượnglabel{overflow}}
-\end{figure}
-\subsection{Phân loại dựa trên Domain của thuộc tính đối tượng} 
-Chọn vào dấu ? để xem giải thích (Hình 4.14, chúng ta sẽ nhận được các giải thích sau cho lý dó \textit{A2} là \textit{WingAircraft}
-\begin{verbatim}
-hasWing Domain WingAircraft
-A2 hasWing XWing
-\end{verbatim}
-Giải thích chỉ có những cá thể thuộc lớp \textit{WingAircraft} mới có thuộc tính đối tượng \textit{hasWing}, mà A2 \textit{hasWing} XWing (không cần biết XWing thuộc lớp nào) nên A2 cũng thuộc \textit{WingAircraft}.
-\subsection{Phân loại theo SWRL Rule và thuộc tính dữ liệu} 
-Cá thể V4 đã thuộc lớp \textit{RoadVehicle} trước, khi phân loại chúng ta thấy nó sẽ thuộc vào lớp \textit{Bus}, đây là lý do \begin{verbatim}
-RoadVehicle(?x) ^ hasNumberOfSeats(?x, ?s) 
-               ^ swrlb:greaterThan(?s, 20) -> Bus(?x)
-V4 hasNumberOfSeats 21
-V4 Type RoadVehicle
-\end{verbatim}
-\textit{V4} được khai báo là Vehicle có thuộc tính dữ liệu \textit{hasNumberOfSeats} (có số chỗ ngồi) với giá trị 21, mà SWRL Rule nói rằng phương tiện đường bộ nào có số chỗ ngồi lớn hơn hoặc bằng 20 đều là xe Bus (Hình 4.15).
-\begin{figure}[h!]
-	\centering
-	\frame{\includegraphics[width=145mm]{Figures/classify2.png}}
-	\caption{Phân loại dựa trên Domain của thuộc tính đối tượnglabel{overflow}}
-\end{figure}
-Trên đây, là 3 ví dụ khá đơn giản về cách sử dụng các phát biểu của riêng OWL 2 hay sử dụng chúng kết hợp chúng với SWRL Rule để phân loại. Trên thực tế sẽ có những trường hợp phức tạp hơn, ví dụ của chúng em chỉ muốn kiểm chứng tính khả thi và khả năng của OWL 2 và SWRL.
-\section{Tính năng hỗ trợ phân loại - Demo Tab}
+
+%\section{Hiện thực khả năng phân loại tự động của ontology đã thiết kế}
+%Đây chính là mục tiêu cuối cùng mà cả hệt thông muốn hướng tới, chứng minh tính khả thi trong việc sử dụng ontology để phân loại. Ontology transport \cite{owleditorSrc} được xây dựng giống như thiết kế ở chương 3. Chúng em sẽ thực nghiệm việc suy luận (reasoning) qua đó phân loại các cá thể thuộc lớp \textit{Vehicle} vào trong các lớp con của nó.
+%\begin{figure}[h!]
+%	\centering
+%	\frame{\includegraphics[width=155mm]{Figures/classify1.png}}
+%	\caption{Phân loại dựa vào các phát biểu tương đương\label{overflow}}
+%\end{figure}
+%\subsection{Phân loại dựa vào các phát biểu tương đương} 
+%Cá thể A1 thuộc các lớp Aircraft (Hình 4.13), chọn dấu chấm ? trên phát biểu chúng ta sẽ nhận được giải thích sau:
+%\begin{verbatim}
+%Aircraft EquivalentTo Vehicle and (isControlledBy some Pilot)
+%Anh Type Pilot
+%A1 isControlledBy Anh
+%A1 Type Vehicle
+%\end{verbatim}
+%Trong mọi loại phát biểu thì phát biểu tương đương Equivalent là loại phát biểu có ràng buộc lớn nhất giữa các lớp với nhau, nghĩa là một cá thể hội đủ điều kiện của \textit{Vehicle} \textbf{và} \textit{(isControlledBy some Pilot)} sẽ thuộc loại \textit{Aircraft}. Do A1 đã thuộc \textit{Aircraft} do các phát biểu trên nên nó cũng thuộc \textit{PassengerAircraft} dựa theo các phát biểu sau
+% \begin{verbatim}
+%PassengerAircraft EquivalentTo Aircraft and (canCarry some Passenger)
+%Charlie Type Passenger
+%A1 canCarry Charlie
+%\end{verbatim}
+%\begin{figure}[h!]
+%	\centering
+%	\frame{\includegraphics[width=145mm]{Figures/classify2.png}}
+%	\caption{Phân loại dựa trên Domain của thuộc tính đối tượnglabel{overflow}}
+%\end{figure}
+%\subsection{Phân loại dựa trên Domain của thuộc tính đối tượng} 
+%Chọn vào dấu ? để xem giải thích (Hình 4.14, chúng ta sẽ nhận được các giải thích sau cho lý dó \textit{A2} là \textit{WingAircraft}
+%\begin{verbatim}
+%hasWing Domain WingAircraft
+%A2 hasWing XWing
+%\end{verbatim}
+%Giải thích chỉ có những cá thể thuộc lớp \textit{WingAircraft} mới có thuộc tính đối tượng \textit{hasWing}, mà A2 \textit{hasWing} XWing (không cần biết XWing thuộc lớp nào) nên A2 cũng thuộc \textit{WingAircraft}.
+%\subsection{Phân loại theo SWRL Rule và thuộc tính dữ liệu} 
+%Cá thể V4 đã thuộc lớp \textit{RoadVehicle} trước, khi phân loại chúng ta thấy nó sẽ thuộc vào lớp \textit{Bus}, đây là lý do \begin{verbatim}
+%RoadVehicle(?x) ^ hasNumberOfSeats(?x, ?s) 
+%               ^ swrlb:greaterThan(?s, 20) -> Bus(?x)
+%V4 hasNumberOfSeats 21
+%V4 Type RoadVehicle
+%\end{verbatim}
+%\textit{V4} được khai báo là Vehicle có thuộc tính dữ liệu \textit{hasNumberOfSeats} (có số chỗ ngồi) với giá trị 21, mà SWRL Rule nói rằng phương tiện đường bộ nào có số chỗ ngồi lớn hơn hoặc bằng 20 đều là xe Bus (Hình 4.15).
+%\begin{figure}[h!]
+%	\centering
+%	\frame{\includegraphics[width=145mm]{Figures/classify2.png}}
+%	\caption{Phân loại dựa trên Domain của thuộc tính đối tượnglabel{overflow}}
+%\end{figure}
+%Trên đây, là 3 ví dụ khá đơn giản về cách sử dụng các phát biểu của riêng OWL 2 hay sử dụng chúng kết hợp chúng với SWRL Rule để phân loại. Trên thực tế sẽ có những trường hợp phức tạp hơn, ví dụ của chúng em chỉ muốn kiểm chứng tính khả thi và khả năng của OWL 2 và SWRL.
+\section{Tính năng hỗ trợ phân loại - Classification Tab}
 \begin{figure}[ht!]
 	\centering
 	\frame{\includegraphics[width=145mm]{Figures/owleditor_demo1.png}}
